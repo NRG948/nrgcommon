@@ -29,13 +29,25 @@ public class RobotPreferences {
   /** An interface to support the Visitor pattern on preferences values. */
   public interface IValueVisitor {
 
-    /** Called to apply the visitor's effect on a {@link StringValue}. */
+    /**
+     * Called to apply the visitor's effect on a {@link StringValue}.
+     * 
+     * @param value The {@link StringValue} to visit.
+     */
     void visit(StringValue value);
 
-    /** Called to apply the visitor's effect on a {@link BooleanValue}. */
+    /**
+     * Called to apply the visitor's effect on a {@link BooleanValue}.
+     * 
+     * @param value The {@link BooleanValue} to visit.
+     */
     void visit(BooleanValue value);
 
-    /** Called to apply the visitor's effect on a {@link DoubleValue}. */
+    /**
+     * Called to apply the visitor's effect on a {@link DoubleValue}.
+     * 
+     * @param value The {@link DoubleValue} to visit.
+     */
     void visit(DoubleValue value);
   }
 
@@ -61,12 +73,20 @@ public class RobotPreferences {
       this.key = group + "/" + name;
     }
 
-    /** Returns the this value's group name. */
+    /**
+     * Returns the this value's group name.
+     * 
+     * @return The group name.
+     */
     public String getGroup() {
       return group;
     }
 
-    /** Returns this value's name. */
+    /**
+     * Returns this value's name.
+     * 
+     * @return The value name.
+     */
     public String getName() {
       return name;
     }
@@ -75,17 +95,27 @@ public class RobotPreferences {
      * Returns this value key used to access it in the preferences store. The value
      * is generated from a concatenation of the group name and value name separated
      * by a forward slash ("/") character.
+     * 
+     * @return The key name.
      */
     public String getKey() {
       return key;
     }
 
-    /** Returns whether the value exists in the preferences store. */
+    /**
+     * Returns whether the value exists in the preferences store.
+     * 
+     * @return Whether the value exists in the preferences store.
+     */
     public boolean exists() {
       return Preferences.containsKey(key);
     }
 
-    /** Accepts a visitor that operates on this value. */
+    /**
+     * Accepts a visitor that operates on this value.
+     * 
+     * @param visitor A visitor to operate on this value.
+     */
     public abstract void accept(IValueVisitor visitor);
   }
 
@@ -109,12 +139,20 @@ public class RobotPreferences {
       this.defaultValue = defaultValue;
     }
 
-    /** Returns the default value. */
+    /**
+     * Returns the default value.
+     * 
+     * @return The default value.
+     */
     public String getDefaultValue() {
       return defaultValue;
     }
 
-    /** Returns the current value. */
+    /**
+     * Returns the current value.
+     * 
+     * @return The current value.
+     */
     public String getValue() {
       return Preferences.getString(key, defaultValue);
     }
@@ -154,12 +192,20 @@ public class RobotPreferences {
       this.defaultValue = defaultValue;
     }
 
-    /** Returns the default value. */
+    /**
+     * Returns the default value.
+     * 
+     * @return The default value.
+     */
     public boolean getDefaultValue() {
       return defaultValue;
     }
 
-    /** Returns the current value. */
+    /**
+     * Returns the current value.
+     * 
+     * @return The current value.
+     */
     public boolean getValue() {
       return Preferences.getBoolean(key, defaultValue);
     }
@@ -199,12 +245,20 @@ public class RobotPreferences {
       this.defaultValue = defaultValue;
     }
 
-    /** Returns the default value. */
+    /**
+     * Returns the default value.
+     * 
+     * @return The default value.
+     */
     public double getDefaultValue() {
       return defaultValue;
     }
 
-    /** Returns the current value. */
+    /**
+     * Returns the current value.
+     * 
+     * @return The current value.
+     */
     public double getValue() {
       return Preferences.getDouble(key, defaultValue);
     }
