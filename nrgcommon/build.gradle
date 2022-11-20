@@ -49,13 +49,19 @@ tasks.named('test') {
 
 publishing {
     repositories {
+        mavenLocal()
         maven {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/edreed/nrgcommon"
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
             }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
