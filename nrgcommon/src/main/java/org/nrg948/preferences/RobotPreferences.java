@@ -6,6 +6,7 @@ package org.nrg948.preferences;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,12 +17,14 @@ import org.reflections.util.ConfigurationBuilder;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 /** A class to manage robot preferences. */
 public class RobotPreferences {
@@ -49,6 +52,14 @@ public class RobotPreferences {
      * @param value The {@link DoubleValue} to visit.
      */
     void visit(DoubleValue value);
+
+    /**
+     * Called to apply the visitor's effect on an {@link EnumValue}.
+     * 
+     * @param <E>   The enum type.
+     * @param value The {@link EnumValue} to visit.
+     */
+    <E extends Enum<E>> void visit(EnumValue<E> value);
   }
 
   /**
@@ -278,6 +289,78 @@ public class RobotPreferences {
     }
   }
 
+  /** A class representing an enum value in the preferences store. */
+  public static class EnumValue<E extends Enum<E>> extends Value {
+
+    private final E defaultValue;
+
+    /**
+     * Constructs an instance of this class.
+     * 
+     * @param group        The preference value's group name. This is usually the
+     *                     subsystem
+     *                     or class that uses the value.
+     * @param name         The preferences value name.
+     * @param defaultValue The value supplied when the preference does not exist in
+     *                     the preferences store.
+     */
+    public EnumValue(String group, String name, E defaultValue) {
+      super(group, name);
+      this.defaultValue = defaultValue;
+    }
+
+    /**
+     * Returns the default value.
+     * 
+     * @return The default value.
+     */
+    public E getDefaultValue() {
+      return defaultValue;
+    }
+
+    /**
+     * Returns the current value.
+     * 
+     * @return The current value.
+     */
+    public E getValue() {
+      try {
+        return E.valueOf(
+            defaultValue.getDeclaringClass(), Preferences.getString(key, defaultValue.name()));
+      } catch (IllegalArgumentException e) {
+        return defaultValue;
+      }
+    }
+
+    /**
+     * Sets the current value.
+     * 
+     * @param value The value to set.
+     */
+    public void setValue(E value) {
+      Preferences.setString(key, value.name());
+    }
+
+    /**
+     * Sets the current value as a string.
+     *
+     * @implNote No validation is done on the string value. If a string value that cannot be
+     *           converted to an value of the enum type, {@link getValue} will return the
+     *           default value.
+     * 
+     * @param value The string value to set.
+     */
+    private void setValue(String value) {
+      Preferences.setString(key, value);
+    }
+
+    @Override
+    public void accept(IValueVisitor visitor) {
+      visitor.visit(this);
+    }
+
+  }
+
   /** A Visitor that writes the default preferences value to the store. */
   private static class DefaultValueWriter implements IValueVisitor {
 
@@ -302,6 +385,13 @@ public class RobotPreferences {
       value.setValue(value.getDefaultValue());
       printMessage(value.getGroup(), value.getName(), Double.toString(value.getValue()));
     }
+
+    @Override
+    public <E extends Enum<E>> void visit(EnumValue<E> value) {
+      value.setValue(value.getDefaultValue());
+      printMessage(value.getGroup(), value.getName(), value.getValue().name());
+    }
+
   }
 
   /** A Visitor to print non default Values to the console. */
@@ -328,6 +418,13 @@ public class RobotPreferences {
     public void visit(DoubleValue value) {
       if (value.getValue() != value.getDefaultValue()) {
         printMessage(value.getGroup(), value.getName(), Double.toString(value.getValue()));
+      }
+    }
+
+    @Override
+    public <E extends Enum<E>> void visit(EnumValue<E> value) {
+      if (value.getValue() != value.getDefaultValue()) {
+        printMessage(value.getGroup(), value.getName(), value.getValue().name());
       }
     }
   }
@@ -375,7 +472,32 @@ public class RobotPreferences {
           EntryListenerFlags.kUpdate);
     }
 
+    @Override
+    public <E extends Enum<E>> void visit(EnumValue<E> value) {
+      E currentValue = value.getValue();
+      SendableChooser<E> chooser = new SendableChooser<E>();
+
+      EnumSet.allOf(currentValue.getDeclaringClass())
+          .stream()
+          .forEach(e -> chooser.addOption(e.toString(), e));
+      chooser.setDefaultOption(currentValue.toString(), currentValue);
+
+      layout.add(value.getName(), chooser);
+
+      NetworkTableInstance.getDefault()
+        .getTable(Shuffleboard.kBaseTableName)
+        .getSubTable(kShufflboardTabName)
+        .getSubTable(value.getGroup())
+        .getSubTable(value.getName())
+        .getEntry("active")
+        .addListener(
+          (event) -> value.setValue(event.getEntry().getString(value.getDefaultValue().name())),
+          EntryListenerFlags.kUpdate);
+    }
+
   }
+
+  public static final String kShufflboardTabName = "Preferences";
 
   @RobotPreferencesValue
   public static BooleanValue writeDefault = new BooleanValue("Preferences", "WriteDefault", true);
@@ -413,7 +535,7 @@ public class RobotPreferences {
    * Adds a tab to the Shuffleboard allowing the robot operator to adjust values.
    */
   public static void addShuffleBoardTab() {
-    ShuffleboardTab prefsTab = Shuffleboard.getTab("Preferences");
+    ShuffleboardTab prefsTab = Shuffleboard.getTab(kShufflboardTabName);
 
     Set<Class<?>> classes = reflections.get(
         Scanners.TypesAnnotated
