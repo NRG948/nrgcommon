@@ -14,7 +14,7 @@ plugins {
 }
 
 group = 'org.nrg948'
-version = '0.1.0'
+version = '2022.0.0'
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -55,8 +55,8 @@ publishing {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/edreed/nrgcommon"
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-                password = project.findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }

@@ -6,9 +6,9 @@ This repository contains common code that is shared among robots created by [FRC
 
 The table below lists the release version of the library and the WPILib release version required to use it.
 
-| Version | Required WPILib Version |
-|---------|-------------------------|
-| 0.1.0   | 2022.4.1                |
+| Version  | Git Tag   | Required WPILib Version |
+|----------|-----------|-------------------------|
+| 2022.0.0 | v2022.0.0 | 2022.4.1                |
 
 ## How to use the library in a Robot project
 
