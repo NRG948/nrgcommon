@@ -64,7 +64,7 @@
  * 
  *   // Construct the PID subsystem using the current preferences value.
  *   public MyPIDSubsystem() {
- *     super(new PIDController(kP.getValue(), kD.getValue(), kI.getValue()))
+ *     super(new PIDController(kP.getValue(), kI.getValue(), kD.getValue()))
  *   }
  * 
  *   // Override the {@link PIDSubsystem#enable()} method to refresh the PID values in
