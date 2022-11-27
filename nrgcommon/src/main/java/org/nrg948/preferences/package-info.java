@@ -1,6 +1,6 @@
 /**
  * The {@code org.nrg948.preferences} package eases management, use and
- * presentation of robot preferences through an annotation based approach.
+ * presentation of robot preferences through an annotation-based approach.
  * 
  * <p>
  * To initialize the package, you must call the
