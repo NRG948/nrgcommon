@@ -6,6 +6,7 @@ package org.nrg948.preferences;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -511,9 +512,12 @@ public class RobotPreferences {
    *             {@link RobotPreferencesLayout} annotations.
    **/
   public static void init(String... pkgs) {
+    String[] allPkgs = Arrays.copyOf(pkgs, pkgs.length + 1);
+
+    allPkgs[allPkgs.length - 1] = "org.nrg948";
     reflections = new Reflections(
         new ConfigurationBuilder()
-            .forPackages(pkgs)
+            .forPackages(allPkgs)
             .setScanners(Scanners.TypesAnnotated, Scanners.FieldsAnnotated));
 
     DefaultValueWriter writeDefaultValue = new DefaultValueWriter();
