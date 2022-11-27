@@ -1,14 +1,4 @@
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
-
-name: Publish package to GitHub Packages
+name: Publish Release Package to GitHub Packages
 on:
   release:
     types: [created]
@@ -29,6 +19,6 @@ jobs:
       - name: Publish package
         uses: gradle/gradle-build-action@v2.3.3
         with:
-          arguments: publish
+          arguments: -Drelease=true publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
