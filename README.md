@@ -4,11 +4,12 @@ This repository contains common code that is shared among robots created by [FRC
 
 ## Releases
 
-The table below lists the release version of the library and the WPILib release version required to use it.
+The table below lists the published versions of the library and the WPILib release version required to use it.
 
-| Version  | Git Tag   | Required WPILib Version |
-|----------|-----------|-------------------------|
-| 2022.0.0 | v2022.0.0 | 2022.4.1                |
+| Version           | Git Tag/Branch | Required WPILib Version |
+|-------------------|----------------|-------------------------|
+| 2022.0.0          | v2022.0.0      | 2022.4.1                |
+| 2022.0.1-SNAPSHOT | main           | 2022.4.1                |
 
 ## How to use the library in a Robot project
 
@@ -39,7 +40,7 @@ Finally, add the NRG Common Java Library as a dependency in your `build.gradle` 
 
 ```gradle
 dependencies {
-    implementation 'org.nrg948:nrgcommon:0.1.0'
+    implementation 'org.nrg948:nrgcommon:2022.0.0'
 }
 ```
 
