@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package org.nrg948.preferences;
+package com.nrg948.preferences;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -514,7 +514,7 @@ public class RobotPreferences {
   public static void init(String... pkgs) {
     String[] allPkgs = Arrays.copyOf(pkgs, pkgs.length + 1);
 
-    allPkgs[allPkgs.length - 1] = "org.nrg948";
+    allPkgs[allPkgs.length - 1] = "com.nrg948";
     reflections = new Reflections(
         new ConfigurationBuilder()
             .forPackages(allPkgs)

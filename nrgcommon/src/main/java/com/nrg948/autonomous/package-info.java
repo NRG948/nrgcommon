@@ -1,5 +1,5 @@
 /**
- * The {@code org.nrg948.autonomous} package implements an annotation-based
+ * The {@code com.nrg948.autonomous} package implements an annotation-based
  * approach for identifying and selecting autonomous commands.
  * 
  * <p>
@@ -77,7 +77,7 @@
  * </code>
  * </pre>
  */
-package org.nrg948.autonomous;
+package com.nrg948.autonomous;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;

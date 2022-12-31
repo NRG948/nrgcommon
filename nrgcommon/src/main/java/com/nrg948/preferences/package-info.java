@@ -1,5 +1,5 @@
 /**
- * The {@code org.nrg948.preferences} package eases management, use and
+ * The {@code com.nrg948.preferences} package eases management, use and
  * presentation of robot preferences through an annotation-based approach.
  * 
  * <p>
@@ -40,9 +40,9 @@
  * import edu.wpi.first.math.controller.PIDController;
  * import edu.wpi.first.wpilibj2.command.PIDSubsystem;
  * 
- * import org.nrg948.RobotPreferences.DoubleValue;
- * import org.nrg948.RobotPreferencesLayout;
- * import org.nrg948.RobotPreferencesValue;
+ * import com.nrg948.RobotPreferences.DoubleValue;
+ * import com.nrg948.RobotPreferencesLayout;
+ * import com.nrg948.RobotPreferencesValue;
  * 
  * {@literal @}RobotPreferencesLayout(
  *   groupName = "MyPIDSubsystem",
@@ -91,6 +91,6 @@
  * {@link RobotPreferencesLayout} annotation to a tab named "Preferences" in
  * Shuffleboard.
  */
-package org.nrg948.preferences;
+package com.nrg948.preferences;
 
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;

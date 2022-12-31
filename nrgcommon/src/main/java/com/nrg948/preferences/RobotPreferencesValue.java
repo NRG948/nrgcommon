@@ -1,4 +1,4 @@
-package org.nrg948.preferences;
+package com.nrg948.preferences;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

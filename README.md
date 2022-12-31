@@ -8,8 +8,8 @@ The table below lists the published versions of the library and the WPILib relea
 
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
-| 2022.0.0          | v2022.0.0      | 2022.4.1                |
-| 2022.0.1-SNAPSHOT | main           | 2022.4.1                |
+| 2022.1.1-SNAPSHOT | main           | 2022.4.1                |
+| 2022.1.0          | v2022.1.0      | 2022.4.1                |
 
 ## How to use the library in a Robot project
 
@@ -40,7 +40,7 @@ Finally, add the NRG Common Java Library as a dependency in your `build.gradle` 
 
 ```gradle
 dependencies {
-    implementation 'org.nrg948:nrgcommon:2022.0.0'
+    implementation 'com.nrg948:nrgcommon:2022.1.0'
 }
 ```
 

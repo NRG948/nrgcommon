@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package org.nrg948.autonomous;
+package com.nrg948.autonomous;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
