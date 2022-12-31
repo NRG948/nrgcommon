@@ -75,7 +75,7 @@ publishing {
         mavenLocal()
         maven {
             name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/edreed/nrgcommon"
+            url = "https://maven.pkg.github.com/NRG948/nrgcommon"
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
