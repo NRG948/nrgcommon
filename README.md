@@ -27,7 +27,7 @@ Next, add the NRG Common package repository to your `build.gradle` file.
 ```gradle
 repositories {
     maven {
-        url = uri("https://maven.pkg.github.com/edreed/nrgcommon")
+        url = uri("https://maven.pkg.github.com/NRG948/nrgcommon")
         credentials {
             username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
             password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
