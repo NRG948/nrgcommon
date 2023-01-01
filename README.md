@@ -15,14 +15,14 @@ The table below lists the published versions of the library and the WPILib relea
 
 The library is published to GitHub Packages. Because GitHub Packages requires authentication even for installing packages, you will need to first [create a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). The token only needs the `packages:read` scope.
 
-Once you have created the token, add the following entries to `$HOME/.gradle/gradle.properties` replacing `USERNAME` with your GitHub user name and `TOKEN` with the token value itself. Use of the Elvis operator (`?:`) to get the GitHub Actor and Token is optional but enables the library to be consumed when the code is built during a GitHub Action.
+Once you have created the token, add the following entries to `$HOME/.gradle/gradle.properties` replacing `USERNAME` with your GitHub user name and `TOKEN` with the token value itself.
 
 ```properties
 gpr.user=USERNAME
 gpr.key=TOKEN
 ```
 
-Next, add the NRG Common package repository to your `build.gradle` file.
+Next, add the NRG Common package repository to your `build.gradle` file. Use of the Elvis operator (`?:`) to get the GitHub Actor and Token is optional but enables the library to be consumed when the code is built during a GitHub Action.
 
 ```gradle
 repositories {
