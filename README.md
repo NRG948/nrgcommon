@@ -8,7 +8,7 @@ The table below lists the published versions of the library and the WPILib relea
 
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
-| 2023.1.0-SNAPSHOT | main           | 2023.3.1-beta.7         |
+| 2023.1.0-SNAPSHOT | main           | 2023.1.1-beta.7         |
 | 2022.1.0          | v2022.1.0      | 2022.4.1                |
 
 ## How to use the library in a Robot project
