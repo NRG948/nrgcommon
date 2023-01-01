@@ -36,9 +36,13 @@ import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.reflections.util.ConfigurationBuilder;
 
-import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.BooleanTopic;
+import edu.wpi.first.networktables.DoubleTopic;
+import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.StringTopic;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -88,8 +92,13 @@ public class RobotPreferences {
    */
   public static abstract class Value {
 
+    /** The preferences value group name. */
     protected final String group;
+
+    /** The preferences value name. */
     protected final String name;
+
+    /** The preferences value key. */
     protected final String key;
 
     /**
@@ -462,35 +471,53 @@ public class RobotPreferences {
     @Override
     public void visit(StringValue value) {
       SimpleWidget widget = layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
-      NetworkTableEntry entry = widget.getEntry();
+      GenericEntry entry = widget.getEntry();
 
       entry.setString(value.getValue());
-      entry.addListener(
-          (event) -> value.setValue(event.getEntry().getString(value.getDefaultValue())),
-          EntryListenerFlags.kUpdate);
+      
+      StringTopic topic = new StringTopic(entry.getTopic());
+      NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
+
+      ntInstance.addListener(
+          topic,
+          EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+          (event) -> value.setValue(event.valueData.value.getString())
+          );
     }
 
     @Override
     public void visit(BooleanValue value) {
       SimpleWidget widget = layout.add(value.getName(), value.getValue())
           .withWidget(BuiltInWidgets.kToggleSwitch);
-      NetworkTableEntry entry = widget.getEntry();
+      GenericEntry entry = widget.getEntry();
 
       entry.setBoolean(value.getValue());
-      entry.addListener(
-          (event) -> value.setValue(event.getEntry().getBoolean(value.getDefaultValue())),
-          EntryListenerFlags.kUpdate);
+      
+      BooleanTopic topic = new BooleanTopic(entry.getTopic());
+      NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
+
+      ntInstance.addListener(
+          topic,
+          EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+          (event) -> value.setValue(event.valueData.value.getBoolean())
+          );
     }
 
     @Override
     public void visit(DoubleValue value) {
       SimpleWidget widget = layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
-      NetworkTableEntry entry = widget.getEntry();
+      GenericEntry entry = widget.getEntry();
 
       entry.setDouble(value.getValue());
-      entry.addListener(
-          (event) -> value.setValue(event.getEntry().getDouble(value.getDefaultValue())),
-          EntryListenerFlags.kUpdate);
+      
+      DoubleTopic topic = new DoubleTopic(entry.getTopic());
+      NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
+
+      ntInstance.addListener(
+          topic,
+          EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+          (event) -> value.setValue(event.valueData.value.getDouble())
+          );
     }
 
     @Override
@@ -505,21 +532,26 @@ public class RobotPreferences {
 
       layout.add(value.getName(), chooser);
 
-      NetworkTableInstance.getDefault()
+      NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
+      NetworkTableEntry chooserEntry = ntInstance
         .getTable(Shuffleboard.kBaseTableName)
         .getSubTable(kShufflboardTabName)
         .getSubTable(value.getGroup())
         .getSubTable(value.getName())
-        .getEntry("active")
-        .addListener(
-          (event) -> value.setValue(event.getEntry().getString(value.getDefaultValue().name())),
-          EntryListenerFlags.kUpdate);
+        .getEntry("active");
+
+        ntInstance.addListener(
+          chooserEntry,
+          EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+          (event) -> value.setValue(event.valueData.value.getString()));
     }
 
   }
 
+  /** The name of the Shuffleboard tab containing the preferences widgets. */
   public static final String kShufflboardTabName = "Preferences";
 
+  /** Whether to write the default values to the preferences file on startup. */
   @RobotPreferencesValue
   public static BooleanValue writeDefault = new BooleanValue("Preferences", "WriteDefault", true);
 

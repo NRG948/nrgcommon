@@ -8,7 +8,7 @@ The table below lists the published versions of the library and the WPILib relea
 
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
-| 2022.1.1-SNAPSHOT | main           | 2022.4.1                |
+| 2023.1.0-SNAPSHOT | main           | 2023.3.1-beta.7         |
 | 2022.1.0          | v2022.1.0      | 2022.4.1                |
 
 ## How to use the library in a Robot project
@@ -44,8 +44,6 @@ dependencies {
 }
 ```
 
-On the next build, the library will be downloaded from GitHub packages and installed in the Gradle build cache. You can also explicitly install the library using the following command from the root of your robot repository.
+> **NOTE:** If you want the latest build from `main`, use `'com.nrg948:nrgcommon:2023.1.0-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
 
-```powershell
-$ ./gradlew install
-```
+On the next build, the library will be downloaded from GitHub packages and installed in the Gradle build cache.
