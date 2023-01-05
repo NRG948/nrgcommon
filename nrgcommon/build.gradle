@@ -48,13 +48,13 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
-    api "edu.wpi.first.wpilibj:wpilibj-java:2023.1.1-beta-7"
+    api "edu.wpi.first.wpilibj:wpilibj-java:2023.1.1"
 
-    implementation "edu.wpi.first.cscore:cscore-java:2023.1.1-beta-7"
-    implementation "edu.wpi.first.ntcore:ntcore-java:2023.1.1-beta-7"
-    implementation "edu.wpi.first.wpiutil:wpiutil-java:2023.1.1-beta-7"
+    implementation "edu.wpi.first.cscore:cscore-java:2023.1.1"
+    implementation "edu.wpi.first.ntcore:ntcore-java:2023.1.1"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:2023.1.1"
     implementation 'org.reflections:reflections:0.10.2'
-    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2023.1.1-beta-7'
+    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2023.1.1'
 }
 
 java {
