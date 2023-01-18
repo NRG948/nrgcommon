@@ -30,7 +30,7 @@ plugins {
 }
 
 group = 'com.nrg948'
-version = '2023.2.0' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
+version = '2023.2.1' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
