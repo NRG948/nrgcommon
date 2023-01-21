@@ -1,7 +1,7 @@
 /*
   MIT License
 
-  Copyright (c) 2022 Newport Robotics Group
+  Copyright (c) 2023 Newport Robotics Group
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -33,27 +33,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
- * Annotates a class implementing a subclass of {@link Command} to run during
- * autonomous.
+ * Annotates a methed that creates a new subclass of {@link Command} to run
+ * during autonomous.
  * <p>
- * The class must define a constructor that conforms to the following prototype:
+ * The method must conform to the following prototype:
  * 
  * <pre>
  * <code>
- * public CommandSubClass(T container);
+ * public static Command name(T container);
  * </code>
  * </pre>
  *
- * The type T is an object providing access to the robot subsystems. This is
- * typically an instance of <code>RobotContainer</code>, but could be another
- * type used to manage the subsystems
+ * The type T is an object passed to the constructor of the autonomous command
+ * providing access to the robot subsystems. This is typically an instance of
+ * <code>RobotContainer</code>, but could be another type used to manage the
+ * subsystems
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AutonomousCommand {
+public @interface AutonomousCommandMethod {
   /**
-   * The name to display for the annotated {@link Command} in the
-   * {@link SendableChooser} returned by
+   * The name to display for the annotated method returning a {@link Command} in
+   * the {@link SendableChooser} returned by
    * {@link Autonomous#getChooser(Object, String...)}.
    * 
    * @return The display name.
@@ -61,8 +62,8 @@ public @interface AutonomousCommand {
   String name();
 
   /**
-   * Whether this command is the default {@link Command} in the
-   * {@link SendableChooser} returned by
+   * Whether this command returned by the method is the default {@link Command} in
+   * the {@link SendableChooser} returned by
    * {@link Autonomous#getChooser(Object, String...)}.
    * 
    * @return Returns true if this is the default command, and false otherwise.

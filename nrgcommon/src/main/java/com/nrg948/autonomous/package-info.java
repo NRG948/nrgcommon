@@ -27,7 +27,7 @@
  * approach for identifying and selecting autonomous commands.
  * 
  * <p>
- * The {@link AutonomousCommand} anotation identifies an autonomous command
+ * The {@link AutonomousCommand} annotation identifies an autonomous command
  * class. All classes with this annotation must be a subclass of {@link Command}
  * and declare the same public constructor taking a single parameter used to
  * access the robot subsystems. This parameter is typically
@@ -40,10 +40,9 @@
  * 
  * <pre>
  * <code>
- * {@literal @}AutonomousCommand(name = "My Autonomous Command", isDefault = true)
- * public MyAutonomousCommand extends SequentialCommandGroup {
+ * {@literal @}AutonomousCommand (name = "My Autonomous Command", isDefault = true)
+ * public class MyAutonomousCommand extends SequentialCommandGroup {
  *   public MyAutonomousCommand(RobotContainer container) {
- *     // Add your commands in the addCommands() call.
  *     addCommands(
  *       new DriveToFirstLocation(container.getDrivetrainSubsystem()),
  *       ...
@@ -54,22 +53,49 @@
  * </pre>
  * 
  * <p>
- * The annotation contains two elements: {@link AutonomousCommand#name()} and
+ * The {@link AutonomousCommandMethod} annotation identifies a public static
+ * factory method invoked to create a {@link Command} subclass to be run during
+ * autonomous. The method takes a single parameter used to access robot
+ * subsystem and returns a sublass of {@link Command}. This parameter is
+ * typically <code>RobotContainer</code> but may be another type managing access
+ * to the subsystems.
+ * 
+ * <p>
+ * The following example shows how to define and annotate an autonomous
+ * {@link Command} factory method.<br>
+ * 
+ * <pre>
+ * <code>
+ * public class Autos {<br>
+ *  {@literal @}AutonomousCommandMethod (name = "My Autonomous Command", isDefault = true)
+ *  public static Command exampleRoutine(RobotContainer container) {
+ *    return Command.sequence(
+ *       new DriveToFirstLocation(container.getDrivetrainSubsystem()),
+ *       ...
+ *    );
+ *  }
+ * }
+ * </code>
+ * </pre>
+ * 
+ * <p>
+ * Each annotation contains two elements: {@link AutonomousCommand#name()} and
  * {@link AutonomousCommand#isDefault()}. The <code>name</code> element provides
  * the name to display for the command in user interface elements like
  * {@link SendableChooser}. The <code>isDefault</code> element determines which
- * command is the default selection. Only one command should be set as the
- * default.
+ * command is the default selection. Only one command class or factory method
+ * should be set as the default.
  * 
  * <p>
- * Once all autonomous commands have been annotated, the
- * {@link Autonomous#getChooser(Object, String...)} method can be used to create
- * a {@link SendableChooser}<code>{@literal <}Command{@literal >}</code> object
+ * Once all autonomous command classes and/or factory methods have been
+ * annotated, the {@link Autonomous#getChooser(Object, String...)} method can be
+ * used to create a
+ * {@link SendableChooser}<code>{@literal <}Command{@literal >}</code> object
  * enabling iteractive selection of the autonomous command from Shuffleboard or
  * SmartDashboard.
  * 
  * <p>
- * The following example show how to implement interactive autonomous command
+ * The following example shows how to implement interactive autonomous command
  * selection.<br>
  * 
  * <pre>
