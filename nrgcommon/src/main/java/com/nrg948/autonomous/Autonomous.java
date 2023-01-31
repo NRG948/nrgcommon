@@ -79,7 +79,8 @@ public final class Autonomous {
      *                  commands providing access to the robot subsystems. This
      *                  is typically an instance of <code>RobotContainer</code> but
      *                  could be another type that manages the subsystems.
-     * @return
+     * 
+     * @return The {@link Command} to add to the {@link SendableChooser}.
      */
     Command newCommand(T container);
 
