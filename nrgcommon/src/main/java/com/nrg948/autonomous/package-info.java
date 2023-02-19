@@ -87,12 +87,35 @@
  * should be set as the default.
  * 
  * <p>
- * Once all autonomous command classes and/or factory methods have been
- * annotated, the {@link Autonomous#getChooser(Object, String...)} method can be
- * used to create a
- * {@link SendableChooser}<code>{@literal <}Command{@literal >}</code> object
- * enabling iteractive selection of the autonomous command from Shuffleboard or
- * SmartDashboard.
+ * The {@link AutonomousCommandGenerator} annotation identifies a public static
+ * method invoked to create a {@link Collection} of {@link LabelValue} elements
+ * mapping the name to display in user interface elements like
+ * {@link SendableChooser} to a {@link Command}.
+ * 
+ * <p>
+ * The following example shows how to define and annotate an autonomous
+ * {@link Command} generator method.<br>
+ * 
+ * <pre>
+ * <code>
+ * public class Autos {<br>
+ *  {@literal @}AutonomousCommandGenerator
+ *  public static Command exampleGenerator(RobotContainer container) {
+ *    return List.of(
+ *      new LabelValue&lt;String, Command&gt;("First Auto", new FirstAuto(container)),
+ *      new LabelValue&lt;String, Command&gt;("Second Auto", new SecondAuto(container)),
+ *      );
+ *  }
+ * }
+ * </code>
+ * </pre>
+ * 
+ * <p>
+ * Once all autonomous command classes, factory and/or generator methods have
+ * been annotated, the {@link Autonomous#getChooser(Object, String...)} method
+ * can be used to create a
+ * {@link SendableChooser} object enabling iteractive selection of the
+ * autonomous command from Shuffleboard or SmartDashboard.
  * 
  * <p>
  * The following example shows how to implement interactive autonomous command
@@ -129,5 +152,8 @@
  */
 package com.nrg948.autonomous;
 
+import java.util.Collection;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import org.javatuples.LabelValue;

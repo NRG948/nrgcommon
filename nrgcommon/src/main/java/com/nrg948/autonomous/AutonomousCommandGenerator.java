@@ -1,7 +1,7 @@
 /*
   MIT License
 
-  Copyright (c) 2023 Newport Robotics Group
+  Copyright (c) 2022 Newport Robotics Group
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -24,23 +24,22 @@
 
 package com.nrg948.autonomous;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.Collection;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import org.javatuples.LabelValue;
 
 /**
- * Annotates a method that creates a new subclass of {@link Command} to run
- * during autonomous.
+ * Annotates a method that creates a {@link Collection} of {@link LabelValue}
+ * elements mapping the name to display in user interface elements like
+ * {@link SendableChooser} to a {@link Command}.
  * <p>
  * The method must conform to the following prototype:
  * 
  * <pre>
  * <code>
- * public static Command name(T container);
+ * public static Collection&lt;LabelValue&lt;String, Command&gt;&gt; name(T container);
  * </code>
  * </pre>
  *
@@ -49,24 +48,6 @@ import edu.wpi.first.wpilibj2.command.Command;
  * <code>RobotContainer</code>, but could be another type used to manage the
  * subsystems
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface AutonomousCommandMethod {
-  /**
-   * The name to display for the annotated method returning a {@link Command} in
-   * the {@link SendableChooser} returned by
-   * {@link Autonomous#getChooser(Object, String...)}.
-   * 
-   * @return The display name.
-   */
-  String name();
+public @interface AutonomousCommandGenerator {
 
-  /**
-   * Whether this command returned by the method is the default {@link Command} in
-   * the {@link SendableChooser} returned by
-   * {@link Autonomous#getChooser(Object, String...)}.
-   * 
-   * @return Returns true if this is the default command, and false otherwise.
-   */
-  boolean isDefault() default false;
 }

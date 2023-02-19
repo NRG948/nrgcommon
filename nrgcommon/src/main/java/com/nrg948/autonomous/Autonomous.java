@@ -31,8 +31,11 @@ import static org.reflections.util.ReflectionUtilsPredicates.withStatic;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.stream.Stream;
 
+import org.javatuples.LabelValue;
 import org.reflections.Reflections;
 import org.reflections.util.ConfigurationBuilder;
 
@@ -125,8 +128,16 @@ public final class Autonomous {
             .filter(withStatic()))
         .stream()
         .map(Autonomous::<T>toCommandFactory);
+    Stream<CommandFactory<T>> commandGenerators = reflections
+        .get(MethodsAnnotated
+            .with(AutonomousCommandGenerator.class)
+            .as(Method.class)
+            .filter(withStatic()))
+        .stream()
+        .flatMap(m -> generateCommands(m, container));
 
-    Stream.concat(commandClasses, commandMethods)
+    Stream.of(commandClasses, commandMethods, commandGenerators)
+        .flatMap(s -> s)
         .sorted()
         .forEach((CommandFactory<T> commandFactory) -> {
           Command command = commandFactory.newCommand(container);
@@ -172,7 +183,6 @@ public final class Autonomous {
 
         try {
           return (Command) commandClass.getConstructor(containerClass).newInstance(container);
-
         } catch (NoSuchMethodException e) {
           System.err.printf(
               "ERROR: Class %s does not define the public constructor: %s(%s)%n",
@@ -229,7 +239,6 @@ public final class Autonomous {
 
         try {
           return (Command) commandMethod.invoke(null, container);
-
         } catch (InvocationTargetException e) {
           System.err.printf(
               "ERROR: Method %s does not take a single parameter of type %s.%n",
@@ -256,6 +265,74 @@ public final class Autonomous {
         return null;
       }
     };
+  }
+
+  /**
+   * Returns a {@link Stream} of {@link CommandFactory} implementations used to
+   * create {@link Command} objects to add to the {@link SendableChooser}.
+   * 
+   * @param <T>              The subsystem container type.
+   * @param commandGenerator The {@link Method} object invoked to create the
+   *                         {@link Command} objects.
+   * 
+   * @return A {@link Stream} of {@link CommandFactory} implementations used to
+   *         create {@link Command} objects to add to the {@link SendableChooser}.
+   */
+  private static <T> Stream<CommandFactory<T>> generateCommands(Method commandGenerator, T container) {
+    Class<? extends Object> containerClass = container.getClass();
+    ArrayList<CommandFactory<T>> factories = new ArrayList<>();
+
+    try {
+      Object rawCommands = commandGenerator.invoke(null, container);
+
+      // TODO: Validate collection type.
+
+      @SuppressWarnings("unchecked")
+      Collection<LabelValue<String, Command>> commands = (Collection<LabelValue<String, Command>>) rawCommands;
+
+      return commands
+          .stream()
+          .map(lv -> {
+            return new CommandFactory<T>() {
+
+              @Override
+              public String getName() {
+                return lv.getLabel();
+              }
+
+              @Override
+              public boolean isDefault() {
+                return false;
+              }
+
+              @Override
+              public Command newCommand(T container) {
+                return lv.getValue();
+              }
+
+            };
+          });
+    } catch (InvocationTargetException e) {
+      System.err.printf(
+          "ERROR: Method %s does not take a single parameter of type %s.%n",
+          commandGenerator.getName(),
+          containerClass.getSimpleName());
+      e.printStackTrace();
+    } catch (ClassCastException e) {
+      System.err.printf(
+          "ERROR: Method %s returns %s instead of a Collection<LabelValue<String,Command>>.%n",
+          commandGenerator.getName(),
+          commandGenerator.getReturnType().getSimpleName(),
+          containerClass.getSimpleName());
+      e.printStackTrace();
+    } catch (IllegalAccessException | IllegalArgumentException e) {
+      System.err.printf(
+          "ERROR: An unexpected exception was caught while creating an instance of %s.%n",
+          containerClass.getName());
+      e.printStackTrace();
+    }
+
+    return factories.stream();
   }
 
   private Autonomous() {
