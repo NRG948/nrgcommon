@@ -1,7 +1,7 @@
 /*
   MIT License
 
-  Copyright (c) 2022 Newport Robotics Group
+  Copyright (c) 2024 Newport Robotics Group
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -30,10 +30,10 @@ plugins {
 }
 
 group = 'com.nrg948'
-version = '2023.4.0' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
+version = '2024.1.1' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -48,14 +48,14 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
-    api "edu.wpi.first.wpilibj:wpilibj-java:2023.4.2"
+    api "edu.wpi.first.wpilibj:wpilibj-java:2024.1.1"
     api "org.javatuples:javatuples:1.2"
 
-    implementation "edu.wpi.first.cscore:cscore-java:2023.4.2"
-    implementation "edu.wpi.first.ntcore:ntcore-java:2023.4.2"
-    implementation "edu.wpi.first.wpiutil:wpiutil-java:2023.4.2"
+    implementation "edu.wpi.first.cscore:cscore-java:2024.1.1"
+    implementation "edu.wpi.first.ntcore:ntcore-java:2024.1.1"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:2024.1.1"
     implementation 'org.reflections:reflections:0.10.2'
-    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2023.4.2'
+    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2024.1.1'
 }
 
 java {
@@ -70,7 +70,7 @@ tasks.named('test') {
 
 javadoc {
     options {
-        links 'https://docs.oracle.com/en/java/javase/11/docs/api/','https://github.wpilib.org/allwpilib/docs/release/java/','https://www.javatuples.org/apidocs/'
+        links 'https://docs.oracle.com/en/java/javase/17/docs/api/','https://github.wpilib.org/allwpilib/docs/release/java/','https://www.javatuples.org/apidocs/'
     }
 }
 
