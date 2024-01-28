@@ -24,17 +24,17 @@
 
 package com.nrg948.preferences;
 
+import static org.reflections.scanners.Scanners.FieldsAnnotated;
+import static org.reflections.scanners.Scanners.TypesAnnotated;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.reflections.Reflections;
-import org.reflections.scanners.Scanners;
-import org.reflections.util.ConfigurationBuilder;
+import com.nrg948.annotations.Annotations;
 
 import edu.wpi.first.networktables.BooleanTopic;
 import edu.wpi.first.networktables.DoubleTopic;
@@ -374,9 +374,9 @@ public class RobotPreferences {
     /**
      * Sets the current value as a string.
      *
-     * @implNote No validation is done on the string value. If a string value that cannot be
-     *           converted to an value of the enum type, {@link getValue} will return the
-     *           default value.
+     * @implNote No validation is done on the string value. If a string value that
+     *           cannot be converted to an value of the enum type, {@link getValue}
+     *           will return the default value.
      * 
      * @param value The string value to set.
      */
@@ -474,15 +474,14 @@ public class RobotPreferences {
       GenericEntry entry = widget.getEntry();
 
       entry.setString(value.getValue());
-      
+
       StringTopic topic = new StringTopic(entry.getTopic());
       NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
 
       ntInstance.addListener(
           topic,
           EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-          (event) -> value.setValue(event.valueData.value.getString())
-          );
+          (event) -> value.setValue(event.valueData.value.getString()));
     }
 
     @Override
@@ -492,15 +491,14 @@ public class RobotPreferences {
       GenericEntry entry = widget.getEntry();
 
       entry.setBoolean(value.getValue());
-      
+
       BooleanTopic topic = new BooleanTopic(entry.getTopic());
       NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
 
       ntInstance.addListener(
           topic,
           EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-          (event) -> value.setValue(event.valueData.value.getBoolean())
-          );
+          (event) -> value.setValue(event.valueData.value.getBoolean()));
     }
 
     @Override
@@ -509,15 +507,14 @@ public class RobotPreferences {
       GenericEntry entry = widget.getEntry();
 
       entry.setDouble(value.getValue());
-      
+
       DoubleTopic topic = new DoubleTopic(entry.getTopic());
       NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
 
       ntInstance.addListener(
           topic,
           EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-          (event) -> value.setValue(event.valueData.value.getDouble())
-          );
+          (event) -> value.setValue(event.valueData.value.getDouble()));
     }
 
     @Override
@@ -534,13 +531,13 @@ public class RobotPreferences {
 
       NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
       NetworkTableEntry chooserEntry = ntInstance
-        .getTable(Shuffleboard.kBaseTableName)
-        .getSubTable(kShufflboardTabName)
-        .getSubTable(value.getGroup())
-        .getSubTable(value.getName())
-        .getEntry("active");
+          .getTable(Shuffleboard.kBaseTableName)
+          .getSubTable(kShufflboardTabName)
+          .getSubTable(value.getGroup())
+          .getSubTable(value.getName())
+          .getEntry("active");
 
-        ntInstance.addListener(
+      ntInstance.addListener(
           chooserEntry,
           EnumSet.of(NetworkTableEvent.Kind.kValueAll),
           (event) -> value.setValue(event.valueData.value.getString()));
@@ -555,23 +552,8 @@ public class RobotPreferences {
   @RobotPreferencesValue
   public static BooleanValue writeDefault = new BooleanValue("Preferences", "WriteDefault", true);
 
-  private static Reflections reflections;
-
-  /**
-   * Initializes the robot preferences.
-   * 
-   * @param pkgs The packages to scan for {@link RobotPreferencesValue} and
-   *             {@link RobotPreferencesLayout} annotations.
-   **/
-  public static void init(String... pkgs) {
-    String[] allPkgs = Arrays.copyOf(pkgs, pkgs.length + 1);
-
-    allPkgs[allPkgs.length - 1] = "com.nrg948";
-    reflections = new Reflections(
-        new ConfigurationBuilder()
-            .forPackages(allPkgs)
-            .setScanners(Scanners.TypesAnnotated, Scanners.FieldsAnnotated));
-
+  /** Initializes the robot preferences. */
+  public static void init() {
     DefaultValueWriter writeDefaultValue = new DefaultValueWriter();
 
     if (writeDefault.getValue()) {
@@ -593,8 +575,8 @@ public class RobotPreferences {
   public static void addShuffleBoardTab() {
     ShuffleboardTab prefsTab = Shuffleboard.getTab(kShufflboardTabName);
 
-    Set<Class<?>> classes = reflections.get(
-        Scanners.TypesAnnotated
+    Set<Class<?>> classes = Annotations.get(
+        TypesAnnotated
             .with(RobotPreferencesLayout.class)
             .asClass());
 
@@ -613,8 +595,8 @@ public class RobotPreferences {
 
   /** Returns a stream of fields containing preferences values. */
   private static Stream<Field> getFields() {
-    Set<Field> fields = reflections.get(
-        Scanners.FieldsAnnotated
+    Set<Field> fields = Annotations.get(
+        FieldsAnnotated
             .with(RobotPreferencesValue.class)
             .as(Field.class));
 
