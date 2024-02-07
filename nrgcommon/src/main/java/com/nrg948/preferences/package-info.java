@@ -27,28 +27,6 @@
  * presentation of robot preferences through an annotation-based approach.
  * 
  * <p>
- * To initialize the package, you must call the
- * {@link RobotPreferences#init(String...)}
- * method passing the name of the robot package. In the Command-based Robot,
- * this must be done in the <code>Robot.initRobot()</code> method before the
- * <code>RobotContainer</code> is created.<br>
- * 
- * <pre>
- * <code>
- * {@literal @}Override
- * public void robotInit() {
- *   // Initialize the RobotPreferences before creating the RobotContainer so that values are correct
- *   // and available for initialization of the subsystems.
- *   RobotPreferences.init("frc.robot");
- * 
- *   // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
- *   // autonomous chooser on the dashboard.
- *   m_robotContainer = new RobotContainer();
- * }
- * </code>
- * </pre>
- * 
- * <p>
  * The {@link RobotPreferencesValue} annotation allows you to define preference
  * value giving you the flexibility of locating preferences near their point of
  * use. The {@link RobotPreferencesLayout} enables a specific layout for the

@@ -36,8 +36,7 @@ import java.util.Collection;
 import java.util.stream.Stream;
 
 import org.javatuples.LabelValue;
-import org.reflections.Reflections;
-import org.reflections.util.ConfigurationBuilder;
+import com.nrg948.annotations.Annotations;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -108,27 +107,23 @@ public final class Autonomous {
    * @return A {@link SendableChooser} object containing the autonomous commands.
    */
   public static <T> SendableChooser<Command> getChooser(T container, String... pkgs) {
-    Reflections reflections = new Reflections(
-        new ConfigurationBuilder()
-            .forPackages(pkgs)
-            .addScanners(SubTypes, MethodsAnnotated));
     SendableChooser<Command> chooser = new SendableChooser<>();
 
-    Stream<CommandFactory<T>> commandClasses = reflections
+    Stream<CommandFactory<T>> commandClasses = Annotations
         .get(SubTypes
             .of(Command.class)
             .asClass()
             .filter(withAnnotation(AutonomousCommand.class)))
         .stream()
         .map(Autonomous::<T>toCommandFactory);
-    Stream<CommandFactory<T>> commandMethods = reflections
+    Stream<CommandFactory<T>> commandMethods = Annotations
         .get(MethodsAnnotated
             .with(AutonomousCommandMethod.class)
             .as(Method.class)
             .filter(withStatic()))
         .stream()
         .map(Autonomous::<T>toCommandFactory);
-    Stream<CommandFactory<T>> commandGenerators = reflections
+    Stream<CommandFactory<T>> commandGenerators = Annotations
         .get(MethodsAnnotated
             .with(AutonomousCommandGenerator.class)
             .as(Method.class)
