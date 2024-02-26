@@ -106,7 +106,6 @@ public final class Annotations {
       }
     } catch (Exception e) {
       System.err.println("WARNING: Failed to load Reflections metadata: " + e.getMessage());
-      reflections = null;
     }
 
     return reflections;

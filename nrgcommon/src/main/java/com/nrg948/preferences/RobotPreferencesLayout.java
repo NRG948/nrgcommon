@@ -82,4 +82,20 @@ public @interface RobotPreferencesLayout {
    * @return The layout type.
    */
   String type() default "List Layout";
+
+  /**
+   * The number of columns in a grid layout. This value is ignored if the
+   * {@link RobotPreferencesLayout#type} is "List Layout".
+   * 
+   * @return The number of columns.
+   */
+  int gridColumns() default -1;
+
+  /**
+   * The number of rows in a grid layout. This value is ignored if the
+   * {@link RobotPreferencesLayout#type} is "List Layout".
+   * 
+   * @return The number of rows.
+   */
+  int gridRows() default -1;
 }

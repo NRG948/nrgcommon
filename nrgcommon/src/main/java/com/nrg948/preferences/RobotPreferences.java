@@ -30,9 +30,13 @@ import static org.reflections.scanners.Scanners.TypesAnnotated;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.EnumSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.javatuples.Pair;
 
 import com.nrg948.annotations.Annotations;
 
@@ -44,8 +48,11 @@ import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.StringTopic;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
@@ -463,14 +470,28 @@ public class RobotPreferences {
   private static class ShuffleboardWidgetBuilder implements IValueVisitor {
 
     private ShuffleboardLayout layout;
+    private RobotPreferencesValue metadata;
 
-    public ShuffleboardWidgetBuilder(ShuffleboardLayout layout) {
+    /**
+     * Constructs a visitor that creates Shuffleboard widgets for preference
+     * values.
+     * 
+     * @param layout   The Shuffleboard layout to add a widget for the visited
+     *                 value.
+     * @param metadata A {@link RobotPreferencesValue} annotation containing the
+     *                 value's metadata.
+     */
+    public ShuffleboardWidgetBuilder(ShuffleboardLayout layout, RobotPreferencesValue metadata) {
       this.layout = layout;
+      this.metadata = metadata;
     }
 
     @Override
     public void visit(StringValue value) {
       SimpleWidget widget = layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
+
+      configureWidget(widget);
+
       GenericEntry entry = widget.getEntry();
 
       entry.setString(value.getValue());
@@ -488,6 +509,9 @@ public class RobotPreferences {
     public void visit(BooleanValue value) {
       SimpleWidget widget = layout.add(value.getName(), value.getValue())
           .withWidget(BuiltInWidgets.kToggleSwitch);
+
+      configureWidget(widget);
+
       GenericEntry entry = widget.getEntry();
 
       entry.setBoolean(value.getValue());
@@ -504,6 +528,9 @@ public class RobotPreferences {
     @Override
     public void visit(DoubleValue value) {
       SimpleWidget widget = layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
+
+      configureWidget(widget);
+
       GenericEntry entry = widget.getEntry();
 
       entry.setDouble(value.getValue());
@@ -527,7 +554,9 @@ public class RobotPreferences {
           .forEach(e -> chooser.addOption(e.toString(), e));
       chooser.setDefaultOption(currentValue.toString(), currentValue);
 
-      layout.add(value.getName(), chooser);
+      ComplexWidget widget = layout.add(value.getName(), chooser);
+
+      configureWidget(widget);
 
       NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
       NetworkTableEntry chooserEntry = ntInstance
@@ -543,6 +572,28 @@ public class RobotPreferences {
           (event) -> value.setValue(event.valueData.value.getString()));
     }
 
+    /**
+     * Configures the visited value's widget according to the metadata information.
+     * 
+     * @param widget The Shuffleboard widget to configure.
+     */
+    private void configureWidget(ShuffleboardComponent<?> widget) {
+      if (layout.getType().equals(BuiltInLayouts.kGrid.getLayoutName())) {
+        int column = metadata.column();
+        int row = metadata.row();
+
+        if (column >= 0 && row >= 0) {
+          widget.withPosition(column, row);
+        }
+
+        int width = metadata.width();
+        int height = metadata.height();
+
+        if (width > 0 && height > 0) {
+          widget.withSize(width, height);
+        }
+      }
+    }
   }
 
   /** The name of the Shuffleboard tab containing the preferences widgets. */
@@ -581,16 +632,34 @@ public class RobotPreferences {
             .asClass());
 
     classes.stream().map(c -> c.getAnnotation(RobotPreferencesLayout.class)).forEach(layout -> {
-      prefsTab.getLayout(layout.groupName(), layout.type())
+      var shuffleboardLayout = prefsTab.getLayout(layout.groupName(), layout.type())
           .withPosition(layout.column(), layout.row())
           .withSize(layout.width(), layout.height());
+
+      if (layout.type().equals(BuiltInLayouts.kGrid.getLayoutName())) {
+        int gridColumns = layout.gridColumns();
+        int gridRows = layout.gridRows();
+
+        if (gridColumns > 0 && gridRows > 0) {
+          shuffleboardLayout
+              .withProperties(Map.of("Number of columns", gridColumns, "Number of rows", gridRows));
+        }
+      }
     });
 
-    getAllValues().collect(Collectors.groupingBy(Value::getGroup)).forEach((group, values) -> {
-      ShuffleboardLayout layout = prefsTab.getLayout(group);
-      ShuffleboardWidgetBuilder builder = new ShuffleboardWidgetBuilder(layout);
-      values.stream().forEach((value) -> value.accept(builder));
-    });
+    getFields()
+        .map(RobotPreferences::mapToPair)
+        .collect(Collectors.groupingBy(p -> p.getValue1().group))
+        .forEach((group, pairs) -> {
+          ShuffleboardLayout layout = prefsTab.getLayout(group);
+
+          pairs.stream()
+              .forEach(pair -> {
+                ShuffleboardWidgetBuilder builder = new ShuffleboardWidgetBuilder(layout, pair.getValue0());
+
+                pair.getValue1().accept(builder);
+              });
+        });
   }
 
   /** Returns a stream of fields containing preferences values. */
@@ -614,6 +683,11 @@ public class RobotPreferences {
     }
 
     return null;
+  }
+
+  /** Maps a preferences field to a pair of its annotation and value instance */
+  private static Pair<RobotPreferencesValue, Value> mapToPair(Field field) {
+    return Pair.with(field.getAnnotation(RobotPreferencesValue.class), mapToValue(field));
   }
 
   /** Returns all preferences values. */

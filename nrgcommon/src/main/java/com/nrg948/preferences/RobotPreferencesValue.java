@@ -33,5 +33,35 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RobotPreferencesValue {
+  /**
+   * The column position in a grid layout. This value is ignored if the
+   * {@link RobotPreferencesLayout#type} of the value's group is "List Layout".
+   * 
+   * @return The column position of this value.
+   */
+  int column() default -1;
 
+  /**
+   * The row position in a grid layout. This value is ignored if the
+   * {@link RobotPreferencesLayout#type} of the value's group is "List Layout".
+   * 
+   * @return The row position of this value.
+   */
+  int row() default -1;
+
+  /**
+   * The width of this value in a grid layout. This value is ignored if the
+   * {@link RobotPreferencesLayout#type} of the value's group is "List Layout".
+   * 
+   * @return The width of this value.
+   */
+  int width() default -1;
+
+  /**
+   * The height of this value in a grid layout. This value is ignored if the
+   * {@link RobotPreferencesLayout#type} of the value's group is "List Layout".
+   * 
+   * @return The height of this value.
+   */
+  int height() default -1;
 }
