@@ -27,7 +27,7 @@
  * used by FIRST Robotics Competition Team 948 - Newport Robotics Group (NRG948).
  * 
  * <p>
- * To initialize the libray, you must call the {@link Common#init(String...)}
+ * To initialize the library, you must call the {@link Common#init(String...)}
  * method passing the name of the robot package. In the Command-based Robot,
  * this must be done in the <code>Robot.initRobot()</code> method before the
  * <code>RobotContainer</code> is created.<br>

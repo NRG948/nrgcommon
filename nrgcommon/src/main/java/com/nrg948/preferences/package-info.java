@@ -33,7 +33,7 @@
  * group of PID preferences to be added automatically to Shuffleboard.
  * 
  * <p>
- * The followng example defines the PID constants in a class derived from
+ * The following example defines the PID constants in a class derived from
  * {@link PIDSubsystem} and enables a layout to be generated for the
  * Shuffleboard.<br>
  * 
