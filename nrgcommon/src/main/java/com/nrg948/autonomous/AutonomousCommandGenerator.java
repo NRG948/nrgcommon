@@ -21,33 +21,27 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-
 package com.nrg948.autonomous;
-
-import java.util.Collection;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import java.util.Collection;
 import org.javatuples.LabelValue;
 
 /**
- * Annotates a method that creates a {@link Collection} of {@link LabelValue}
- * elements mapping the name to display in user interface elements like
- * {@link SendableChooser} to a {@link Command}.
- * <p>
- * The method must conform to the following prototype:
- * 
+ * Annotates a method that creates a {@link Collection} of {@link LabelValue} elements mapping the
+ * name to display in user interface elements like {@link SendableChooser} to a {@link Command}.
+ *
+ * <p>The method must conform to the following prototype:
+ *
  * <pre>
  * <code>
  * public static Collection&lt;LabelValue&lt;String, Command&gt;&gt; name(T container);
  * </code>
  * </pre>
  *
- * The type T is an object passed to the constructor of the autonomous command
- * providing access to the robot subsystems. This is typically an instance of
- * <code>RobotContainer</code>, but could be another type used to manage the
- * subsystems
+ * The type T is an object passed to the constructor of the autonomous command providing access to
+ * the robot subsystems. This is typically an instance of <code>RobotContainer</code>, but could be
+ * another type used to manage the subsystems
  */
-public @interface AutonomousCommandGenerator {
-
-}
+public @interface AutonomousCommandGenerator {}

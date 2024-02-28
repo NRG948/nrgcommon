@@ -21,50 +21,44 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-
 package com.nrg948.autonomous;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj2.command.Command;
-
 /**
- * Annotates a class implementing a subclass of {@link Command} to run during
- * autonomous.
- * <p>
- * The class must define a constructor that conforms to the following prototype:
- * 
+ * Annotates a class implementing a subclass of {@link Command} to run during autonomous.
+ *
+ * <p>The class must define a constructor that conforms to the following prototype:
+ *
  * <pre>
  * <code>
  * public CommandSubClass(T container);
  * </code>
  * </pre>
  *
- * The type T is an object providing access to the robot subsystems. This is
- * typically an instance of <code>RobotContainer</code>, but could be another
- * type used to manage the subsystems
+ * The type T is an object providing access to the robot subsystems. This is typically an instance
+ * of <code>RobotContainer</code>, but could be another type used to manage the subsystems
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AutonomousCommand {
   /**
-   * The name to display for the annotated {@link Command} in the
-   * {@link SendableChooser} returned by
-   * {@link Autonomous#getChooser(Object, String...)}.
-   * 
+   * The name to display for the annotated {@link Command} in the {@link SendableChooser} returned
+   * by {@link Autonomous#getChooser(Object, String...)}.
+   *
    * @return The display name.
    */
   String name();
 
   /**
-   * Whether this command is the default {@link Command} in the
-   * {@link SendableChooser} returned by
+   * Whether this command is the default {@link Command} in the {@link SendableChooser} returned by
    * {@link Autonomous#getChooser(Object, String...)}.
-   * 
+   *
    * @return Returns true if this is the default command, and false otherwise.
    */
   boolean isDefault() default false;

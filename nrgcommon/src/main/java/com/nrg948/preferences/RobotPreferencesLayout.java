@@ -21,49 +21,46 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-
 package com.nrg948.preferences;
 
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
-
 /**
- * Annotates a class containing one or morte RobotPreferences values. It is used
- * to define the layout on the Shuffleboard used by the robot operator to adjust
- * preference values.
+ * Annotates a class containing one or morte RobotPreferences values. It is used to define the
+ * layout on the Shuffleboard used by the robot operator to adjust preference values.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RobotPreferencesLayout {
   /**
-   * The group name of the RobotPreferences value for which to generate widgets in
-   * the Shuffleboard layout.
-   * 
+   * The group name of the RobotPreferences value for which to generate widgets in the Shuffleboard
+   * layout.
+   *
    * @return The group name.
    */
   String groupName();
 
   /**
    * The column position for the Shuffleboard layout.
-   * 
+   *
    * @return The layout column position.
    */
   int column();
 
   /**
    * The row position for the Shuffleboard layout.
-   * 
+   *
    * @return The layout row position.
    */
   int row();
 
   /**
    * The width of the Shuffleboard layout.
-   * 
+   *
    * @return The layout width.
    */
   int width();
@@ -76,25 +73,24 @@ public @interface RobotPreferencesLayout {
   int height();
 
   /**
-   * The type of layout. Valid values are defined by the {@link BuiltInLayouts}
-   * enum.
-   * 
+   * The type of layout. Valid values are defined by the {@link BuiltInLayouts} enum.
+   *
    * @return The layout type.
    */
   String type() default "List Layout";
 
   /**
-   * The number of columns in a grid layout. This value is ignored if the
-   * {@link RobotPreferencesLayout#type} is "List Layout".
-   * 
+   * The number of columns in a grid layout. This value is ignored if the {@link
+   * RobotPreferencesLayout#type} is "List Layout".
+   *
    * @return The number of columns.
    */
   int gridColumns() default -1;
 
   /**
-   * The number of rows in a grid layout. This value is ignored if the
-   * {@link RobotPreferencesLayout#type} is "List Layout".
-   * 
+   * The number of rows in a grid layout. This value is ignored if the {@link
+   * RobotPreferencesLayout#type} is "List Layout".
+   *
    * @return The number of rows.
    */
   int gridRows() default -1;

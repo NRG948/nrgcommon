@@ -21,7 +21,6 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-
 package com.nrg948.annotations;
 
 import static org.reflections.scanners.Scanners.FieldsAnnotated;
@@ -37,7 +36,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-
 import org.reflections.Reflections;
 import org.reflections.Store;
 import org.reflections.serializers.Serializer;
@@ -45,36 +43,30 @@ import org.reflections.serializers.XmlSerializer;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.QueryFunction;
 
-/**
- * A class providing access to types annotated by the NRG Common Library
- * annotations.
- */
+/** A class providing access to types annotated by the NRG Common Library annotations. */
 public final class Annotations {
   private static Reflections reflections;
 
   /* Disallow instantiation */
-  private Annotations() {
-  }
+  private Annotations() {}
 
   /**
    * Initializes the annotation metadata for the NRG Common Library.
-   * 
-   * @param pkgs The packages to scan for annotations implemented by the NRG
-   *             Common Library.
+   *
+   * @param pkgs The packages to scan for annotations implemented by the NRG Common Library.
    */
   public static void init(String... pkgs) {
     reflections = loadFromMetadata().orElseGet(() -> scanPackages(pkgs));
   }
 
   /**
-   * Creates and initializes a {@link Reflections} instance from metadata, if
-   * present.
-   * 
-   * Reflections metadata is stored in the META-INF/reflections directory in the
-   * program's JAR file.
-   * 
-   * @return An optional {@link Reflections} instance initialized from metadata.
-   *         If no metadata is present, {@link Optional#empty()} is returned.
+   * Creates and initializes a {@link Reflections} instance from metadata, if present.
+   *
+   * <p>Reflections metadata is stored in the META-INF/reflections directory in the program's JAR
+   * file.
+   *
+   * @return An optional {@link Reflections} instance initialized from metadata. If no metadata is
+   *     present, {@link Optional#empty()} is returned.
    */
   private static Optional<Reflections> loadFromMetadata() {
     Optional<Reflections> reflections = Optional.empty();
@@ -112,12 +104,9 @@ public final class Annotations {
   }
 
   /**
-   * Scans the specified packages for annotations implemented by the NRG Common
-   * Library.
-   * 
-   * @param pkgs The packages to scan for annotations implemented by the NRG
-   *             Common Library.
-   * 
+   * Scans the specified packages for annotations implemented by the NRG Common Library.
+   *
+   * @param pkgs The packages to scan for annotations implemented by the NRG Common Library.
    * @return The annotation metadata for the specified packages.
    */
   private static Reflections scanPackages(String... pkgs) {
@@ -133,10 +122,9 @@ public final class Annotations {
 
   /**
    * Returns the set of elements annotated with the specified annotation.
-   * 
-   * @param <T>   The type of element.
+   *
+   * @param <T> The type of element.
    * @param query The query function.
-   * 
    * @return The set of elements annotated with the specified annotation.
    */
   public static <T> Set<T> get(QueryFunction<Store, T> query) {
