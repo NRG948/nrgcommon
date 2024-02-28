@@ -21,7 +21,6 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-
 package com.nrg948;
 
 import com.nrg948.annotations.Annotations;
@@ -30,17 +29,15 @@ import com.nrg948.preferences.RobotPreferences;
 /** A class to initialize the NRG Common Library. */
 public final class Common {
   /* Disallow instantiation */
-  private Common() {
-  }
+  private Common() {}
 
   /**
    * Initializes the NRG Common library.
-   * 
-   * This method must be called in the <code>Robot.initRobot()</code> method
-   * before the <code>RobotContainer</code> is created.
-   * 
-   * @param pkgs The packages to scan for annotations implemented by the NRG
-   *             Common Library.
+   *
+   * <p>This method must be called in the <code>Robot.initRobot()</code> method before the <code>
+   * RobotContainer</code> is created.
+   *
+   * @param pkgs The packages to scan for annotations implemented by the NRG Common Library.
    */
   public static void init(String... pkgs) {
     Annotations.init(pkgs);

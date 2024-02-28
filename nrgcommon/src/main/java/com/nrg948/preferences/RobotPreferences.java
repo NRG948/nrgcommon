@@ -21,25 +21,12 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-
 package com.nrg948.preferences;
 
 import static org.reflections.scanners.Scanners.FieldsAnnotated;
 import static org.reflections.scanners.Scanners.TypesAnnotated;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.javatuples.Pair;
-
 import com.nrg948.annotations.Annotations;
-
 import edu.wpi.first.networktables.BooleanTopic;
 import edu.wpi.first.networktables.DoubleTopic;
 import edu.wpi.first.networktables.GenericEntry;
@@ -57,6 +44,14 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.EnumSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.javatuples.Pair;
 
 /** A class to manage robot preferences. */
 public class RobotPreferences {
@@ -66,38 +61,36 @@ public class RobotPreferences {
 
     /**
      * Called to apply the visitor's effect on a {@link StringValue}.
-     * 
+     *
      * @param value The {@link StringValue} to visit.
      */
     void visit(StringValue value);
 
     /**
      * Called to apply the visitor's effect on a {@link BooleanValue}.
-     * 
+     *
      * @param value The {@link BooleanValue} to visit.
      */
     void visit(BooleanValue value);
 
     /**
      * Called to apply the visitor's effect on a {@link DoubleValue}.
-     * 
+     *
      * @param value The {@link DoubleValue} to visit.
      */
     void visit(DoubleValue value);
 
     /**
      * Called to apply the visitor's effect on an {@link EnumValue}.
-     * 
-     * @param <E>   The enum type.
+     *
+     * @param <E> The enum type.
      * @param value The {@link EnumValue} to visit.
      */
     <E extends Enum<E>> void visit(EnumValue<E> value);
   }
 
-  /**
-   * An abstract base class represented a keyed valued in the preferences store.
-   */
-  public static abstract class Value {
+  /** An abstract base class represented a keyed valued in the preferences store. */
+  public abstract static class Value {
 
     /** The preferences value group name. */
     protected final String group;
@@ -110,10 +103,10 @@ public class RobotPreferences {
 
     /**
      * Constructs an instance of this class.
-     * 
-     * @param group The preference value's group name. This is usually the subsystem
-     *              or class that uses the value.
-     * @param name  The preferences value name.
+     *
+     * @param group The preference value's group name. This is usually the subsystem or class that
+     *     uses the value.
+     * @param name The preferences value name.
      */
     public Value(String group, String name) {
       this.group = group;
@@ -123,7 +116,7 @@ public class RobotPreferences {
 
     /**
      * Returns the this value's group name.
-     * 
+     *
      * @return The group name.
      */
     public String getGroup() {
@@ -132,7 +125,7 @@ public class RobotPreferences {
 
     /**
      * Returns this value's name.
-     * 
+     *
      * @return The value name.
      */
     public String getName() {
@@ -140,10 +133,10 @@ public class RobotPreferences {
     }
 
     /**
-     * Returns this value key used to access it in the preferences store. The value
-     * is generated from a concatenation of the group name and value name separated
-     * by a forward slash ("/") character.
-     * 
+     * Returns this value key used to access it in the preferences store. The value is generated
+     * from a concatenation of the group name and value name separated by a forward slash ("/")
+     * character.
+     *
      * @return The key name.
      */
     public String getKey() {
@@ -152,7 +145,7 @@ public class RobotPreferences {
 
     /**
      * Returns whether the value exists in the preferences store.
-     * 
+     *
      * @return Whether the value exists in the preferences store.
      */
     public boolean exists() {
@@ -161,7 +154,7 @@ public class RobotPreferences {
 
     /**
      * Accepts a visitor that operates on this value.
-     * 
+     *
      * @param visitor A visitor to operate on this value.
      */
     public abstract void accept(IValueVisitor visitor);
@@ -174,13 +167,12 @@ public class RobotPreferences {
 
     /**
      * Constructs an instance of this class.
-     * 
-     * @param group        The preference value's group name. This is usually the
-     *                     subsystem
-     *                     or class that uses the value.
-     * @param name         The preferences value name.
-     * @param defaultValue The value supplied when the preference does not exist in
-     *                     the preferences store.
+     *
+     * @param group The preference value's group name. This is usually the subsystem or class that
+     *     uses the value.
+     * @param name The preferences value name.
+     * @param defaultValue The value supplied when the preference does not exist in the preferences
+     *     store.
      */
     public StringValue(String group, String name, String defaultValue) {
       super(group, name);
@@ -189,7 +181,7 @@ public class RobotPreferences {
 
     /**
      * Returns the default value.
-     * 
+     *
      * @return The default value.
      */
     public String getDefaultValue() {
@@ -198,7 +190,7 @@ public class RobotPreferences {
 
     /**
      * Returns the current value.
-     * 
+     *
      * @return The current value.
      */
     public String getValue() {
@@ -207,7 +199,7 @@ public class RobotPreferences {
 
     /**
      * Sets the current value.
-     * 
+     *
      * @param value The value to set.
      */
     public void setValue(String value) {
@@ -227,13 +219,12 @@ public class RobotPreferences {
 
     /**
      * Constructs an instance of this class.
-     * 
-     * @param group        The preference value's group name. This is usually the
-     *                     subsystem
-     *                     or class that uses the value.
-     * @param name         The preferences value name.
-     * @param defaultValue The value supplied when the preference does not exist in
-     *                     the preferences store.
+     *
+     * @param group The preference value's group name. This is usually the subsystem or class that
+     *     uses the value.
+     * @param name The preferences value name.
+     * @param defaultValue The value supplied when the preference does not exist in the preferences
+     *     store.
      */
     public BooleanValue(String group, String name, boolean defaultValue) {
       super(group, name);
@@ -242,7 +233,7 @@ public class RobotPreferences {
 
     /**
      * Returns the default value.
-     * 
+     *
      * @return The default value.
      */
     public boolean getDefaultValue() {
@@ -251,7 +242,7 @@ public class RobotPreferences {
 
     /**
      * Returns the current value.
-     * 
+     *
      * @return The current value.
      */
     public boolean getValue() {
@@ -260,7 +251,7 @@ public class RobotPreferences {
 
     /**
      * Sets the current value.
-     * 
+     *
      * @param value The value to set.
      */
     public void setValue(Boolean value) {
@@ -280,13 +271,12 @@ public class RobotPreferences {
 
     /**
      * Constructs an instance of this class.
-     * 
-     * @param group        The preference value's group name. This is usually the
-     *                     subsystem
-     *                     or class that uses the value.
-     * @param name         The preferences value name.
-     * @param defaultValue The value supplied when the preference does not exist in
-     *                     the preferences store.
+     *
+     * @param group The preference value's group name. This is usually the subsystem or class that
+     *     uses the value.
+     * @param name The preferences value name.
+     * @param defaultValue The value supplied when the preference does not exist in the preferences
+     *     store.
      */
     public DoubleValue(String group, String name, double defaultValue) {
       super(group, name);
@@ -295,7 +285,7 @@ public class RobotPreferences {
 
     /**
      * Returns the default value.
-     * 
+     *
      * @return The default value.
      */
     public double getDefaultValue() {
@@ -304,7 +294,7 @@ public class RobotPreferences {
 
     /**
      * Returns the current value.
-     * 
+     *
      * @return The current value.
      */
     public double getValue() {
@@ -313,7 +303,7 @@ public class RobotPreferences {
 
     /**
      * Sets the current value.
-     * 
+     *
      * @param value The value to set.
      */
     public void setValue(double value) {
@@ -333,13 +323,12 @@ public class RobotPreferences {
 
     /**
      * Constructs an instance of this class.
-     * 
-     * @param group        The preference value's group name. This is usually the
-     *                     subsystem
-     *                     or class that uses the value.
-     * @param name         The preferences value name.
-     * @param defaultValue The value supplied when the preference does not exist in
-     *                     the preferences store.
+     *
+     * @param group The preference value's group name. This is usually the subsystem or class that
+     *     uses the value.
+     * @param name The preferences value name.
+     * @param defaultValue The value supplied when the preference does not exist in the preferences
+     *     store.
      */
     public EnumValue(String group, String name, E defaultValue) {
       super(group, name);
@@ -348,7 +337,7 @@ public class RobotPreferences {
 
     /**
      * Returns the default value.
-     * 
+     *
      * @return The default value.
      */
     public E getDefaultValue() {
@@ -357,7 +346,7 @@ public class RobotPreferences {
 
     /**
      * Returns the current value.
-     * 
+     *
      * @return The current value.
      */
     public E getValue() {
@@ -371,7 +360,7 @@ public class RobotPreferences {
 
     /**
      * Sets the current value.
-     * 
+     *
      * @param value The value to set.
      */
     public void setValue(E value) {
@@ -381,10 +370,8 @@ public class RobotPreferences {
     /**
      * Sets the current value as a string.
      *
-     * @implNote No validation is done on the string value. If a string value that
-     *           cannot be converted to an value of the enum type, {@link getValue}
-     *           will return the default value.
-     * 
+     * @implNote No validation is done on the string value. If a string value that cannot be
+     *     converted to an value of the enum type, {@link getValue} will return the default value.
      * @param value The string value to set.
      */
     private void setValue(String value) {
@@ -395,7 +382,6 @@ public class RobotPreferences {
     public void accept(IValueVisitor visitor) {
       visitor.visit(this);
     }
-
   }
 
   /** A Visitor that writes the default preferences value to the store. */
@@ -428,7 +414,6 @@ public class RobotPreferences {
       value.setValue(value.getDefaultValue());
       printMessage(value.getGroup(), value.getName(), value.getValue().name());
     }
-
   }
 
   /** A Visitor to print non default Values to the console. */
@@ -473,13 +458,10 @@ public class RobotPreferences {
     private RobotPreferencesValue metadata;
 
     /**
-     * Constructs a visitor that creates Shuffleboard widgets for preference
-     * values.
-     * 
-     * @param layout   The Shuffleboard layout to add a widget for the visited
-     *                 value.
-     * @param metadata A {@link RobotPreferencesValue} annotation containing the
-     *                 value's metadata.
+     * Constructs a visitor that creates Shuffleboard widgets for preference values.
+     *
+     * @param layout The Shuffleboard layout to add a widget for the visited value.
+     * @param metadata A {@link RobotPreferencesValue} annotation containing the value's metadata.
      */
     public ShuffleboardWidgetBuilder(ShuffleboardLayout layout, RobotPreferencesValue metadata) {
       this.layout = layout;
@@ -488,7 +470,8 @@ public class RobotPreferences {
 
     @Override
     public void visit(StringValue value) {
-      SimpleWidget widget = layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
+      SimpleWidget widget =
+          layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
 
       configureWidget(widget);
 
@@ -507,8 +490,8 @@ public class RobotPreferences {
 
     @Override
     public void visit(BooleanValue value) {
-      SimpleWidget widget = layout.add(value.getName(), value.getValue())
-          .withWidget(BuiltInWidgets.kToggleSwitch);
+      SimpleWidget widget =
+          layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kToggleSwitch);
 
       configureWidget(widget);
 
@@ -527,7 +510,8 @@ public class RobotPreferences {
 
     @Override
     public void visit(DoubleValue value) {
-      SimpleWidget widget = layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
+      SimpleWidget widget =
+          layout.add(value.getName(), value.getValue()).withWidget(BuiltInWidgets.kTextView);
 
       configureWidget(widget);
 
@@ -549,8 +533,7 @@ public class RobotPreferences {
       E currentValue = value.getValue();
       SendableChooser<E> chooser = new SendableChooser<E>();
 
-      EnumSet.allOf(currentValue.getDeclaringClass())
-          .stream()
+      EnumSet.allOf(currentValue.getDeclaringClass()).stream()
           .forEach(e -> chooser.addOption(e.toString(), e));
       chooser.setDefaultOption(currentValue.toString(), currentValue);
 
@@ -559,12 +542,13 @@ public class RobotPreferences {
       configureWidget(widget);
 
       NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
-      NetworkTableEntry chooserEntry = ntInstance
-          .getTable(Shuffleboard.kBaseTableName)
-          .getSubTable(kShufflboardTabName)
-          .getSubTable(value.getGroup())
-          .getSubTable(value.getName())
-          .getEntry("active");
+      NetworkTableEntry chooserEntry =
+          ntInstance
+              .getTable(Shuffleboard.kBaseTableName)
+              .getSubTable(kShufflboardTabName)
+              .getSubTable(value.getGroup())
+              .getSubTable(value.getName())
+              .getEntry("active");
 
       ntInstance.addListener(
           chooserEntry,
@@ -574,7 +558,7 @@ public class RobotPreferences {
 
     /**
      * Configures the visited value's widget according to the metadata information.
-     * 
+     *
      * @param widget The Shuffleboard widget to configure.
      */
     private void configureWidget(ShuffleboardComponent<?> widget) {
@@ -620,54 +604,56 @@ public class RobotPreferences {
     }
   }
 
-  /**
-   * Adds a tab to the Shuffleboard allowing the robot operator to adjust values.
-   */
+  /** Adds a tab to the Shuffleboard allowing the robot operator to adjust values. */
   public static void addShuffleBoardTab() {
     ShuffleboardTab prefsTab = Shuffleboard.getTab(kShufflboardTabName);
 
-    Set<Class<?>> classes = Annotations.get(
-        TypesAnnotated
-            .with(RobotPreferencesLayout.class)
-            .asClass());
+    Set<Class<?>> classes =
+        Annotations.get(TypesAnnotated.with(RobotPreferencesLayout.class).asClass());
 
-    classes.stream().map(c -> c.getAnnotation(RobotPreferencesLayout.class)).forEach(layout -> {
-      var shuffleboardLayout = prefsTab.getLayout(layout.groupName(), layout.type())
-          .withPosition(layout.column(), layout.row())
-          .withSize(layout.width(), layout.height());
+    classes.stream()
+        .map(c -> c.getAnnotation(RobotPreferencesLayout.class))
+        .forEach(
+            layout -> {
+              var shuffleboardLayout =
+                  prefsTab
+                      .getLayout(layout.groupName(), layout.type())
+                      .withPosition(layout.column(), layout.row())
+                      .withSize(layout.width(), layout.height());
 
-      if (layout.type().equals(BuiltInLayouts.kGrid.getLayoutName())) {
-        int gridColumns = layout.gridColumns();
-        int gridRows = layout.gridRows();
+              if (layout.type().equals(BuiltInLayouts.kGrid.getLayoutName())) {
+                int gridColumns = layout.gridColumns();
+                int gridRows = layout.gridRows();
 
-        if (gridColumns > 0 && gridRows > 0) {
-          shuffleboardLayout
-              .withProperties(Map.of("Number of columns", gridColumns, "Number of rows", gridRows));
-        }
-      }
-    });
+                if (gridColumns > 0 && gridRows > 0) {
+                  shuffleboardLayout.withProperties(
+                      Map.of("Number of columns", gridColumns, "Number of rows", gridRows));
+                }
+              }
+            });
 
     getFields()
         .map(RobotPreferences::mapToPair)
         .collect(Collectors.groupingBy(p -> p.getValue1().group))
-        .forEach((group, pairs) -> {
-          ShuffleboardLayout layout = prefsTab.getLayout(group);
+        .forEach(
+            (group, pairs) -> {
+              ShuffleboardLayout layout = prefsTab.getLayout(group);
 
-          pairs.stream()
-              .forEach(pair -> {
-                ShuffleboardWidgetBuilder builder = new ShuffleboardWidgetBuilder(layout, pair.getValue0());
+              pairs.stream()
+                  .forEach(
+                      pair -> {
+                        ShuffleboardWidgetBuilder builder =
+                            new ShuffleboardWidgetBuilder(layout, pair.getValue0());
 
-                pair.getValue1().accept(builder);
-              });
-        });
+                        pair.getValue1().accept(builder);
+                      });
+            });
   }
 
   /** Returns a stream of fields containing preferences values. */
   private static Stream<Field> getFields() {
-    Set<Field> fields = Annotations.get(
-        FieldsAnnotated
-            .with(RobotPreferencesValue.class)
-            .as(Field.class));
+    Set<Field> fields =
+        Annotations.get(FieldsAnnotated.with(RobotPreferencesValue.class).as(Field.class));
 
     return fields.stream().filter(f -> Modifier.isStatic(f.getModifiers()));
   }
@@ -694,5 +680,4 @@ public class RobotPreferences {
   private static Stream<Value> getAllValues() {
     return getFields().map(RobotPreferences::mapToValue).filter(v -> v != null);
   }
-
 }
