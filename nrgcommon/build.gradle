@@ -1,7 +1,7 @@
 /*
   MIT License
 
-  Copyright (c) 2024 Newport Robotics Group
+  Copyright (c) 2025 Newport Robotics Group
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ spotless {
 }
 
 group = 'com.nrg948'
-version = '2024.3.2' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
+version = '2025.1.0' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -56,14 +56,14 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
-    api "edu.wpi.first.wpilibj:wpilibj-java:2024.3.1"
+    api "edu.wpi.first.wpilibj:wpilibj-java:2025.1.1"
     api "org.javatuples:javatuples:1.2"
 
-    implementation "edu.wpi.first.cscore:cscore-java:2024.3.1"
-    implementation "edu.wpi.first.ntcore:ntcore-java:2024.3.1"
-    implementation "edu.wpi.first.wpiutil:wpiutil-java:2024.3.1"
+    implementation "edu.wpi.first.cscore:cscore-java:2025.1.1"
+    implementation "edu.wpi.first.ntcore:ntcore-java:2025.1.1"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:2025.1.1"
     implementation 'org.reflections:reflections:0.10.2'
-    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2024.3.1'
+    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2025.1.1'
     implementation 'org.dom4j:dom4j:2.1.3'
 }
 
