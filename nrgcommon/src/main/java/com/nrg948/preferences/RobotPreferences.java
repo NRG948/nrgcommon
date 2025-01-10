@@ -537,8 +537,9 @@ public class RobotPreferences {
           .forEach(e -> chooser.addOption(e.toString(), e));
       chooser.setDefaultOption(currentValue.toString(), currentValue);
 
-      ComplexWidget widget = layout.add(value.getName(), chooser);
-
+      ComplexWidget widget =
+          layout.add(value.getName(), chooser).withWidget(BuiltInWidgets.kComboBoxChooser);
+          
       configureWidget(widget);
 
       NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
