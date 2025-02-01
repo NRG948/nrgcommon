@@ -30,7 +30,6 @@ import com.nrg948.annotations.Annotations;
 import edu.wpi.first.networktables.BooleanTopic;
 import edu.wpi.first.networktables.DoubleTopic;
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.StringTopic;
@@ -367,17 +366,6 @@ public class RobotPreferences {
       Preferences.setString(key, value.name());
     }
 
-    /**
-     * Sets the current value as a string.
-     *
-     * @implNote No validation is done on the string value. If a string value that cannot be
-     *     converted to an value of the enum type, {@link getValue} will return the default value.
-     * @param value The string value to set.
-     */
-    private void setValue(String value) {
-      Preferences.setString(key, value);
-    }
-
     @Override
     public void accept(IValueVisitor visitor) {
       visitor.visit(this);
@@ -541,19 +529,7 @@ public class RobotPreferences {
 
       configureWidget(widget);
 
-      NetworkTableInstance ntInstance = NetworkTableInstance.getDefault();
-      NetworkTableEntry chooserEntry =
-          ntInstance
-              .getTable(Shuffleboard.kBaseTableName)
-              .getSubTable(kShufflboardTabName)
-              .getSubTable(value.getGroup())
-              .getSubTable(value.getName())
-              .getEntry("active");
-
-      ntInstance.addListener(
-          chooserEntry,
-          EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-          (event) -> value.setValue(event.valueData.value.getString()));
+      chooser.onChange((choice) -> value.setValue(choice));
     }
 
     /**
