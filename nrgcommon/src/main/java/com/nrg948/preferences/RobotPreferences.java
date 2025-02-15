@@ -160,7 +160,7 @@ public class RobotPreferences {
   }
 
   /** A class representing a string value in the preferences store. */
-  public static class StringValue extends Value {
+  public static final class StringValue extends Value {
 
     private final String defaultValue;
 
@@ -212,7 +212,7 @@ public class RobotPreferences {
   }
 
   /** A class representing a Boolean value in the preferences store. */
-  public static class BooleanValue extends Value {
+  public static final class BooleanValue extends Value {
 
     private final boolean defaultValue;
 
@@ -264,7 +264,7 @@ public class RobotPreferences {
   }
 
   /** A class representing a floating-point value in the preferences store. */
-  public static class DoubleValue extends Value {
+  public static final class DoubleValue extends Value {
 
     private final double defaultValue;
 
@@ -316,7 +316,7 @@ public class RobotPreferences {
   }
 
   /** A class representing an enum value in the preferences store. */
-  public static class EnumValue<E extends Enum<E>> extends Value {
+  public static final class EnumValue<E extends Enum<E>> extends Value {
 
     private final E defaultValue;
 
@@ -373,7 +373,7 @@ public class RobotPreferences {
   }
 
   /** A Visitor that writes the default preferences value to the store. */
-  private static class DefaultValueWriter implements IValueVisitor {
+  private static final class DefaultValueWriter implements IValueVisitor {
 
     private static void printMessage(String group, String name, String value) {
       System.out.println("WRITING DEFAULT VALUE: " + group + "/" + name + " = " + value);
@@ -405,7 +405,7 @@ public class RobotPreferences {
   }
 
   /** A Visitor to print non default Values to the console. */
-  private static class NonDefaultValuePrinter implements IValueVisitor {
+  private static final class NonDefaultValuePrinter implements IValueVisitor {
     private static void printMessage(String group, String name, String value) {
       System.out.println("NON-DEFAULT VALUE: " + group + "/" + name + " = " + value);
     }
@@ -440,7 +440,7 @@ public class RobotPreferences {
   }
 
   /** A Visitor that adds widgets to the Shuffleboard preferences layout. */
-  private static class ShuffleboardWidgetBuilder implements IValueVisitor {
+  private static final class ShuffleboardWidgetBuilder implements IValueVisitor {
 
     private ShuffleboardLayout layout;
     private RobotPreferencesValue metadata;
@@ -527,7 +527,7 @@ public class RobotPreferences {
 
       ComplexWidget widget =
           layout.add(value.getName(), chooser).withWidget(BuiltInWidgets.kComboBoxChooser);
-          
+
       configureWidget(widget);
 
       chooser.onChange((choice) -> value.setValue(choice));
