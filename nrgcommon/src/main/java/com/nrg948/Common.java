@@ -34,7 +34,7 @@ public final class Common {
   /**
    * Initializes the NRG Common library.
    *
-   * <p>This method must be called in the <code>Robot.initRobot()</code> method before the <code>
+   * <p>This method must be called in the <code>Robot</code> constructor before the <code>
    * RobotContainer</code> is created.
    *
    * @param pkgs The packages to scan for annotations implemented by the NRG Common Library.

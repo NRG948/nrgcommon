@@ -31,7 +31,7 @@
  * constructor taking a single parameter used to access the robot subsystems. This parameter is
  * typically <code>RobotContainer</code> but may be another type managing access to the subsystems.
  *
- * <p>The following example shows how to structure and annotation autonomous commands.<br>
+ * <p>The following example shows how to structure and annotate autonomous command classes.<br>
  *
  * <pre>
  * <code>
@@ -87,7 +87,7 @@
  * <code>
  * public class Autos {<br>
  *  {@literal @}AutonomousCommandGenerator
- *  public static Command exampleGenerator(RobotContainer container) {
+ *  public static Collection&lt;LabelValue&lt;String, Command&gt;&gt; exampleGenerator(RobotContainer container) {
  *    return List.of(
  *      new LabelValue&lt;String, Command&gt;("First Auto", new FirstAuto(container)),
  *      new LabelValue&lt;String, Command&gt;("Second Auto", new SecondAuto(container)),
