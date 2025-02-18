@@ -26,13 +26,14 @@
  * The {@code com.nrg948.preferences} package eases management, use and presentation of robot
  * preferences through an annotation-based approach.
  *
- * <p>The {@link RobotPreferencesValue} annotation allows you to define preference value giving you
+ * <p>The {@link RobotPreferencesValue} annotation allows you to define preference values giving you
  * the flexibility of locating preferences near their point of use. The {@link
- * RobotPreferencesLayout} enables a specific layout for the group of PID preferences to be added
+ * RobotPreferencesLayout} defines a dedicated layout for a group of preference values to be added
  * automatically to Shuffleboard.
  *
- * <p>The following example defines the PID constants in a class derived from {@link PIDSubsystem}
- * and enables a layout to be generated for the Shuffleboard.<br>
+ * <p>The following example defines preference values for the PID constants in a class derived from
+ * {@link PIDSubsystem} and enables a layout to be generated for the "Preferences" tab in
+ * Shuffleboard.<br>
  *
  * <pre>
  * <code>

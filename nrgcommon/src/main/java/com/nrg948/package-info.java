@@ -28,19 +28,22 @@
  *
  * <p>To initialize the library, you must call the {@link Common#init(String...)} method passing the
  * name of the robot package. In the Command-based Robot, this must be done in the <code>
- * Robot.initRobot()</code> method before the <code>RobotContainer</code> is created.<br>
+ * Robot</code> constructor before the <code>RobotContainer</code> is created.<br>
  *
  * <pre>
  * <code>
- * {@literal @}Override
- * public void robotInit() {
- *   // Initialize the NRG Common Library before creating the RobotContainer so that
- *   // it is initialized and ready for use by the subsystems.
- *   Common.init("frc.robot");
+ * public class Robot {
+ *   private RobotContainer m_robotContainer;
  *
- *   // Instantiate our RobotContainer.  This will perform all our button bindings,
- *   // and put our autonomous chooser on the dashboard.
- *   m_robotContainer = new RobotContainer();
+ *   public void Robot() {
+ *     // Initialize the NRG Common Library before creating the RobotContainer so that
+ *     // it is initialized and ready for use by the subsystems.
+ *     Common.init("frc.robot");
+ *
+ *     // Instantiate our RobotContainer.  This will perform all our button bindings,
+ *     // and put our autonomous chooser on the dashboard.
+ *     m_robotContainer = new RobotContainer();
+ *   }
  * }
  * </code>
  * </pre>
