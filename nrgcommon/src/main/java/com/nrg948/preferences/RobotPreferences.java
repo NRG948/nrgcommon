@@ -47,6 +47,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.EnumSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -364,6 +365,17 @@ public class RobotPreferences {
      */
     public void setValue(E value) {
       Preferences.setString(key, value.name());
+    }
+
+    /**
+     * Selects a value from a map using the current value as the key.
+     *
+     * @param map The map to select from.
+     * @return An {@link Optional} containing the selected value, or an empty {@link Optional} if
+     *     the key does not exist in the map.
+     */
+    public <V> Optional<V> select(Map<E, V> map) {
+      return Optional.ofNullable(map.get(getValue()));
     }
 
     @Override
