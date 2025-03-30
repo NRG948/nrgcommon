@@ -8,9 +8,7 @@ The table below lists the published versions of the library and the WPILib relea
 
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
-| 2025.3.2-SNAPSHOT | main           | 2025.3.2                |
-| 2025.3.1-SNAPSHOT | main           | 2025.3.1                |
-| 2025.2.1-SNAPSHOT | main           | 2025.2.1                |
+| 2025.3.2          | v2025.3.2      | 2025.3.2                |
 | 2025.1.0          | v2025.1.0      | 2025.1.1                |
 | 2024.3.1          | v2024.3.1      | 2024.3.1                |
 | 2023.4.0          | v2023.4.0      | 2023.4.2                |
@@ -46,7 +44,7 @@ Finally, add the NRG Common Java Library as a dependency in your `build.gradle` 
 
 ```gradle
 dependencies {
-    implementation 'com.nrg948:nrgcommon:2025.1.0'
+    implementation 'com.nrg948:nrgcommon:2025.3.2'
 }
 ```
 
