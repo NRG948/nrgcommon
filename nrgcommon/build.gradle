@@ -38,7 +38,7 @@ spotless {
 }
 
 group = 'com.nrg948'
-version = '2025.3.1' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
+version = '2025.3.2' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -56,14 +56,14 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
-    api "edu.wpi.first.wpilibj:wpilibj-java:2025.3.1"
+    api "edu.wpi.first.wpilibj:wpilibj-java:2025.3.2"
     api "org.javatuples:javatuples:1.2"
 
-    implementation "edu.wpi.first.cscore:cscore-java:2025.3.1"
-    implementation "edu.wpi.first.ntcore:ntcore-java:2025.3.1"
-    implementation "edu.wpi.first.wpiutil:wpiutil-java:2025.3.1"
+    implementation "edu.wpi.first.cscore:cscore-java:2025.3.2"
+    implementation "edu.wpi.first.ntcore:ntcore-java:2025.3.2"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:2025.3.2"
     implementation 'org.reflections:reflections:0.10.2'
-    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2025.3.1'
+    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2025.3.2'
     implementation 'org.dom4j:dom4j:2.1.3'
 }
 
