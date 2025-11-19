@@ -31,12 +31,12 @@ import static org.reflections.util.ReflectionUtilsPredicates.withStatic;
 import com.nrg948.annotations.Annotations;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import io.arxila.javatuples.LabelValue;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
-import org.javatuples.LabelValue;
 
 /** A class containing utility methods to support autonomous operation. */
 public final class Autonomous {
@@ -272,7 +272,7 @@ public final class Autonomous {
 
                   @Override
                   public String getName() {
-                    return lv.getLabel();
+                    return lv.label();
                   }
 
                   @Override
@@ -282,7 +282,7 @@ public final class Autonomous {
 
                   @Override
                   public Command newCommand(T container) {
-                    return lv.getValue();
+                    return lv.value();
                   }
                 };
               });
