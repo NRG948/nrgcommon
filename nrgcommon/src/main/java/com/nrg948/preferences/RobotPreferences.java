@@ -43,6 +43,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import io.arxila.javatuples.Pair;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.EnumSet;
@@ -51,7 +52,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.javatuples.Pair;
 
 /** A class to manage robot preferences. */
 public class RobotPreferences {
@@ -623,7 +623,7 @@ public class RobotPreferences {
 
     getFields()
         .map(RobotPreferences::mapToPair)
-        .collect(Collectors.groupingBy(p -> p.getValue1().group))
+        .collect(Collectors.groupingBy(p -> p.value1().group))
         .forEach(
             (group, pairs) -> {
               ShuffleboardLayout layout = prefsTab.getLayout(group);
@@ -632,9 +632,9 @@ public class RobotPreferences {
                   .forEach(
                       pair -> {
                         ShuffleboardWidgetBuilder builder =
-                            new ShuffleboardWidgetBuilder(layout, pair.getValue0());
+                            new ShuffleboardWidgetBuilder(layout, pair.value0());
 
-                        pair.getValue1().accept(builder);
+                        pair.value1().accept(builder);
                       });
             });
   }
@@ -662,7 +662,7 @@ public class RobotPreferences {
 
   /** Maps a preferences field to a pair of its annotation and value instance */
   private static Pair<RobotPreferencesValue, Value> mapToPair(Field field) {
-    return Pair.with(field.getAnnotation(RobotPreferencesValue.class), mapToValue(field));
+    return Pair.of(field.getAnnotation(RobotPreferencesValue.class), mapToValue(field));
   }
 
   /** Returns all preferences values. */

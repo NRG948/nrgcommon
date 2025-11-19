@@ -25,8 +25,8 @@ package com.nrg948.autonomous;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import io.arxila.javatuples.LabelValue;
 import java.util.Collection;
-import org.javatuples.LabelValue;
 
 /**
  * Annotates a method that creates a {@link Collection} of {@link LabelValue} elements mapping the
