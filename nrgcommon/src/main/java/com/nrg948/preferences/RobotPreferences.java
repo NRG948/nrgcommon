@@ -371,6 +371,7 @@ public class RobotPreferences {
      * Selects a value from a map using the current value as the key.
      *
      * @param map The map to select from.
+     * @param <V> The type of the map's values.
      * @return An {@link Optional} containing the selected value, or an empty {@link Optional} if
      *     the key does not exist in the map.
      */
