@@ -48,7 +48,7 @@ dependencies {
 }
 ```
 
-> **NOTE:** If you want the latest build from `main`, use `'com.nrg948:nrgcommon:2025.3.2-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
+> **NOTE:** If you want the latest build from `main`, use `'com.nrg948:nrgcommon:2026.1.1-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
 
 On the next build, the library will be downloaded from GitHub packages and installed in the Gradle build cache.
 
