@@ -51,20 +51,20 @@
  *   width = 2,
  *   height = 3
  * )
- * public MyPIDSubsystem extend PIDSubsystem {
+ * public MyPIDSubsystem extends PIDSubsystem {
  *
- *   public static String kPreferencesGroupName = "MyPIDSubsystem";
+ *   public static final String kPreferencesGroupName = "MyPIDSubsystem";
  *
  *   {@literal @}RobotPreferencesValue
- *   public static DoubleValue kP = new DoubleValue(kPreferencesGroupName, "kP", 1.0);
+ *   private static final DoubleValue kP = new DoubleValue(kPreferencesGroupName, "kP", 1.0);
  *   {@literal @}RobotPreferencesValue
- *   public static DoubleValue kI = new DoubleValue(kPreferencesGroupName, "kI", 1.0);
+ *   private static final DoubleValue kI = new DoubleValue(kPreferencesGroupName, "kI", 1.0);
  *   {@literal @}RobotPreferencesValue
- *   public static DoubleValue kD = new DoubleValue(kPreferencesGroupName, "kD", 1.0);
+ *   private static final DoubleValue kD = new DoubleValue(kPreferencesGroupName, "kD", 1.0);
  *
  *   // Construct the PID subsystem using the current preferences value.
  *   public MyPIDSubsystem() {
- *     super(new PIDController(kP.getValue(), kI.getValue(), kD.getValue()))
+ *     super(new PIDController(kP.getValue(), kI.getValue(), kD.getValue()));
  *   }
  *
  *   // Override the {@link PIDSubsystem#enable()} method to refresh the PID values in
