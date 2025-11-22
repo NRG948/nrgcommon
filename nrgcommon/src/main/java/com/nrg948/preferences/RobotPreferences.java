@@ -44,6 +44,8 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import io.arxila.javatuples.Pair;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.EnumSet;
@@ -651,10 +653,16 @@ public class RobotPreferences {
   /** Maps a preferences field to its value instance. */
   private static Value mapToValue(Field field) {
     try {
-      return (Value) field.get(null);
-    } catch (IllegalArgumentException e) {
-      e.printStackTrace();
-    } catch (IllegalAccessException e) {
+      Class<?> declaringClass = field.getDeclaringClass();
+      VarHandle handle =
+          MethodHandles.privateLookupIn(declaringClass, MethodHandles.lookup())
+              .findStaticVarHandle(declaringClass, field.getName(), field.getType());
+
+      return (Value) handle.get();
+    } catch (Exception e) {
+      System.err.printf(
+          "ERROR: An unexpected exception was caught when accessing %s.%s.%n",
+          field.getDeclaringClass().getName(), field.getName());
       e.printStackTrace();
     }
 
