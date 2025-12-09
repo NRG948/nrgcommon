@@ -1,0 +1,63 @@
+/*
+  MIT License
+
+  Copyright (c) 2025 Newport Robotics Group
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+*/
+package com.nrg948.dashboard.annotations;
+
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
+import java.lang.annotation.Target;
+
+/**
+ * Annotation for a gyro widget on the dashboard.
+ *
+ * <p>This annotation can be applied to fields or methods that return an {@link AnalogGyro} or
+ * {@link ADXRS450_Gyro} object or any {@link Sendable} object that publishes data in the same
+ * format.
+ */
+@Target({FIELD, METHOD})
+public @interface DashboardGyro {
+  /**
+   * The title of the widget. If empty, the default title is the name of the annotated field or
+   * method.
+   */
+  String title() default "";
+
+  /** The column position of the widget in the dashboard grid. */
+  int column() default 0;
+
+  /** The row position of the widget in the dashboard grid. */
+  int row() default 0;
+
+  /** The width of the widget in the dashboard grid. */
+  int width() default 1;
+
+  /** The height of the widget in the dashboard grid. */
+  int height() default 1;
+
+  /** Whether the gyro's counter-clockwise rotation is considered positive. */
+  boolean ccwPositive() default true;
+}

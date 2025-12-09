@@ -44,12 +44,16 @@ repositories {
 Finally, add the NRG Common Java Library as a dependency in your `build.gradle` file.
 
 ```gradle
+def nrgcommon = [
+    version: 2025.3.2
+]
+
 dependencies {
-    implementation 'com.nrg948:nrgcommon:2025.3.2'
+    implementation "com.nrg948:nrgcommon:${nrgcommon.version}"
 }
 ```
 
-> **NOTE:** If you want the latest build from `main`, use `'com.nrg948:nrgcommon:2026.1.1-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
+> **NOTE:** If you want the latest build from `main`, use version`'2026.1.1-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
 
 On the next build, the library will be downloaded from GitHub packages and installed in the Gradle build cache.
 
