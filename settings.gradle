@@ -8,4 +8,6 @@
  */
 
 rootProject.name = 'nrgcommon'
+
 include('nrgcommon')
+include('nrgcommon-processor')

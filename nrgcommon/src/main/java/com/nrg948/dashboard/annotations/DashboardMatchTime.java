@@ -1,0 +1,62 @@
+/*
+  MIT License
+
+  Copyright (c) 2025 Newport Robotics Group
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+*/
+package com.nrg948.dashboard.annotations;
+
+import static com.nrg948.dashboard.model.TimeDisplayMode.MINUTES_AND_SECONDS;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+
+import com.nrg948.dashboard.model.TimeDisplayMode;
+import java.lang.annotation.Target;
+
+/** Annotation for a match time widget on the dashboard. */
+@Target({FIELD, METHOD})
+public @interface DashboardMatchTime {
+  /**
+   * The title of the widget. If empty, the default title is the name of the annotated field or
+   * method.
+   */
+  String title() default "";
+
+  /** The column position of the widget in the dashboard grid. */
+  int column() default 0;
+
+  /** The row position of the widget in the dashboard grid. */
+  int row() default 0;
+
+  /** The width of the widget in the dashboard grid. */
+  int width() default 1;
+
+  /** The height of the widget in the dashboard grid. */
+  int height() default 1;
+
+  /** The display mode of the match time. */
+  TimeDisplayMode displayMode() default MINUTES_AND_SECONDS;
+
+  /** The time remaining in seconds when the widget should turn yellow. */
+  int yellowTimeRemaining() default 30;
+
+  /** The time remaining in seconds when the widget should turn red. */
+  int redTimeRemaining() default 15;
+}
