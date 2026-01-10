@@ -53,18 +53,22 @@ repositories {
     }
 }
 
+def wpilib = [
+    version: '2026.1.1'
+]
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
-    api "edu.wpi.first.wpilibj:wpilibj-java:2026.1.1-beta-1"
     api "io.arxila.javatuples:javatuples:2.0.1"
+    api "edu.wpi.first.wpilibj:wpilibj-java:${wpilib.version}"
 
-    implementation "edu.wpi.first.cscore:cscore-java:2026.1.1-beta-1"
-    implementation "edu.wpi.first.ntcore:ntcore-java:2026.1.1-beta-1"
-    implementation "edu.wpi.first.wpiutil:wpiutil-java:2026.1.1-beta-1"
-    implementation 'org.reflections:reflections:0.10.2'
-    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2026.1.1-beta-1'
+    implementation "edu.wpi.first.cscore:cscore-java:${wpilib.version}"
+    implementation "edu.wpi.first.ntcore:ntcore-java:${wpilib.version}"
+    implementation "edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:${wpilib.version}"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:${wpilib.version}"
     implementation 'org.dom4j:dom4j:2.1.3'
+    implementation 'org.reflections:reflections:0.10.2'
 }
 
 java {
