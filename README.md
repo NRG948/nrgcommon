@@ -8,6 +8,7 @@ The table below lists the published versions of the library and the WPILib relea
 
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
+| 2026.1.1-SNAPSHOT | main           | 2026.1.1                |
 | 2025.3.2          | v2025.3.2      | 2025.3.2                |
 | 2025.1.0          | v2025.1.0      | 2025.1.1                |
 | 2024.3.1          | v2024.3.1      | 2024.3.1                |
