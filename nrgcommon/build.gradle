@@ -38,7 +38,7 @@ spotless {
 }
 
 group = 'com.nrg948'
-version = '2026.1.1' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
+version = '2026.2.1' + (Boolean.valueOf(System.getProperty("release")) ? "" : "-SNAPSHOT")
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -54,7 +54,7 @@ repositories {
 }
 
 def wpilib = [
-    version: '2026.1.1'
+    version: '2026.2.1'
 ]
 
 dependencies {
