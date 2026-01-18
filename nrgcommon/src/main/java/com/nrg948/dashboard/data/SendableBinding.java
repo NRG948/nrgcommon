@@ -77,7 +77,6 @@ final class SendableBinding extends DashboardData implements SendableBuilder {
   private static final PubSubOption[] NO_OPTIONS = new PubSubOption[0];
 
   private final String topic;
-  private final ArrayList<DashboardData> bindings = new ArrayList<>();
   private final ArrayList<AutoCloseable> closeables = new ArrayList<>();
 
   /**
@@ -96,17 +95,11 @@ final class SendableBinding extends DashboardData implements SendableBuilder {
 
   @Override
   public void update() {
-    for (var binding : bindings) {
-      binding.update();
-    }
+    // Updates are handled by the individual bindings.
   }
 
   @Override
   public void close() {
-    for (var binding : bindings) {
-      binding.close();
-    }
-
     for (var closeable : closeables) {
       try {
         closeable.close();
@@ -557,10 +550,7 @@ final class SendableBinding extends DashboardData implements SendableBuilder {
 
   @Override
   public void clearProperties() {
-    for (var binding : bindings) {
-      binding.close();
-    }
-    bindings.clear();
+    // TODO Implement clearProperties
   }
 
   @Override
