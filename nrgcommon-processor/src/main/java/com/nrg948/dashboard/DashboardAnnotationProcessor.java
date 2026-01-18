@@ -58,6 +58,7 @@ import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.ArrayType;
@@ -79,6 +80,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
   private static final String DASHBOARD_DEFINITION_QUALIFIED_NAME =
       "com.nrg948.dashboard.annotations.DashboardDefinition";
+  private static final String DASHBOARD_TAB_QUALIFIED_NAME =
+      "com.nrg948.dashboard.annotations.DashboardTab";
   private static final String DASHBOARD_LAYOUT_QUALIFIED_NAME =
       "com.nrg948.dashboard.annotations.DashboardLayout";
   private static Set<String> READ_WRITE_ANNOTATIONS =
@@ -353,7 +356,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           writer.write(tabElementType.toString());
           writer.write("DashboardData.bind(\"");
           writer.write(getElementTitle(tabElement.element));
-          writer.write("\", com.nrg948.util.ReflectionUtil.get(");
+          if (isStatic(tabElement.element)) {
+            writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
+          } else {
+            writer.write("\", com.nrg948.util.ReflectionUtil.get(");
+          }
           writer.write(tabElement.element.getSimpleName().toString());
           writer.write("Handle, container));\n");
         }
@@ -446,6 +453,15 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return The created {@link DashboardElementBase}.
    */
   private DashboardElementBase createNestedModelElement(AnnotatedElement annotatedElement) {
+    if (annotatedElement
+        .annotationTypeElement
+        .getQualifiedName()
+        .toString()
+        .equals(DASHBOARD_TAB_QUALIFIED_NAME)) {
+      throw new IllegalArgumentException(
+          "DashboardTab annotations cannot be nested within other dashboard annotations.");
+    }
+
     if (!annotatedElement
         .annotationTypeElement
         .getQualifiedName()
@@ -615,7 +631,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           @Override
           public String visitVariable(VariableElement e, Void p) {
             try {
-              writer.write("lookup.findVarHandle(");
+              if (isStatic(e)) {
+                writer.write("lookup.findStaticVarHandle(");
+              } else {
+                writer.write("lookup.findVarHandle(");
+              }
               writer.write(containerName);
               writer.write(".class, \"");
               writer.write(e.getSimpleName().toString());
@@ -631,7 +651,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           @Override
           public String visitExecutable(ExecutableElement e, Void p) {
             try {
-              writer.write("lookup.findVirtual(");
+              if (isStatic(e)) {
+                writer.write("lookup.findStatic(");
+              } else {
+                writer.write("lookup.findVirtual(");
+              }
               writer.write(containerName);
               writer.write(".class, \"");
               writer.write(e.getSimpleName().toString());
@@ -663,6 +687,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
       TypeElement annotationTypeElement)
       throws IOException {
     var typeUtils = processingEnv.getTypeUtils();
+    var isStatic = isStatic(element);
 
     writer.write("        com.nrg948.dashboard.data.DashboardData.bind");
 
@@ -676,21 +701,37 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               var primitiveTypeName =
                   typeUtils.boxedClass(primitiveType).getSimpleName().toString();
 
+              if (isStatic) {
+                writer.write("Static");
+              }
+
               writer.write(primitiveTypeName);
               writer.write("(parentKey + \"/");
               writer.write(getElementTitle(element, annotation));
               writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOf");
+
+              if (isStatic) {
+                writer.write("Static");
+              }
+
               writer.write(primitiveTypeName);
               writer.write("(");
               writer.write(element.getSimpleName().toString());
               writer.write("Handle)");
+
               if (getDataBinding(annotation, annotationTypeElement) == READ_WRITE) {
                 writer.write(", com.nrg948.util.ReflectionUtil.setterOf");
+
+                if (isStatic) {
+                  writer.write("Static");
+                }
+
                 writer.write(primitiveTypeName);
                 writer.write("(");
                 writer.write(element.getSimpleName().toString());
                 writer.write("Handle)");
               }
+
               writer.write(");\n");
             } catch (IOException e) {
               throw new RuntimeException(e);
@@ -702,53 +743,109 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           public Void visitDeclared(DeclaredType declaredType, Void p) {
             try {
               if (isString(declaredType)) {
+                if (isStatic) {
+                  writer.write("Static");
+                }
+
                 writer.write("String(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
-                writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOf(");
+
+                if (isStatic) {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.getterOfStatic(");
+                } else {
+                  writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOf(");
+                }
+
                 writer.write(element.getSimpleName().toString());
                 writer.write("Handle)");
+
                 if (getDataBinding(annotation, annotationTypeElement) == READ_WRITE) {
-                  writer.write(", com.nrg948.util.ReflectionUtil.setterOf(");
+                  if (isStatic) {
+                    writer.write(", com.nrg948.util.ReflectionUtil.setterOfStatic(");
+                  } else {
+                    writer.write(", com.nrg948.util.ReflectionUtil.setterOf(");
+                  }
+
                   writer.write(element.getSimpleName().toString());
                   writer.write("Handle)");
                 }
+
                 writer.write(");\n");
               } else if (isEnum(declaredType)) {
                 var typeQualifiedName = declaredType.toString();
 
+                if (isStatic) {
+                  writer.write("Static");
+                }
+
                 writer.write("Enum(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
-                writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOfEnum(");
+
+                if (isStatic) {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.getterOfStaticEnum(");
+                } else {
+                  writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOfEnum(");
+                }
+
                 writer.write(element.getSimpleName().toString());
                 writer.write("Handle, ");
                 writer.write(typeQualifiedName);
                 writer.write(".class)");
+
                 if (getDataBinding(annotation, annotationTypeElement) == READ_WRITE) {
-                  writer.write(", com.nrg948.util.ReflectionUtil.setterOfEnum(");
+                  if (isStatic) {
+                    writer.write(", com.nrg948.util.ReflectionUtil.setterOfStaticEnum(");
+                  } else {
+                    writer.write(", com.nrg948.util.ReflectionUtil.setterOfEnum(");
+                  }
+
                   writer.write(element.getSimpleName().toString());
                   writer.write("Handle, ");
                   writer.write(typeQualifiedName);
                   writer.write(".class)");
                 }
+
                 writer.write(");\n");
               } else if (isVideoSource(declaredType)) {
                 writer.write("VideoSource(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
-                writer.write("\", com.nrg948.util.ReflectionUtil.get(");
-                writer.write(element.getSimpleName().toString());
-                writer.write("Handle, container));\n");
+
+                if (isStatic) {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle));\n");
+                } else {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.get(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle, container));\n");
+                }
               } else if (isSendable(declaredType)) {
                 writer.write("Sendable(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
-                writer.write("\", com.nrg948.util.ReflectionUtil.get(");
-                writer.write(element.getSimpleName().toString());
-                writer.write("Handle, container));\n");
+
+                if (isStatic) {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle));\n");
+                } else {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.get(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle, container));\n");
+                }
               } else if (hasLayoutDefinition(declaredType)) {
                 writer.write("Layout(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
-                writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOf(");
-                writer.write(element.getSimpleName().toString());
-                writer.write("Handle), ");
+
+                if (isStatic) {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle), ");
+                } else {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.get(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle, container), ");
+                }
+
                 writer.write(element.asType().toString());
                 writer.write("DashboardData::bind);\n");
               } else {
@@ -1048,6 +1145,16 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   }
 
   /**
+   * Determines if an element is static.
+   *
+   * @param element The element to check.
+   * @return True if the element is static, false otherwise.
+   */
+  private boolean isStatic(Element element) {
+    return element.getModifiers().contains(Modifier.STATIC);
+  }
+
+  /**
    * Determines if a declared type is an enum.
    *
    * @param type The declared type to check.
@@ -1087,6 +1194,13 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     return isSubTypeOf(type, "edu.wpi.first.util.sendable.Sendable");
   }
 
+  /**
+   * Determines if a declared type is a subtype of the qualified type name.
+   *
+   * @param type The declared type to check.
+   * @param superTypeName The qualified name of the supertype.
+   * @return True if the declared type is a subtype of the supertype, false otherwise.
+   */
   private boolean isSubTypeOf(DeclaredType type, String superTypeName) {
     var typeUtils = processingEnv.getTypeUtils();
     var directSuperTypes = typeUtils.directSupertypes(type);
