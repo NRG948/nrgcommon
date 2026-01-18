@@ -42,6 +42,7 @@ import com.nrg948.dashboard.model.DashboardNumberSliderElement;
 import com.nrg948.dashboard.model.DashboardRadialGaugeElement;
 import com.nrg948.dashboard.model.DashboardSwerveDriveElement;
 import com.nrg948.dashboard.model.DashboardTabElement;
+import com.nrg948.dashboard.model.DashboardTextDisplayElement;
 import com.nrg948.dashboard.model.DashboardVoltageViewElement;
 import com.nrg948.dashboard.model.DashboardWidgetElement;
 import com.nrg948.util.ColorUtil;
@@ -114,6 +115,20 @@ public final class ElasticConfiguration {
     public void defaultAction(DashboardWidgetElement element) {
       try {
         writeSimpleWidget(element);
+      } catch (IOException e) {
+        exception = Optional.of(e);
+      }
+    }
+
+    @Override
+    public void visit(DashboardTextDisplayElement textDisplayElement) {
+      try {
+        writeWidgetStart(textDisplayElement);
+        writeStartWidgetProperties(textDisplayElement);
+        jsonGenerator.writeBooleanField(
+            "show_submit_button", textDisplayElement.showSubmitButton());
+        writeEndWidgetProperties();
+        writeWidgetEnd();
       } catch (IOException e) {
         exception = Optional.of(e);
       }
