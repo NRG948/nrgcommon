@@ -819,6 +819,19 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                   writer.write(element.getSimpleName().toString());
                   writer.write("Handle, container));\n");
                 }
+              } else if (isPreferenceValue(declaredType)) {
+                writer.write("PreferenceValue(parentKey + \"/");
+                writer.write(getElementTitle(element, annotation));
+
+                if (isStatic) {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle));\n");
+                } else {
+                  writer.write("\", com.nrg948.util.ReflectionUtil.get(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle, container));\n");
+                }
               } else if (isSendable(declaredType)) {
                 writer.write("Sendable(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
@@ -1192,6 +1205,16 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    */
   private boolean isSendable(DeclaredType type) {
     return isSubTypeOf(type, "edu.wpi.first.util.sendable.Sendable");
+  }
+
+  /**
+   * Determines if a declared type is a subtype of PreferenceValue.
+   *
+   * @param type The declared type to check.
+   * @return True if the declared type is a subtype of PreferenceValue, false otherwise.
+   */
+  private boolean isPreferenceValue(DeclaredType type) {
+    return isSubTypeOf(type, "com.nrg948.preferences.PreferenceValue");
   }
 
   /**

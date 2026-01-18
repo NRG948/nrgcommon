@@ -23,6 +23,7 @@
 */
 package com.nrg948.dashboard.data;
 
+import com.nrg948.preferences.PreferenceValue;
 import com.nrg948.util.enums.EnumChooser;
 import com.nrg948.util.function.ObjBooleanConsumer;
 import com.nrg948.util.function.ObjFloatConsumer;
@@ -1086,6 +1087,16 @@ public abstract class DashboardData implements AutoCloseable {
     enumChooser.onChange(v -> setter.accept(v));
 
     bindSendable(topic, enumChooser);
+  }
+
+  /**
+   * Bind a {@link PreferenceValue} to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param preferenceValue The PreferenceValue to bind.
+   */
+  public static void bindPreferenceValue(String topic, PreferenceValue preferenceValue) {
+    bindings.add(new PreferenceValueBinding(topic, preferenceValue));
   }
 
   /**

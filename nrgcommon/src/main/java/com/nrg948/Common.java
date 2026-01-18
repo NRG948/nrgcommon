@@ -24,7 +24,6 @@
 package com.nrg948;
 
 import com.nrg948.annotations.Annotations;
-import com.nrg948.preferences.RobotPreferences;
 
 /** A class to initialize the NRG Common Library. */
 public final class Common {
@@ -41,6 +40,5 @@ public final class Common {
    */
   public static void init(String... pkgs) {
     Annotations.init(pkgs);
-    RobotPreferences.init();
   }
 }
