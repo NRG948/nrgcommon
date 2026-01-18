@@ -24,8 +24,8 @@
 package com.nrg948.dashboard.model;
 
 public class DashboardNumberSliderElement extends DashboardWidgetElement {
-  private final int min;
-  private final int max;
+  private final double min;
+  private final double max;
   private final int divisions;
   private final DataBinding dataBinding;
   private final boolean publishWhileDragging;
@@ -36,8 +36,8 @@ public class DashboardNumberSliderElement extends DashboardWidgetElement {
       int row,
       int width,
       int height,
-      int min,
-      int max,
+      double min,
+      double max,
       int divisions,
       DataBinding dataBinding,
       boolean publishWhileDragging) {
@@ -54,11 +54,11 @@ public class DashboardNumberSliderElement extends DashboardWidgetElement {
     return "Number Slider";
   }
 
-  public int getMin() {
+  public double getMin() {
     return min;
   }
 
-  public int getMax() {
+  public double getMax() {
     return max;
   }
 
