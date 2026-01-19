@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.nrg948.dashboard"},{"l":"com.nrg948.dashboard.model"}];updateSearchResults();
