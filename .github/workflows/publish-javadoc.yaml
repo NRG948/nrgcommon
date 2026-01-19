@@ -21,3 +21,6 @@ jobs:
           target-folder: javadoc
           project: gradle
           custom-command: ./gradlew javadoc
+          subdirectories:
+          - nrgcommon/build/docs/javadoc
+          - nrgcommon-processor/build/docs/javadoc
