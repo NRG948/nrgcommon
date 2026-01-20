@@ -1,6 +1,6 @@
 # FRC Team 948 - NRG Common Java Library
 
-[![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://NRG948.github.io/nrgcommon/javadoc/)
+[![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://NRG948.github.io/nrgcommon/javadoc/nrgcommon/javadoc)
 
 This repository contains common code that is shared among robots created by [FRC Team 948 - Newport Robotics Group (NRG)](https://www.nrg948.com/).
 
