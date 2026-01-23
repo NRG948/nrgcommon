@@ -673,10 +673,11 @@ public final class ReflectionUtil {
   }
 
   /**
-   * Converts an array of parameter types to a comma-separated string of their simple names.
+   * Converts an array of parameter types to a comma-separated string of their fully-qualified
+   * names.
    *
    * @param parameterTypes The array of parameter types.
-   * @return A comma-separated string of parameter type simple names.
+   * @return A comma-separated string of parameter type fully-qualified names.
    */
   public static String toArgumentTypeList(Class<?>[] parameterTypes) {
     return String.join(
@@ -684,10 +685,10 @@ public final class ReflectionUtil {
   }
 
   /**
-   * Converts an array of arguments to a comma-separated string of their type names.
+   * Converts an array of arguments to a comma-separated string of their fully-qualified type names.
    *
    * @param args The array of arguments.
-   * @return A comma-separated string of argument type names.
+   * @return A comma-separated string of argument fully-qualified type names.
    */
   public static String toArgumentTypeList(Object... args) {
     return String.join(

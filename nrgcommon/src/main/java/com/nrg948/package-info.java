@@ -26,24 +26,15 @@
  * The NRG Common Library provides a set of classes, annotations and utilities used by FIRST
  * Robotics Competition Team 948 - Newport Robotics Group (NRG948).
  *
- * <p>To initialize the library, you must call the {@link Common#init(String...)} method passing the
- * name of the robot package. In the Command-based Robot, this must be done in the <code>
- * Robot</code> constructor before the <code>RobotContainer</code> is created.<br>
+ * <p>To use the library, add the {@code nrgcommon} and {@code nrgcommon-processor} dependencies in
+ * your robot program's {@code build.gradle} file.
  *
  * <pre>
  * <code>
- * public class Robot {
- *   private RobotContainer m_robotContainer;
+ * dependencies {
+ *   implementation "com.nrg948:nrgcommon:${nrgcommon.version}"
  *
- *   public void Robot() {
- *     // Initialize the NRG Common Library before creating the RobotContainer so that
- *     // it is initialized and ready for use by the subsystems.
- *     Common.init("frc.robot");
- *
- *     // Instantiate our RobotContainer.  This will perform all our button bindings,
- *     // and put our autonomous chooser on the dashboard.
- *     m_robotContainer = new RobotContainer();
- *   }
+ *   annotationProcessor "com.nrg948:nrgcommon-processor:${nrgcommon.version}"
  * }
  * </code>
  * </pre>

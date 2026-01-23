@@ -32,7 +32,9 @@
  * <pre>
  * <code>
  * dependencies {
- *   annotationProcessor 'com.nrg948:nrgcommon-processor:${nrgcommon.version}'
+ *   implementation "com.nrg948:nrgcommon:${nrgcommon.version}"
+ *
+ *   annotationProcessor "com.nrg948:nrgcommon-processor:${nrgcommon.version}"
  * }
  * </code>
  * </pre>
@@ -92,13 +94,13 @@
  * method should be set as the default.
  *
  * <p>The {@link AutonomousCommandGenerator} annotation identifies a public static method invoked to
- * create a {@link Collection} of {@link LabelValue} elements mapping the name to display in user
- * interface elements like {@link SendableChooser} to a {@link Command}. The method takes a list of
- * parameters passed to {@link Autonomous#getChooser(Object...)} that are used to access robot
- * subsystems and returns a subclass of {@link Command}. This is typically a single parameter of
- * type <code>RobotContainer</code> but may be another type managing access to the subsystems or the
- * list of subsystems themselves. All annotated methods must accept the same types and number of
- * arguments.
+ * create a collection of elements mapping the name to display in user interface elements like
+ * {@link SendableChooser} to a {@link Command}. The method takes a list of parameters passed to
+ * {@link Autonomous#getChooser(Object...)} that are used to access robot subsystems and returns a
+ * {@link Collection} of {@link LabelValue}{@code <String, Command>} elements. This is typically a
+ * single parameter of type <code>RobotContainer</code> but may be another type managing access to
+ * the subsystems or the list of subsystems themselves. All annotated methods must accept the same
+ * types and number of arguments.
  *
  * <p>The following example shows how to define and annotate an autonomous {@link Command} generator
  * method.<br>

@@ -27,7 +27,7 @@ import static com.nrg948.autonomous.Autonomous.CONFIGURATION_RESOURCE_NAME;
 import static com.nrg948.processor.ProcessorUtil.asTypeElement;
 import static javax.lang.model.SourceVersion.RELEASE_17;
 import static javax.tools.Diagnostic.Kind.ERROR;
-import static javax.tools.StandardLocation.SOURCE_OUTPUT;
+import static javax.tools.StandardLocation.CLASS_OUTPUT;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -76,7 +76,7 @@ public class AutonomousProcessor extends AbstractProcessor {
           processingEnv
               .getFiler()
               .createResource(
-                  SOURCE_OUTPUT,
+                  CLASS_OUTPUT,
                   "",
                   CONFIGURATION_RESOURCE_NAME,
                   allElements.toArray(new Element[0]));

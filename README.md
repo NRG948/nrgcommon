@@ -10,7 +10,7 @@ The table below lists the published versions of the library and the WPILib relea
 
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
-| 2026.2.2-SNAPSHOT | main           | 2026.2.1                |
+| 2026.2.3-SNAPSHOT | main           | 2026.2.1                |
 | 2025.3.2          | v2025.3.2      | 2025.3.2                |
 | 2025.1.0          | v2025.1.0      | 2025.1.1                |
 | 2024.3.1          | v2024.3.1      | 2024.3.1                |
@@ -43,11 +43,11 @@ repositories {
 }
 ```
 
-Finally, add the NRG Common Java Library and its annotation processor as a dependencies in your `build.gradle` file.
+Finally, add the NRG Common Java Library and its annotation processor as dependencies in your `build.gradle` file.
 
 ```gradle
 def nrgcommon = [
-    version: 2025.3.2
+    version: 2025.3.3
 ]
 
 dependencies {
@@ -57,6 +57,6 @@ dependencies {
 }
 ```
 
-> **NOTE:** If you want the latest build from `main`, use version `'2026.2.2-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
+> **NOTE:** If you want the latest build from `main`, use version `'2026.2.3-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
 
 On the next build, the library will be downloaded from GitHub packages and installed in the Gradle build cache.

@@ -61,9 +61,9 @@ public final class Autonomous {
    */
   @JsonCreator
   Autonomous(
-      @JsonProperty("commands") String[] commands,
-      @JsonProperty("methods") String[] methods,
-      @JsonProperty("generators") String[] generators) {
+      @JsonProperty(value = "commands", required = true) String[] commands,
+      @JsonProperty(value = "methods", required = true) String[] methods,
+      @JsonProperty(value = "generators", required = true) String[] generators) {
     this.commands =
         Arrays.stream(commands)
             .map(Autonomous::getClass)
@@ -367,7 +367,7 @@ public final class Autonomous {
    * Returns a {@link SendableChooser} object enabling interactive selection of autonomous commands
    * annotated with {@link AutonomousCommand}.
    *
-   * @param args A list objects passed to the constructor of the autonomous commands providing
+   * @param args A list of objects passed to the constructor of the autonomous commands providing
    *     access to the robot subsystems. This is typically an instance of <code>RobotContainer
    *     </code> but could be another type that manages the subsystems or the list of subsystems
    *     themselves. All commands must accept the same types and number of arguments.

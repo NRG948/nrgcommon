@@ -47,7 +47,7 @@ interface AutonomousCommandFactory extends Comparable<AutonomousCommandFactory> 
   /**
    * Returns an instance of the {@link Command} to add to the {@link SendableChooser}.
    *
-   * @param args A list objects passed to the constructor of the autonomous commands providing
+   * @param args A list of objects passed to the constructor of the autonomous commands providing
    *     access to the robot subsystems. This is typically a single parameter of type <code>
    *     RobotContainer
    *     </code> but may be another type managing access to the subsystems or the list of subsystems
