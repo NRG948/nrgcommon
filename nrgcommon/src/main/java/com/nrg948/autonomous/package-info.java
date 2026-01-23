@@ -26,10 +26,23 @@
  * The {@code com.nrg948.autonomous} package implements an annotation-based approach for identifying
  * and selecting autonomous commands.
  *
+ * <p>To use the autonomous annotations, add the nrgcommon-processor dependency in your robot
+ * program's build.gradle file in addition to the nrgcommon library dependency.
+ *
+ * <pre>
+ * <code>
+ * dependencies {
+ *   annotationProcessor 'com.nrg948:nrgcommon-processor:${nrgcommon.version}'
+ * }
+ * </code>
+ * </pre>
+ *
  * <p>The {@link AutonomousCommand} annotation identifies an autonomous command class. All classes
  * with this annotation must be a subclass of {@link Command} and declare the same public
- * constructor taking a single parameter used to access the robot subsystems. This parameter is
- * typically <code>RobotContainer</code> but may be another type managing access to the subsystems.
+ * constructor taking a list of parameters passed to {@link Autonomous#getChooser(Object...)} that
+ * are used to access the robot subsystems. This is typically a single parameter of type <code>
+ * RobotContainer</code> but may be another type managing access to the subsystems or the list of
+ * subsystems themselves. All annotated classes must accept the same types and number of arguments.
  *
  * <p>The following example shows how to structure and annotate autonomous command classes.<br>
  *
@@ -48,24 +61,26 @@
  * </pre>
  *
  * <p>The {@link AutonomousCommandMethod} annotation identifies a public static factory method
- * invoked to create a {@link Command} subclass to be run during autonomous. The method takes a
- * single parameter used to access robot subsystem and returns a sublass of {@link Command}. This
- * parameter is typically <code>RobotContainer</code> but may be another type managing access to the
- * subsystems.
+ * invoked to create a {@link Command} subclass to be run during autonomous. The method takes a list
+ * of parameters passed to {@link Autonomous#getChooser(Object...)} that are used to access robot
+ * subsystems and returns a subclass of {@link Command}. This is typically a single parameter of
+ * type <code>RobotContainer</code> but may be another type managing access to the subsystems or the
+ * list of subsystems themselves. All annotated methods must accept the same types and number of
+ * arguments.
  *
  * <p>The following example shows how to define and annotate an autonomous {@link Command} factory
  * method.<br>
  *
  * <pre>
  * <code>
- * public class Autos {<br>
- *  {@literal @}AutonomousCommandMethod (name = "My Autonomous Command", isDefault = true)
- *  public static Command exampleRoutine(RobotContainer container) {
- *    return Command.sequence(
- *       new DriveToFirstLocation(container.getDrivetrainSubsystem()),
- *       ...
- *    );
- *  }
+ * public class Autos {
+ *   {@literal @}AutonomousCommandMethod (name = "My Autonomous Command", isDefault = true)
+ *   public static Command exampleRoutine(RobotContainer container) {
+ *     return Command.sequence(
+ *        new DriveToFirstLocation(container.getDrivetrainSubsystem()),
+ *        ...
+ *     );
+ *   }
  * }
  * </code>
  * </pre>
@@ -78,29 +93,34 @@
  *
  * <p>The {@link AutonomousCommandGenerator} annotation identifies a public static method invoked to
  * create a {@link Collection} of {@link LabelValue} elements mapping the name to display in user
- * interface elements like {@link SendableChooser} to a {@link Command}.
+ * interface elements like {@link SendableChooser} to a {@link Command}. The method takes a list of
+ * parameters passed to {@link Autonomous#getChooser(Object...)} that are used to access robot
+ * subsystems and returns a subclass of {@link Command}. This is typically a single parameter of
+ * type <code>RobotContainer</code> but may be another type managing access to the subsystems or the
+ * list of subsystems themselves. All annotated methods must accept the same types and number of
+ * arguments.
  *
  * <p>The following example shows how to define and annotate an autonomous {@link Command} generator
  * method.<br>
  *
  * <pre>
  * <code>
- * public class Autos {<br>
- *  {@literal @}AutonomousCommandGenerator
- *  public static Collection&lt;LabelValue&lt;String, Command&gt;&gt; exampleGenerator(RobotContainer container) {
- *    return List.of(
- *      new LabelValue&lt;String, Command&gt;("First Auto", new FirstAuto(container)),
- *      new LabelValue&lt;String, Command&gt;("Second Auto", new SecondAuto(container)),
- *      );
- *  }
+ * public class Autos {
+ *   {@literal @}AutonomousCommandGenerator
+ *   public static Collection&lt;LabelValue&lt;String, Command&gt;&gt; exampleGenerator(RobotContainer container) {
+ *     return List.of(
+ *       new LabelValue&lt;String, Command&gt;("First Auto", new FirstAuto(container)),
+ *       new LabelValue&lt;String, Command&gt;("Second Auto", new SecondAuto(container)),
+ *       );
+ *   }
  * }
  * </code>
  * </pre>
  *
  * <p>Once all autonomous command classes, factory and/or generator methods have been annotated, the
- * {@link Autonomous#getChooser(Object, String...)} method can be used to create a {@link
- * SendableChooser} object enabling iteractive selection of the autonomous command from Shuffleboard
- * or SmartDashboard.
+ * {@link Autonomous#getChooser(Object...)} method can be used to create a {@link SendableChooser}
+ * object enabling interactive selection of the autonomous command from Shuffleboard or
+ * SmartDashboard.
  *
  * <p>The following example shows how to implement interactive autonomous command selection.<br>
  *
@@ -112,7 +132,7 @@
  *   private SendableChooser{@literal <}Command{@literal >} m_autonomousCommandChooser;
  *
  *   public RobotContainer() {
- *     m_autonomousCommandChooser = Autonomous.getChooser(this, "frc.robot");
+ *     m_autonomousCommandChooser = Autonomous.getChooser(this);
  *
  *     // Add an "Autonomous" tab to Shuffleboard, create a new layout and add the
  *     // autonomous command chooser to it.

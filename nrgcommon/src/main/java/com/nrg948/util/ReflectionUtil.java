@@ -32,6 +32,7 @@ import edu.wpi.first.util.function.FloatConsumer;
 import edu.wpi.first.util.function.FloatSupplier;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.BooleanSupplier;
@@ -655,6 +656,42 @@ public final class ReflectionUtil {
    */
   public static LongConsumer setterOfStaticInteger(VarHandle fieldHandle) {
     return (value) -> fieldHandle.set(value);
+  }
+
+  /**
+   * Returns an array of parameter types for the given arguments, unboxing wrapper types to their
+   * corresponding primitive types.
+   *
+   * @param args The arguments to determine parameter types for.
+   * @return An array of parameter types.
+   */
+  public static Class<?>[] getParameterTypes(Object... args) {
+    return Arrays.stream(args)
+        .map(Object::getClass)
+        .map(ReflectionUtil::unbox)
+        .toArray(Class<?>[]::new);
+  }
+
+  /**
+   * Converts an array of parameter types to a comma-separated string of their simple names.
+   *
+   * @param parameterTypes The array of parameter types.
+   * @return A comma-separated string of parameter type simple names.
+   */
+  public static String toArgumentTypeList(Class<?>[] parameterTypes) {
+    return String.join(
+        ", ", Arrays.stream(parameterTypes).map(Class::getName).toArray(String[]::new));
+  }
+
+  /**
+   * Converts an array of arguments to a comma-separated string of their type names.
+   *
+   * @param args The array of arguments.
+   * @return A comma-separated string of argument type names.
+   */
+  public static String toArgumentTypeList(Object... args) {
+    return String.join(
+        ", ", Arrays.stream(args).map(arg -> arg.getClass().getName()).toArray(String[]::new));
   }
 
   private ReflectionUtil() {

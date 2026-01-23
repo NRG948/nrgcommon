@@ -24,6 +24,7 @@
 package com.nrg948.dashboard;
 
 import static com.nrg948.dashboard.model.DataBinding.READ_WRITE;
+import static com.nrg948.processor.ProcessorUtil.asTypeElement;
 import static javax.lang.model.SourceVersion.RELEASE_17;
 import static javax.tools.Diagnostic.Kind.ERROR;
 
@@ -36,6 +37,7 @@ import com.nrg948.dashboard.model.DashboardElementBase;
 import com.nrg948.dashboard.model.DashboardTabElement;
 import com.nrg948.dashboard.model.DataBinding;
 import com.nrg948.preferences.PreferenceValue;
+import com.nrg948.processor.ProcessorUtil;
 import com.nrg948.util.ReflectionUtil;
 import edu.wpi.first.cscore.VideoSource;
 import edu.wpi.first.util.sendable.Sendable;
@@ -172,7 +174,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    */
   private void processDefinitions(Stream<? extends Element> definitions) {
     definitions
-        .map(DashboardAnnotationProcessor::asTypeElement)
+        .map(ProcessorUtil::asTypeElement)
         .filter(Optional::isPresent)
         .map(Optional::get)
         .forEach(this::processDefinition);
@@ -462,7 +464,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   private void processDashboard(Stream<? extends Element> dashboardElements) {
     var dashboardElementOpt =
         dashboardElements
-            .map(DashboardAnnotationProcessor::asTypeElement)
+            .map(ProcessorUtil::asTypeElement)
             .filter(Optional::isPresent)
             .map(Optional::get)
             .findFirst();
@@ -1174,24 +1176,6 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     }
 
     return Optional.empty();
-  }
-
-  /**
-   * Converts an element to a type element if possible.
-   *
-   * @param element The element to convert.
-   * @return An {@link Optional} containing the type element if the conversion is possible,
-   *     otherwise empty.
-   */
-  private static Optional<TypeElement> asTypeElement(Element element) {
-    return element.accept(
-        new SimpleElementVisitor14<Optional<TypeElement>, Void>(Optional.empty()) {
-          @Override
-          public Optional<TypeElement> visitType(TypeElement e, Void p) {
-            return Optional.of(e);
-          }
-        },
-        null);
   }
 
   /**

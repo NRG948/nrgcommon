@@ -37,19 +37,22 @@ import java.lang.annotation.Target;
  *
  * <pre>
  * <code>
- * public CommandSubClass(T container);
+ * public CommandSubClass(Object... args);
  * </code>
  * </pre>
  *
- * The type T is an object providing access to the robot subsystems. This is typically an instance
- * of <code>RobotContainer</code>, but could be another type used to manage the subsystems
+ * The list of arguments passed to the {@link Autonomous#getChooser(Object...)} method will be
+ * passed to the constructor of the annotated {@link Command}. This is typically a single parameter
+ * of type <code>RobotContainer</code>, but may be another type managing access to the subsystems or
+ * the list of subsystems themselves. All annotated classes must accept the same types and number of
+ * arguments.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AutonomousCommand {
   /**
    * The name to display for the annotated {@link Command} in the {@link SendableChooser} returned
-   * by {@link Autonomous#getChooser(Object, String...)}.
+   * by {@link Autonomous#getChooser(Object...)}.
    *
    * @return The display name.
    */
@@ -57,7 +60,7 @@ public @interface AutonomousCommand {
 
   /**
    * Whether this command is the default {@link Command} in the {@link SendableChooser} returned by
-   * {@link Autonomous#getChooser(Object, String...)}.
+   * {@link Autonomous#getChooser(Object...)}.
    *
    * @return Returns true if this is the default command, and false otherwise.
    */

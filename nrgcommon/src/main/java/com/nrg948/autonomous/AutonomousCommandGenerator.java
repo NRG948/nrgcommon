@@ -36,12 +36,13 @@ import java.util.Collection;
  *
  * <pre>
  * <code>
- * public static Collection&lt;LabelValue&lt;String, Command&gt;&gt; name(T container);
+ * public static Collection&lt;LabelValue&lt;String, Command&gt;&gt; name(Object... args);
  * </code>
  * </pre>
  *
- * The type T is an object passed to the constructor of the autonomous command providing access to
- * the robot subsystems. This is typically an instance of <code>RobotContainer</code>, but could be
- * another type used to manage the subsystems
+ * The list of arguments passed to the {@link Autonomous#getChooser(Object...)} method will be
+ * passed to the annotated method. This is typically a single parameter of type <code>RobotContainer
+ * </code> but may be another type managing access to the subsystems or the list of subsystems
+ * themselves. All annotated methods must accept the same types and number of arguments.
  */
 public @interface AutonomousCommandGenerator {}
