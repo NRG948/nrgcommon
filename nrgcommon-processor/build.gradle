@@ -69,6 +69,9 @@ dependencies {
     implementation "io.arxila.javatuples:javatuples:2.0.1"
 
     annotationProcessor 'com.google.auto.service:auto-service:1.1.1'
+
+    compileOnly "edu.wpi.first.cscore:cscore-java:${wpilib.version}"
+    compileOnly "edu.wpi.first.wpiutil:wpiutil-java:${wpilib.version}"
 }
 
 java {
