@@ -35,7 +35,10 @@ import com.nrg948.dashboard.model.DashboardElement;
 import com.nrg948.dashboard.model.DashboardElementBase;
 import com.nrg948.dashboard.model.DashboardTabElement;
 import com.nrg948.dashboard.model.DataBinding;
+import com.nrg948.preferences.PreferenceValue;
 import com.nrg948.util.ReflectionUtil;
+import edu.wpi.first.cscore.VideoSource;
+import edu.wpi.first.util.sendable.Sendable;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
@@ -1188,52 +1191,59 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   }
 
   /**
-   * Determines if a declared type is a subtype of VideoSource.
+   * Determines if a declared type is a {@link VideoSource}.
    *
    * @param type The declared type to check.
-   * @return True if the declared type is a subtype of VideoSource, false otherwise.
+   * @return True if the declared type is a type of VideoSource, false otherwise.
    */
   private boolean isVideoSource(DeclaredType type) {
-    return isSubTypeOf(type, "edu.wpi.first.cscore.VideoSource");
+    return isSameOrSubtypeOf(type, "edu.wpi.first.cscore.VideoSource");
   }
 
   /**
-   * Determines if a declared type is a subtype of Sendable.
+   * Determines if a declared type is a {@link Sendable}.
    *
    * @param type The declared type to check.
-   * @return True if the declared type is a subtype of Sendable, false otherwise.
+   * @return True if the declared type is a type of Sendable, false otherwise.
    */
   private boolean isSendable(DeclaredType type) {
-    return isSubTypeOf(type, "edu.wpi.first.util.sendable.Sendable");
+    return isSameOrSubtypeOf(type, "edu.wpi.first.util.sendable.Sendable");
   }
 
   /**
-   * Determines if a declared type is a subtype of PreferenceValue.
+   * Determines if a declared type is a {@link PreferenceValue}.
    *
    * @param type The declared type to check.
-   * @return True if the declared type is a subtype of PreferenceValue, false otherwise.
+   * @return True if the declared type is a type of PreferenceValue, false otherwise.
    */
   private boolean isPreferenceValue(DeclaredType type) {
-    return isSubTypeOf(type, "com.nrg948.preferences.PreferenceValue");
+    return isSameOrSubtypeOf(type, "com.nrg948.preferences.PreferenceValue");
   }
 
   /**
-   * Determines if a declared type is a subtype of the qualified type name.
+   * Determines if a declared type is a type of the qualified type name.
    *
-   * @param type The declared type to check.
-   * @param superTypeName The qualified name of the supertype.
-   * @return True if the declared type is a subtype of the supertype, false otherwise.
+   * @param typeToCheck The declared type to check.
+   * @param typeName The qualified name of the supertype.
+   * @return True if the declared type is a type of the qualified type name, false otherwise.
    */
-  private boolean isSubTypeOf(DeclaredType type, String superTypeName) {
+  private boolean isSameOrSubtypeOf(DeclaredType typeToCheck, String typeName) {
+    if (typeToCheck.toString().equals(typeName)) {
+      return true;
+    }
+
     var typeUtils = processingEnv.getTypeUtils();
-    var directSuperTypes = typeUtils.directSupertypes(type);
+    var directSuperTypes = typeUtils.directSupertypes(typeToCheck);
+
     for (var superType : directSuperTypes) {
-      if (superType.toString().equals(superTypeName)) {
+      if (superType.toString().equals(typeName)) {
         return true;
       }
+
       var superDeclaredTypeOpt = asDeclaredType(superType);
+
       if (superDeclaredTypeOpt.isPresent()) {
-        if (isSubTypeOf(superDeclaredTypeOpt.get(), superTypeName)) {
+        if (isSameOrSubtypeOf(superDeclaredTypeOpt.get(), typeName)) {
           return true;
         }
       }
