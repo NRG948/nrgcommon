@@ -87,6 +87,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
       "com.nrg948.dashboard.annotations.DashboardTab";
   private static final String DASHBOARD_LAYOUT_QUALIFIED_NAME =
       "com.nrg948.dashboard.annotations.DashboardLayout";
+
   private static Set<String> READ_WRITE_ANNOTATIONS =
       Set.of(
           "com.nrg948.dashboard.annotations.DashboardComboBoxChooser",
@@ -138,7 +139,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param definitionElement The element annotated with {@link DashboardDefinition}.
    */
   private void processDefinition(TypeElement definitionElement) {
-    var annotatedElements = getAnnotatedElements(definitionElement).stream().toList();
+    var annotatedElements = getDefinitionElements(definitionElement).stream().toList();
 
     writeDefinitionJavaFile(definitionElement, annotatedElements);
 
@@ -154,10 +155,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   private void writeDefinitionJavaFile(
       TypeElement definitionElement, List<AnnotatedElement> annotatedElements) {
     try {
-      var containerName = definitionElement.getSimpleName().toString();
-      var title = getElementTitle(definitionElement);
-
-      var generatedClassName = title + "DashboardData";
+      var containerName = getContainerName(definitionElement);
+      var generatedClassName = containerName.replace(".", "$") + "DashboardData";
       var packageName =
           processingEnv
               .getElementUtils()
@@ -188,7 +187,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         writer.write("\n    static {\n");
         writer.write("        try {\n");
         writer.write("            var lookup = java.lang.invoke.MethodHandles.privateLookupIn(");
-        writer.write(definitionElement.getSimpleName().toString());
+        writer.write(containerName);
         writer.write(".class, java.lang.invoke.MethodHandles.lookup());\n\n");
 
         var exceptions = new HashSet<String>();
@@ -302,12 +301,12 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     try {
       var packageName =
           processingEnv.getElementUtils().getPackageOf(containerType).getQualifiedName().toString();
-      var containerName = containerType.getSimpleName().toString();
-      var dashboardTabsClassName = containerName + "DashboardTabs";
+      var containerName = getContainerName(containerType);
+      var generatedClassName = containerName.replace(".", "$") + "DashboardTabs";
       var javaFile =
           processingEnv
               .getFiler()
-              .createSourceFile(packageName + "." + dashboardTabsClassName, containerType);
+              .createSourceFile(packageName + "." + generatedClassName, containerType);
       try (var writer = javaFile.openWriter()) {
         // Write package declaration.
         writer.write("package ");
@@ -316,7 +315,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
         // Write class declaration.
         writer.write("public final class ");
-        writer.write(dashboardTabsClassName);
+        writer.write(generatedClassName);
         writer.write(" {\n");
 
         // Write handle variable declarations and static initializer.
@@ -327,7 +326,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         writer.write("\n    static {\n");
         writer.write("        try {\n");
         writer.write("            var lookup = java.lang.invoke.MethodHandles.privateLookupIn(");
-        writer.write(containerType.getSimpleName().toString());
+        writer.write(containerName);
         writer.write(".class, java.lang.invoke.MethodHandles.lookup());\n\n");
 
         var exceptions = new HashSet<String>();
@@ -353,11 +352,14 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         writer.write(" container) {\n");
 
         for (var tabElement : tabElements) {
-          var tabElementType = getValueType(tabElement.element);
+          var tabElementType = asDeclaredType(getValueType(tabElement.element)).orElseThrow();
+          var tabElementTypeName =
+              getFullyQualifiedDataBindingFileName(
+                  asTypeElement(tabElementType.asElement()).orElseThrow());
 
           writer.write("        ");
-          writer.write(tabElementType.toString());
-          writer.write("DashboardData.bind(\"");
+          writer.write(tabElementTypeName);
+          writer.write(".bind(\"");
           writer.write(getElementTitle(tabElement.element));
           if (isStatic(tabElement.element)) {
             writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
@@ -560,6 +562,48 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         .findFirst()
         .orElse(element.getSimpleName().toString())
         .replace("/", "+");
+  }
+
+  /**
+   * Gets the container name for a dashboard definition element.
+   *
+   * <p>The container name is the type name of the dashboard definition element, prepended by any
+   * enclosing types, separated by dots.
+   *
+   * @param definitionElement The dashboard definition element.
+   * @return The container name.
+   */
+  private static String getContainerName(TypeElement definitionElement) {
+    String containerName = definitionElement.getSimpleName().toString();
+    Element enclosingElement = definitionElement.getEnclosingElement();
+
+    while (enclosingElement.getKind().isClass()
+        || enclosingElement.getKind().isInterface()
+        || enclosingElement.getKind() == ElementKind.RECORD) {
+      containerName = enclosingElement.getSimpleName().toString() + "." + containerName;
+      enclosingElement = enclosingElement.getEnclosingElement();
+    }
+
+    return containerName;
+  }
+
+  /**
+   * Gets the fully qualified name of the generated data binding file for a dashboard definition
+   * element.
+   *
+   * @param definitionElement The dashboard definition element.
+   * @return The fully qualified name of the generated data binding file.
+   */
+  private String getFullyQualifiedDataBindingFileName(TypeElement definitionElement) {
+    var packageName =
+        processingEnv
+            .getElementUtils()
+            .getPackageOf(definitionElement)
+            .getQualifiedName()
+            .toString();
+    var containerName = getContainerName(definitionElement).replace(".", "$");
+
+    return packageName + "." + containerName + "DashboardData";
   }
 
   /**
@@ -862,8 +906,10 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                   writer.write("Handle, container), ");
                 }
 
-                writer.write(element.asType().toString());
-                writer.write("DashboardData::bind);\n");
+                writer.write(
+                    getFullyQualifiedDataBindingFileName(
+                        asTypeElement(declaredType.asElement()).orElseThrow()));
+                writer.write("::bind);\n");
               } else {
                 processingEnv
                     .getMessager()
@@ -1006,12 +1052,18 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param containerElement The container element.
    * @return The list of annotated elements.
    */
-  private static List<AnnotatedElement> getAnnotatedElements(TypeElement containerElement) {
+  private static List<AnnotatedElement> getDefinitionElements(TypeElement containerElement) {
     var dashboardElements =
         containerElement.getEnclosedElements().stream()
             .map(DashboardAnnotationProcessor::asAnnotatedElement)
             .filter(Optional::isPresent)
             .map(Optional::get)
+            .filter(
+                e ->
+                    !e.annotationTypeElement
+                        .getQualifiedName()
+                        .toString()
+                        .equals(DASHBOARD_DEFINITION_QUALIFIED_NAME))
             .toList();
 
     return dashboardElements;
