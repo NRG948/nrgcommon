@@ -64,6 +64,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Accepts a visitor that operates on this value.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#accept(com.nrg948.preferences.PreferenceValueVisitor)" class="member-name-link">accept(PreferenceValueVisitor)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/StringPreference.html#accept(com.nrg948.preferences.PreferenceValueVisitor)" class="member-name-link">accept(PreferenceValueVisitor)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/StringPreference.html" title="class in com.nrg948.preferences">StringPreference</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/nrg948/util/function/ObjBooleanConsumer.html#accept(T,boolean)" class="member-name-link">accept(T, boolean)</a> - Method in interface com.nrg948.util.function.<a href="com/nrg948/util/function/ObjBooleanConsumer.html" title="interface in com.nrg948.util.function">ObjBooleanConsumer</a></dt>
@@ -81,6 +83,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#atSetpoint()" class="member-name-link">atSetpoint()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns whether the PID controller is at its setpoint.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#atSetpoint()" class="member-name-link">atSetpoint()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns whether the Profiled PID controller is at its setpoint.</div>
 </dd>
 <dt><a href="com/nrg948/autonomous/Autonomous.html" class="type-name-link" title="class in com.nrg948.autonomous">Autonomous</a> - Class in <a href="com/nrg948/autonomous/package-summary.html">com.nrg948.autonomous</a></dt>
 <dd>
@@ -409,9 +415,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Calculates the output of the PID controller for the given measurement.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#calculate(double)" class="member-name-link">calculate(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Calculates the output of the Profiled PID controller for the given measurement.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#calculate(double,double)" class="member-name-link">calculate(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Calculates the output of the PID controller for the given measurement and setpoint.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#calculate(double,double)" class="member-name-link">calculate(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Calculates the output of the Profiled PID controller for the given measurement and setpoint.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardGyro.html#ccwPositive()" class="member-name-link">ccwPositive()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardGyro.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardGyro</a></dt>
 <dd>
@@ -791,6 +805,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Disables continuous input for the PID controller.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#disableContinuousInput()" class="member-name-link">disableContinuousInput()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Disables continuous input for the Profiled PID controller.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardMatchTime.html#displayMode()" class="member-name-link">displayMode()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardMatchTime.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardMatchTime</a></dt>
 <dd>
 <div class="block">The display mode of the match time.</div>
@@ -825,6 +843,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#enableContinuousInput(double,double)" class="member-name-link">enableContinuousInput(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Enables continuous input for the PID controller.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#enableContinuousInput(double,double)" class="member-name-link">enableContinuousInput(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Enables continuous input for the Profiled PID controller.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html#endAngle()" class="member-name-link">endAngle()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardRadialGauge</a></dt>
 <dd>
@@ -924,7 +946,15 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the current D value.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getD()" class="member-name-link">getD()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns the current D value.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getDefaultD()" class="member-name-link">getDefaultD()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns the default D value.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getDefaultD()" class="member-name-link">getDefaultD()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the default D value.</div>
 </dd>
@@ -932,7 +962,15 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the default I value.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getDefaultI()" class="member-name-link">getDefaultI()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns the default I value.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getDefaultP()" class="member-name-link">getDefaultP()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns the default P value.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getDefaultP()" class="member-name-link">getDefaultP()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the default P value.</div>
 </dd>
@@ -992,6 +1030,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the current I value.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getI()" class="member-name-link">getI()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns the current I value.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PreferenceValue.html#getKey()" class="member-name-link">getKey()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValue.html" title="class in com.nrg948.preferences">PreferenceValue</a></dt>
 <dd>
 <div class="block">Returns this value key used to access it in the preferences store.</div>
@@ -1001,6 +1043,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns this value's name.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getP()" class="member-name-link">getP()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns the current P value.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getP()" class="member-name-link">getP()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the current P value.</div>
 </dd>
@@ -1290,6 +1336,8 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)" class="member-name-link">initSendable(SendableBuilder)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)" class="member-name-link">initSendable(SendableBuilder)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardNumberBar.html#inverted()" class="member-name-link">inverted()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardNumberBar.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardNumberBar</a></dt>
 <dd>
 <div class="block">Whether the number bar is inverted.</div>
@@ -1482,6 +1530,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Prints all non-default preference values to the console.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" class="type-name-link" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a> - Class in <a href="com/nrg948/preferences/package-summary.html">com.nrg948.preferences</a></dt>
+<dd>
+<div class="block">Manages a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>ProfiledPIDController</code></a> whose gains are stored in WPILib <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/Preferences.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link"><code>Preferences</code></a>.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#%3Cinit%3E(java.lang.String,java.lang.String,double,double,double,edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints)" class="member-name-link">ProfiledPIDControllerPreference(String, String, double, double, double, TrapezoidProfile.Constraints)</a> - Constructor for class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardNumberSlider.html#publishWhileDragging()" class="member-name-link">publishWhileDragging()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardNumberSlider.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardNumberSlider</a></dt>
 <dd>
 <div class="block">Whether the number slider should publish values while being dragged.</div>
@@ -1524,6 +1578,18 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#reset()" class="member-name-link">reset()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Resets the PID controller.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#reset(double)" class="member-name-link">reset(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Resets the Profiled PID controller.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#reset(double,double)" class="member-name-link">reset(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Resets the Profiled PID controller.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#reset(edu.wpi.first.math.trajectory.TrapezoidProfile.State)" class="member-name-link">reset(TrapezoidProfile.State)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Resets the Profiled PID controller.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardCameraStream.html#resolutionHeight()" class="member-name-link">resolutionHeight()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardCameraStream.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardCameraStream</a></dt>
 <dd>
@@ -1723,11 +1789,23 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets the D value.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setD(double)" class="member-name-link">setD(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Sets the D value.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#setI(double)" class="member-name-link">setI(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Sets the I value.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setI(double)" class="member-name-link">setI(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Sets the I value.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#setP(double)" class="member-name-link">setP(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
+<dd>
+<div class="block">Sets the P value.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setP(double)" class="member-name-link">setP(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Sets the P value.</div>
 </dd>
@@ -1791,9 +1869,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets the tolerance for the PID controller.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setTolerance(double)" class="member-name-link">setTolerance(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Sets the tolerance for the Profiled PID controller.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#setTolerance(double,double)" class="member-name-link">setTolerance(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Sets the tolerance for the PID controller.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setTolerance(double,double)" class="member-name-link">setTolerance(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Sets the tolerance for the Profiled PID controller.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/DoublePreference.html#setValue(double)" class="member-name-link">setValue(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/DoublePreference.html" title="class in com.nrg948.preferences">DoublePreference</a></dt>
 <dd>
@@ -2207,6 +2293,10 @@ the order they are declared.</div>
 <dt><a href="com/nrg948/preferences/PreferenceValueVisitor.html#visit(com.nrg948.preferences.PIDControllerPreference)" class="member-name-link">visit(PIDControllerPreference)</a> - Method in interface com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValueVisitor.html" title="interface in com.nrg948.preferences">PreferenceValueVisitor</a></dt>
 <dd>
 <div class="block">Called to apply the visitor's effect on a <a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences"><code>PIDControllerPreference</code></a>.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/PreferenceValueVisitor.html#visit(com.nrg948.preferences.ProfiledPIDControllerPreference)" class="member-name-link">visit(ProfiledPIDControllerPreference)</a> - Method in interface com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValueVisitor.html" title="interface in com.nrg948.preferences">PreferenceValueVisitor</a></dt>
+<dd>
+<div class="block">Called to apply the visitor's effect on a <a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences"><code>ProfiledPIDControllerPreference</code></a>.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/PreferenceValueVisitor.html#visit(com.nrg948.preferences.StringPreference)" class="member-name-link">visit(StringPreference)</a> - Method in interface com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValueVisitor.html" title="interface in com.nrg948.preferences">PreferenceValueVisitor</a></dt>
 <dd>
