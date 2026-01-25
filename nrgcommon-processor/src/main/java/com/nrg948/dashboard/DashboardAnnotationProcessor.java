@@ -257,17 +257,36 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               @Override
               public Optional<DashboardTabElement> visitVariable(
                   VariableElement e, Optional<DashboardTabElement> p) {
-                var definitonElements = definitions.get(e.asType()).stream();
+                var definitionElements = definitions.get(e.asType());
 
-                return Optional.of(createTabModelElement(e, definitonElements));
+                if (definitionElements == null) {
+                  processingEnv
+                      .getMessager()
+                      .printMessage(
+                          ERROR,
+                          "No @DashboardDefinition found for type: " + e.asType().toString());
+                  return Optional.empty();
+                }
+
+                return Optional.of(createTabModelElement(e, definitionElements.stream()));
               }
 
               @Override
               public Optional<DashboardTabElement> visitExecutable(
                   ExecutableElement e, Optional<DashboardTabElement> p) {
-                var definitonElements = definitions.get(e.getReturnType()).stream();
+                var definitionElements = definitions.get(e.getReturnType());
 
-                return Optional.of(createTabModelElement(e, definitonElements));
+                if (definitionElements == null) {
+                  processingEnv
+                      .getMessager()
+                      .printMessage(
+                          ERROR,
+                          "No @DashboardDefinition found for type: "
+                              + e.getReturnType().toString());
+                  return Optional.empty();
+                }
+
+                return Optional.of(createTabModelElement(e, definitionElements.stream()));
               }
             },
             null);
@@ -277,7 +296,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
             () ->
                 new IllegalArgumentException(
                     "Unsupported element type for @DashboardTab: "
-                        + tabElement.element.getClass().getName())));
+                        + tabElement.element.asType().toString())));
 
     tabContainers
         .computeIfAbsent(
