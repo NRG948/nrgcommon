@@ -61,4 +61,11 @@ public interface PreferenceValueVisitor {
    * @param value The {@link PIDControllerPreference} to visit.
    */
   void visit(PIDControllerPreference value);
+
+  /**
+   * Called to apply the visitor's effect on a {@link ProfiledPIDControllerPreference}.
+   *
+   * @param value The {@link ProfiledPIDControllerPreference} to visit.
+   */
+  void visit(ProfiledPIDControllerPreference value);
 }
