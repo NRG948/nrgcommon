@@ -24,7 +24,6 @@
 package com.nrg948.preferences;
 
 import edu.wpi.first.math.MathSharedStore;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.util.sendable.Sendable;
@@ -32,14 +31,15 @@ import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.Preferences;
 
 /**
- * Manages a {@link PIDController} whose gains are stored in WPILib {@link Preferences}. This class
- * provides a preference-backed wrapper around a PID controller so that kP, kI, and kD can be tuned
- * at runtime without recompiling code.
+ * Manages a {@link ProfiledPIDController} whose gains are stored in WPILib {@link Preferences}.
+ * This class provides a preference-backed wrapper around a Profiled PID controller so that kP, kI,
+ * and kD can be tuned at runtime without recompiling code.
  *
- * <p>The internal {@link PIDController} instance is configured using the stored preference values,
- * allowing this class to be used anywhere a regular {@code PIDController} would be used, while
- * automatically persisting and retrieving gains from the robot preferences. In addition, it
- * implements {@link Sendable} so that its parameters can be exposed to dashboards and other tools.
+ * <p>The internal {@link ProfiledPIDController} instance is configured using the stored preference
+ * values, allowing this class to be used anywhere a regular {@code ProfiledPIDController} would be
+ * used, while automatically persisting and retrieving gains from the robot preferences. In
+ * addition, it implements {@link Sendable} so that its parameters can be exposed to dashboards and
+ * other tools.
  */
 public class ProfiledPIDControllerPreference extends PreferenceValue implements Sendable {
   private final double defaultP;
@@ -150,37 +150,37 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
   }
 
   /**
-   * Returns whether the PID controller is at its setpoint.
+   * Returns whether the Profiled PID controller is at its setpoint.
    *
-   * @return True if the PID controller is at its setpoint, false otherwise.
+   * @return True if the Profiled PID controller is at its setpoint, false otherwise.
    */
   public boolean atSetpoint() {
     return controller.atSetpoint();
   }
 
   /**
-   * Calculates the output of the PID controller for the given measurement.
+   * Calculates the output of the Profiled PID controller for the given measurement.
    *
    * @param measurement The current measurement.
-   * @return The output of the PID controller.
+   * @return The output of the Profiled PID controller.
    */
   public double calculate(double measurement) {
     return controller.calculate(measurement);
   }
 
   /**
-   * Calculates the output of the PID controller for the given measurement and setpoint.
+   * Calculates the output of the Profiled PID controller for the given measurement and setpoint.
    *
    * @param measurement The current measurement.
    * @param setpoint The desired setpoint.
-   * @return The output of the PID controller.
+   * @return The output of the Profiled PID controller.
    */
   public double calculate(double measurement, double setpoint) {
     return controller.calculate(measurement, setpoint);
   }
 
   /**
-   * Enables continuous input for the PID controller.
+   * Enables continuous input for the Profiled PID controller.
    *
    * @param minimumInput The minimum input value.
    * @param maximumInput The maximum input value.
@@ -189,28 +189,28 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
     controller.enableContinuousInput(minimumInput, maximumInput);
   }
 
-  /** Disables continuous input for the PID controller. */
+  /** Disables continuous input for the Profiled PID controller. */
   public void disableContinuousInput() {
     controller.disableContinuousInput();
   }
 
-  /** Resets the PID controller. */
+  /** Resets the Profiled PID controller. */
   public void reset(double measuredPosition) {
     controller.reset(measuredPosition);
   }
 
-  /** Resets the PID controller. */
+  /** Resets the Profiled PID controller. */
   public void reset(TrapezoidProfile.State state) {
     controller.reset(state);
   }
 
-  /** Resets the PID controller. */
+  /** Resets the Profiled PID controller. */
   public void reset(double measuredPosition, double measuredVelocity) {
     controller.reset(measuredPosition, measuredVelocity);
   }
 
   /**
-   * Sets the tolerance for the PID controller.
+   * Sets the tolerance for the Profiled PID controller.
    *
    * @param errorTolerance The error which is considered acceptable.
    */
@@ -219,7 +219,7 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
   }
 
   /**
-   * Sets the tolerance for the PID controller.
+   * Sets the tolerance for the Profiled PID controller.
    *
    * @param errorTolerance The error which is considered acceptable.
    * @param errorDerivativeTolerance The error derivative which is considered acceptable.
