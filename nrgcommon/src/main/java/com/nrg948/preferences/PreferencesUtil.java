@@ -81,6 +81,18 @@ public final class PreferencesUtil {
             preference.setI(preference.getDefaultI());
             preference.setD(preference.getDefaultD());
           }
+
+          @Override
+          public void visit(ProfiledPIDControllerPreference preference) {
+            printMessage(
+                preference,
+                String.format(
+                    "kP: %.4f, kI: %.4f, kD: %.4f",
+                    preference.getDefaultP(), preference.getDefaultI(), preference.getDefaultD()));
+            preference.setP(preference.getDefaultP());
+            preference.setI(preference.getDefaultI());
+            preference.setD(preference.getDefaultD());
+          }
         });
   }
 
@@ -128,6 +140,22 @@ public final class PreferencesUtil {
 
           @Override
           public void visit(PIDControllerPreference preference) {
+            boolean isNonDefault =
+                preference.getP() != preference.getDefaultP()
+                    || preference.getI() != preference.getDefaultI()
+                    || preference.getD() != preference.getDefaultD();
+
+            if (isNonDefault) {
+              printMessage(
+                  preference,
+                  String.format(
+                      " kP: %.4f, kI: %.4f, kD: %.4f",
+                      preference.getP(), preference.getI(), preference.getD()));
+            }
+          }
+
+          @Override
+          public void visit(ProfiledPIDControllerPreference preference) {
             boolean isNonDefault =
                 preference.getP() != preference.getDefaultP()
                     || preference.getI() != preference.getDefaultI()

@@ -29,6 +29,7 @@ import com.nrg948.preferences.EnumPreference;
 import com.nrg948.preferences.PIDControllerPreference;
 import com.nrg948.preferences.PreferenceValue;
 import com.nrg948.preferences.PreferenceValueVisitor;
+import com.nrg948.preferences.ProfiledPIDControllerPreference;
 import com.nrg948.preferences.StringPreference;
 
 /** A data binding that binds a preference value to the dashboard. */
@@ -69,6 +70,11 @@ final class PreferenceValueBinding extends DashboardData implements PreferenceVa
 
   @Override
   public void visit(PIDControllerPreference pidControllerPreference) {
+    bindSendable(topic, pidControllerPreference);
+  }
+
+  @Override
+  public void visit(ProfiledPIDControllerPreference pidControllerPreference) {
     bindSendable(topic, pidControllerPreference);
   }
 
