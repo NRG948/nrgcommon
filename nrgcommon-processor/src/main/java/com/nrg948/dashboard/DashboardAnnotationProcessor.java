@@ -735,6 +735,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
       throws IOException {
     var typeUtils = processingEnv.getTypeUtils();
     var isStatic = isStatic(element);
+    var isFinal = isFinal(element);
 
     writer.write("        com.nrg948.dashboard.data.DashboardData.bind");
 
@@ -748,17 +749,19 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               var primitiveTypeName =
                   typeUtils.boxedClass(primitiveType).getSimpleName().toString();
 
-              if (isStatic) {
+              if (isFinal) {
+                writer.write("Constant");
+              } else if (isStatic) {
                 writer.write("Static");
               }
 
               writer.write(primitiveTypeName);
               writer.write("(parentKey + \"/");
               writer.write(getElementTitle(element, annotation));
-              writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOf");
-
               if (isStatic) {
-                writer.write("Static");
+                writer.write("\", com.nrg948.util.ReflectionUtil.getterOfStatic");
+              } else {
+                writer.write("\", container, com.nrg948.util.ReflectionUtil.getterOf");
               }
 
               writer.write(primitiveTypeName);
@@ -767,6 +770,12 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               writer.write("Handle)");
 
               if (getDataBinding(annotation, annotationTypeElement) == READ_WRITE) {
+                if (isFinal) {
+                  String errorMsg =
+                      "Cannot use READ_WRITE data binding on final element: " + element.toString();
+                  processingEnv.getMessager().printMessage(ERROR, errorMsg);
+                  throw new IllegalArgumentException(errorMsg);
+                }
                 writer.write(", com.nrg948.util.ReflectionUtil.setterOf");
 
                 if (isStatic) {
@@ -790,7 +799,9 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           public Void visitDeclared(DeclaredType declaredType, Void p) {
             try {
               if (isString(declaredType)) {
-                if (isStatic) {
+                if (isFinal) {
+                  writer.write("Constant");
+                } else if (isStatic) {
                   writer.write("Static");
                 }
 
@@ -1220,6 +1231,16 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    */
   private boolean isStatic(Element element) {
     return element.getModifiers().contains(Modifier.STATIC);
+  }
+
+  /**
+   * Determines if an element is final.
+   *
+   * @param element The element to check.
+   * @return True if the element is final, false otherwise.
+   */
+  private boolean isFinal(Element element) {
+    return element.getModifiers().contains(Modifier.FINAL);
   }
 
   /**

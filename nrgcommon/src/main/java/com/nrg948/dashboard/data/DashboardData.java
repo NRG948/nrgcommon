@@ -66,6 +66,9 @@ import edu.wpi.first.networktables.StringArrayTopic;
 import edu.wpi.first.networktables.StringPublisher;
 import edu.wpi.first.networktables.StringSubscriber;
 import edu.wpi.first.networktables.StringTopic;
+import edu.wpi.first.util.function.BooleanConsumer;
+import edu.wpi.first.util.function.FloatConsumer;
+import edu.wpi.first.util.function.FloatSupplier;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.SendableCameraWrapper;
@@ -73,7 +76,11 @@ import java.util.ArrayList;
 import java.util.function.BiConsumer;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
+import java.util.function.DoubleConsumer;
+import java.util.function.DoubleSupplier;
 import java.util.function.Function;
+import java.util.function.LongConsumer;
+import java.util.function.LongSupplier;
 import java.util.function.ObjDoubleConsumer;
 import java.util.function.ObjLongConsumer;
 import java.util.function.Supplier;
@@ -144,6 +151,29 @@ public abstract class DashboardData implements AutoCloseable {
   }
 
   /**
+   * Bind a constant boolean value to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the constant boolean value.
+   * @param getter The function to retrieve the constant boolean value from the container.
+   */
+  public static <T> void bindConstantBoolean(
+      String topic, T container, ToBooleanFunction<T> getter) {
+    TABLE.getEntry(topic).setBoolean(getter.applyAsBoolean(container));
+  }
+
+  /**
+   * Bind a constant static boolean value to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant boolean value.
+   */
+  public static void bindConstantBoolean(String topic, BooleanSupplier getter) {
+    TABLE.getEntry(topic).setBoolean(getter.getAsBoolean());
+  }
+
+  /**
    * Bind a boolean value to a dashboard topic that both publishes and subscribes to updates.
    *
    * @param topic The dashboard topic to bind to.
@@ -178,7 +208,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @param setter The function to update the boolean value.
    */
   public static void bindStaticBoolean(
-      String topic, BooleanSupplier getter, Consumer<Boolean> setter) {
+      String topic, BooleanSupplier getter, BooleanConsumer setter) {
     BooleanTopic booleanTopic = TABLE.getBooleanTopic(topic);
 
     BooleanPublisher publisher = booleanTopic.publish();
@@ -228,6 +258,29 @@ public abstract class DashboardData implements AutoCloseable {
 
     bindings.add(
         new DataBinding<BooleanArrayPublisher, BooleanArraySubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant boolean array to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the boolean array.
+   * @param getter The function to retrieve the boolean array from the container.
+   */
+  public static <T> void bindConstantBooleanArray(
+      String topic, T container, Function<T, boolean[]> getter) {
+    TABLE.getEntry(topic).setBooleanArray(getter.apply(container));
+  }
+
+  /**
+   * Bind a constant static boolean array to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant boolean array.
+   */
+  public static void bindConstantBooleanArray(String topic, Supplier<boolean[]> getter) {
+    TABLE.getEntry(topic).setBooleanArray(getter.get());
   }
 
   /**
@@ -305,13 +358,34 @@ public abstract class DashboardData implements AutoCloseable {
    * @param topic The dashboard topic to bind to.
    * @param getter The function to retrieve the float value.
    */
-  public static void bindStaticFloat(String topic, Supplier<Float> getter) {
+  public static void bindStaticFloat(String topic, FloatSupplier getter) {
     FloatTopic floatTopic = TABLE.getFloatTopic(topic);
 
     FloatPublisher publisher = floatTopic.publish();
-    Consumer<FloatPublisher> publishUpdates = (pub) -> pub.set(getter.get());
-
+    Consumer<FloatPublisher> publishUpdates = (pub) -> pub.set(getter.getAsFloat());
     bindings.add(new DataBinding<FloatPublisher, FloatSubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant float value to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the constant float value.
+   * @param getter The function to retrieve the constant float value from the container.
+   */
+  public static <T> void bindConstantFloat(String topic, T container, ToFloatFunction<T> getter) {
+    TABLE.getEntry(topic).setFloat(getter.applyAsFloat(container));
+  }
+
+  /**
+   * Bind a constant static float value to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant float value.
+   */
+  public static void bindConstantFloat(String topic, FloatSupplier getter) {
+    TABLE.getEntry(topic).setFloat(getter.getAsFloat());
   }
 
   /**
@@ -348,12 +422,11 @@ public abstract class DashboardData implements AutoCloseable {
    * @param getter The function to retrieve the float value.
    * @param setter The function to update the float value.
    */
-  public static void bindStaticFloat(String topic, Supplier<Float> getter, Consumer<Float> setter) {
+  public static void bindStaticFloat(String topic, FloatSupplier getter, FloatConsumer setter) {
     FloatTopic floatTopic = TABLE.getFloatTopic(topic);
 
     FloatPublisher publisher = floatTopic.publish();
-    Consumer<FloatPublisher> publishUpdates = (pub) -> pub.set(getter.get());
-
+    Consumer<FloatPublisher> publishUpdates = (pub) -> pub.set(getter.getAsFloat());
     FloatSubscriber subscriber =
         floatTopic.subscribe(0.0f, PubSubOption.excludePublisher(publisher));
     Consumer<FloatSubscriber> updateSubscriber =
@@ -397,6 +470,29 @@ public abstract class DashboardData implements AutoCloseable {
 
     bindings.add(
         new DataBinding<FloatArrayPublisher, FloatArraySubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant float array to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the float array.
+   * @param getter The function to retrieve the float array from the container.
+   */
+  public static <T> void bindConstantFloatArray(
+      String topic, T container, Function<T, float[]> getter) {
+    TABLE.getEntry(topic).setFloatArray(getter.apply(container));
+  }
+
+  /**
+   * Bind a constant static float array to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant float array.
+   */
+  public static void bindConstantFloatArray(String topic, Supplier<float[]> getter) {
+    TABLE.getEntry(topic).setFloatArray(getter.get());
   }
 
   /**
@@ -474,13 +570,34 @@ public abstract class DashboardData implements AutoCloseable {
    * @param topic The dashboard topic to bind to.
    * @param getter The function to retrieve the double value.
    */
-  public static void bindStaticDouble(String topic, Supplier<Double> getter) {
+  public static void bindStaticDouble(String topic, DoubleSupplier getter) {
     DoubleTopic doubleTopic = TABLE.getDoubleTopic(topic);
 
     DoublePublisher publisher = doubleTopic.publish();
-    Consumer<DoublePublisher> publishUpdates = (pub) -> pub.set(getter.get());
-
+    Consumer<DoublePublisher> publishUpdates = (pub) -> pub.set(getter.getAsDouble());
     bindings.add(new DataBinding<DoublePublisher, DoubleSubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant double value to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the constant double value.
+   * @param getter The function to retrieve the constant double value from the container.
+   */
+  public static <T> void bindConstantDouble(String topic, T container, ToDoubleFunction<T> getter) {
+    TABLE.getEntry(topic).setDouble(getter.applyAsDouble(container));
+  }
+
+  /**
+   * Bind a constant static double value to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant double value.
+   */
+  public static void bindConstantDouble(String topic, DoubleSupplier getter) {
+    TABLE.getEntry(topic).setDouble(getter.getAsDouble());
   }
 
   /**
@@ -517,13 +634,11 @@ public abstract class DashboardData implements AutoCloseable {
    * @param getter The function to retrieve the double value.
    * @param setter The function to update the double value.
    */
-  public static void bindStaticDouble(
-      String topic, Supplier<Double> getter, Consumer<Double> setter) {
+  public static void bindStaticDouble(String topic, DoubleSupplier getter, DoubleConsumer setter) {
     DoubleTopic doubleTopic = TABLE.getDoubleTopic(topic);
 
     DoublePublisher publisher = doubleTopic.publish();
-    Consumer<DoublePublisher> publishUpdates = (pub) -> pub.set(getter.get());
-
+    Consumer<DoublePublisher> publishUpdates = (pub) -> pub.set(getter.getAsDouble());
     DoubleSubscriber subscriber =
         doubleTopic.subscribe(0.0, PubSubOption.excludePublisher(publisher));
     Consumer<DoubleSubscriber> updateSubscriber =
@@ -567,6 +682,29 @@ public abstract class DashboardData implements AutoCloseable {
 
     bindings.add(
         new DataBinding<DoubleArrayPublisher, DoubleArraySubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant double array to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the double array.
+   * @param getter The function to retrieve the double array from the container.
+   */
+  public static <T> void bindConstantDoubleArray(
+      String topic, T container, Function<T, double[]> getter) {
+    TABLE.getEntry(topic).setDoubleArray(getter.apply(container));
+  }
+
+  /**
+   * Bind a constant static double array to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant double array.
+   */
+  public static void bindConstantDoubleArray(String topic, Supplier<double[]> getter) {
+    TABLE.getEntry(topic).setDoubleArray(getter.get());
   }
 
   /**
@@ -644,13 +782,34 @@ public abstract class DashboardData implements AutoCloseable {
    * @param topic The dashboard topic to bind to.
    * @param getter The function to retrieve the integer value.
    */
-  public static void bindStaticInteger(String topic, Supplier<Long> getter) {
+  public static void bindStaticInteger(String topic, LongSupplier getter) {
     IntegerTopic integerTopic = TABLE.getIntegerTopic(topic);
 
     IntegerPublisher publisher = integerTopic.publish();
-    Consumer<IntegerPublisher> publishUpdates = (pub) -> pub.set(getter.get());
-
+    Consumer<IntegerPublisher> publishUpdates = (pub) -> pub.set(getter.getAsLong());
     bindings.add(new DataBinding<IntegerPublisher, IntegerSubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant integer value to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the constant integer value.
+   * @param getter The function to retrieve the constant integer value from the container.
+   */
+  public static <T> void bindConstantInteger(String topic, T container, ToLongFunction<T> getter) {
+    TABLE.getEntry(topic).setInteger(getter.applyAsLong(container));
+  }
+
+  /**
+   * Bind a constant static integer value to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant integer value.
+   */
+  public static void bindConstantInteger(String topic, LongSupplier getter) {
+    TABLE.getEntry(topic).setInteger(getter.getAsLong());
   }
 
   /**
@@ -687,12 +846,11 @@ public abstract class DashboardData implements AutoCloseable {
    * @param getter The function to retrieve the integer value.
    * @param setter The function to update the integer value.
    */
-  public static void bindStaticInteger(String topic, Supplier<Long> getter, Consumer<Long> setter) {
+  public static void bindStaticInteger(String topic, LongSupplier getter, LongConsumer setter) {
     IntegerTopic integerTopic = TABLE.getIntegerTopic(topic);
 
     IntegerPublisher publisher = integerTopic.publish();
-    Consumer<IntegerPublisher> publishUpdates = (pub) -> pub.set(getter.get());
-
+    Consumer<IntegerPublisher> publishUpdates = (pub) -> pub.set(getter.getAsLong());
     IntegerSubscriber subscriber =
         integerTopic.subscribe(0L, PubSubOption.excludePublisher(publisher));
     Consumer<IntegerSubscriber> updateSubscriber =
@@ -736,6 +894,29 @@ public abstract class DashboardData implements AutoCloseable {
 
     bindings.add(
         new DataBinding<IntegerArrayPublisher, IntegerArraySubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant integer array to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the integer array.
+   * @param getter The function to retrieve the integer array from the container.
+   */
+  public static <T> void bindConstantIntegerArray(
+      String topic, T container, Function<T, long[]> getter) {
+    TABLE.getEntry(topic).setIntegerArray(getter.apply(container));
+  }
+
+  /**
+   * Bind a constant static integer array to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant integer array.
+   */
+  public static void bindConstantIntegerArray(String topic, Supplier<long[]> getter) {
+    TABLE.getEntry(topic).setIntegerArray(getter.get());
   }
 
   /**
@@ -823,6 +1004,28 @@ public abstract class DashboardData implements AutoCloseable {
   }
 
   /**
+   * Bind a constant string value to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the string value.
+   * @param getter The function to retrieve the string value from the container.
+   */
+  public static <T> void bindConstantString(String topic, T container, Function<T, String> getter) {
+    TABLE.getEntry(topic).setString(getter.apply(container));
+  }
+
+  /**
+   * Bind a constant static string value to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant string value.
+   */
+  public static void bindConstantString(String topic, Supplier<String> getter) {
+    TABLE.getEntry(topic).setString(getter.get());
+  }
+
+  /**
    * Bind a string value to a dashboard topic that both publishes and subscribes to updates.
    *
    * @param topic The dashboard topic to bind to.
@@ -906,6 +1109,29 @@ public abstract class DashboardData implements AutoCloseable {
 
     bindings.add(
         new DataBinding<StringArrayPublisher, StringArraySubscriber>(publisher, publishUpdates));
+  }
+
+  /**
+   * Bind a constant string array to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param container The object containing the string array.
+   * @param getter The function to retrieve the string array from the container.
+   */
+  public static <T> void bindConstantStringArray(
+      String topic, T container, Function<T, String[]> getter) {
+    TABLE.getEntry(topic).setStringArray(getter.apply(container));
+  }
+
+  /**
+   * Bind a constant static string array to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param getter The function to retrieve the constant string array.
+   */
+  public static void bindConstantStringArray(String topic, Supplier<String[]> getter) {
+    TABLE.getEntry(topic).setStringArray(getter.get());
   }
 
   /**
