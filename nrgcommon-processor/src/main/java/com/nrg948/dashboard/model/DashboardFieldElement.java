@@ -23,6 +23,7 @@
 */
 package com.nrg948.dashboard.model;
 
+import com.nrg948.util.ColorUtil;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 
 public class DashboardFieldElement extends DashboardWidgetElement {
@@ -47,8 +48,8 @@ public class DashboardFieldElement extends DashboardWidgetElement {
       boolean showOtherObjects,
       boolean showTrajectories,
       double fieldRotationDegrees,
-      Color8Bit robotColor,
-      Color8Bit trajectoryColor) {
+      String robotColor,
+      String trajectoryColor) {
     super(title, column, row, width, height);
     this.game = game;
     this.robotWidth = robotWidth;
@@ -56,8 +57,8 @@ public class DashboardFieldElement extends DashboardWidgetElement {
     this.showOtherObjects = showOtherObjects;
     this.showTrajectories = showTrajectories;
     this.fieldRotationDegrees = fieldRotationDegrees;
-    this.robotColor = robotColor;
-    this.trajectoryColor = trajectoryColor;
+    this.robotColor = ColorUtil.stringToColor(robotColor);
+    this.trajectoryColor = ColorUtil.stringToColor(trajectoryColor);
   }
 
   @Override
@@ -67,7 +68,7 @@ public class DashboardFieldElement extends DashboardWidgetElement {
 
   @Override
   public void accept(DashboardElementVisitor visitor) {
-    // No implementation needed for field elements
+    visitor.visit(this);
   }
 
   public GameField getGame() {
