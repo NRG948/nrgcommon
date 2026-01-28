@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.nrg948.dashboard"},{"l":"com.nrg948.dashboard.model"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.nrg948.autonomous"},{"l":"com.nrg948.dashboard"},{"l":"com.nrg948.dashboard.model"},{"l":"com.nrg948.processor"}];updateSearchResults();
