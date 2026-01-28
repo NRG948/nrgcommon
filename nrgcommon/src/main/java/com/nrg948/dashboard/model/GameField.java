@@ -25,6 +25,8 @@ package com.nrg948.dashboard.model;
 
 /** Enum representing different game fields. */
 public enum GameField {
+  /** The Rebuilt game field. */
+  REBUILT("Rebuilt"),
   /** The Reefscape game field. */
   REEFSCAPE("Reefscape"),
   /** The Crescendo game field. */
