@@ -47,6 +47,8 @@ import edu.wpi.first.networktables.IntegerArrayTopic;
 import edu.wpi.first.networktables.IntegerPublisher;
 import edu.wpi.first.networktables.IntegerSubscriber;
 import edu.wpi.first.networktables.IntegerTopic;
+import edu.wpi.first.networktables.NTSendableBuilder;
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.PubSubOption;
 import edu.wpi.first.networktables.RawPublisher;
 import edu.wpi.first.networktables.RawSubscriber;
@@ -57,11 +59,11 @@ import edu.wpi.first.networktables.StringArrayTopic;
 import edu.wpi.first.networktables.StringPublisher;
 import edu.wpi.first.networktables.StringSubscriber;
 import edu.wpi.first.networktables.StringTopic;
+import edu.wpi.first.networktables.Topic;
 import edu.wpi.first.util.function.BooleanConsumer;
 import edu.wpi.first.util.function.FloatConsumer;
 import edu.wpi.first.util.function.FloatSupplier;
 import edu.wpi.first.util.sendable.Sendable;
-import edu.wpi.first.util.sendable.SendableBuilder;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
@@ -73,7 +75,7 @@ import java.util.function.LongSupplier;
 import java.util.function.Supplier;
 
 /** A binding that binds a {@link Sendable} to dashboard data updates. */
-final class SendableBinding extends DashboardData implements SendableBuilder {
+final class SendableBinding extends DashboardData implements NTSendableBuilder {
   private static final PubSubOption[] NO_OPTIONS = new PubSubOption[0];
 
   private final String topic;
@@ -556,5 +558,18 @@ final class SendableBinding extends DashboardData implements SendableBuilder {
   @Override
   public void addCloseable(AutoCloseable closeable) {
     closeables.add(closeable);
+  }
+
+  @Override
+  public void setUpdateTable(Runnable func) {}
+
+  @Override
+  public Topic getTopic(String key) {
+    return TABLE.getTopic(String.join("/", topic, key));
+  }
+
+  @Override
+  public NetworkTable getTable() {
+    return TABLE.getSubTable(topic);
   }
 }
