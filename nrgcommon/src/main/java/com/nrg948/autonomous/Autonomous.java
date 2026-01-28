@@ -23,132 +23,142 @@
 */
 package com.nrg948.autonomous;
 
-import static org.reflections.scanners.Scanners.MethodsAnnotated;
-import static org.reflections.scanners.Scanners.SubTypes;
-import static org.reflections.util.ReflectionUtilsPredicates.withAnnotation;
-import static org.reflections.util.ReflectionUtilsPredicates.withStatic;
-
-import com.nrg948.annotations.Annotations;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nrg948.util.ReflectionUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import io.arxila.javatuples.LabelValue;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /** A class containing utility methods to support autonomous operation. */
 public final class Autonomous {
+  static final String CONFIGURATION_RESOURCE_NAME = "META-INF/nrgcommon/autonomous.json";
+
+  private static Autonomous instance;
+
+  private final Class<?>[] commands;
+  private final Method[] methods;
+  private final Method[] generators;
 
   /**
-   * An interface for creating autonomous commands to add to the {@link SendableChooser}.
+   * Creates an {@link Autonomous} instance from JSON data.
    *
-   * @param <T> The subsystem container type. The container is an object passed to the constructor
-   *     of the autonomous commands providing access to the robot subsystems. This is typically an
-   *     instance of <code>RobotContainer</code>, but could be another type used to manage the
-   *     subsystems.
+   * @param commands An array of fully qualified class names of {@link Command} subclasses annotated
+   *     with {@link AutonomousCommand}.
+   * @param methods An array of fully qualified method names of static methods annotated with {@link
+   *     AutonomousCommandMethod}.
+   * @param generators An array of fully qualified method names of static methods annotated with
+   *     {@link AutonomousCommandGenerator}.
    */
-  private interface CommandFactory<T> extends Comparable<CommandFactory<T>> {
-    /**
-     * The name to display for the annotated {@link Command} in the {@link SendableChooser} returned
-     * by {@link Autonomous#getChooser(Object, String...)}.
-     *
-     * @return The display name.
-     */
-    String getName();
+  @JsonCreator
+  Autonomous(
+      @JsonProperty(value = "commands", required = true) String[] commands,
+      @JsonProperty(value = "methods", required = true) String[] methods,
+      @JsonProperty(value = "generators", required = true) String[] generators) {
+    this.commands =
+        Arrays.stream(commands)
+            .map(Autonomous::getClass)
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .toArray(Class<?>[]::new);
 
-    /**
-     * Whether this command is the default {@link Command} in the {@link SendableChooser} returned
-     * by {@link Autonomous#getChooser(Object, String...)}.
-     *
-     * @return Returns true if this is the default command, and false otherwise.
-     */
-    boolean isDefault();
+    this.methods =
+        Arrays.stream(methods)
+            .map(Autonomous::getMethod)
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .toArray(Method[]::new);
 
-    /**
-     * Returns an instance of the {@link Command} to add to the {@link SendableChooser}.
-     *
-     * @param container An object passed to the constructor of the automonous commands providing
-     *     access to the robot subsystems. This is typically an instance of <code>RobotContainer
-     *     </code> but could be another type that manages the subsystems.
-     * @return The {@link Command} to add to the {@link SendableChooser}.
-     */
-    Command newCommand(T container);
+    this.generators =
+        Arrays.stream(generators)
+            .map(Autonomous::getMethod)
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .toArray(Method[]::new);
+  }
 
-    @Override
-    default int compareTo(CommandFactory<T> obj) {
-      return getName().compareTo(obj.getName());
+  /** Creates an empty {@link Autonomous} instance. */
+  private Autonomous() {
+    this.commands = new Class<?>[0];
+    this.methods = new Method[0];
+    this.generators = new Method[0];
+  }
+
+  /**
+   * Returns the {@link Class} object for the specified class name.
+   *
+   * @param className The fully qualified name of the class.
+   * @return An {@link Optional} containing the {@link Class} object if found; otherwise, {@link
+   *     Optional#empty()}.
+   */
+  private static Optional<Class<?>> getClass(String className) {
+    try {
+      return Optional.of(Class.forName(className));
+    } catch (ClassNotFoundException e) {
+      System.err.printf("ERROR: Class not found: %s%n", className);
+      e.printStackTrace();
+      return Optional.empty();
     }
   }
 
   /**
-   * Returns a {@link SendableChooser} object enabling interactive selection of autonomous commands
-   * annotated with {@link AutonomousCommand}.
+   * Returns the {@link Method} object for the specified qualified method name.
    *
-   * @param <T> The subsystem container type.
-   * @param container An object passed to the constructor of the automonous commands providing
-   *     access to the robot subsystems. This is typically an instance of <code>RobotContainer
-   *     </code> but could be another type that manages the subsystems.
-   * @param pkgs The packages to scan for {@link Command} subclasses annotated with {@link
-   *     AutonomousCommand}.
-   * @return A {@link SendableChooser} object containing the autonomous commands.
+   * @param qualifiedMethodName The fully qualified name of the method, including parameter types.
+   * @return An {@link Optional} containing the {@link Method} object if found; otherwise, {@link
+   *     Optional#empty()}.
    */
-  public static <T> SendableChooser<Command> getChooser(T container, String... pkgs) {
-    SendableChooser<Command> chooser = new SendableChooser<>();
+  private static Optional<Method> getMethod(String qualifiedMethodName) {
+    try {
+      int paramStart = qualifiedMethodName.indexOf('(');
+      if (paramStart == -1) {
+        System.err.printf("ERROR: Method signature missing parameters: %s%n", qualifiedMethodName);
+        return Optional.empty();
+      }
 
-    Stream<CommandFactory<T>> commandClasses =
-        Annotations.get(
-                SubTypes.of(Command.class)
-                    .asClass()
-                    .filter(withAnnotation(AutonomousCommand.class)))
-            .stream()
-            .map(Autonomous::<T>toCommandFactory);
-    Stream<CommandFactory<T>> commandMethods =
-        Annotations.get(
-                MethodsAnnotated.with(AutonomousCommandMethod.class)
-                    .as(Method.class)
-                    .filter(withStatic()))
-            .stream()
-            .map(Autonomous::<T>toCommandFactory);
-    Stream<CommandFactory<T>> commandGenerators =
-        Annotations.get(
-                MethodsAnnotated.with(AutonomousCommandGenerator.class)
-                    .as(Method.class)
-                    .filter(withStatic()))
-            .stream()
-            .flatMap(m -> generateCommands(m, container));
+      int lastDot = qualifiedMethodName.lastIndexOf('.', paramStart);
+      Class<?> clazz = Class.forName(qualifiedMethodName.substring(0, lastDot));
+      String simpleMethodName = qualifiedMethodName.substring(lastDot + 1, paramStart);
+      Class<?>[] paramTypes =
+          Arrays.stream(
+                  qualifiedMethodName
+                      .substring(paramStart + 1, qualifiedMethodName.indexOf(')', paramStart))
+                      .split(","))
+              .map(String::trim)
+              .filter(s -> !s.isEmpty())
+              .map(Autonomous::getClass)
+              .filter(Optional::isPresent)
+              .map(Optional::get)
+              .toArray(Class<?>[]::new);
 
-    Stream.of(commandClasses, commandMethods, commandGenerators)
-        .flatMap(s -> s)
-        .sorted()
-        .forEach(
-            (CommandFactory<T> commandFactory) -> {
-              Command command = commandFactory.newCommand(container);
-
-              chooser.addOption(commandFactory.getName(), command);
-
-              if (commandFactory.isDefault()) {
-                chooser.setDefaultOption(commandFactory.getName(), command);
-              }
-            });
-
-    return chooser;
+      return Optional.of(clazz.getMethod(simpleMethodName, paramTypes));
+    } catch (ClassNotFoundException | NoSuchMethodException e) {
+      System.err.printf("ERROR: Method not found: %s%n", qualifiedMethodName);
+      return Optional.empty();
+    }
   }
 
   /**
-   * Returns a {@link CommandFactory} implementation used to create a {@link Command} to add to the
-   * {@link SendableChooser}.
+   * Returns a {@link AutonomousCommandFactory} implementation used to create a {@link Command} to
+   * add to the {@link SendableChooser}.
    *
-   * @param <T> The subsystem container type.
    * @param commandClass The {@link Class} object of the {@link Command} created by this instance.
-   * @return A {@link CommandFactory} implementation used to create a {@link Command} to add to the
-   *     {@link SendableChooser}.
+   * @return A {@link AutonomousCommandFactory} implementation used to create a {@link Command} to
+   *     add to the {@link SendableChooser}.
    */
-  private static <T> CommandFactory<T> toCommandFactory(Class<?> commandClass) {
+  private static AutonomousCommandFactory toCommandFactory(Class<?> commandClass) {
     AutonomousCommand annotation = commandClass.getAnnotation(AutonomousCommand.class);
 
-    return new CommandFactory<T>() {
+    return new AutonomousCommandFactory() {
       @Override
       public String getName() {
         return annotation.name();
@@ -160,18 +170,22 @@ public final class Autonomous {
       }
 
       @Override
-      public Command newCommand(T container) {
-        Class<? extends Object> containerClass = container.getClass();
+      public Command newCommand(Object... args) {
+        var argTypes = ReflectionUtil.getParameterTypes(args);
 
         try {
-          return (Command) commandClass.getConstructor(containerClass).newInstance(container);
+          return (Command) commandClass.getConstructor(argTypes).newInstance(args);
         } catch (NoSuchMethodException e) {
           System.err.printf(
-              "ERROR: Class %s does not define the public constructor: %s(%s)%n",
-              commandClass.getName(), commandClass.getSimpleName(), containerClass.getSimpleName());
+              "ERROR: The constructor %s(%s) is undefined.%n",
+              commandClass.getSimpleName(), ReflectionUtil.toArgumentTypeList(argTypes));
+          e.printStackTrace();
+        } catch (IllegalAccessException e) {
+          System.err.printf(
+              "ERROR: The constructor %s(%s) is not visible.%n",
+              commandClass.getSimpleName(), ReflectionUtil.toArgumentTypeList(argTypes));
           e.printStackTrace();
         } catch (InstantiationException
-            | IllegalAccessException
             | IllegalArgumentException
             | ClassCastException
             | InvocationTargetException
@@ -188,19 +202,18 @@ public final class Autonomous {
   }
 
   /**
-   * Returns a {@link CommandFactory} implementation used to create a {@link Command} to add to the
-   * {@link SendableChooser}.
+   * Returns a {@link AutonomousCommandFactory} implementation used to create a {@link Command} to
+   * add to the {@link SendableChooser}.
    *
-   * @param <T> The subsystem container type.
    * @param commandMethod The {@link Method} object invoked to create the {@link Command} of this
    *     instance.
-   * @return A {@link CommandFactory} implementation used to create a {@link Command} to add to the
-   *     {@link SendableChooser}.
+   * @return A {@link AutonomousCommandFactory} implementation used to create a {@link Command} to
+   *     add to the {@link SendableChooser}.
    */
-  private static <T> CommandFactory<T> toCommandFactory(Method commandMethod) {
+  private static AutonomousCommandFactory toCommandFactory(Method commandMethod) {
     AutonomousCommandMethod annotation = commandMethod.getAnnotation(AutonomousCommandMethod.class);
 
-    return new CommandFactory<T>() {
+    return new AutonomousCommandFactory() {
       @Override
       public String getName() {
         return annotation.name();
@@ -212,27 +225,32 @@ public final class Autonomous {
       }
 
       @Override
-      public Command newCommand(T container) {
-        Class<? extends Object> containerClass = container.getClass();
-
+      public Command newCommand(Object... args) {
         try {
-          return (Command) commandMethod.invoke(null, container);
-        } catch (InvocationTargetException e) {
+          return (Command) commandMethod.invoke(null, args);
+        } catch (IllegalArgumentException | InvocationTargetException e) {
           System.err.printf(
-              "ERROR: Method %s does not take a single parameter of type %s.%n",
-              commandMethod.getName(), containerClass.getSimpleName());
+              "ERROR: The method %s(%s) in the type %s is not defined for the arguments (%s).%n",
+              commandMethod.getName(),
+              ReflectionUtil.toArgumentTypeList(commandMethod.getParameterTypes()),
+              commandMethod.getDeclaringClass().getSimpleName(),
+              ReflectionUtil.toArgumentTypeList(args));
           e.printStackTrace();
         } catch (ClassCastException e) {
           System.err.printf(
-              "ERROR: Method %s returns %s instead of a Command.%n",
+              "ERROR: Method %s(%s) in the type %s returns %s instead of Command.%n",
               commandMethod.getName(),
-              commandMethod.getReturnType().getSimpleName(),
-              containerClass.getSimpleName());
+              ReflectionUtil.toArgumentTypeList(commandMethod.getParameterTypes()),
+              commandMethod.getDeclaringClass().getSimpleName(),
+              commandMethod.getReturnType().getSimpleName());
           e.printStackTrace();
-        } catch (IllegalAccessException | IllegalArgumentException | SecurityException e) {
+        } catch (IllegalAccessException | SecurityException e) {
           System.err.printf(
-              "ERROR: An unexpected exception was caught while creating an instance of %s.%n",
-              containerClass.getName());
+              "ERROR: An unexpected exception was caught while invoking method %s(%s) in the type %s: %s.%n",
+              commandMethod.getName(),
+              ReflectionUtil.toArgumentTypeList(commandMethod.getParameterTypes()),
+              commandMethod.getDeclaringClass().getSimpleName(),
+              e.getMessage());
           e.printStackTrace();
         }
 
@@ -242,22 +260,20 @@ public final class Autonomous {
   }
 
   /**
-   * Returns a {@link Stream} of {@link CommandFactory} implementations used to create {@link
-   * Command} objects to add to the {@link SendableChooser}.
+   * Returns a {@link Stream} of {@link AutonomousCommandFactory} implementations used to create
+   * {@link Command} objects to add to the {@link SendableChooser}.
    *
-   * @param <T> The subsystem container type.
    * @param commandGenerator The {@link Method} object invoked to create the {@link Command}
    *     objects.
-   * @return A {@link Stream} of {@link CommandFactory} implementations used to create {@link
-   *     Command} objects to add to the {@link SendableChooser}.
+   * @return A {@link Stream} of {@link AutonomousCommandFactory} implementations used to create
+   *     {@link Command} objects to add to the {@link SendableChooser}.
    */
-  private static <T> Stream<CommandFactory<T>> generateCommands(
-      Method commandGenerator, T container) {
-    Class<? extends Object> containerClass = container.getClass();
-    ArrayList<CommandFactory<T>> factories = new ArrayList<>();
+  private static Stream<AutonomousCommandFactory> generateCommands(
+      Method commandGenerator, Object... args) {
+    ArrayList<AutonomousCommandFactory> factories = new ArrayList<>();
 
     try {
-      Object rawCommands = commandGenerator.invoke(null, container);
+      Object rawCommands = commandGenerator.invoke(null, args);
 
       // TODO: Validate collection type.
 
@@ -268,7 +284,7 @@ public final class Autonomous {
       return commands.stream()
           .map(
               lv -> {
-                return new CommandFactory<T>() {
+                return new AutonomousCommandFactory() {
 
                   @Override
                   public String getName() {
@@ -281,32 +297,104 @@ public final class Autonomous {
                   }
 
                   @Override
-                  public Command newCommand(T container) {
+                  public Command newCommand(Object... args) {
                     return lv.value();
                   }
                 };
               });
-    } catch (InvocationTargetException e) {
+    } catch (IllegalArgumentException | InvocationTargetException e) {
       System.err.printf(
-          "ERROR: Method %s does not take a single parameter of type %s.%n",
-          commandGenerator.getName(), containerClass.getSimpleName());
+          "ERROR: The method %s(%s) in the type %s is not defined for the arguments (%s).%n",
+          commandGenerator.getName(),
+          ReflectionUtil.toArgumentTypeList(commandGenerator.getParameterTypes()),
+          commandGenerator.getDeclaringClass().getSimpleName(),
+          ReflectionUtil.toArgumentTypeList(args));
       e.printStackTrace();
     } catch (ClassCastException e) {
       System.err.printf(
-          "ERROR: Method %s returns %s instead of a Collection<LabelValue<String,Command>>.%n",
+          "ERROR: Method %s(%s) in the type %s returns %s instead of Collection<LabelValue<String,Command>>.%n",
           commandGenerator.getName(),
-          commandGenerator.getReturnType().getSimpleName(),
-          containerClass.getSimpleName());
+          ReflectionUtil.toArgumentTypeList(commandGenerator.getParameterTypes()),
+          commandGenerator.getDeclaringClass().getSimpleName(),
+          commandGenerator.getReturnType().getSimpleName());
       e.printStackTrace();
-    } catch (IllegalAccessException | IllegalArgumentException e) {
+    } catch (IllegalAccessException e) {
       System.err.printf(
-          "ERROR: An unexpected exception was caught while creating an instance of %s.%n",
-          containerClass.getName());
+          "ERROR: The method %s(%s) in the type %s is not visible.%n",
+          commandGenerator.getName(),
+          ReflectionUtil.toArgumentTypeList(commandGenerator.getParameterTypes()),
+          commandGenerator.getDeclaringClass().getSimpleName());
       e.printStackTrace();
     }
 
     return factories.stream();
   }
 
-  private Autonomous() {}
+  /** Returns the singleton {@link Autonomous} instance loaded from the configuration resource. */
+  private static Autonomous getInstance() {
+    if (instance == null) {
+      try {
+        var classLoader = ClassLoader.getSystemClassLoader();
+        var mapper = new ObjectMapper();
+
+        try (var configStream = classLoader.getResourceAsStream(CONFIGURATION_RESOURCE_NAME)) {
+          if (configStream == null) {
+            throw new IllegalArgumentException(
+                String.format(
+                    "Autonomous configuration resource '%s' is missing.",
+                    CONFIGURATION_RESOURCE_NAME));
+          }
+
+          instance = mapper.readValue(configStream, Autonomous.class);
+        }
+      } catch (IOException e) {
+        System.err.printf(
+            "ERROR: Failed to load autonomous commands configuration: %s%n", e.getMessage());
+        e.printStackTrace();
+
+        instance = new Autonomous();
+      } catch (IllegalArgumentException e) {
+        System.err.printf("ERROR: Failed to load autonomous configuration: %s%n", e.getMessage());
+        e.printStackTrace();
+
+        instance = new Autonomous();
+      }
+    }
+    return instance;
+  }
+
+  /**
+   * Returns a {@link SendableChooser} object enabling interactive selection of autonomous commands
+   * annotated with {@link AutonomousCommand}.
+   *
+   * @param args A list of objects passed to the constructor of the autonomous commands providing
+   *     access to the robot subsystems. This is typically an instance of <code>RobotContainer
+   *     </code> but could be another type that manages the subsystems or the list of subsystems
+   *     themselves. All commands must accept the same types and number of arguments.
+   * @return A {@link SendableChooser} object containing the autonomous commands.
+   */
+  public static SendableChooser<Command> getChooser(Object... args) {
+    SendableChooser<Command> chooser = new SendableChooser<>();
+
+    var my = getInstance();
+    var commandClasses = Arrays.stream(my.commands).map(Autonomous::toCommandFactory);
+    var commandMethods = Arrays.stream(my.methods).map(Autonomous::toCommandFactory);
+    var commandGenerators = Arrays.stream(my.generators).flatMap(m -> generateCommands(m, args));
+
+    Stream.of(commandClasses, commandMethods, commandGenerators)
+        .flatMap(s -> s)
+        .sorted()
+        .forEach(
+            f -> {
+              var command = f.newCommand(args);
+
+              chooser.addOption(f.getName(), command);
+
+              if (f.isDefault()) {
+                chooser.setDefaultOption(f.getName(), command);
+              }
+            });
+
+    return chooser;
+  }
 }

@@ -81,4 +81,8 @@ public final class ColorUtil {
       throw new IllegalArgumentException("Invalid color string: " + colorString, e);
     }
   }
+
+  private ColorUtil() {
+    throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+  }
 }

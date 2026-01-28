@@ -10,7 +10,7 @@ The table below lists the published versions of the library and the WPILib relea
 
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
-| 2026.2.2-SNAPSHOT | main           | 2026.2.1                |
+| 2026.2.3-SNAPSHOT | main           | 2026.2.1                |
 | 2025.3.2          | v2025.3.2      | 2025.3.2                |
 | 2025.1.0          | v2025.1.0      | 2025.1.1                |
 | 2024.3.1          | v2024.3.1      | 2024.3.1                |
@@ -43,71 +43,20 @@ repositories {
 }
 ```
 
-Finally, add the NRG Common Java Library as a dependency in your `build.gradle` file.
+Finally, add the NRG Common Java Library and its annotation processor as dependencies in your `build.gradle` file.
 
 ```gradle
 def nrgcommon = [
-    version: 2025.3.2
+    version: 2025.3.3
 ]
 
 dependencies {
+    annotationProcessor "com.nrg948:nrgcommon-processor:${nrgcommon.version}"
+
     implementation "com.nrg948:nrgcommon:${nrgcommon.version}"
 }
 ```
 
-> **NOTE:** If you want the latest build from `main`, use version `'2026.2.2-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
+> **NOTE:** If you want the latest build from `main`, use version `'2026.2.3-SNAPSHOT'`. There may be breaking changes and it certainly will not be as stable, so use with caution.
 
 On the next build, the library will be downloaded from GitHub packages and installed in the Gradle build cache.
-
-## Optimizing library load time
-
-The library uses the [`Reflections`](https://github.com/ronmamo/reflections) library to scan the Java classes for annotations. This can be a time consuming process on the original RoboRio due to its somewhat slow flash storage. To reduce load time, you can add a custom build step in your `build.gradle` to generate the annotation metadata at build time.
-
-To generate the annotation metadata at build time, add the following build dependencies before the `plugins` section in `build.gradle`.
-
-```gradle
-buildscript {
-    dependencies {
-        // Add the Reflections library and dependencies to the classpath so we
-        // can generate its metadata during the build.
-        classpath 'org.reflections:reflections:0.10.2'
-        classpath 'org.dom4j:dom4j:2.1.3'
-    }
-}
-```
-
-Then, add the following custom task toward the end of the `build.gradle` file.
-
-```gradle
-// Generates metadata consumed by the NRG Common Library to find annotations at runtime.
-task generateReflectionsMetadata {
-    dependsOn compileJava
-
-    doLast {
-        // Create a class loader for the main project files.
-        Set<File> projectDirs = project.sourceSets.main.output.classesDirs.files
-        URL[] projectUrls = projectDirs.collect { it.toURI().toURL() }.toArray(new URL[0])
-        ClassLoader projectLoader = new URLClassLoader(projectUrls, (java.lang.ClassLoader)null)
-
-        // Create a class loader for the project runtime dependencies.
-        Set<File> classpathFiles = project.configurations.runtimeClasspath.files
-        URL[] classpathUrls = classpathFiles.collect { it.toURI().toURL() }.toArray(new URL[0])
-        ClassLoader classpathLoader = new URLClassLoader(classpathUrls, (java.lang.ClassLoader)null)
-
-        // Generate the metadata for the Reflections library.
-        new org.reflections.Reflections(
-            new org.reflections.util.ConfigurationBuilder()
-                .forPackage("frc.robot", projectLoader)
-                .forPackage("com.nrg948", classpathLoader)
-                .setScanners(
-                    org.reflections.scanners.Scanners.FieldsAnnotated,
-                    org.reflections.scanners.Scanners.MethodsAnnotated,
-                    org.reflections.scanners.Scanners.SubTypes,
-                    org.reflections.scanners.Scanners.TypesAnnotated))
-            .save("${project.sourceSets.main.output.classesDirs.asPath}/META-INF/reflections/${project.archivesBaseName}-reflections.xml")
-    }
-}
-
-// Generate the NRG Common Library metadata when the robot code is built.
-jar.dependsOn generateReflectionsMetadata
-```

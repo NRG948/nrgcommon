@@ -34,7 +34,9 @@
  * <pre>
  * <code>
  * dependencies {
- *   annotationProcessor 'com.nrg948:nrgcommon-processor:${nrgcommon.version}'
+ *   implementation "com.nrg948:nrgcommon:${nrgcommon.version}"
+ *
+ *   annotationProcessor "com.nrg948:nrgcommon-processor:${nrgcommon.version}"
  * }
  * </code>
  * </pre>

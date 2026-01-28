@@ -1,7 +1,7 @@
 /*
   MIT License
 
-  Copyright (c) 2024 Newport Robotics Group
+  Copyright (c) 2026 Newport Robotics Group
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -21,24 +21,34 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-package com.nrg948;
+package com.nrg948.processor;
 
-import com.nrg948.annotations.Annotations;
+import java.util.Optional;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.SimpleElementVisitor14;
 
-/** A class to initialize the NRG Common Library. */
-public final class Common {
-  /* Disallow instantiation */
-  private Common() {}
+public final class ProcessorUtil {
 
   /**
-   * Initializes the NRG Common library.
+   * Converts an element to a type element if possible.
    *
-   * <p>This method must be called in the <code>Robot</code> constructor before the <code>
-   * RobotContainer</code> is created.
-   *
-   * @param pkgs The packages to scan for annotations implemented by the NRG Common Library.
+   * @param element The element to convert.
+   * @return An {@link Optional} containing the type element if the conversion is possible,
+   *     otherwise empty.
    */
-  public static void init(String... pkgs) {
-    Annotations.init(pkgs);
+  public static Optional<TypeElement> asTypeElement(Element element) {
+    return element.accept(
+        new SimpleElementVisitor14<Optional<TypeElement>, Void>(Optional.empty()) {
+          @Override
+          public Optional<TypeElement> visitType(TypeElement e, Void p) {
+            return Optional.of(e);
+          }
+        },
+        null);
+  }
+
+  private ProcessorUtil() {
+    throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
   }
 }
