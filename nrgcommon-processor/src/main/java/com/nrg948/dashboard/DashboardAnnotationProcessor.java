@@ -50,8 +50,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
@@ -88,16 +90,59 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   private static final String DASHBOARD_LAYOUT_QUALIFIED_NAME =
       "com.nrg948.dashboard.annotations.DashboardLayout";
 
-  private static Set<String> READ_WRITE_ANNOTATIONS =
-      Set.of(
-          "com.nrg948.dashboard.annotations.DashboardComboBoxChooser",
-          "com.nrg948.dashboard.annotations.DashboardSplitButtonChooser",
-          "com.nrg948.dashboard.annotations.DashboardToggleButton",
-          "com.nrg948.dashboard.annotations.DashboardToggleSwitch");
+  private static final String OPTIONAL_QUALIFIED_NAME = "java.util.Optional";
+  private static final String STRING_QUALIFIED_NAME = "java.lang.String";
+  private static final String VIDEO_SOURCE_QUALIFIED_NAME = "edu.wpi.first.cscore.VideoSource";
+  private static final String SENDABLE_QUALIFIED_NAME = "edu.wpi.first.util.sendable.Sendable";
+  private static final String PREFERENCE_VALUE_QUALIFIED_NAME =
+      "com.nrg948.preferences.PreferenceValue";
+
+  private static final String[] READ_WRITE_DASHBOARD_ANNOTATIONS = {
+    "com.nrg948.dashboard.annotations.DashboardComboBoxChooser",
+    "com.nrg948.dashboard.annotations.DashboardSplitButtonChooser",
+    "com.nrg948.dashboard.annotations.DashboardToggleButton",
+    "com.nrg948.dashboard.annotations.DashboardToggleSwitch"
+  };
 
   private final Map<TypeMirror, List<AnnotatedElement>> definitions = new HashMap<>();
   private final Map<TypeElement, List<AnnotatedElement>> tabContainers = new HashMap<>();
   private final List<DashboardTabElement> tabModels = new ArrayList<>();
+
+  private TypeMirror dashboardDefinitionType;
+  private TypeMirror dashboardTabType;
+  private TypeMirror dashboardLayoutType;
+
+  private TypeMirror optionalType;
+  private TypeMirror stringType;
+  private TypeMirror videoSourceType;
+  private TypeMirror sendableType;
+  private TypeMirror preferenceValueType;
+
+  private Set<TypeMirror> readWriteDashboardAnnotations;
+
+  @Override
+  public synchronized void init(ProcessingEnvironment processingEnv) {
+    super.init(processingEnv);
+
+    var elementUtils = processingEnv.getElementUtils();
+    var typeUtils = processingEnv.getTypeUtils();
+
+    dashboardDefinitionType =
+        elementUtils.getTypeElement(DASHBOARD_DEFINITION_QUALIFIED_NAME).asType();
+    dashboardTabType = elementUtils.getTypeElement(DASHBOARD_TAB_QUALIFIED_NAME).asType();
+    dashboardLayoutType = elementUtils.getTypeElement(DASHBOARD_LAYOUT_QUALIFIED_NAME).asType();
+
+    optionalType = typeUtils.erasure(elementUtils.getTypeElement(OPTIONAL_QUALIFIED_NAME).asType());
+    stringType = elementUtils.getTypeElement(STRING_QUALIFIED_NAME).asType();
+    videoSourceType = elementUtils.getTypeElement(VIDEO_SOURCE_QUALIFIED_NAME).asType();
+    sendableType = elementUtils.getTypeElement(SENDABLE_QUALIFIED_NAME).asType();
+    preferenceValueType = elementUtils.getTypeElement(PREFERENCE_VALUE_QUALIFIED_NAME).asType();
+
+    readWriteDashboardAnnotations =
+        Arrays.stream(READ_WRITE_DASHBOARD_ANNOTATIONS)
+            .map(name -> elementUtils.getTypeElement(name).asType())
+            .collect(Collectors.toSet());
+  }
 
   @Override
   public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -217,6 +262,13 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         }
         writer.write("    }\n\n");
 
+        // Write bindOptional method.
+        writer.write("    public static void bindOptional(String parentKey, java.util.Optional<");
+        writer.write(containerName);
+        writer.write("> container) {\n");
+        writer.write("        container.ifPresent(c -> bind(parentKey, c));\n");
+        writer.write("    }\n\n");
+
         // Write class closing brace.
         writer.write("}\n");
       }
@@ -257,7 +309,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               @Override
               public Optional<DashboardTabElement> visitVariable(
                   VariableElement e, Optional<DashboardTabElement> p) {
-                var definitionElements = definitions.get(e.asType());
+                var definitionElements = definitions.get(unwrap(e.asType()));
 
                 if (definitionElements == null) {
                   processingEnv
@@ -274,7 +326,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               @Override
               public Optional<DashboardTabElement> visitExecutable(
                   ExecutableElement e, Optional<DashboardTabElement> p) {
-                var definitionElements = definitions.get(e.getReturnType());
+                var definitionElements = definitions.get(unwrap(e.getReturnType()));
 
                 if (definitionElements == null) {
                   processingEnv
@@ -371,14 +423,17 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         writer.write(" container) {\n");
 
         for (var tabElement : tabElements) {
-          var tabElementType = asDeclaredType(getValueType(tabElement.element)).orElseThrow();
-          var tabElementTypeName =
-              getFullyQualifiedDataBindingFileName(
-                  asTypeElement(tabElementType.asElement()).orElseThrow());
+          var tabType = getValueType(tabElement.element);
+          var tabElementTypeName = getFullyQualifiedDataBindingFileName(tabType);
 
           writer.write("        ");
           writer.write(tabElementTypeName);
-          writer.write(".bind(\"");
+          writer.write(".bind");
+
+          if (isOptional(tabType)) {
+            writer.write("Optional");
+          }
+          writer.write("(\"");
           writer.write(getElementTitle(tabElement.element));
           if (isStatic(tabElement.element)) {
             writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
@@ -477,20 +532,15 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return The created {@link DashboardElementBase}.
    */
   private DashboardElementBase createNestedModelElement(AnnotatedElement annotatedElement) {
-    if (annotatedElement
-        .annotationTypeElement
-        .getQualifiedName()
-        .toString()
-        .equals(DASHBOARD_TAB_QUALIFIED_NAME)) {
+    var typeUtils = processingEnv.getTypeUtils();
+    TypeMirror annotationType = annotatedElement.annotationTypeElement.asType();
+
+    if (typeUtils.isSameType(annotationType, dashboardTabType)) {
       throw new IllegalArgumentException(
           "DashboardTab annotations cannot be nested within other dashboard annotations.");
     }
 
-    if (!annotatedElement
-        .annotationTypeElement
-        .getQualifiedName()
-        .toString()
-        .equals(DASHBOARD_LAYOUT_QUALIFIED_NAME)) {
+    if (!typeUtils.isSameType(annotationType, dashboardLayoutType)) {
       return createModelElement(annotatedElement);
     }
 
@@ -592,9 +642,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param definitionElement The dashboard definition element.
    * @return The container name.
    */
-  private static String getContainerName(TypeElement definitionElement) {
-    String containerName = definitionElement.getSimpleName().toString();
-    Element enclosingElement = definitionElement.getEnclosingElement();
+  private String getContainerName(Element definitionElement) {
+    var typeUtils = processingEnv.getTypeUtils();
+    var containerElement = typeUtils.asElement(unwrap(definitionElement.asType()));
+    var containerName = containerElement.getSimpleName().toString();
+    Element enclosingElement = containerElement.getEnclosingElement();
 
     while (enclosingElement.getKind().isClass()
         || enclosingElement.getKind().isInterface()
@@ -610,17 +662,18 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * Gets the fully qualified name of the generated data binding file for a dashboard definition
    * element.
    *
-   * @param definitionElement The dashboard definition element.
+   * @param type The type of the dashboard definition element.
    * @return The fully qualified name of the generated data binding file.
    */
-  private String getFullyQualifiedDataBindingFileName(TypeElement definitionElement) {
+  private String getFullyQualifiedDataBindingFileName(TypeMirror type) {
+    var containerType = asDeclaredType(unwrap(type)).orElseThrow();
     var packageName =
         processingEnv
             .getElementUtils()
-            .getPackageOf(definitionElement)
+            .getPackageOf(containerType.asElement())
             .getQualifiedName()
             .toString();
-    var containerName = getContainerName(definitionElement).replace(".", "$");
+    var containerName = getContainerName(containerType.asElement()).replace(".", "$");
 
     return packageName + "." + containerName + "DashboardData";
   }
@@ -936,9 +989,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                   writer.write("Handle, container), ");
                 }
 
-                writer.write(
-                    getFullyQualifiedDataBindingFileName(
-                        asTypeElement(declaredType.asElement()).orElseThrow()));
+                writer.write(getFullyQualifiedDataBindingFileName(declaredType));
                 writer.write("::bind);\n");
               } else {
                 processingEnv
@@ -1082,7 +1133,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param containerElement The container element.
    * @return The list of annotated elements.
    */
-  private static List<AnnotatedElement> getDefinitionElements(TypeElement containerElement) {
+  private List<AnnotatedElement> getDefinitionElements(TypeElement containerElement) {
     var dashboardElements =
         containerElement.getEnclosedElements().stream()
             .map(DashboardAnnotationProcessor::asAnnotatedElement)
@@ -1090,10 +1141,9 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
             .map(Optional::get)
             .filter(
                 e ->
-                    !e.annotationTypeElement
-                        .getQualifiedName()
-                        .toString()
-                        .equals(DASHBOARD_DEFINITION_QUALIFIED_NAME))
+                    !processingEnv
+                        .getTypeUtils()
+                        .isSameType(e.annotationTypeElement.asType(), dashboardDefinitionType))
             .toList();
 
     return dashboardElements;
@@ -1216,7 +1266,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    */
   private DataBinding getDataBinding(
       AnnotationMirror annotation, TypeElement annotationTypeElement) {
-    if (READ_WRITE_ANNOTATIONS.contains(annotationTypeElement.getQualifiedName().toString())) {
+    if (readWriteDashboardAnnotations.contains(annotationTypeElement.asType())) {
       return READ_WRITE;
     }
 
@@ -1240,6 +1290,33 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
       }
     }
     return DataBinding.READ_ONLY; // Default value
+  }
+
+  /**
+   * Gets the target type from a type mirror, unwrapping {@link Optional} if necessary.
+   *
+   * @param type The type mirror to inspect.
+   * @return The target type mirror.
+   */
+  private TypeMirror unwrap(TypeMirror type) {
+    if (isOptional(type)) {
+      return asDeclaredType(type).map(t -> (TypeMirror) t.getTypeArguments().get(0)).orElse(type);
+    }
+
+    return type;
+  }
+
+  /**
+   * Determines if a type mirror represents an {@link Optional} type.
+   *
+   * @param type The type mirror to check.
+   * @return True if the type mirror represents an {@link Optional} type, false otherwise.
+   */
+  private boolean isOptional(TypeMirror type) {
+    var typeUtils = processingEnv.getTypeUtils();
+    var erasedType = typeUtils.erasure(type);
+
+    return typeUtils.isSameType(erasedType, optionalType);
   }
 
   /**
@@ -1278,8 +1355,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param type The type mirror to check.
    * @return True if the type mirror represents a String type, false otherwise.
    */
-  private static boolean isString(TypeMirror type) {
-    return type.toString().equals("java.lang.String");
+  private boolean isString(TypeMirror type) {
+    return processingEnv.getTypeUtils().isSameType(type, stringType);
   }
 
   /**
@@ -1289,7 +1366,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return True if the declared type is a type of VideoSource, false otherwise.
    */
   private boolean isVideoSource(DeclaredType type) {
-    return isSameOrSubtypeOf(type, "edu.wpi.first.cscore.VideoSource");
+    return processingEnv.getTypeUtils().isAssignable(type, videoSourceType);
   }
 
   /**
@@ -1299,7 +1376,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return True if the declared type is a type of Sendable, false otherwise.
    */
   private boolean isSendable(DeclaredType type) {
-    return isSameOrSubtypeOf(type, "edu.wpi.first.util.sendable.Sendable");
+    return processingEnv.getTypeUtils().isAssignable(type, sendableType);
   }
 
   /**
@@ -1309,38 +1386,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return True if the declared type is a type of PreferenceValue, false otherwise.
    */
   private boolean isPreferenceValue(DeclaredType type) {
-    return isSameOrSubtypeOf(type, "com.nrg948.preferences.PreferenceValue");
-  }
-
-  /**
-   * Determines if a declared type is a type of the qualified type name.
-   *
-   * @param typeToCheck The declared type to check.
-   * @param typeName The qualified name of the supertype.
-   * @return True if the declared type is a type of the qualified type name, false otherwise.
-   */
-  private boolean isSameOrSubtypeOf(DeclaredType typeToCheck, String typeName) {
-    if (typeToCheck.toString().equals(typeName)) {
-      return true;
-    }
-
-    var typeUtils = processingEnv.getTypeUtils();
-    var directSuperTypes = typeUtils.directSupertypes(typeToCheck);
-
-    for (var superType : directSuperTypes) {
-      if (superType.toString().equals(typeName)) {
-        return true;
-      }
-
-      var superDeclaredTypeOpt = asDeclaredType(superType);
-
-      if (superDeclaredTypeOpt.isPresent()) {
-        if (isSameOrSubtypeOf(superDeclaredTypeOpt.get(), typeName)) {
-          return true;
-        }
-      }
-    }
-    return false;
+    return processingEnv.getTypeUtils().isAssignable(type, preferenceValueType);
   }
 
   /**
@@ -1349,9 +1395,9 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param type The declared type to check.
    * @return True if the declared type has a dashboard layout definition, false otherwise.
    */
-  private static boolean hasLayoutDefinition(DeclaredType type) {
+  private boolean hasLayoutDefinition(DeclaredType type) {
+    var typeUtils = processingEnv.getTypeUtils();
     return type.asElement().getAnnotationMirrors().stream()
-        .anyMatch(
-            a -> a.getAnnotationType().toString().equals(DASHBOARD_DEFINITION_QUALIFIED_NAME));
+        .anyMatch(a -> typeUtils.isSameType(a.getAnnotationType(), dashboardDefinitionType));
   }
 }
