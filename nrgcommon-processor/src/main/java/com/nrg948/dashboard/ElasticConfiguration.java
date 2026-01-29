@@ -228,7 +228,8 @@ public final class ElasticConfiguration {
       try {
         writeWidgetStart(matchTimeElement);
         writeStartWidgetProperties(matchTimeElement);
-        jsonGenerator.writeStringField("time_display_mode", matchTimeElement.getDisplayMode());
+        jsonGenerator.writeStringField(
+            "time_display_mode", matchTimeElement.getDisplayMode().toJsonValue());
         jsonGenerator.writeNumberField(
             "yellow_start_time", matchTimeElement.getYellowTimeRemaining());
         jsonGenerator.writeNumberField("red_start_time", matchTimeElement.getRedTimeRemaining());

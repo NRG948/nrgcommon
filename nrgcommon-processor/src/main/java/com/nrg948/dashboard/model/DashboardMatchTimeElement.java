@@ -24,17 +24,17 @@
 package com.nrg948.dashboard.model;
 
 public class DashboardMatchTimeElement extends DashboardWidgetElement {
-  private final String displayMode;
+  private final TimeDisplayMode displayMode;
   private final int yellowTimeRemaining;
   private final int redTimeRemaining;
 
-  DashboardMatchTimeElement(
+  public DashboardMatchTimeElement(
       String title,
       int column,
       int row,
       int width,
       int height,
-      String displayMode,
+      TimeDisplayMode displayMode,
       int yellowTimeRemaining,
       int redTimeRemaining) {
     super(title, column, row, width, height);
@@ -53,7 +53,7 @@ public class DashboardMatchTimeElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
-  public String getDisplayMode() {
+  public TimeDisplayMode getDisplayMode() {
     return displayMode;
   }
 
