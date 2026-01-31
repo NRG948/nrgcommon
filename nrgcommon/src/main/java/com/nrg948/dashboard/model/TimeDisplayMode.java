@@ -37,12 +37,12 @@ public enum TimeDisplayMode {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the time display mode. */
+  /** {@return the display name of the time display mode} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the time display mode. */
+  /** {@return the JSON value of the time display mode} */
   public String toJsonValue() {
     return displayName;
   }

@@ -39,12 +39,12 @@ public enum RotationUnit {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the rotation unit. */
+  /** {@return the display name of the rotation unit} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the rotation unit. */
+  /** {@return the JSON value of the rotation unit} */
   public String toJsonValue() {
     return displayName;
   }

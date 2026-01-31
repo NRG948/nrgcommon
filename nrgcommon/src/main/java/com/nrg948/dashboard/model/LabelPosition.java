@@ -43,12 +43,12 @@ public enum LabelPosition {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the label position. */
+  /** {@return the display name of the label position} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the label position. */
+  /** {@return the JSON value of the label position} */
   public String toJsonValue() {
     return displayName.toUpperCase();
   }

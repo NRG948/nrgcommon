@@ -37,12 +37,12 @@ public enum Orientation {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the orientation. */
+  /** {@return the display name of the orientation} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the orientation. */
+  /** {@return the JSON value of the orientation} */
   public String toJsonValue() {
     return displayName.toLowerCase();
   }

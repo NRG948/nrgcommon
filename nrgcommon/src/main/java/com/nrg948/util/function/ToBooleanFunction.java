@@ -23,8 +23,18 @@
 */
 package com.nrg948.util.function;
 
-/** Functional interface representing a function that produces a boolean-valued result. */
+/**
+ * Functional interface representing a function that produces a boolean-valued result.
+ *
+ * @param <T> the type of the input to the function
+ */
 @FunctionalInterface
 public interface ToBooleanFunction<T> {
+  /**
+   * Applies this function to the given argument.
+   *
+   * @param t the function argument
+   * @return the function result
+   */
   boolean applyAsBoolean(T t);
 }

@@ -122,6 +122,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a boolean value to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the boolean value.
    * @param getter The function to retrieve the boolean value from the container.
@@ -176,6 +177,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a boolean value to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the boolean value.
    * @param getter The function to retrieve the boolean value from the container.
@@ -229,6 +231,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a boolean array to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the boolean array.
    * @param getter The function to retrieve the boolean array from the container.
@@ -286,6 +289,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a boolean array to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the boolean array.
    * @param getter The function to retrieve the boolean array from the container.
@@ -339,6 +343,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a float value to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the float value.
    * @param getter The function to retrieve the float value from the container.
@@ -391,6 +396,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a float value to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the float value.
    * @param getter The function to retrieve the float value from the container.
@@ -442,6 +448,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a float array to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the float array.
    * @param getter The function to retrieve the float array from the container.
@@ -498,6 +505,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a float array to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the float array.
    * @param getter The function to retrieve the float array from the container.
@@ -551,6 +559,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a double value to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the double value.
    * @param getter The function to retrieve the double value from the container.
@@ -603,6 +612,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a double value to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the double value.
    * @param getter The function to retrieve the double value from the container.
@@ -654,6 +664,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a double array to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the double array.
    * @param getter The function to retrieve the double array from the container.
@@ -710,6 +721,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a double array to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the double array.
    * @param getter The function to retrieve the double array from the container.
@@ -763,6 +775,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a integer value to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the integer value.
    * @param getter The function to retrieve the integer value from the container.
@@ -815,6 +828,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a integer value to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the integer value.
    * @param getter The function to retrieve the integer value from the container.
@@ -866,6 +880,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a integer array to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the integer array.
    * @param getter The function to retrieve the integer array from the container.
@@ -922,6 +937,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a integer array to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the integer array.
    * @param getter The function to retrieve the integer array from the container.
@@ -975,6 +991,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a string value to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the string value.
    * @param getter The function to retrieve the string value from the container.
@@ -1028,6 +1045,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a string value to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the string value.
    * @param getter The function to retrieve the string value from the container.
@@ -1081,6 +1099,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a string array to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the string array.
    * @param getter The function to retrieve the string array from the container.
@@ -1137,6 +1156,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a string array to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the string array.
    * @param getter The function to retrieve the string array from the container.
@@ -1190,6 +1210,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a raw value to be published to a dashboard topic.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param typeString The type string for the raw value.
    * @param container The object containing the raw value.
@@ -1224,6 +1245,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind a raw value to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param topic The dashboard topic to bind to.
    * @param typeString The type string for the raw value.
    * @param container The object containing the raw value.
@@ -1283,6 +1305,7 @@ public abstract class DashboardData implements AutoCloseable {
   /**
    * Bind an enum value to a dashboard topic that both publishes and subscribes to updates.
    *
+   * @param <T> The type of the container object.
    * @param <E> The type of the enum.
    * @param topic The dashboard topic to bind to.
    * @param container The object containing the enum value.

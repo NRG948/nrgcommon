@@ -45,6 +45,15 @@ public class PIDControllerPreference extends PreferenceValue implements Sendable
   private final double defaultD;
   private final PIDController controller;
 
+  /**
+   * Creates a new PIDControllerPreference with the given group, name, and default PID gains.
+   *
+   * @param group The preference group.
+   * @param name The preference name.
+   * @param defaultP The default P gain.
+   * @param defaultI The default I gain.
+   * @param defaultD The default D gain.
+   */
   public PIDControllerPreference(
       String group, String name, double defaultP, double defaultI, double defaultD) {
     super(group, name);

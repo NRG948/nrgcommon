@@ -37,26 +37,26 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardCommand {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the widget} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the widget in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the widget in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the widget in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
 
-  /** Whether to show the type of the command on the widget. */
+  /** {@return whether to show the type of the command on the widget} */
   boolean showType() default true;
 
-  /** Whether to fill the widget in the dashboard grid. */
+  /** {@return whether to fill the widget in the dashboard grid} */
   boolean fillWidget() default false;
 }

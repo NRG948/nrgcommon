@@ -23,8 +23,18 @@
 */
 package com.nrg948.util.function;
 
-/** Functional interface representing an operation that accepts an object and a boolean value. */
+/**
+ * Functional interface representing an operation that accepts an object and a boolean value.
+ *
+ * @param <T> the type of the input to the operation
+ */
 @FunctionalInterface
 public interface ObjBooleanConsumer<T> {
+  /**
+   * Performs this operation on the given arguments.
+   *
+   * @param t the input object
+   * @param value the input boolean value
+   */
   void accept(T t, boolean value);
 }

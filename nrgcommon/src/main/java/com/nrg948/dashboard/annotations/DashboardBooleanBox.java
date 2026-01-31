@@ -38,32 +38,32 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardBooleanBox {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the widget} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the widget in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the widget in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the widget in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
 
-  /** The color of the widget when the value is true. */
+  /** {@return the color of the widget when the value is true} */
   String trueColor() default "Green";
 
-  /** The icon of the widget when the value is true. */
+  /** {@return the icon of the widget when the value is true} */
   TrueIcon trueIcon() default TrueIcon.NONE;
 
-  /** The color of the widget when the value is false. */
+  /** {@return the color of the widget when the value is false} */
   String falseColor() default "Red";
 
-  /** The icon of the widget when the value is false. */
+  /** {@return the icon of the widget when the value is false} */
   FalseIcon falseIcon() default FalseIcon.NONE;
 }

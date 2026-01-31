@@ -49,12 +49,12 @@ public enum GameField {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the game field. */
+  /** {@return the display name of the game field} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the game field. */
+  /** {@return the JSON value of the game field} */
   public String toJsonValue() {
     return displayName;
   }
