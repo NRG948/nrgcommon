@@ -685,14 +685,20 @@ public final class ReflectionUtil {
   }
 
   /**
-   * Converts an array of arguments to a comma-separated string of their fully-qualified type names.
+   * Converts an array of arguments to a comma-separated string of their fully-qualified type names,
+   * unboxing primitive wrapper types.
    *
    * @param args The array of arguments.
    * @return A comma-separated string of argument fully-qualified type names.
    */
   public static String toArgumentTypeList(Object... args) {
     return String.join(
-        ", ", Arrays.stream(args).map(arg -> arg.getClass().getName()).toArray(String[]::new));
+        ", ",
+        Arrays.stream(args)
+            .map(Object::getClass)
+            .map(ReflectionUtil::unbox)
+            .map(Class::getName)
+            .toArray(String[]::new));
   }
 
   private ReflectionUtil() {
