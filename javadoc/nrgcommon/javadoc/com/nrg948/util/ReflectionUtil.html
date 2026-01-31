@@ -340,7 +340,8 @@ I&gt;<br><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/j
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#toArgumentTypeList(java.lang.Object...)" class="member-name-link">toArgumentTypeList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>...&nbsp;args)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Converts an array of arguments to a comma-separated string of their fully-qualified type names.</div>
+<div class="block">Converts an array of arguments to a comma-separated string of their fully-qualified type names,
+ unboxing primitive wrapper types.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#unbox(java.lang.Class)" class="member-name-link">unbox</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;&nbsp;type)</code></div>
@@ -1060,7 +1061,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <section class="detail" id="toArgumentTypeList(java.lang.Object...)">
 <h3>toArgumentTypeList</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toArgumentTypeList</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>...&nbsp;args)</span></div>
-<div class="block">Converts an array of arguments to a comma-separated string of their fully-qualified type names.</div>
+<div class="block">Converts an array of arguments to a comma-separated string of their fully-qualified type names,
+ unboxing primitive wrapper types.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>args</code> - The array of arguments.</dd>
