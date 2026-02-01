@@ -94,11 +94,19 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
     this.defaultP = defaultP;
     this.defaultI = defaultI;
     this.defaultD = defaultD;
-    this.controller = new ProfiledPIDController(defaultP, defaultI, defaultD, constraints, period);
 
+    // Initialize preference entries with defaults if they do not already exist.
     Preferences.initDouble(getKey() + "/kP", defaultP);
     Preferences.initDouble(getKey() + "/kI", defaultI);
     Preferences.initDouble(getKey() + "/kD", defaultD);
+
+    // Read the effective gains from preferences (existing tuned values or defaults).
+    double p = Preferences.getDouble(getKey() + "/kP", defaultP);
+    double i = Preferences.getDouble(getKey() + "/kI", defaultI);
+    double d = Preferences.getDouble(getKey() + "/kD", defaultD);
+
+    // Construct the controller using the stored preference values.
+    this.controller = new ProfiledPIDController(p, i, d, constraints, period);
   }
 
   /** {@return the default proportional gain} */
