@@ -120,6 +120,16 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <div class="col-last even-row-color">
 <div class="block">Creates a new PIDControllerPreference with the given group, name, and default PID gains.</div>
 </div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,double,double,double,double)" class="member-name-link">PIDControllerPreference</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;group,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ double&nbsp;defaultP,
+ double&nbsp;defaultI,
+ double&nbsp;defaultD,
+ double&nbsp;period)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a new PIDControllerPreference with the given group, name, default PID gains, and
+ period.</div>
+</div>
 </div>
 </section>
 </li>
@@ -142,59 +152,99 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atSetpoint()" class="member-name-link">atSetpoint</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether the PID controller is at its setpoint.</div>
+<div class="block">Returns whether this controller is at its setpoint.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(double)" class="member-name-link">calculate</a><wbr>(double&nbsp;measurement)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Calculates the output of the PID controller for the given measurement.</div>
+<div class="block">Calculates the output of this controller for the given measurement.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(double,double)" class="member-name-link">calculate</a><wbr>(double&nbsp;measurement,
  double&nbsp;setpoint)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Calculates the output of the PID controller for the given measurement and setpoint.</div>
+<div class="block">Calculates the output of this controller for the given measurement and setpoint.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disableContinuousInput()" class="member-name-link">disableContinuousInput</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Disables continuous input for the PID controller.</div>
+<div class="block">Disables continuous input for this controller.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableContinuousInput(double,double)" class="member-name-link">enableContinuousInput</a><wbr>(double&nbsp;minimumInput,
  double&nbsp;maximumInput)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Enables continuous input for the PID controller.</div>
+<div class="block">Enables continuous input for this controller.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getD()" class="member-name-link">getD</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAccumulatedError()" class="member-name-link">getAccumulatedError</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the current D value.</div>
+<div class="block">Returns the current accumulated error used in the integral calculation of this controller.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultD()" class="member-name-link">getDefaultD</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getD()" class="member-name-link">getD</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the default D value.</div>
+<div class="block">Returns the current derivative gain.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultI()" class="member-name-link">getDefaultI</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultD()" class="member-name-link">getDefaultD</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the default I value.</div>
+<div class="block">Returns the default derivative gain.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultP()" class="member-name-link">getDefaultP</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultI()" class="member-name-link">getDefaultI</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the default P value.</div>
+<div class="block">Returns the default integral gain.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getI()" class="member-name-link">getI</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultP()" class="member-name-link">getDefaultP</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the current I value.</div>
+<div class="block">Returns the default proportional gain.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getError()" class="member-name-link">getError</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current error of this controller.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getErrorDerivative()" class="member-name-link">getErrorDerivative</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current error derivative of this controller.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getErrorDerivativeTolerance()" class="member-name-link">getErrorDerivativeTolerance</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the error derivative tolerance of this controller.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getErrorTolerance()" class="member-name-link">getErrorTolerance</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the error tolerance of this controller.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getI()" class="member-name-link">getI</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current integral gain.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIZone()" class="member-name-link">getIZone</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the maximum magnitude of the error to allow integral control.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getP()" class="member-name-link">getP</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the current P value.</div>
+<div class="block">Returns the current proportional gain.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPeriod()" class="member-name-link">getPeriod</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the period of this controller.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSetpoint()" class="member-name-link">getSetpoint</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current setpoint of this controller.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initSendable(edu.wpi.first.util.sendable.SendableBuilder)" class="member-name-link">initSendable</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/SendableBuilder.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">SendableBuilder</a>&nbsp;builder)</code></div>
@@ -202,43 +252,61 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isContinuousInputEnabled()" class="member-name-link">isContinuousInputEnabled</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether continuous input is enabled for the PID controller.</div>
+<div class="block">Returns whether continuous input is enabled for this controller.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Resets the PID controller.</div>
+<div class="block">Resets this controller.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setD(double)" class="member-name-link">setD</a><wbr>(double&nbsp;d)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the D value.</div>
+<div class="block">Sets the derivative gain.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setI(double)" class="member-name-link">setI</a><wbr>(double&nbsp;i)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the I value.</div>
+<div class="block">Sets the integral gain.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIntegratorRange(double,double)" class="member-name-link">setIntegratorRange</a><wbr>(double&nbsp;minimumIntegral,
+ double&nbsp;maximumIntegral)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the minimum and maximum contributions of the integral term.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIZone(double)" class="member-name-link">setIZone</a><wbr>(double&nbsp;iZone)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the maximum magnitude of the error to allow integral control.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setP(double)" class="member-name-link">setP</a><wbr>(double&nbsp;p)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the P value.</div>
+<div class="block">Sets the proportional gain.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSetpoint(double)" class="member-name-link">setSetpoint</a><wbr>(double&nbsp;setpoint)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPID(double,double,double)" class="member-name-link">setPID</a><wbr>(double&nbsp;p,
+ double&nbsp;i,
+ double&nbsp;d)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the setpoint for the PID controller.</div>
+<div class="block">Sets the PID coefficients.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;errorTolerance)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSetpoint(double)" class="member-name-link">setSetpoint</a><wbr>(double&nbsp;setpoint)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the tolerance for the PID controller.</div>
+<div class="block">Sets the setpoint for this controller.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double,double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;errorTolerance,
- double&nbsp;errorDerivativeTolerance)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;errorTolerance)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the tolerance for the PID controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double,double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;errorTolerance,
+ double&nbsp;errorDerivativeTolerance)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
 </div>
 </div>
 </div>
@@ -268,7 +336,8 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
  double&nbsp;defaultP,
  double&nbsp;defaultI,
  double&nbsp;defaultD)</span></div>
-<div class="block">Creates a new PIDControllerPreference with the given group, name, and default PID gains.</div>
+<div class="block">Creates a new PIDControllerPreference with the given group, name, and default PID gains. Uses a
+ default period of 0.02 seconds.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>group</code> - The preference group.</dd>
@@ -276,6 +345,28 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <dd><code>defaultP</code> - The default P gain.</dd>
 <dd><code>defaultI</code> - The default I gain.</dd>
 <dd><code>defaultD</code> - The default D gain.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String,double,double,double,double)">
+<h3>PIDControllerPreference</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PIDControllerPreference</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;group,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ double&nbsp;defaultP,
+ double&nbsp;defaultI,
+ double&nbsp;defaultD,
+ double&nbsp;period)</span></div>
+<div class="block">Creates a new PIDControllerPreference with the given group, name, default PID gains, and
+ period.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>group</code> - The preference group.</dd>
+<dd><code>name</code> - The preference name.</dd>
+<dd><code>defaultP</code> - The default P gain.</dd>
+<dd><code>defaultI</code> - The default I gain.</dd>
+<dd><code>defaultD</code> - The default D gain.</dd>
+<dd><code>period</code> - The period for this controller.</dd>
 </dl>
 </section>
 </li>
@@ -291,10 +382,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="getDefaultP()">
 <h3>getDefaultP</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getDefaultP</span>()</div>
-<div class="block">Returns the default P value.</div>
+<div class="block">Returns the default proportional gain.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The default P value.</dd>
+<dd>the default proportional gain</dd>
 </dl>
 </section>
 </li>
@@ -302,10 +393,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="getP()">
 <h3>getP</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getP</span>()</div>
-<div class="block">Returns the current P value.</div>
+<div class="block">Returns the current proportional gain.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The current P value.</dd>
+<dd>the current proportional gain</dd>
 </dl>
 </section>
 </li>
@@ -313,10 +404,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="setP(double)">
 <h3>setP</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setP</span><wbr><span class="parameters">(double&nbsp;p)</span></div>
-<div class="block">Sets the P value.</div>
+<div class="block">Sets the proportional gain.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>p</code> - The P value to set.</dd>
+<dd><code>p</code> - The proportional gain to set.</dd>
 </dl>
 </section>
 </li>
@@ -324,10 +415,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="getDefaultI()">
 <h3>getDefaultI</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getDefaultI</span>()</div>
-<div class="block">Returns the default I value.</div>
+<div class="block">Returns the default integral gain.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The default I value.</dd>
+<dd>the default integral gain</dd>
 </dl>
 </section>
 </li>
@@ -335,10 +426,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="getI()">
 <h3>getI</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getI</span>()</div>
-<div class="block">Returns the current I value.</div>
+<div class="block">Returns the current integral gain.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The current I value.</dd>
+<dd>the current integral gain</dd>
 </dl>
 </section>
 </li>
@@ -346,10 +437,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="setI(double)">
 <h3>setI</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setI</span><wbr><span class="parameters">(double&nbsp;i)</span></div>
-<div class="block">Sets the I value.</div>
+<div class="block">Sets the integral gain.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>i</code> - The I value to set.</dd>
+<dd><code>i</code> - The integral gain to set.</dd>
 </dl>
 </section>
 </li>
@@ -357,10 +448,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="getDefaultD()">
 <h3>getDefaultD</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getDefaultD</span>()</div>
-<div class="block">Returns the default D value.</div>
+<div class="block">Returns the default derivative gain.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The default D value.</dd>
+<dd>the default derivative gain</dd>
 </dl>
 </section>
 </li>
@@ -368,10 +459,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="getD()">
 <h3>getD</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getD</span>()</div>
-<div class="block">Returns the current D value.</div>
+<div class="block">Returns the current derivative gain.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The current D value.</dd>
+<dd>the current derivative gain</dd>
 </dl>
 </section>
 </li>
@@ -379,49 +470,71 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="setD(double)">
 <h3>setD</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setD</span><wbr><span class="parameters">(double&nbsp;d)</span></div>
-<div class="block">Sets the D value.</div>
+<div class="block">Sets the derivative gain.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>d</code> - The D value to set.</dd>
+<dd><code>d</code> - The derivative gain to set.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="atSetpoint()">
-<h3>atSetpoint</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">atSetpoint</span>()</div>
-<div class="block">Returns whether the PID controller is at its setpoint.</div>
+<section class="detail" id="setPID(double,double,double)">
+<h3>setPID</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPID</span><wbr><span class="parameters">(double&nbsp;p,
+ double&nbsp;i,
+ double&nbsp;d)</span></div>
+<div class="block">Sets the PID coefficients.</div>
 <dl class="notes">
-<dt>Returns:</dt>
-<dd>True if the PID controller is at its setpoint, false otherwise.</dd>
+<dt>Parameters:</dt>
+<dd><code>p</code> - The proportional gain to set.</dd>
+<dd><code>i</code> - The integral gain to set.</dd>
+<dd><code>d</code> - The derivative gain to set.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="calculate(double)">
-<h3>calculate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(double&nbsp;measurement)</span></div>
-<div class="block">Calculates the output of the PID controller for the given measurement.</div>
+<section class="detail" id="getIZone()">
+<h3>getIZone</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getIZone</span>()</div>
+<div class="block">Returns the maximum magnitude of the error to allow integral control.</div>
 <dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>measurement</code> - The current measurement.</dd>
 <dt>Returns:</dt>
-<dd>The output of the PID controller.</dd>
+<dd>the maximum magnitude of the error to allow integral control</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="calculate(double,double)">
-<h3>calculate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(double&nbsp;measurement,
- double&nbsp;setpoint)</span></div>
-<div class="block">Calculates the output of the PID controller for the given measurement and setpoint.</div>
+<section class="detail" id="setIZone(double)">
+<h3>setIZone</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setIZone</span><wbr><span class="parameters">(double&nbsp;iZone)</span></div>
+<div class="block">Sets the maximum magnitude of the error to allow integral control.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>measurement</code> - The current measurement.</dd>
-<dd><code>setpoint</code> - The desired setpoint.</dd>
+<dd><code>iZone</code> - The IZone to set.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setIntegratorRange(double,double)">
+<h3>setIntegratorRange</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setIntegratorRange</span><wbr><span class="parameters">(double&nbsp;minimumIntegral,
+ double&nbsp;maximumIntegral)</span></div>
+<div class="block">Sets the minimum and maximum contributions of the integral term.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>minimumIntegral</code> - The minimum integral value.</dd>
+<dd><code>maximumIntegral</code> - The maximum integral value.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getPeriod()">
+<h3>getPeriod</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getPeriod</span>()</div>
+<div class="block">Returns the period of this controller.</div>
+<dl class="notes">
 <dt>Returns:</dt>
-<dd>The output of the PID controller.</dd>
+<dd>the period of this controller</dd>
 </dl>
 </section>
 </li>
@@ -430,7 +543,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <h3>enableContinuousInput</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">enableContinuousInput</span><wbr><span class="parameters">(double&nbsp;minimumInput,
  double&nbsp;maximumInput)</span></div>
-<div class="block">Enables continuous input for the PID controller.</div>
+<div class="block">Enables continuous input for this controller.
+
+ <p>Rather than use the minimum and maximum input as constraints, the controller considers them
+ to be the endpoints of a continuous range. This is useful for circular inputs, such as angles.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>minimumInput</code> - The minimum input value.</dd>
@@ -442,17 +558,17 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="disableContinuousInput()">
 <h3>disableContinuousInput</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">disableContinuousInput</span>()</div>
-<div class="block">Disables continuous input for the PID controller.</div>
+<div class="block">Disables continuous input for this controller.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="isContinuousInputEnabled()">
 <h3>isContinuousInputEnabled</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isContinuousInputEnabled</span>()</div>
-<div class="block">Returns whether continuous input is enabled for the PID controller.</div>
+<div class="block">Returns whether continuous input is enabled for this controller.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>True if continuous input is enabled, false otherwise.</dd>
+<dd>Returns true if continuous input is enabled, false otherwise.</dd>
 </dl>
 </section>
 </li>
@@ -460,28 +576,17 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="reset()">
 <h3>reset</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
-<div class="block">Resets the PID controller.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="setSetpoint(double)">
-<h3>setSetpoint</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSetpoint</span><wbr><span class="parameters">(double&nbsp;setpoint)</span></div>
-<div class="block">Sets the setpoint for the PID controller.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>setpoint</code> - The setpoint to set.</dd>
-</dl>
+<div class="block">Resets this controller.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="setTolerance(double)">
 <h3>setTolerance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTolerance</span><wbr><span class="parameters">(double&nbsp;errorTolerance)</span></div>
-<div class="block">Sets the tolerance for the PID controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>errorTolerance</code> - The error which is considered acceptable.</dd>
+<dd><code>errorTolerance</code> - The error which is tolerable.</dd>
 </dl>
 </section>
 </li>
@@ -490,11 +595,127 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <h3>setTolerance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTolerance</span><wbr><span class="parameters">(double&nbsp;errorTolerance,
  double&nbsp;errorDerivativeTolerance)</span></div>
-<div class="block">Sets the tolerance for the PID controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>errorTolerance</code> - The error which is considered acceptable.</dd>
-<dd><code>errorDerivativeTolerance</code> - The error derivative which is considered acceptable.</dd>
+<dd><code>errorTolerance</code> - The error which is tolerable.</dd>
+<dd><code>errorDerivativeTolerance</code> - The error derivative which is tolerable.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getErrorTolerance()">
+<h3>getErrorTolerance</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getErrorTolerance</span>()</div>
+<div class="block">Returns the error tolerance of this controller.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the error tolerance of this controller</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getErrorDerivativeTolerance()">
+<h3>getErrorDerivativeTolerance</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getErrorDerivativeTolerance</span>()</div>
+<div class="block">Returns the error derivative tolerance of this controller.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the error derivative tolerance of this controller</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSetpoint()">
+<h3>getSetpoint</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getSetpoint</span>()</div>
+<div class="block">Returns the current setpoint of this controller.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current setpoint of this controller</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="atSetpoint()">
+<h3>atSetpoint</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">atSetpoint</span>()</div>
+<div class="block">Returns whether this controller is at its setpoint.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Returns true if this controller is at its setpoint, false otherwise.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setSetpoint(double)">
+<h3>setSetpoint</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSetpoint</span><wbr><span class="parameters">(double&nbsp;setpoint)</span></div>
+<div class="block">Sets the setpoint for this controller.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>setpoint</code> - The setpoint to set.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="calculate(double)">
+<h3>calculate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(double&nbsp;measurement)</span></div>
+<div class="block">Calculates the output of this controller for the given measurement.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>measurement</code> - The current measurement.</dd>
+<dt>Returns:</dt>
+<dd>The output of this controller.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="calculate(double,double)">
+<h3>calculate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(double&nbsp;measurement,
+ double&nbsp;setpoint)</span></div>
+<div class="block">Calculates the output of this controller for the given measurement and setpoint.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>measurement</code> - The current measurement.</dd>
+<dd><code>setpoint</code> - The desired setpoint.</dd>
+<dt>Returns:</dt>
+<dd>The output of this controller.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getError()">
+<h3>getError</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getError</span>()</div>
+<div class="block">Returns the current error of this controller.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current error of this controller</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getAccumulatedError()">
+<h3>getAccumulatedError</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getAccumulatedError</span>()</div>
+<div class="block">Returns the current accumulated error used in the integral calculation of this controller.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current accumulated error used in the integral calculation of this controller</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getErrorDerivative()">
+<h3>getErrorDerivative</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getErrorDerivative</span>()</div>
+<div class="block">Returns the current error derivative of this controller.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current error derivative of this controller</dd>
 </dl>
 </section>
 </li>
