@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">DashboardElementBase</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Abstract base class for all dashboard elements.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -97,7 +98,9 @@ loadScripts(document, 'script');</script>
  int&nbsp;row,
  int&nbsp;width,
  int&nbsp;height)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new DashboardElementBase.</div>
+</div>
 </div>
 </section>
 </li>
@@ -114,31 +117,49 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#accept(com.nrg948.dashboard.model.DashboardElementVisitor)" class="member-name-link">accept</a><wbr>(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getColumn()" class="member-name-link">getColumn</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the column position of the dashboard element.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHeight()" class="member-name-link">getHeight</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the height of the dashboard element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="DashboardElementContainer.html" title="class in com.nrg948.dashboard.model">DashboardElementContainer</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getParent()" class="member-name-link">getParent</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the parent container of the dashboard element, if any.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRow()" class="member-name-link">getRow</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the row position of the dashboard element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTitle()" class="member-name-link">getTitle</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the title of the dashboard element.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Returns the type of the dashboard element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidth()" class="member-name-link">getWidth</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the width of the dashboard element.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setParent(com.nrg948.dashboard.model.DashboardElementContainer)" class="member-name-link">setParent</a><wbr>(<a href="DashboardElementContainer.html" title="class in com.nrg948.dashboard.model">DashboardElementContainer</a>&nbsp;parent)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the parent container of the dashboard element.</div>
+</div>
 </div>
 </div>
 </div>
@@ -164,6 +185,15 @@ loadScripts(document, 'script');</script>
  int&nbsp;row,
  int&nbsp;width,
  int&nbsp;height)</span></div>
+<div class="block">Creates a new DashboardElementBase.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - the title of the dashboard element</dd>
+<dd><code>column</code> - the column position of the dashboard element</dd>
+<dd><code>row</code> - the row position of the dashboard element</dd>
+<dd><code>width</code> - the width of the dashboard element</dd>
+<dd><code>height</code> - the height of the dashboard element</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -178,54 +208,99 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getParent()">
 <h3>getParent</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="DashboardElementContainer.html" title="class in com.nrg948.dashboard.model">DashboardElementContainer</a>&gt;</span>&nbsp;<span class="element-name">getParent</span>()</div>
+<div class="block">Returns the parent container of the dashboard element, if any.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the parent container of the dashboard element, if any</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setParent(com.nrg948.dashboard.model.DashboardElementContainer)">
 <h3>setParent</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setParent</span><wbr><span class="parameters">(<a href="DashboardElementContainer.html" title="class in com.nrg948.dashboard.model">DashboardElementContainer</a>&nbsp;parent)</span></div>
+<div class="block">Sets the parent container of the dashboard element.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>parent</code> - the parent container of the dashboard element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getTitle()">
 <h3>getTitle</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getTitle</span>()</div>
+<div class="block">Returns the title of the dashboard element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the title of the dashboard element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getColumn()">
 <h3>getColumn</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getColumn</span>()</div>
+<div class="block">Returns the column position of the dashboard element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the column position of the dashboard element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getRow()">
 <h3>getRow</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getRow</span>()</div>
+<div class="block">Returns the row position of the dashboard element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the row position of the dashboard element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getWidth()">
 <h3>getWidth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getWidth</span>()</div>
+<div class="block">Returns the width of the dashboard element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the width of the dashboard element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getHeight()">
 <h3>getHeight</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getHeight</span>()</div>
+<div class="block">Returns the height of the dashboard element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the height of the dashboard element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getType()">
 <h3>getType</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getType</span>()</div>
+<div class="block">Returns the type of the dashboard element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the type of the dashboard element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="accept(com.nrg948.dashboard.model.DashboardElementVisitor)">
 <h3>accept</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">accept</span><wbr><span class="parameters">(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</span></div>
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>visitor</code> - the visitor to accept</dd>
+</dl>
 </section>
 </li>
 </ul>

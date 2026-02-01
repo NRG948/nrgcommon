@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DashboardFieldElement</span>
 <span class="extends-implements">extends <a href="DashboardWidgetElement.html" title="class in com.nrg948.dashboard.model">DashboardWidgetElement</a></span></div>
+<div class="block">Represents a dashboard element that displays a game field with robot and object visualizations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,7 +106,9 @@ loadScripts(document, 'script');</script>
  double&nbsp;fieldRotationDegrees,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;robotColor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;trajectoryColor)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new DashboardFieldElement.</div>
+</div>
 </div>
 </section>
 </li>
@@ -122,34 +125,54 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#accept(com.nrg948.dashboard.model.DashboardElementVisitor)" class="member-name-link">accept</a><wbr>(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFieldRotationDegrees()" class="member-name-link">getFieldRotationDegrees</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the rotation of the field in degrees.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.nrg948.dashboard.model.GameField</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGame()" class="member-name-link">getGame</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the game field associated with the dashboard field element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotColor()" class="member-name-link">getRobotColor</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the color of the robot.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotLength()" class="member-name-link">getRobotLength</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the length of the robot.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotWidth()" class="member-name-link">getRobotWidth</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the width of the robot.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTrajectoryColor()" class="member-name-link">getTrajectoryColor</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the color of the trajectories.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the type of the dashboard element.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showOtherObjects()" class="member-name-link">showOtherObjects</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether to show other objects on the field.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showTrajectories()" class="member-name-link">showTrajectories</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether to show trajectories on the field.</div>
+</div>
 </div>
 </div>
 </div>
@@ -189,6 +212,23 @@ loadScripts(document, 'script');</script>
  double&nbsp;fieldRotationDegrees,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;robotColor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;trajectoryColor)</span></div>
+<div class="block">Creates a new DashboardFieldElement.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - the title of the dashboard field element</dd>
+<dd><code>column</code> - the column position of the dashboard field element</dd>
+<dd><code>row</code> - the row position of the dashboard field element</dd>
+<dd><code>width</code> - the width of the dashboard field element</dd>
+<dd><code>height</code> - the height of the dashboard field element</dd>
+<dd><code>game</code> - the game field associated with the dashboard field element</dd>
+<dd><code>robotWidth</code> - the width of the robot</dd>
+<dd><code>robotLength</code> - the length of the robot</dd>
+<dd><code>showOtherObjects</code> - whether to show other objects on the field</dd>
+<dd><code>showTrajectories</code> - whether to show trajectories on the field</dd>
+<dd><code>fieldRotationDegrees</code> - the rotation of the field in degrees</dd>
+<dd><code>robotColor</code> - the color of the robot</dd>
+<dd><code>trajectoryColor</code> - the color of the trajectories</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -203,9 +243,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getType()">
 <h3>getType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getType</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="DashboardElementBase.html#getType()">DashboardElementBase</a></code></span></div>
+<div class="block">Returns the type of the dashboard element.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="DashboardElementBase.html#getType()">getType</a></code>&nbsp;in class&nbsp;<code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></code></dd>
+<dt>Returns:</dt>
+<dd>the type of the dashboard element</dd>
 </dl>
 </section>
 </li>
@@ -213,9 +257,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="accept(com.nrg948.dashboard.model.DashboardElementVisitor)">
 <h3>accept</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">accept</span><wbr><span class="parameters">(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="DashboardElementBase.html#accept(com.nrg948.dashboard.model.DashboardElementVisitor)">DashboardElementBase</a></code></span></div>
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="DashboardElementBase.html#accept(com.nrg948.dashboard.model.DashboardElementVisitor)">accept</a></code>&nbsp;in class&nbsp;<code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>visitor</code> - the visitor to accept</dd>
 </dl>
 </section>
 </li>
@@ -223,48 +271,88 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getGame()">
 <h3>getGame</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.nrg948.dashboard.model.GameField</span>&nbsp;<span class="element-name">getGame</span>()</div>
+<div class="block">Returns the game field associated with the dashboard field element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the game field associated with the dashboard field element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getRobotWidth()">
 <h3>getRobotWidth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getRobotWidth</span>()</div>
+<div class="block">Returns the width of the robot.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the width of the robot</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getRobotLength()">
 <h3>getRobotLength</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getRobotLength</span>()</div>
+<div class="block">Returns the length of the robot.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the length of the robot</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="showOtherObjects()">
 <h3>showOtherObjects</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">showOtherObjects</span>()</div>
+<div class="block">Returns whether to show other objects on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether to show other objects on the field</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="showTrajectories()">
 <h3>showTrajectories</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">showTrajectories</span>()</div>
+<div class="block">Returns whether to show trajectories on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether to show trajectories on the field</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFieldRotationDegrees()">
 <h3>getFieldRotationDegrees</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getFieldRotationDegrees</span>()</div>
+<div class="block">Returns the rotation of the field in degrees.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the rotation of the field in degrees</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getRobotColor()">
 <h3>getRobotColor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a></span>&nbsp;<span class="element-name">getRobotColor</span>()</div>
+<div class="block">Returns the color of the robot.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the color of the robot</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getTrajectoryColor()">
 <h3>getTrajectoryColor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a></span>&nbsp;<span class="element-name">getTrajectoryColor</span>()</div>
+<div class="block">Returns the color of the trajectories.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the color of the trajectories</dd>
+</dl>
 </section>
 </li>
 </ul>

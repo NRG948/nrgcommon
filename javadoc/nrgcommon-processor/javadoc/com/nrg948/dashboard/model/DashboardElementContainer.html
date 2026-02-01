@@ -83,6 +83,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">DashboardElementContainer</span>
 <span class="extends-implements">extends <a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></span></div>
+<div class="block">Abstract base class for dashboard elements that can contain other elements.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -99,14 +100,18 @@ loadScripts(document, 'script');</script>
  int&nbsp;row,
  int&nbsp;width,
  int&nbsp;height)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new DashboardElementContainer with no contained elements.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,int,int,int,com.nrg948.dashboard.model.DashboardElementBase%5B%5D)" class="member-name-link">DashboardElementContainer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  int&nbsp;column,
  int&nbsp;row,
  int&nbsp;width,
  int&nbsp;height,
  <a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]&nbsp;elements)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a new DashboardElementContainer.</div>
+</div>
 </div>
 </section>
 </li>
@@ -123,10 +128,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getElements()" class="member-name-link">getElements</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the elements contained in the dashboard element container.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setElements(com.nrg948.dashboard.model.DashboardElementBase%5B%5D)" class="member-name-link">setElements</a><wbr>(<a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]&nbsp;elements)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the elements contained in the dashboard element container.</div>
+</div>
 </div>
 </div>
 </div>
@@ -156,6 +165,16 @@ loadScripts(document, 'script');</script>
  int&nbsp;width,
  int&nbsp;height,
  <a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]&nbsp;elements)</span></div>
+<div class="block">Creates a new DashboardElementContainer.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - the title of the dashboard element container</dd>
+<dd><code>column</code> - the column position of the dashboard element container</dd>
+<dd><code>row</code> - the row position of the dashboard element container</dd>
+<dd><code>width</code> - the width of the dashboard element container</dd>
+<dd><code>height</code> - the height of the dashboard element container</dd>
+<dd><code>elements</code> - the elements contained in the dashboard element container</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -166,6 +185,15 @@ loadScripts(document, 'script');</script>
  int&nbsp;row,
  int&nbsp;width,
  int&nbsp;height)</span></div>
+<div class="block">Creates a new DashboardElementContainer with no contained elements.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - the title of the dashboard element container</dd>
+<dd><code>column</code> - the column position of the dashboard element container</dd>
+<dd><code>row</code> - the row position of the dashboard element container</dd>
+<dd><code>width</code> - the width of the dashboard element container</dd>
+<dd><code>height</code> - the height of the dashboard element container</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -180,12 +208,22 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setElements(com.nrg948.dashboard.model.DashboardElementBase[])">
 <h3>setElements</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setElements</span><wbr><span class="parameters">(<a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]&nbsp;elements)</span></div>
+<div class="block">Sets the elements contained in the dashboard element container.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>elements</code> - the elements to set</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getElements()">
 <h3>getElements</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]</span>&nbsp;<span class="element-name">getElements</span>()</div>
+<div class="block">Returns the elements contained in the dashboard element container.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the elements contained in the dashboard element container</dd>
+</dl>
 </section>
 </li>
 </ul>

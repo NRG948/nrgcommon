@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DashboardGraphElement</span>
 <span class="extends-implements">extends <a href="DashboardWidgetElement.html" title="class in com.nrg948.dashboard.model">DashboardWidgetElement</a></span></div>
+<div class="block">Represents a dashboard element that displays a graph of data over time.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -102,7 +103,9 @@ loadScripts(document, 'script');</script>
  double&nbsp;max,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a>&nbsp;color,
  double&nbsp;strokeWidth)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new DashboardGraphElement.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,int,int,int,double,double,double,java.lang.String,double)" class="member-name-link">DashboardGraphElement</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  int&nbsp;column,
  int&nbsp;row,
@@ -113,7 +116,9 @@ loadScripts(document, 'script');</script>
  double&nbsp;max,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;color,
  double&nbsp;strokeWidth)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a new DashboardGraphElement.</div>
+</div>
 </div>
 </section>
 </li>
@@ -130,25 +135,39 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#accept(com.nrg948.dashboard.model.DashboardElementVisitor)" class="member-name-link">accept</a><wbr>(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getColor()" class="member-name-link">getColor</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the color of the graph.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDuration()" class="member-name-link">getDuration</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the duration of the graph in seconds.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMax()" class="member-name-link">getMax</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the maximum value of the graph.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMin()" class="member-name-link">getMin</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the minimum value of the graph.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStrokeWidth()" class="member-name-link">getStrokeWidth</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the stroke width of the graph.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the type of the dashboard element.</div>
+</div>
 </div>
 </div>
 </div>
@@ -185,6 +204,20 @@ loadScripts(document, 'script');</script>
  double&nbsp;max,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a>&nbsp;color,
  double&nbsp;strokeWidth)</span></div>
+<div class="block">Creates a new DashboardGraphElement.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - the title of the dashboard graph element</dd>
+<dd><code>column</code> - the column position of the dashboard graph element</dd>
+<dd><code>row</code> - the row position of the dashboard graph element</dd>
+<dd><code>width</code> - the width of the dashboard graph element</dd>
+<dd><code>height</code> - the height of the dashboard graph element</dd>
+<dd><code>duration</code> - the duration of the graph in seconds</dd>
+<dd><code>min</code> - the minimum value of the graph</dd>
+<dd><code>max</code> - the maximum value of the graph</dd>
+<dd><code>color</code> - the color of the graph</dd>
+<dd><code>strokeWidth</code> - the stroke width of the graph</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -200,6 +233,20 @@ loadScripts(document, 'script');</script>
  double&nbsp;max,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;color,
  double&nbsp;strokeWidth)</span></div>
+<div class="block">Creates a new DashboardGraphElement.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - the title of the dashboard graph element</dd>
+<dd><code>column</code> - the column position of the dashboard graph element</dd>
+<dd><code>row</code> - the row position of the dashboard graph element</dd>
+<dd><code>width</code> - the width of the dashboard graph element</dd>
+<dd><code>height</code> - the height of the dashboard graph element</dd>
+<dd><code>duration</code> - the duration of the graph in seconds</dd>
+<dd><code>min</code> - the minimum value of the graph</dd>
+<dd><code>max</code> - the maximum value of the graph</dd>
+<dd><code>color</code> - the color of the graph as a string</dd>
+<dd><code>strokeWidth</code> - the stroke width of the graph</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -214,9 +261,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getType()">
 <h3>getType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getType</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="DashboardElementBase.html#getType()">DashboardElementBase</a></code></span></div>
+<div class="block">Returns the type of the dashboard element.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="DashboardElementBase.html#getType()">getType</a></code>&nbsp;in class&nbsp;<code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></code></dd>
+<dt>Returns:</dt>
+<dd>the type of the dashboard element</dd>
 </dl>
 </section>
 </li>
@@ -224,39 +275,68 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getDuration()">
 <h3>getDuration</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getDuration</span>()</div>
+<div class="block">Returns the duration of the graph in seconds.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the duration of the graph in seconds</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMin()">
 <h3>getMin</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getMin</span>()</div>
+<div class="block">Returns the minimum value of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the minimum value of the graph</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMax()">
 <h3>getMax</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getMax</span>()</div>
+<div class="block">Returns the maximum value of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the maximum value of the graph</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getColor()">
 <h3>getColor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a></span>&nbsp;<span class="element-name">getColor</span>()</div>
+<div class="block">Returns the color of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the color of the graph</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getStrokeWidth()">
 <h3>getStrokeWidth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getStrokeWidth</span>()</div>
+<div class="block">Returns the stroke width of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the stroke width of the graph</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="accept(com.nrg948.dashboard.model.DashboardElementVisitor)">
 <h3>accept</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">accept</span><wbr><span class="parameters">(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="DashboardElementBase.html#accept(com.nrg948.dashboard.model.DashboardElementVisitor)">DashboardElementBase</a></code></span></div>
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="DashboardElementBase.html#accept(com.nrg948.dashboard.model.DashboardElementVisitor)">accept</a></code>&nbsp;in class&nbsp;<code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>visitor</code> - the visitor to accept</dd>
 </dl>
 </section>
 </li>

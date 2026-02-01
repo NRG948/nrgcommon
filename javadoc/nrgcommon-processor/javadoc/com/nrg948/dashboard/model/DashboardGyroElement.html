@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DashboardGyroElement</span>
 <span class="extends-implements">extends <a href="DashboardWidgetElement.html" title="class in com.nrg948.dashboard.model">DashboardWidgetElement</a></span></div>
+<div class="block">Represents a dashboard element that provides a gyro visualization.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -97,13 +98,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#accept(com.nrg948.dashboard.model.DashboardElementVisitor)" class="member-name-link">accept</a><wbr>(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the type of the dashboard element.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCcwPositive()" class="member-name-link">isCcwPositive</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether counter-clockwise rotation is considered positive.</div>
+</div>
 </div>
 </div>
 </div>
@@ -131,9 +138,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getType()">
 <h3>getType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getType</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="DashboardElementBase.html#getType()">DashboardElementBase</a></code></span></div>
+<div class="block">Returns the type of the dashboard element.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="DashboardElementBase.html#getType()">getType</a></code>&nbsp;in class&nbsp;<code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></code></dd>
+<dt>Returns:</dt>
+<dd>the type of the dashboard element</dd>
 </dl>
 </section>
 </li>
@@ -141,9 +152,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="accept(com.nrg948.dashboard.model.DashboardElementVisitor)">
 <h3>accept</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">accept</span><wbr><span class="parameters">(<a href="DashboardElementVisitor.html" title="interface in com.nrg948.dashboard.model">DashboardElementVisitor</a>&nbsp;visitor)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="DashboardElementBase.html#accept(com.nrg948.dashboard.model.DashboardElementVisitor)">DashboardElementBase</a></code></span></div>
+<div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="DashboardElementBase.html#accept(com.nrg948.dashboard.model.DashboardElementVisitor)">accept</a></code>&nbsp;in class&nbsp;<code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>visitor</code> - the visitor to accept</dd>
 </dl>
 </section>
 </li>
@@ -151,6 +166,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isCcwPositive()">
 <h3>isCcwPositive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCcwPositive</span>()</div>
+<div class="block">Returns whether counter-clockwise rotation is considered positive.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether counter-clockwise rotation is considered positive</dd>
+</dl>
 </section>
 </li>
 </ul>

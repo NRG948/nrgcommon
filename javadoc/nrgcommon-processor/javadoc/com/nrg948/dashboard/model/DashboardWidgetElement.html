@@ -83,6 +83,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">DashboardWidgetElement</span>
 <span class="extends-implements">extends <a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></span></div>
+<div class="block">An abstract base class for dashboard elements that provides a widget visualization.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -99,7 +100,9 @@ loadScripts(document, 'script');</script>
  int&nbsp;row,
  int&nbsp;width,
  int&nbsp;height)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new DashboardWidgetElement.</div>
+</div>
 </div>
 </section>
 </li>
@@ -116,10 +119,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPeriod()" class="member-name-link">getPeriod</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the update period of the dashboard widget element.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopic()" class="member-name-link">getTopic</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the topic of the dashboard widget element.</div>
+</div>
 </div>
 </div>
 </div>
@@ -148,6 +155,15 @@ loadScripts(document, 'script');</script>
  int&nbsp;row,
  int&nbsp;width,
  int&nbsp;height)</span></div>
+<div class="block">Creates a new DashboardWidgetElement.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - the title of the dashboard widget element</dd>
+<dd><code>column</code> - the column position of the dashboard widget element</dd>
+<dd><code>row</code> - the row position of the dashboard widget element</dd>
+<dd><code>width</code> - the width of the dashboard widget element</dd>
+<dd><code>height</code> - the height of the dashboard widget element</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -162,12 +178,22 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getTopic()">
 <h3>getTopic</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getTopic</span>()</div>
+<div class="block">Returns the topic of the dashboard widget element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the topic of the dashboard widget element</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getPeriod()">
 <h3>getPeriod</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getPeriod</span>()</div>
+<div class="block">Returns the update period of the dashboard widget element.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the update period of the dashboard widget element</dd>
+</dl>
 </section>
 </li>
 </ul>
