@@ -23,14 +23,24 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that displays a single color view. */
 public class DashboardSingleColorViewElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardSingleColorViewElement.
+   *
+   * @param title the title of the dashboard single color view element
+   * @param column the column position of the dashboard single color view element
+   * @param row the row position of the dashboard single color view element
+   * @param width the width of the dashboard single color view element
+   * @param height the height of the dashboard single color view element
+   */
   public DashboardSingleColorViewElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }
 
   @Override
   public String getType() {
-    return "Single Color8Bit View";
+    return "Single Color View";
   }
 
   @Override

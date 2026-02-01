@@ -53,6 +53,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/** Utility class for building Elastic dashboard configuration files. */
 public final class ElasticConfiguration {
 
   private static class Builder implements DashboardElementVisitor, Closeable {
@@ -74,12 +75,14 @@ public final class ElasticConfiguration {
       outputStream.close();
     }
 
-    public void rethrowException() throws IOException {
+    /** Rethrows any exception that occurred during building. */
+    private void rethrowException() throws IOException {
       if (exception.isPresent()) {
         throw exception.get();
       }
     }
 
+    /** Writes the start of a widget JSON object. */
     private void writeWidgetStart(DashboardElementBase element) throws IOException {
       jsonGenerator.writeStartObject();
       jsonGenerator.writeStringField("title", element.getTitle());
@@ -90,20 +93,24 @@ public final class ElasticConfiguration {
       jsonGenerator.writeNumberField("height", element.getHeight() * gridSize);
     }
 
+    /** Writes the end of a widget JSON object. */
     private void writeWidgetEnd() throws IOException {
       jsonGenerator.writeEndObject();
     }
 
+    /** Writes the start of the properties section of a widget JSON object. */
     private void writeStartWidgetProperties(DashboardWidgetElement element) throws IOException {
       jsonGenerator.writeObjectFieldStart("properties");
       jsonGenerator.writeStringField("topic", element.getTopic());
       jsonGenerator.writeNumberField("period", element.getPeriod());
     }
 
+    /** Writes the end of the properties section of a widget JSON object. */
     private void writeEndWidgetProperties() throws IOException {
       jsonGenerator.writeEndObject();
     }
 
+    /** Writes a simple widget JSON object. */
     private void writeSimpleWidget(DashboardWidgetElement element) throws IOException {
       writeWidgetStart(element);
       writeStartWidgetProperties(element);
@@ -457,6 +464,14 @@ public final class ElasticConfiguration {
     }
   }
 
+  /**
+   * Builds an Elastic dashboard configuration file from the given root dashboard element and writes
+   * it to the provided output stream.
+   *
+   * @param root the root dashboard element
+   * @param outputStream the output stream to write the configuration file to
+   * @throws IOException if an I/O error occurs
+   */
   public static void build(DashboardElement root, OutputStream outputStream) throws IOException {
     try (var builder = new Builder(outputStream)) {
       root.accept(builder);

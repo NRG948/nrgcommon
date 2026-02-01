@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides an encoder visualization. */
 public class DashboardEncoderElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardEncoderElement.
+   *
+   * @param title the title of the dashboard encoder element
+   * @param column the column position of the dashboard encoder element
+   * @param row the row position of the dashboard encoder element
+   * @param width the width of the dashboard encoder element
+   * @param height the height of the dashboard encoder element
+   */
   public DashboardEncoderElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

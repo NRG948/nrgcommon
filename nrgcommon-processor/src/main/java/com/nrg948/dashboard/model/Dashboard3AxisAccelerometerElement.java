@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that displays data from a 3-axis accelerometer. */
 public class Dashboard3AxisAccelerometerElement extends DashboardWidgetElement {
+  /**
+   * Creates a new Dashboard3AxisAccelerometerElement.
+   *
+   * @param title the title of the accelerometer element
+   * @param column the column position of the element
+   * @param row the row position of the element
+   * @param width the width of the element
+   * @param height the height of the element
+   */
   public Dashboard3AxisAccelerometerElement(
       String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);

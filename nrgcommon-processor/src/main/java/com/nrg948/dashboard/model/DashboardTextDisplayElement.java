@@ -23,10 +23,23 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a text display visualization. */
 public class DashboardTextDisplayElement extends DashboardWidgetElement {
   private final DataBinding dataBinding;
   private final boolean showSubmitButton;
 
+  /**
+   * Creates a new DashboardTextDisplayElement.
+   *
+   * @param title the title of the dashboard text display element
+   * @param column the column position of the dashboard text display element
+   * @param row the row position of the dashboard text display element
+   * @param width the width of the dashboard text display element
+   * @param height the height of the dashboard text display element
+   * @param dataBinding the data binding for the dashboard text display element
+   * @param showSubmitButton whether to show the submit button for the dashboard text display
+   *     element
+   */
   public DashboardTextDisplayElement(
       String title,
       int column,
@@ -45,10 +58,12 @@ public class DashboardTextDisplayElement extends DashboardWidgetElement {
     return "Text Display";
   }
 
+  /** {@return the data binding for the dashboard text display element} */
   public DataBinding getDataBinding() {
     return dataBinding;
   }
 
+  /** {@return whether to show the submit button for the dashboard text display element} */
   public boolean showSubmitButton() {
     return showSubmitButton;
   }

@@ -23,9 +23,20 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a combo box chooser. */
 public class DashboardComboBoxChooserElement extends DashboardWidgetElement {
   private final boolean sortOptions;
 
+  /**
+   * Creates a new DashboardComboBoxChooserElement.
+   *
+   * @param title the title of the combo box chooser
+   * @param column the column position of the combo box chooser
+   * @param row the row position of the combo box chooser
+   * @param width the width of the combo box chooser
+   * @param height the height of the combo box chooser
+   * @param sortOptions whether to sort the options in the combo box
+   */
   public DashboardComboBoxChooserElement(
       String title, int column, int row, int width, int height, boolean sortOptions) {
     super(title, column, row, width, height);
@@ -42,6 +53,7 @@ public class DashboardComboBoxChooserElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return whether the options in the combo box are sorted} */
   public boolean sortOptions() {
     return sortOptions;
   }

@@ -23,6 +23,7 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a radial gauge visualization. */
 public class DashboardRadialGaugeElement extends DashboardWidgetElement {
   private final double min;
   private final double max;
@@ -33,6 +34,23 @@ public class DashboardRadialGaugeElement extends DashboardWidgetElement {
   private final boolean showPointer;
   private final boolean showTickMarks;
 
+  /**
+   * Creates a new DashboardRadialGaugeElement.
+   *
+   * @param title the title of the dashboard radial gauge element
+   * @param column the column position of the dashboard radial gauge element
+   * @param row the row position of the dashboard radial gauge element
+   * @param width the width of the dashboard radial gauge element
+   * @param height the height of the dashboard radial gauge element
+   * @param startAngle the start angle of the radial gauge
+   * @param endAngle the end angle of the radial gauge
+   * @param minValue the minimum value of the radial gauge
+   * @param maxValue the maximum value of the radial gauge
+   * @param numberOfLabels the number of labels on the radial gauge
+   * @param wrapValue whether to wrap the value on the radial gauge
+   * @param showPointer whether to show the pointer on the radial gauge
+   * @param showTickMarks whether to show tick marks on the radial gauge
+   */
   public DashboardRadialGaugeElement(
       String title,
       int column,
@@ -63,34 +81,42 @@ public class DashboardRadialGaugeElement extends DashboardWidgetElement {
     return "Radial Gauge";
   }
 
+  /** {@return the minimum value of the radial gauge} */
   public double getMin() {
     return min;
   }
 
+  /** {@return the maximum value of the radial gauge} */
   public double getMax() {
     return max;
   }
 
+  /** {@return the start angle of the radial gauge} */
   public double getStartAngle() {
     return startAngle;
   }
 
+  /** {@return the end angle of the radial gauge} */
   public double getEndAngle() {
     return endAngle;
   }
 
+  /** {@return the number of labels on the radial gauge} */
   public int getNumberOfLabels() {
     return numberOfLabels;
   }
 
+  /** {@return whether the radial gauge wraps the value} */
   public boolean isWrapValue() {
     return wrapValue;
   }
 
+  /** {@return whether the radial gauge shows the pointer} */
   public boolean showPointer() {
     return showPointer;
   }
 
+  /** {@return whether the radial gauge shows tick marks} */
   public boolean showTickMarks() {
     return showTickMarks;
   }

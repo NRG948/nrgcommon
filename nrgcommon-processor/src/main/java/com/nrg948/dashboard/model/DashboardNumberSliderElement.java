@@ -23,6 +23,7 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a number slider visualization. */
 public class DashboardNumberSliderElement extends DashboardWidgetElement {
   private final double min;
   private final double max;
@@ -30,6 +31,20 @@ public class DashboardNumberSliderElement extends DashboardWidgetElement {
   private final DataBinding dataBinding;
   private final boolean publishWhileDragging;
 
+  /**
+   * Creates a new DashboardNumberSliderElement.
+   *
+   * @param title the title of the slider
+   * @param column the column position of the slider
+   * @param row the row position of the slider
+   * @param width the width of the slider
+   * @param height the height of the slider
+   * @param min the minimum value of the slider
+   * @param max the maximum value of the slider
+   * @param divisions the number of divisions in the slider
+   * @param dataBinding the data binding for the slider
+   * @param publishWhileDragging whether to publish values while dragging
+   */
   public DashboardNumberSliderElement(
       String title,
       int column,
@@ -54,22 +69,27 @@ public class DashboardNumberSliderElement extends DashboardWidgetElement {
     return "Number Slider";
   }
 
+  /** {@return the minimum value of the slider} */
   public double getMin() {
     return min;
   }
 
+  /** {@return the maximum value of the slider} */
   public double getMax() {
     return max;
   }
 
+  /** {@return the number of divisions in the slider} */
   public int getDivisions() {
     return divisions;
   }
 
+  /** {@return the data binding of the slider} */
   public DataBinding getDataBinding() {
     return dataBinding;
   }
 
+  /** {@return whether the slider publishes values while dragging} */
   public boolean publishWhileDragging() {
     return publishWhileDragging;
   }

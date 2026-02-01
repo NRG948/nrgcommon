@@ -23,10 +23,22 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a swerve drive visualization. */
 public class DashboardSwerveDriveElement extends DashboardWidgetElement {
   private final boolean showRobotRotation;
   private final RotationUnit rotationUnits;
 
+  /**
+   * Creates a new DashboardSwerveDriveElement.
+   *
+   * @param title the title of the dashboard swerve drive element
+   * @param column the column position of the dashboard swerve drive element
+   * @param row the row position of the dashboard swerve drive element
+   * @param width the width of the dashboard swerve drive element
+   * @param height the height of the dashboard swerve drive element
+   * @param showRobotRotation whether to show the robot's rotation
+   * @param rotationUnits the units for the robot's rotation
+   */
   public DashboardSwerveDriveElement(
       String title,
       int column,
@@ -50,10 +62,12 @@ public class DashboardSwerveDriveElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return whether to show the robot's rotation} */
   public boolean showRobotRotation() {
     return showRobotRotation;
   }
 
+  /** {@return the units for the robot's rotation} */
   public RotationUnit getRotationUnits() {
     return rotationUnits;
   }

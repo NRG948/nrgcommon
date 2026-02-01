@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that displays FMS (Field Management System) information. */
 public class DashboardFMSInfoElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardFMSInfoElement.
+   *
+   * @param title the title of the dashboard FMS info element
+   * @param column the column position of the dashboard FMS info element
+   * @param row the row position of the dashboard FMS info element
+   * @param width the width of the dashboard FMS info element
+   * @param height the height of the dashboard FMS info element
+   */
   public DashboardFMSInfoElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

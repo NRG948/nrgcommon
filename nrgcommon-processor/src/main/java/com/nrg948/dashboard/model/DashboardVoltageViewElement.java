@@ -23,6 +23,7 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a voltage view visualization. */
 public class DashboardVoltageViewElement extends DashboardWidgetElement {
   private final double min;
   private final double max;
@@ -30,6 +31,20 @@ public class DashboardVoltageViewElement extends DashboardWidgetElement {
   private final boolean inverted;
   private final Orientation orientation;
 
+  /**
+   * Creates a new DashboardVoltageViewElement.
+   *
+   * @param title the title of the dashboard voltage view element
+   * @param column the column position of the dashboard voltage view element
+   * @param row the row position of the dashboard voltage view element
+   * @param width the width of the dashboard voltage view element
+   * @param height the height of the dashboard voltage view element
+   * @param minVoltage the minimum voltage of the voltage view
+   * @param maxVoltage the maximum voltage of the voltage view
+   * @param divisions the number of divisions in the voltage view
+   * @param inverted whether the voltage view is inverted
+   * @param orientation the orientation of the voltage view
+   */
   public DashboardVoltageViewElement(
       String title,
       int column,
@@ -59,22 +74,27 @@ public class DashboardVoltageViewElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return the minimum value of the voltage view} */
   public double getMin() {
     return min;
   }
 
+  /** {@return the maximum value of the voltage view} */
   public double getMax() {
     return max;
   }
 
+  /** {@return the number of divisions in the voltage view} */
   public int getDivisions() {
     return divisions;
   }
 
+  /** {@return whether the voltage view is inverted} */
   public boolean isInverted() {
     return inverted;
   }
 
+  /** {@return the orientation of the voltage view} */
   public Orientation getOrientation() {
     return orientation;
   }

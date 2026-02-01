@@ -23,14 +23,24 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that displays a multi-color view. */
 public class DashboardMultiColorViewElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardMultiColorViewElement.
+   *
+   * @param title the title of the dashboard multi-color view element
+   * @param column the column position of the dashboard multi-color view element
+   * @param row the row position of the dashboard multi-color view element
+   * @param width the width of the dashboard multi-color view element
+   * @param height the height of the dashboard multi-color view element
+   */
   public DashboardMultiColorViewElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }
 
   @Override
   public String getType() {
-    return "Multi Color8Bit View";
+    return "Multi Color View";
   }
 
   @Override

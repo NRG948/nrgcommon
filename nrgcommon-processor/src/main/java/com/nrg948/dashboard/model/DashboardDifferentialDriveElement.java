@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a differential drive visualization. */
 public class DashboardDifferentialDriveElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardDifferentialDriveElement.
+   *
+   * @param title the title of the differential drive element
+   * @param column the column position of the differential drive element
+   * @param row the row position of the differential drive element
+   * @param width the width of the differential drive element
+   * @param height the height of the differential drive element
+   */
   public DashboardDifferentialDriveElement(
       String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);

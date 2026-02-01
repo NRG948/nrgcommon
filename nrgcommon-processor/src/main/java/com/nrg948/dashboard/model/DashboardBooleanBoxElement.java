@@ -27,12 +27,28 @@ import static com.nrg948.util.ColorUtil.stringToColor;
 
 import edu.wpi.first.wpilibj.util.Color8Bit;
 
+/**
+ * Represents a dashboard element that displays a boolean value with customizable colors and icons.
+ */
 public class DashboardBooleanBoxElement extends DashboardWidgetElement {
   private final Color8Bit trueColor;
   private final TrueIcon trueIcon;
   private final Color8Bit falseColor;
   private final FalseIcon falseIcon;
 
+  /**
+   * Creates a new DashboardBooleanBoxElement.
+   *
+   * @param title the title of the boolean box element
+   * @param column the column position of the element
+   * @param row the row position of the element
+   * @param width the width of the element
+   * @param height the height of the element
+   * @param trueColor the color to display when the value is true
+   * @param trueIcon the icon to display when the value is true
+   * @param falseColor the color to display when the value is false
+   * @param falseIcon the icon to display when the value is false
+   */
   public DashboardBooleanBoxElement(
       String title,
       int column,
@@ -50,6 +66,19 @@ public class DashboardBooleanBoxElement extends DashboardWidgetElement {
     this.falseIcon = falseIcon;
   }
 
+  /**
+   * Creates a new DashboardBooleanBoxElement.
+   *
+   * @param title the title of the boolean box element
+   * @param column the column position of the element
+   * @param row the row position of the element
+   * @param width the width of the element
+   * @param height the height of the element
+   * @param trueColor the color to display when the value is true
+   * @param trueIcon the icon to display when the value is true
+   * @param falseColor the color to display when the value is false
+   * @param falseIcon the icon to display when the value is false
+   */
   public DashboardBooleanBoxElement(
       String title,
       int column,
@@ -82,18 +111,22 @@ public class DashboardBooleanBoxElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return the color to display when the value is true} */
   public Color8Bit getTrueColor() {
     return trueColor;
   }
 
+  /** {@return the icon to display when the value is true} */
   public TrueIcon getTrueIcon() {
     return trueIcon;
   }
 
+  /** {@return the color to display when the value is false} */
   public Color8Bit getFalseColor() {
     return falseColor;
   }
 
+  /** {@return the icon to display when the value is false} */
   public FalseIcon getFalseIcon() {
     return falseIcon;
   }

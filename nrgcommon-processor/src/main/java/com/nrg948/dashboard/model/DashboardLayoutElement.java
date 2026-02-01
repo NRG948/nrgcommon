@@ -23,10 +23,26 @@
 */
 package com.nrg948.dashboard.model;
 
+/**
+ * Represents a dashboard layout element that can contain other dashboard elements arranged in a
+ * specific layout type and with a specified label position.
+ */
 public class DashboardLayoutElement extends DashboardElementContainer {
   private final LayoutType type;
   private final LabelPosition labelPosition;
 
+  /**
+   * Creates a new DashboardLayoutElement.
+   *
+   * @param title the title of the dashboard layout element
+   * @param column the column position of the dashboard layout element
+   * @param row the row position of the dashboard layout element
+   * @param width the width of the dashboard layout element
+   * @param height the height of the dashboard layout element
+   * @param type the layout type of the dashboard layout element
+   * @param labelPosition the label position of the dashboard layout element
+   * @param elements the child elements of the dashboard layout element
+   */
   public DashboardLayoutElement(
       String title,
       int column,
@@ -41,6 +57,17 @@ public class DashboardLayoutElement extends DashboardElementContainer {
     this.labelPosition = labelPosition;
   }
 
+  /**
+   * Creates a new DashboardLayoutElement with no child elements.
+   *
+   * @param title the title of the dashboard layout element
+   * @param column the column position of the dashboard layout element
+   * @param row the row position of the dashboard layout element
+   * @param width the width of the dashboard layout element
+   * @param height the height of the dashboard layout element
+   * @param type the layout type of the dashboard layout element
+   * @param labelPosition the label position of the dashboard layout element
+   */
   public DashboardLayoutElement(
       String title,
       int column,
@@ -64,6 +91,12 @@ public class DashboardLayoutElement extends DashboardElementContainer {
     return type.toJsonValue();
   }
 
+  /** {@return the layout type of the dashboard layout element} */
+  public LayoutType getLayoutType() {
+    return type;
+  }
+
+  /** {@return the label position of the dashboard layout element} */
   public LabelPosition getLabelPosition() {
     return labelPosition;
   }
