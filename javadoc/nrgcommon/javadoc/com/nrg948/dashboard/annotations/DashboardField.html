@@ -86,67 +86,67 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>int</code></div>
 <div class="col-second even-row-color"><code><a href="#column()" class="member-name-link">column</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The column position of the widget in the dashboard grid.</div>
+<div class="block">Returns the column position of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#fieldRotationDegrees()" class="member-name-link">fieldRotationDegrees</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The rotation of the field in degrees.</div>
+<div class="block">Returns the rotation of the field in degrees.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="../model/GameField.html" title="enum class in com.nrg948.dashboard.model">GameField</a></code></div>
 <div class="col-second even-row-color"><code><a href="#game()" class="member-name-link">game</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The game field to display.</div>
+<div class="block">Returns the game field to display.</div>
 </div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#height()" class="member-name-link">height</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The height of the widget in the dashboard grid.</div>
+<div class="block">Returns the height of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#robotColor()" class="member-name-link">robotColor</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The color of the robot on the field.</div>
+<div class="block">Returns the color of the robot on the field.</div>
 </div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#robotLength()" class="member-name-link">robotLength</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The length of the robot on the field.</div>
+<div class="block">Returns the length of the robot on the field.</div>
 </div>
 <div class="col-first even-row-color"><code>double</code></div>
 <div class="col-second even-row-color"><code><a href="#robotWidth()" class="member-name-link">robotWidth</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The width of the robot on the field.</div>
+<div class="block">Returns the width of the robot on the field.</div>
 </div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#row()" class="member-name-link">row</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The row position of the widget in the dashboard grid.</div>
+<div class="block">Returns the row position of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first even-row-color"><code>boolean</code></div>
 <div class="col-second even-row-color"><code><a href="#showOtherObjects()" class="member-name-link">showOtherObjects</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Whether to show other objects on the field.</div>
+<div class="block">Returns whether to show other objects on the field.</div>
 </div>
 <div class="col-first odd-row-color"><code>boolean</code></div>
 <div class="col-second odd-row-color"><code><a href="#showTrajectories()" class="member-name-link">showTrajectories</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Whether to show trajectories on the field.</div>
+<div class="block">Returns whether to show trajectories on the field.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#title()" class="member-name-link">title</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The title of the widget.</div>
+<div class="block">Returns the title of the widget.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#trajectoryColor()" class="member-name-link">trajectoryColor</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The color of the trajectories on the field.</div>
+<div class="block">Returns the color of the trajectories on the field.</div>
 </div>
 <div class="col-first even-row-color"><code>int</code></div>
 <div class="col-second even-row-color"><code><a href="#width()" class="member-name-link">width</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The width of the widget in the dashboard grid.</div>
+<div class="block">Returns the width of the widget in the dashboard grid.</div>
 </div>
 </div>
 </section>
@@ -164,8 +164,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="title()">
 <h3>title</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">title</span></div>
-<div class="block">The title of the widget. If empty, the default title is the name of the annotated field or
- method.</div>
+<div class="block">Returns the title of the widget. If empty, the default title is the name of the annotated
+ field or method.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the title of the widget</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>""</dd>
@@ -176,7 +180,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="column()">
 <h3>column</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">column</span></div>
-<div class="block">The column position of the widget in the dashboard grid.</div>
+<div class="block">Returns the column position of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the column position of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0</dd>
@@ -187,7 +195,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="row()">
 <h3>row</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">row</span></div>
-<div class="block">The row position of the widget in the dashboard grid.</div>
+<div class="block">Returns the row position of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the row position of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0</dd>
@@ -198,7 +210,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="width()">
 <h3>width</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">width</span></div>
-<div class="block">The width of the widget in the dashboard grid.</div>
+<div class="block">Returns the width of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the width of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>1</dd>
@@ -209,7 +225,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="height()">
 <h3>height</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">height</span></div>
-<div class="block">The height of the widget in the dashboard grid.</div>
+<div class="block">Returns the height of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the height of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>1</dd>
@@ -220,7 +240,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="game()">
 <h3>game</h3>
 <div class="member-signature"><span class="return-type"><a href="../model/GameField.html" title="enum class in com.nrg948.dashboard.model">GameField</a></span>&nbsp;<span class="element-name">game</span></div>
-<div class="block">The game field to display.</div>
+<div class="block">Returns the game field to display.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the game field to display</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>REEFSCAPE</dd>
@@ -231,7 +255,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="robotWidth()">
 <h3>robotWidth</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">robotWidth</span></div>
-<div class="block">The width of the robot on the field.</div>
+<div class="block">Returns the width of the robot on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the width of the robot on the field</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0.85</dd>
@@ -242,7 +270,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="robotLength()">
 <h3>robotLength</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">robotLength</span></div>
-<div class="block">The length of the robot on the field.</div>
+<div class="block">Returns the length of the robot on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the length of the robot on the field</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0.85</dd>
@@ -253,7 +285,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="showOtherObjects()">
 <h3>showOtherObjects</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">showOtherObjects</span></div>
-<div class="block">Whether to show other objects on the field.</div>
+<div class="block">Returns whether to show other objects on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether to show other objects on the field</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>true</dd>
@@ -264,7 +300,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="showTrajectories()">
 <h3>showTrajectories</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">showTrajectories</span></div>
-<div class="block">Whether to show trajectories on the field.</div>
+<div class="block">Returns whether to show trajectories on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether to show trajectories on the field</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>true</dd>
@@ -275,7 +315,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="fieldRotationDegrees()">
 <h3>fieldRotationDegrees</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">fieldRotationDegrees</span></div>
-<div class="block">The rotation of the field in degrees.</div>
+<div class="block">Returns the rotation of the field in degrees.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the rotation of the field in degrees</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0.0</dd>
@@ -286,7 +330,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="robotColor()">
 <h3>robotColor</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">robotColor</span></div>
-<div class="block">The color of the robot on the field.</div>
+<div class="block">Returns the color of the robot on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the color of the robot on the field</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>"Red"</dd>
@@ -297,7 +345,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="trajectoryColor()">
 <h3>trajectoryColor</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">trajectoryColor</span></div>
-<div class="block">The color of the trajectories on the field.</div>
+<div class="block">Returns the color of the trajectories on the field.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the color of the trajectories on the field</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>"White"</dd>

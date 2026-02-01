@@ -346,8 +346,7 @@ I&gt;<br><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/j
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#unbox(java.lang.Class)" class="member-name-link">unbox</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;&nbsp;type)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Returns the primitive type corresponding to the given wrapper type, or the type itself if not a
- wrapper.</div>
+<div class="block">Unboxes the given boxed type to its corresponding primitive type.</div>
 </div>
 </div>
 </div>
@@ -370,8 +369,14 @@ I&gt;<br><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/j
 <section class="detail" id="unbox(java.lang.Class)">
 <h3>unbox</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;</span>&nbsp;<span class="element-name">unbox</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;&nbsp;type)</span></div>
-<div class="block">Returns the primitive type corresponding to the given wrapper type, or the type itself if not a
- wrapper.</div>
+<div class="block">Unboxes the given boxed type to its corresponding primitive type.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>type</code> - the type to unbox</dd>
+<dt>Returns:</dt>
+<dd>the primitive type corresponding to the given boxed type, or the type itself if not a
+     boxed type</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -492,6 +497,7 @@ T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="block">Creates a getter function for the field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
 <dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dd><code>T</code> - The type of the field value.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the field.</dd>
@@ -526,6 +532,7 @@ T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
  value.</div>
 <dl class="notes">
 <dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dd><code>T</code> - The type of the method return value.</dd>
 <dt>Parameters:</dt>
 <dd><code>methodHandle</code> - The <code>MethodHandle</code> representing the method.</dd>
@@ -559,6 +566,7 @@ T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="block">Creates a setter function for the field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
 <dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dd><code>T</code> - The type of the field value.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the field.</dd>
@@ -592,6 +600,7 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <dl class="notes">
 <dt>Type Parameters:</dt>
 <dd><code>E</code> - The type of the enum.</dd>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the enum field.</dd>
 <dd><code>enumType</code> - The class of the enum type.</dd>
@@ -630,6 +639,7 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <dl class="notes">
 <dt>Type Parameters:</dt>
 <dd><code>E</code> - The type of the enum.</dd>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>methodHandle</code> - The <code>MethodHandle</code> representing the enum method.</dd>
 <dd><code>enumType</code> - The class of the enum type.</dd>
@@ -668,6 +678,7 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <dl class="notes">
 <dt>Type Parameters:</dt>
 <dd><code>E</code> - The type of the enum.</dd>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the enum field.</dd>
 <dd><code>enumType</code> - The class of the enum type.</dd>
@@ -699,6 +710,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="function/ToBooleanFunction.html" title="interface in com.nrg948.util.function">ToBooleanFunction</a>&lt;I&gt;</span>&nbsp;<span class="element-name">getterOfBoolean</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a getter function for a boolean field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the boolean field.</dd>
 <dt>Returns:</dt>
@@ -728,6 +741,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
  <p>The referenced method must be an instance method that takes no parameters and returns a
  <code>boolean</code> value.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>methodHandle</code> - The <code>MethodHandle</code> representing the boolean method.</dd>
 <dt>Returns:</dt>
@@ -757,6 +772,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="function/ObjBooleanConsumer.html" title="interface in com.nrg948.util.function">ObjBooleanConsumer</a>&lt;I&gt;</span>&nbsp;<span class="element-name">setterOfBoolean</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a setter function for a boolean field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the boolean field.</dd>
 <dt>Returns:</dt>
@@ -783,6 +800,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="function/ToFloatFunction.html" title="interface in com.nrg948.util.function">ToFloatFunction</a>&lt;I&gt;</span>&nbsp;<span class="element-name">getterOfFloat</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a getter function for a float field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the float field.</dd>
 <dt>Returns:</dt>
@@ -812,6 +831,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
  <p>The referenced method must be an instance method that takes no parameters and returns a
  <code>float</code> value.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>methodHandle</code> - The <code>MethodHandle</code> representing the float method.</dd>
 <dt>Returns:</dt>
@@ -841,6 +862,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="function/ObjFloatConsumer.html" title="interface in com.nrg948.util.function">ObjFloatConsumer</a>&lt;I&gt;</span>&nbsp;<span class="element-name">setterOfFloat</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a setter function for a float field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the float field.</dd>
 <dt>Returns:</dt>
@@ -867,6 +890,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/ToDoubleFunction.html" title="class or interface in java.util.function" class="external-link">ToDoubleFunction</a>&lt;I&gt;</span>&nbsp;<span class="element-name">getterOfDouble</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a getter function for a double field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the double field.</dd>
 <dt>Returns:</dt>
@@ -896,6 +921,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
  <p>The referenced method must be an instance method that takes no parameters and returns a
  <code>double</code> value.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>methodHandle</code> - The <code>MethodHandle</code> representing the double method.</dd>
 <dt>Returns:</dt>
@@ -925,6 +952,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/ObjDoubleConsumer.html" title="class or interface in java.util.function" class="external-link">ObjDoubleConsumer</a>&lt;I&gt;</span>&nbsp;<span class="element-name">setterOfDouble</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a setter function for a double field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the double field.</dd>
 <dt>Returns:</dt>
@@ -951,6 +980,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/ToLongFunction.html" title="class or interface in java.util.function" class="external-link">ToLongFunction</a>&lt;I&gt;</span>&nbsp;<span class="element-name">getterOfInteger</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a getter function for an integer field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the integer field.</dd>
 <dt>Returns:</dt>
@@ -980,6 +1011,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
  <p>The referenced method must be an instance method that takes no parameters and returns a
  <code>int</code> or <code>long</code> value.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>methodHandle</code> - The <code>MethodHandle</code> representing the integer method.</dd>
 <dt>Returns:</dt>
@@ -1009,6 +1042,8 @@ I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;I&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/ObjLongConsumer.html" title="class or interface in java.util.function" class="external-link">ObjLongConsumer</a>&lt;I&gt;</span>&nbsp;<span class="element-name">setterOfInteger</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link">VarHandle</a>&nbsp;fieldHandle)</span></div>
 <div class="block">Creates a setter function for an integer field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a>.</div>
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>I</code> - The type of the instance.</dd>
 <dt>Parameters:</dt>
 <dd><code>fieldHandle</code> - The <code>VarHandle</code> representing the integer field.</dd>
 <dt>Returns:</dt>

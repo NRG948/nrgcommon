@@ -86,67 +86,67 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>int</code></div>
 <div class="col-second even-row-color"><code><a href="#column()" class="member-name-link">column</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The column position of the widget in the dashboard grid.</div>
+<div class="block">Returns the column position of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#endAngle()" class="member-name-link">endAngle</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The end angle of the radial gauge.</div>
+<div class="block">Returns the end angle of the radial gauge.</div>
 </div>
 <div class="col-first even-row-color"><code>int</code></div>
 <div class="col-second even-row-color"><code><a href="#height()" class="member-name-link">height</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The height of the widget in the dashboard grid.</div>
+<div class="block">Returns the height of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#max()" class="member-name-link">max</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The maximum value of the radial gauge.</div>
+<div class="block">Returns the maximum value of the radial gauge.</div>
 </div>
 <div class="col-first even-row-color"><code>double</code></div>
 <div class="col-second even-row-color"><code><a href="#min()" class="member-name-link">min</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The minimum value of the radial gauge.</div>
+<div class="block">Returns the minimum value of the radial gauge.</div>
 </div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#numberOfLabels()" class="member-name-link">numberOfLabels</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The number of labels on the radial gauge.</div>
+<div class="block">Returns the number of labels on the radial gauge.</div>
 </div>
 <div class="col-first even-row-color"><code>int</code></div>
 <div class="col-second even-row-color"><code><a href="#row()" class="member-name-link">row</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The row position of the widget in the dashboard grid.</div>
+<div class="block">Returns the row position of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first odd-row-color"><code>boolean</code></div>
 <div class="col-second odd-row-color"><code><a href="#showPointer()" class="member-name-link">showPointer</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Whether the radial gauge should show the pointer.</div>
+<div class="block">Returns whether the radial gauge should show the pointer.</div>
 </div>
 <div class="col-first even-row-color"><code>boolean</code></div>
 <div class="col-second even-row-color"><code><a href="#showTickMarks()" class="member-name-link">showTickMarks</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Whether the radial gauge should show tick marks.</div>
+<div class="block">Returns whether the radial gauge should show tick marks.</div>
 </div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#startAngle()" class="member-name-link">startAngle</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The start angle of the radial gauge.</div>
+<div class="block">Returns the start angle of the radial gauge.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#title()" class="member-name-link">title</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The title of the widget.</div>
+<div class="block">Returns the title of the widget.</div>
 </div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#width()" class="member-name-link">width</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The width of the widget in the dashboard grid.</div>
+<div class="block">Returns the width of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first even-row-color"><code>boolean</code></div>
 <div class="col-second even-row-color"><code><a href="#wrapValue()" class="member-name-link">wrapValue</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Whether the radial gauge should wrap values.</div>
+<div class="block">Returns whether the radial gauge should wrap values.</div>
 </div>
 </div>
 </section>
@@ -164,8 +164,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="title()">
 <h3>title</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">title</span></div>
-<div class="block">The title of the widget. If empty, the default title is the name of the annotated field or
- method.</div>
+<div class="block">Returns the title of the widget. If empty, the default title is the name of the annotated
+ field or method.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the title of the widget</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>""</dd>
@@ -176,7 +180,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="column()">
 <h3>column</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">column</span></div>
-<div class="block">The column position of the widget in the dashboard grid.</div>
+<div class="block">Returns the column position of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the column position of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0</dd>
@@ -187,7 +195,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="row()">
 <h3>row</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">row</span></div>
-<div class="block">The row position of the widget in the dashboard grid.</div>
+<div class="block">Returns the row position of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the row position of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0</dd>
@@ -198,7 +210,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="width()">
 <h3>width</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">width</span></div>
-<div class="block">The width of the widget in the dashboard grid.</div>
+<div class="block">Returns the width of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the width of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>1</dd>
@@ -209,7 +225,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="height()">
 <h3>height</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">height</span></div>
-<div class="block">The height of the widget in the dashboard grid.</div>
+<div class="block">Returns the height of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the height of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>1</dd>
@@ -220,7 +240,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="startAngle()">
 <h3>startAngle</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">startAngle</span></div>
-<div class="block">The start angle of the radial gauge.</div>
+<div class="block">Returns the start angle of the radial gauge.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the start angle of the radial gauge</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>-140.0</dd>
@@ -231,7 +255,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="endAngle()">
 <h3>endAngle</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">endAngle</span></div>
-<div class="block">The end angle of the radial gauge.</div>
+<div class="block">Returns the end angle of the radial gauge.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the end angle of the radial gauge</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>140.0</dd>
@@ -242,7 +270,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="min()">
 <h3>min</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">min</span></div>
-<div class="block">The minimum value of the radial gauge.</div>
+<div class="block">Returns the minimum value of the radial gauge.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the minimum value of the radial gauge</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>-1.0</dd>
@@ -253,7 +285,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="max()">
 <h3>max</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">max</span></div>
-<div class="block">The maximum value of the radial gauge.</div>
+<div class="block">Returns the maximum value of the radial gauge.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the maximum value of the radial gauge</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>1.0</dd>
@@ -264,7 +300,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="numberOfLabels()">
 <h3>numberOfLabels</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">numberOfLabels</span></div>
-<div class="block">The number of labels on the radial gauge.</div>
+<div class="block">Returns the number of labels on the radial gauge.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of labels on the radial gauge</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>8</dd>
@@ -275,7 +315,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="wrapValue()">
 <h3>wrapValue</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">wrapValue</span></div>
-<div class="block">Whether the radial gauge should wrap values.</div>
+<div class="block">Returns whether the radial gauge should wrap values.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether the radial gauge should wrap values</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>false</dd>
@@ -286,7 +330,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="showPointer()">
 <h3>showPointer</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">showPointer</span></div>
-<div class="block">Whether the radial gauge should show the pointer.</div>
+<div class="block">Returns whether the radial gauge should show the pointer.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether the radial gauge should show the pointer</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>true</dd>
@@ -297,7 +345,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="showTickMarks()">
 <h3>showTickMarks</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">showTickMarks</span></div>
-<div class="block">Whether the radial gauge should show tick marks.</div>
+<div class="block">Returns whether the radial gauge should show tick marks.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether the radial gauge should show tick marks</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>true</dd>

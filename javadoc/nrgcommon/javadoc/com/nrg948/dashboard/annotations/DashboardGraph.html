@@ -86,52 +86,52 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#color()" class="member-name-link">color</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The color of the graph.</div>
+<div class="block">Returns the color of the graph.</div>
 </div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#column()" class="member-name-link">column</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The column position of the widget in the dashboard grid.</div>
+<div class="block">Returns the column position of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first even-row-color"><code>double</code></div>
 <div class="col-second even-row-color"><code><a href="#duration()" class="member-name-link">duration</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The duration of the graph in seconds.</div>
+<div class="block">Returns the duration of the graph in seconds.</div>
 </div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#height()" class="member-name-link">height</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The height of the widget in the dashboard grid.</div>
+<div class="block">Returns the height of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first even-row-color"><code>double</code></div>
 <div class="col-second even-row-color"><code><a href="#max()" class="member-name-link">max</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The maximum value of the graph.</div>
+<div class="block">Returns the maximum value of the graph.</div>
 </div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#min()" class="member-name-link">min</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The minimum value of the graph.</div>
+<div class="block">Returns the minimum value of the graph.</div>
 </div>
 <div class="col-first even-row-color"><code>int</code></div>
 <div class="col-second even-row-color"><code><a href="#row()" class="member-name-link">row</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The row position of the widget in the dashboard grid.</div>
+<div class="block">Returns the row position of the widget in the dashboard grid.</div>
 </div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#strokeWidth()" class="member-name-link">strokeWidth</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The stroke width of the graph.</div>
+<div class="block">Returns the stroke width of the graph.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#title()" class="member-name-link">title</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The title of the widget.</div>
+<div class="block">Returns the title of the widget.</div>
 </div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#width()" class="member-name-link">width</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The width of the widget in the dashboard grid.</div>
+<div class="block">Returns the width of the widget in the dashboard grid.</div>
 </div>
 </div>
 </section>
@@ -149,8 +149,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="title()">
 <h3>title</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">title</span></div>
-<div class="block">The title of the widget. If empty, the default title is the name of the annotated field or
- method.</div>
+<div class="block">Returns the title of the widget. If empty, the default title is the name of the annotated
+ field or method.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the title of the widget</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>""</dd>
@@ -161,7 +165,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="column()">
 <h3>column</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">column</span></div>
-<div class="block">The column position of the widget in the dashboard grid.</div>
+<div class="block">Returns the column position of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the column position of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0</dd>
@@ -172,7 +180,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="row()">
 <h3>row</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">row</span></div>
-<div class="block">The row position of the widget in the dashboard grid.</div>
+<div class="block">Returns the row position of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the row position of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0</dd>
@@ -183,7 +195,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="width()">
 <h3>width</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">width</span></div>
-<div class="block">The width of the widget in the dashboard grid.</div>
+<div class="block">Returns the width of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the width of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>1</dd>
@@ -194,7 +210,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="height()">
 <h3>height</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">height</span></div>
-<div class="block">The height of the widget in the dashboard grid.</div>
+<div class="block">Returns the height of the widget in the dashboard grid.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the height of the widget in the dashboard grid</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>1</dd>
@@ -205,7 +225,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="duration()">
 <h3>duration</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">duration</span></div>
-<div class="block">The duration of the graph in seconds.</div>
+<div class="block">Returns the duration of the graph in seconds.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the duration of the graph in seconds</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>5.0</dd>
@@ -216,7 +240,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="min()">
 <h3>min</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">min</span></div>
-<div class="block">The minimum value of the graph.</div>
+<div class="block">Returns the minimum value of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the minimum value of the graph</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0.0</dd>
@@ -227,7 +255,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="max()">
 <h3>max</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">max</span></div>
-<div class="block">The maximum value of the graph.</div>
+<div class="block">Returns the maximum value of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the maximum value of the graph</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>0.0</dd>
@@ -238,7 +270,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="color()">
 <h3>color</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">color</span></div>
-<div class="block">The color of the graph.</div>
+<div class="block">Returns the color of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the color of the graph</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>"Light Blue"</dd>
@@ -249,7 +285,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="strokeWidth()">
 <h3>strokeWidth</h3>
 <div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">strokeWidth</span></div>
-<div class="block">The stroke width of the graph.</div>
+<div class="block">Returns the stroke width of the graph.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the stroke width of the graph</dd>
+</dl>
 <dl class="notes">
 <dt>Default:</dt>
 <dd>2.0</dd>
