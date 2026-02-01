@@ -264,9 +264,9 @@ public class PIDControllerPreference extends PreferenceValue implements Sendable
   }
 
   /**
-   * Returns whether this controller is at its setpoint.
+   * Returns whether this controller is within tolerance of its setpoint.
    *
-   * @return Returns true if this controller is at its setpoint, false otherwise.
+   * @return Returns true if this controller is within tolerance of its setpoint, false otherwise.
    */
   public boolean atSetpoint() {
     return controller.atSetpoint();
