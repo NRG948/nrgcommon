@@ -37,7 +37,8 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardTab {
   /**
-   * The title of the tab. If empty, the default title is the name of the annotated field or method.
+   * {@return the title of the tab} If empty, the default title is the name of the annotated field
+   * or method.
    */
   String title() default "";
 }

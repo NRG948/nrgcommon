@@ -38,35 +38,35 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardNumberSlider {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the widget} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the widget in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the widget in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the widget in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
 
-  /** The minimum value of the number slider. */
+  /** {@return the minimum value of the number slider} */
   double min() default -1.0;
 
-  /** The maximum value of the number slider. */
+  /** {@return the maximum value of the number slider} */
   double max() default 1.0;
 
-  /** The number of divisions in the number slider. */
+  /** {@return the number of divisions in the number slider} */
   int divisions() default 5;
 
-  /** The data binding mode of the number slider. */
+  /** {@return the data binding mode of the number slider} */
   DataBinding dataBinding() default READ_WRITE;
 
-  /** Whether the number slider should publish values while being dragged. */
+  /** {@return whether the number slider should publish values while being dragged} */
   boolean publishWhileDragging() default false;
 }

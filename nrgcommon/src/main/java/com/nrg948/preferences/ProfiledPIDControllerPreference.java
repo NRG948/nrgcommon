@@ -47,6 +47,17 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
   private final double defaultD;
   private final ProfiledPIDController controller;
 
+  /**
+   * Creates a new ProfiledPIDControllerPreference with the given group, name, default PID gains,
+   * and motion profile constraints.
+   *
+   * @param group The preference group.
+   * @param name The preference name.
+   * @param defaultP The default P gain.
+   * @param defaultI The default I gain.
+   * @param defaultD The default D gain.
+   * @param constraints The motion profile constraints.
+   */
   public ProfiledPIDControllerPreference(
       String group,
       String name,
@@ -194,17 +205,30 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
     controller.disableContinuousInput();
   }
 
-  /** Resets the Profiled PID controller. */
+  /**
+   * Resets the previous error and integral term.
+   *
+   * @param measuredPosition The current measured position of the system.
+   */
   public void reset(double measuredPosition) {
     controller.reset(measuredPosition);
   }
 
-  /** Resets the Profiled PID controller. */
+  /**
+   * Resets the previous error and integral term.
+   *
+   * @param state The current measured state of the system.
+   */
   public void reset(TrapezoidProfile.State state) {
     controller.reset(state);
   }
 
-  /** Resets the Profiled PID controller. */
+  /**
+   * Resets the previous error and integral term.
+   *
+   * @param measuredPosition The current measured position of the system.
+   * @param measuredVelocity The current measured velocity of the system.
+   */
   public void reset(double measuredPosition, double measuredVelocity) {
     controller.reset(measuredPosition, measuredVelocity);
   }

@@ -41,26 +41,26 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardLayout {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the layout} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the layout in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the layout in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the layout in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the layout in the dashboard grid} */
   int height() default 1;
 
-  /** The type of layout for the widget. */
+  /** {@return the type of layout for the layout} */
   LayoutType type() default LIST;
 
-  /** The position of the label for the widget. */
+  /** {@return the position of the label for the layout} */
   LabelPosition labelPosition() default TOP;
 }

@@ -38,44 +38,44 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardField {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the widget} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the widget in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the widget in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the widget in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
 
-  /** The game field to display. */
+  /** {@return the game field to display} */
   GameField game() default GameField.REEFSCAPE;
 
-  /** The width of the robot on the field. */
+  /** {@return the width of the robot on the field} */
   double robotWidth() default 0.85;
 
-  /** The length of the robot on the field. */
+  /** {@return the length of the robot on the field} */
   double robotLength() default 0.85;
 
-  /** Whether to show other objects on the field. */
+  /** {@return whether to show other objects on the field} */
   boolean showOtherObjects() default true;
 
-  /** Whether to show trajectories on the field. */
+  /** {@return whether to show trajectories on the field} */
   boolean showTrajectories() default true;
 
-  /** The rotation of the field in degrees. */
+  /** {@return the rotation of the field in degrees} */
   double fieldRotationDegrees() default 0.0;
 
-  /** The color of the robot on the field. */
+  /** {@return the color of the robot on the field} */
   String robotColor() default "Red";
 
-  /** The color of the trajectories on the field. */
+  /** {@return the color of the trajectories on the field} */
   String trajectoryColor() default "White";
 }

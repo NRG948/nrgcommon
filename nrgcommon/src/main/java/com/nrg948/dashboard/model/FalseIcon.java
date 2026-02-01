@@ -39,12 +39,12 @@ public enum FalseIcon {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the icon. */
+  /** {@return the display name of the icon} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the icon. */
+  /** {@return the JSON value of the icon} */
   public String toJsonValue() {
     return displayName;
   }

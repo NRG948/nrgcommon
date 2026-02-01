@@ -36,44 +36,44 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardRadialGauge {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the widget} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the widget in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the widget in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the widget in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
 
-  /** The start angle of the radial gauge. */
+  /** {@return the start angle of the radial gauge} */
   double startAngle() default -140.0;
 
-  /** The end angle of the radial gauge. */
+  /** {@return the end angle of the radial gauge} */
   double endAngle() default 140.0;
 
-  /** The minimum value of the radial gauge. */
+  /** {@return the minimum value of the radial gauge} */
   double min() default -1.0;
 
-  /** The maximum value of the radial gauge. */
+  /** {@return the maximum value of the radial gauge} */
   double max() default 1.0;
 
-  /** The number of labels on the radial gauge. */
+  /** {@return the number of labels on the radial gauge} */
   int numberOfLabels() default 8;
 
-  /** Whether the radial gauge should wrap values. */
+  /** {@return whether the radial gauge should wrap values} */
   boolean wrapValue() default false;
 
-  /** Whether the radial gauge should show the pointer. */
+  /** {@return whether the radial gauge should show the pointer} */
   boolean showPointer() default true;
 
-  /** Whether the radial gauge should show tick marks. */
+  /** {@return whether the radial gauge should show tick marks} */
   boolean showTickMarks() default true;
 }

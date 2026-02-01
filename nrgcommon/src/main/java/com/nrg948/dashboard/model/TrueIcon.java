@@ -37,12 +37,12 @@ public enum TrueIcon {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the true icon. */
+  /** {@return the display name of the true icon} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the true icon. */
+  /** {@return the JSON value of the true icon} */
   public String toJsonValue() {
     return displayName;
   }

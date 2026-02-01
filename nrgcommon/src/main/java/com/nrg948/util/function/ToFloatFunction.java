@@ -23,8 +23,18 @@
 */
 package com.nrg948.util.function;
 
-/** Functional interface representing a function that produces a float-valued result. */
+/**
+ * Functional interface representing a function that produces a float-valued result.
+ *
+ * @param <T> the type of the input to the function
+ */
 @FunctionalInterface
 public interface ToFloatFunction<T> {
+  /**
+   * Applies this function to the given argument.
+   *
+   * @param t the function argument
+   * @return the function result
+   */
   float applyAsFloat(T t);
 }

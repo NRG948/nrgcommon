@@ -33,6 +33,6 @@ import java.lang.annotation.Target;
  */
 @Target(TYPE)
 public @interface Dashboard {
-  /** The size of the grid used for layout of dashboard widgets. */
+  /** {@return the size of the grid used for layout of dashboard widgets} */
   int gridSize() default 128;
 }

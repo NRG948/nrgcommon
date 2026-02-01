@@ -27,18 +27,34 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
 
 /** Enum representing common colors with their corresponding {@link Color8Bit} values. */
 public enum Colors {
+  /** The color red. */
   RED(0xFF, 0x00, 0x00),
+  /** The color green. */
   GREEN(0x00, 0xFF, 0x00),
+  /** The color blue. */
   BLUE(0x00, 0x00, 0xFF),
+  /** The color light blue. */
   LIGHT_BLUE(0xAD, 0xD8, 0xE6),
+  /** The color yellow. */
   YELLOW(0xFF, 0xFF, 0x00),
+  /** The color orange. */
   ORANGE(0xFF, 0xA5, 0x00),
+  /** The color purple. */
   PURPLE(0x80, 0x00, 0x80),
+  /** The color white. */
   WHITE(0xFF, 0xFF, 0xFF),
+  /** The color black. */
   BLACK(0x00, 0x00, 0x00),
+  /** The color gray. */
   GRAY(0x80, 0x80, 0x80),
+  /** The color cyan. */
   CYAN(0x00, 0xFF, 0xFF),
-  MAGENTA(0xFF, 0x00, 0xFF);
+  /** The color magenta. */
+  MAGENTA(0xFF, 0x00, 0xFF),
+  /** The color pink. */
+  PINK(0xFF, 0xC0, 0xCB),
+  /** The color NRG pink. */
+  NRG_PINK(0xFF, 0x05, 0x64);
 
   private Color8Bit color;
 

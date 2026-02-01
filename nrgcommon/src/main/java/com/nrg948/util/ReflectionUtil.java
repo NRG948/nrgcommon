@@ -63,8 +63,11 @@ public final class ReflectionUtil {
           Void.class, Void.TYPE);
 
   /**
-   * Returns the primitive type corresponding to the given wrapper type, or the type itself if not a
-   * wrapper.
+   * Unboxes the given boxed type to its corresponding primitive type.
+   *
+   * @param type the type to unbox
+   * @return the primitive type corresponding to the given boxed type, or the type itself if not a
+   *     boxed type
    */
   public static Class<?> unbox(Class<?> type) {
     return PRIMITIVE_TYPES.getOrDefault(type, type);
@@ -161,6 +164,7 @@ public final class ReflectionUtil {
   /**
    * Creates a getter function for the field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param <T> The type of the field value.
    * @param fieldHandle The {@code VarHandle} representing the field.
    * @return A function that takes an instance and returns the field value.
@@ -186,6 +190,7 @@ public final class ReflectionUtil {
    * <p>The referenced method must be an instance method that takes no parameters and returns a
    * value.
    *
+   * @param <I> The type of the instance.
    * @param <T> The type of the method return value.
    * @param methodHandle The {@code MethodHandle} representing the method.
    * @return A function that takes an instance and returns the method return value.
@@ -222,6 +227,7 @@ public final class ReflectionUtil {
   /**
    * Creates a setter function for the field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param <T> The type of the field value.
    * @param fieldHandle The {@code VarHandle} representing the field.
    * @return A function that takes an instance and a value, and sets the field value.
@@ -245,6 +251,7 @@ public final class ReflectionUtil {
    * Creates a getter function for an enum field represented by the given {@link VarHandle}.
    *
    * @param <E> The type of the enum.
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the enum field.
    * @param enumType The class of the enum type.
    * @return A function that takes an instance and returns the enum value.
@@ -274,6 +281,7 @@ public final class ReflectionUtil {
    * value of the specified enum type, {@code E}.
    *
    * @param <E> The type of the enum.
+   * @param <I> The type of the instance.
    * @param methodHandle The {@code MethodHandle} representing the enum method.
    * @param enumType The class of the enum type.
    * @return A function that takes an instance and returns the enum value.
@@ -316,6 +324,7 @@ public final class ReflectionUtil {
    * Creates a setter function for an enum field represented by the given {@link VarHandle}.
    *
    * @param <E> The type of the enum.
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the enum field.
    * @param enumType The class of the enum type.
    * @return A function that takes an instance and a value, and sets the enum field value.
@@ -341,6 +350,7 @@ public final class ReflectionUtil {
   /**
    * Creates a getter function for a boolean field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the boolean field.
    * @return A function that takes an instance and returns the boolean field value.
    */
@@ -365,6 +375,7 @@ public final class ReflectionUtil {
    * <p>The referenced method must be an instance method that takes no parameters and returns a
    * {@code boolean} value.
    *
+   * @param <I> The type of the instance.
    * @param methodHandle The {@code MethodHandle} representing the boolean method.
    * @return A function that takes an instance and returns the boolean method value.
    */
@@ -401,6 +412,7 @@ public final class ReflectionUtil {
   /**
    * Creates a setter function for a boolean field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the boolean field.
    * @return A function that takes an instance and a value, and sets the boolean field value.
    */
@@ -422,6 +434,7 @@ public final class ReflectionUtil {
   /**
    * Creates a getter function for a float field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the float field.
    * @return A function that takes an instance and returns the float field value.
    */
@@ -445,6 +458,7 @@ public final class ReflectionUtil {
    * <p>The referenced method must be an instance method that takes no parameters and returns a
    * {@code float} value.
    *
+   * @param <I> The type of the instance.
    * @param methodHandle The {@code MethodHandle} representing the float method.
    * @return A function that takes an instance and returns the float method value.
    */
@@ -481,6 +495,7 @@ public final class ReflectionUtil {
   /**
    * Creates a setter function for a float field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the float field.
    * @return A function that takes an instance and a value, and sets the float field value.
    */
@@ -501,6 +516,7 @@ public final class ReflectionUtil {
   /**
    * Creates a getter function for a double field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the double field.
    * @return A function that takes an instance and returns the double field value.
    */
@@ -524,6 +540,7 @@ public final class ReflectionUtil {
    * <p>The referenced method must be an instance method that takes no parameters and returns a
    * {@code double} value.
    *
+   * @param <I> The type of the instance.
    * @param methodHandle The {@code MethodHandle} representing the double method.
    * @return A function that takes an instance and returns the double method value.
    */
@@ -560,6 +577,7 @@ public final class ReflectionUtil {
   /**
    * Creates a setter function for a double field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the double field.
    * @return A function that takes an instance and a value, and sets the double field value.
    */
@@ -580,6 +598,7 @@ public final class ReflectionUtil {
   /**
    * Creates a getter function for an integer field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the integer field.
    * @return A function that takes an instance and returns the integer field value.
    */
@@ -604,6 +623,7 @@ public final class ReflectionUtil {
    * <p>The referenced method must be an instance method that takes no parameters and returns a
    * {@code int} or {@code long} value.
    *
+   * @param <I> The type of the instance.
    * @param methodHandle The {@code MethodHandle} representing the integer method.
    * @return A function that takes an instance and returns the integer method value.
    */
@@ -640,6 +660,7 @@ public final class ReflectionUtil {
   /**
    * Creates a setter function for an integer field represented by the given {@link VarHandle}.
    *
+   * @param <I> The type of the instance.
    * @param fieldHandle The {@code VarHandle} representing the integer field.
    * @return A function that takes an instance and a value, and sets the integer field value.
    */

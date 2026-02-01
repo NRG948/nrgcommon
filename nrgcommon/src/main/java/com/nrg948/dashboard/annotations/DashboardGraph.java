@@ -36,35 +36,35 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardGraph {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the widget} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the widget in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the widget in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the widget in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
 
-  /** The duration of the graph in seconds. */
+  /** {@return the duration of the graph in seconds} */
   double duration() default 5.0;
 
-  /** The minimum value of the graph. */
+  /** {@return the minimum value of the graph} */
   double min() default 0.0;
 
-  /** The maximum value of the graph. */
+  /** {@return the maximum value of the graph} */
   double max() default 0.0;
 
-  /** The color of the graph. */
+  /** {@return the color of the graph} */
   String color() default "Light Blue";
 
-  /** The stroke width of the graph. */
+  /** {@return the stroke width of the graph} */
   double strokeWidth() default 2.0;
 }

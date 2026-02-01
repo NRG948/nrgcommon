@@ -23,8 +23,18 @@
 */
 package com.nrg948.util.function;
 
-/** Functional interface representing an operation that accepts an object and a float value. */
+/**
+ * Functional interface representing an operation that accepts an object and a float value.
+ *
+ * @param <T> the type of the input to the operation
+ */
 @FunctionalInterface
 public interface ObjFloatConsumer<T> {
+  /**
+   * Performs this operation on the given arguments.
+   *
+   * @param t the input object
+   * @param value the input float value
+   */
   void accept(T t, float value);
 }

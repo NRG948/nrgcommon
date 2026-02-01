@@ -37,12 +37,12 @@ public enum LayoutType {
     this.displayName = displayName;
   }
 
-  /** Returns the display name of the layout type. */
+  /** {@return the display name of the layout type} */
   public String getDisplayName() {
     return displayName;
   }
 
-  /** Returns the JSON value of the layout type. */
+  /** {@return the JSON value of the layout type} */
   public String toJsonValue() {
     return displayName;
   }

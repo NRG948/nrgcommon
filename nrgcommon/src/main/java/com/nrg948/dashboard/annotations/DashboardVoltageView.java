@@ -38,35 +38,35 @@ import java.lang.annotation.Target;
 @Target({FIELD, METHOD})
 public @interface DashboardVoltageView {
   /**
-   * The title of the widget. If empty, the default title is the name of the annotated field or
-   * method.
+   * {@return the title of the widget} If empty, the default title is the name of the annotated
+   * field or method.
    */
   String title() default "";
 
-  /** The column position of the widget in the dashboard grid. */
+  /** {@return the column position of the widget in the dashboard grid} */
   int column() default 0;
 
-  /** The row position of the widget in the dashboard grid. */
+  /** {@return the row position of the widget in the dashboard grid} */
   int row() default 0;
 
-  /** The width of the widget in the dashboard grid. */
+  /** {@return the width of the widget in the dashboard grid} */
   int width() default 1;
 
-  /** The height of the widget in the dashboard grid. */
+  /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
 
-  /** The minimum value of the voltage view. */
+  /** {@return the minimum value of the voltage view} */
   double min() default -1.0;
 
-  /** The maximum value of the voltage view. */
+  /** {@return the maximum value of the voltage view} */
   double max() default 1.0;
 
-  /** The number of divisions in the voltage view. */
+  /** {@return the number of divisions in the voltage view} */
   int divisions() default 5;
 
-  /** Whether the voltage view is inverted. */
+  /** {@return whether the voltage view is inverted} */
   boolean inverted() default false;
 
-  /** The orientation of the voltage view. */
+  /** {@return the orientation of the voltage view} */
   Orientation orientation() default HORIZONTAL;
 }
