@@ -342,7 +342,7 @@ public final class ElasticConfiguration {
         jsonGenerator.writeStringField("field_game", fieldElement.getGame().toJsonValue());
         jsonGenerator.writeNumberField("robot_width", fieldElement.getRobotWidth());
         jsonGenerator.writeNumberField("robot_length", fieldElement.getRobotLength());
-        jsonGenerator.writeBooleanField("show_other_objects ", fieldElement.showOtherObjects());
+        jsonGenerator.writeBooleanField("show_other_objects", fieldElement.showOtherObjects());
         jsonGenerator.writeBooleanField("show_trajectories", fieldElement.showTrajectories());
         jsonGenerator.writeNumberField("field_rotation", fieldElement.getFieldRotationDegrees());
         jsonGenerator.writeNumberField(
