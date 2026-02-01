@@ -243,7 +243,7 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
   }
 
   /**
-   * Sets the tolerance for this controller.
+   * Sets the error which is considered tolerable for use with {@link #atSetpoint()}.
    *
    * @param errorTolerance The error which is considered acceptable.
    */
@@ -252,7 +252,7 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
   }
 
   /**
-   * Sets the tolerance for this controller.
+   * Sets the error which is considered tolerable for use with {@link #atSetpoint()}.
    *
    * @param errorTolerance The error which is considered acceptable.
    * @param errorDerivativeTolerance The error derivative which is considered acceptable.
@@ -277,9 +277,9 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
   }
 
   /**
-   * Returns whether this controller is at its setpoint.
+   * Returns whether this controller is within tolerance of its setpoint.
    *
-   * @return True if this controller is at its setpoint, false otherwise.
+   * @return True if this controller is within tolerance of its setpoint, false otherwise.
    */
   public boolean atSetpoint() {
     return controller.atSetpoint();
@@ -301,6 +301,15 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
    */
   public void setGoal(TrapezoidProfile.State goal) {
     controller.setGoal(goal);
+  }
+
+  /**
+   * Returns whether this controller is within tolerance of its goal.
+   *
+   * @return Returns true if this controller is within tolerance of its goal, false otherwise.
+   */
+  public boolean atGoal() {
+    return controller.atGoal();
   }
 
   /**
@@ -355,6 +364,11 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
   /** {@return the position error for this controller} */
   public double getPositionError() {
     return controller.getPositionError();
+  }
+
+  /** {@return the accumulated error used in the integral calculation of this controller} */
+  public double getAccumulatedError() {
+    return controller.getAccumulatedError();
   }
 
   /** {@return the velocity error for this controller} */
