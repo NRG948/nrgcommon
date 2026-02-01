@@ -23,9 +23,20 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a gyro visualization. */
 public class DashboardGyroElement extends DashboardWidgetElement {
   private boolean ccwPositive;
 
+  /**
+   * Creates a new DashboardGyroElement.
+   *
+   * @param title the title of the dashboard gyro element
+   * @param column the column position of the dashboard gyro element
+   * @param row the row position of the dashboard gyro element
+   * @param width the width of the dashboard gyro element
+   * @param height the height of the dashboard gyro element
+   * @param ccwPositive whether counter-clockwise rotation is considered positive
+   */
   DashboardGyroElement(
       String title, int column, int row, int width, int height, boolean ccwPositive) {
     super(title, column, row, width, height);
@@ -42,6 +53,7 @@ public class DashboardGyroElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return whether counter-clockwise rotation is considered positive} */
   public boolean isCcwPositive() {
     return ccwPositive;
   }

@@ -23,11 +23,22 @@
 */
 package com.nrg948.dashboard.model;
 
+/** An abstract base class for dashboard elements that provides a widget visualization. */
 public abstract class DashboardWidgetElement extends DashboardElementBase {
+  /**
+   * Creates a new DashboardWidgetElement.
+   *
+   * @param title the title of the dashboard widget element
+   * @param column the column position of the dashboard widget element
+   * @param row the row position of the dashboard widget element
+   * @param width the width of the dashboard widget element
+   * @param height the height of the dashboard widget element
+   */
   public DashboardWidgetElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }
 
+  /** {@return the topic of the dashboard widget element} */
   public String getTopic() {
     String topic = "/";
     var parentOpt = getParent();
@@ -42,6 +53,7 @@ public abstract class DashboardWidgetElement extends DashboardElementBase {
     }
   }
 
+  /** {@return the update period of the dashboard widget element} */
   public double getPeriod() {
     return 0.06;
   }

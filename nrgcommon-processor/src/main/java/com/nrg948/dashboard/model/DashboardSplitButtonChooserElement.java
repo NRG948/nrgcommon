@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a split button chooser visualization. */
 public class DashboardSplitButtonChooserElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardSplitButtonChooserElement.
+   *
+   * @param title the title of the dashboard split button chooser element
+   * @param column the column position of the dashboard split button chooser element
+   * @param row the row position of the dashboard split button chooser element
+   * @param width the width of the dashboard split button chooser element
+   * @param height the height of the dashboard split button chooser element
+   */
   public DashboardSplitButtonChooserElement(
       String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);

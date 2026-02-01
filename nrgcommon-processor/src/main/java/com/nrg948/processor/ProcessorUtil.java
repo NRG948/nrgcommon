@@ -28,8 +28,8 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.SimpleElementVisitor14;
 
+/** Utility class for annotation processors. */
 public final class ProcessorUtil {
-
   /**
    * Converts an element to a type element if possible.
    *

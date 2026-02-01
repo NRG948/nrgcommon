@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a subsystem visualization. */
 public class DashboardSubsystemElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardSubsystemElement.
+   *
+   * @param title the title of the dashboard subsystem element
+   * @param column the column position of the dashboard subsystem element
+   * @param row the row position of the dashboard subsystem element
+   * @param width the width of the dashboard subsystem element
+   * @param height the height of the dashboard subsystem element
+   */
   public DashboardSubsystemElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

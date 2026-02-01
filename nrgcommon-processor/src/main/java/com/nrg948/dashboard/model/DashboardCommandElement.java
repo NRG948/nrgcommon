@@ -23,10 +23,22 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a command button. */
 public class DashboardCommandElement extends DashboardWidgetElement {
   private final boolean showType;
   private final boolean fillWidget;
 
+  /**
+   * Creates a new DashboardCommandElement.
+   *
+   * @param title the title of the command element
+   * @param column the column position of the command element
+   * @param row the row position of the command element
+   * @param width the width of the command element
+   * @param height the height of the command element
+   * @param showType whether to show the type of the command
+   * @param fillWidget whether to fill the widget area
+   */
   public DashboardCommandElement(
       String title,
       int column,
@@ -45,10 +57,12 @@ public class DashboardCommandElement extends DashboardWidgetElement {
     return "Command";
   }
 
+  /** {@return whether to show the type of the command} */
   public boolean showType() {
     return showType;
   }
 
+  /** {@return whether to fill the widget area} */
   public boolean fillWidget() {
     return fillWidget;
   }

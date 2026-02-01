@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides an ultrasonic sensor visualization. */
 public class DashboardUltrasonicElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardUltrasonicElement.
+   *
+   * @param title the title of the dashboard ultrasonic element
+   * @param column the column position of the dashboard ultrasonic element
+   * @param row the row position of the dashboard ultrasonic element
+   * @param width the width of the dashboard ultrasonic element
+   * @param height the height of the dashboard ultrasonic element
+   */
   public DashboardUltrasonicElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

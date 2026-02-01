@@ -23,7 +23,14 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard tab element that can contain other dashboard elements. */
 public class DashboardTabElement extends DashboardElementContainer {
+  /**
+   * Creates a new DashboardTabElement.
+   *
+   * @param title the title of the dashboard tab element
+   * @param elements the child elements of the dashboard tab element
+   */
   public DashboardTabElement(String title, DashboardElementBase[] elements) {
     super(title, -1, -1, -1, -1, elements);
   }

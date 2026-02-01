@@ -23,11 +23,24 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that displays match time information. */
 public class DashboardMatchTimeElement extends DashboardWidgetElement {
   private final TimeDisplayMode displayMode;
   private final int yellowTimeRemaining;
   private final int redTimeRemaining;
 
+  /**
+   * Creates a new DashboardMatchTimeElement.
+   *
+   * @param title the title of the dashboard match time element
+   * @param column the column position of the dashboard match time element
+   * @param row the row position of the dashboard match time element
+   * @param width the width of the dashboard match time element
+   * @param height the height of the dashboard match time element
+   * @param displayMode the display mode of the dashboard match time element
+   * @param yellowTimeRemaining the time remaining for the yellow warning
+   * @param redTimeRemaining the time remaining for the red warning
+   */
   public DashboardMatchTimeElement(
       String title,
       int column,
@@ -53,14 +66,17 @@ public class DashboardMatchTimeElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return the display mode of the dashboard match time element} */
   public TimeDisplayMode getDisplayMode() {
     return displayMode;
   }
 
+  /** {@return the time remaining for the yellow warning} */
   public int getYellowTimeRemaining() {
     return yellowTimeRemaining;
   }
 
+  /** {@return the time remaining for the red warning} */
   public int getRedTimeRemaining() {
     return redTimeRemaining;
   }

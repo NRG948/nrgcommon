@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that displays alerts. */
 public class DashboardAlertsElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardAlertsElement.
+   *
+   * @param title the title of the alert element
+   * @param column the column position of the element
+   * @param row the row position of the element
+   * @param width the width of the element
+   * @param height the height of the element
+   */
   public DashboardAlertsElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

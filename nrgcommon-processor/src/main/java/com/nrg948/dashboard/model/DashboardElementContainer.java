@@ -23,11 +23,22 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Abstract base class for dashboard elements that can contain other elements. */
 public abstract class DashboardElementContainer extends DashboardElementBase {
   private static final DashboardElementBase[] NO_ELEMENTS = new DashboardElementBase[0];
 
   private DashboardElementBase[] elements;
 
+  /**
+   * Creates a new DashboardElementContainer.
+   *
+   * @param title the title of the dashboard element container
+   * @param column the column position of the dashboard element container
+   * @param row the row position of the dashboard element container
+   * @param width the width of the dashboard element container
+   * @param height the height of the dashboard element container
+   * @param elements the elements contained in the dashboard element container
+   */
   public DashboardElementContainer(
       String title, int column, int row, int width, int height, DashboardElementBase[] elements) {
     super(title, column, row, width, height);
@@ -35,10 +46,24 @@ public abstract class DashboardElementContainer extends DashboardElementBase {
     setElements(elements);
   }
 
+  /**
+   * Creates a new DashboardElementContainer with no contained elements.
+   *
+   * @param title the title of the dashboard element container
+   * @param column the column position of the dashboard element container
+   * @param row the row position of the dashboard element container
+   * @param width the width of the dashboard element container
+   * @param height the height of the dashboard element container
+   */
   public DashboardElementContainer(String title, int column, int row, int width, int height) {
     this(title, column, row, width, height, NO_ELEMENTS);
   }
 
+  /**
+   * Sets the elements contained in the dashboard element container.
+   *
+   * @param elements the elements to set
+   */
   public void setElements(DashboardElementBase[] elements) {
     for (var element : elements) {
       element.setParent(this);
@@ -47,6 +72,7 @@ public abstract class DashboardElementContainer extends DashboardElementBase {
     this.elements = elements;
   }
 
+  /** {@return the elements contained in the dashboard element container} */
   public DashboardElementBase[] getElements() {
     return elements;
   }

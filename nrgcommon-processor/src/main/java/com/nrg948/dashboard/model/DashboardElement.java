@@ -23,9 +23,16 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents the root dashboard element containing all tabs. */
 public class DashboardElement extends DashboardElementContainer {
   private final int gridSize;
 
+  /**
+   * Creates a new DashboardElement.
+   *
+   * @param gridSize the grid size of the dashboard
+   * @param tabModels the tabs contained in the dashboard
+   */
   public DashboardElement(int gridSize, DashboardTabElement[] tabModels) {
     super("SmartDashboard", -1, -1, -1, -1, tabModels);
     this.gridSize = gridSize;
@@ -36,6 +43,7 @@ public class DashboardElement extends DashboardElementContainer {
     return "Root";
   }
 
+  /** {@return the grid size of the dashboard} */
   public int getGridSize() {
     return gridSize;
   }

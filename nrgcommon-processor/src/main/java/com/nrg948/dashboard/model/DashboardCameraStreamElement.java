@@ -23,12 +23,26 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that streams camera video. */
 public class DashboardCameraStreamElement extends DashboardWidgetElement {
   private final int compression;
   private final int fps;
   private final int resolutionWidth;
   private final int resolutionHeight;
 
+  /**
+   * Creates a new DashboardCameraStreamElement.
+   *
+   * @param title the title of the camera stream element
+   * @param column the column position of the element
+   * @param row the row position of the element
+   * @param width the width of the element
+   * @param height the height of the element
+   * @param compression the compression level of the camera stream
+   * @param fps the frames per second of the camera stream
+   * @param resolutionWidth the width of the camera stream resolution
+   * @param resolutionHeight the height of the camera stream resolution
+   */
   public DashboardCameraStreamElement(
       String title,
       int column,
@@ -56,18 +70,22 @@ public class DashboardCameraStreamElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return the compression level of the camera stream} */
   public int getCompression() {
     return compression;
   }
 
+  /** {@return the frames per second of the camera stream} */
   public int getFps() {
     return fps;
   }
 
+  /** {@return the width of the camera stream resolution} */
   public int getResolutionWidth() {
     return resolutionWidth;
   }
 
+  /** {@return the height of the camera stream resolution} */
   public int getResolutionHeight() {
     return resolutionHeight;
   }

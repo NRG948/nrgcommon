@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a toggle switch visualization. */
 public class DashboardToggleSwitchElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardToggleSwitchElement.
+   *
+   * @param title the title of the dashboard toggle switch element
+   * @param column the column position of the dashboard toggle switch element
+   * @param row the row position of the dashboard toggle switch element
+   * @param width the width of the dashboard toggle switch element
+   * @param height the height of the dashboard toggle switch element
+   */
   public DashboardToggleSwitchElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

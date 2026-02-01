@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a PID controller visualization. */
 public class DashboardPIDControllerElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardPIDControllerElement.
+   *
+   * @param title the title of the dashboard PID controller element
+   * @param column the column position of the dashboard PID controller element
+   * @param row the row position of the dashboard PID controller element
+   * @param width the width of the dashboard PID controller element
+   * @param height the height of the dashboard PID controller element
+   */
   public DashboardPIDControllerElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

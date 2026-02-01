@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a relay visualization. */
 public class DashboardRelayElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardRelayElement.
+   *
+   * @param title the title of the dashboard relay element
+   * @param column the column position of the dashboard relay element
+   * @param row the row position of the dashboard relay element
+   * @param width the width of the dashboard relay element
+   * @param height the height of the dashboard relay element
+   */
   public DashboardRelayElement(String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);
   }

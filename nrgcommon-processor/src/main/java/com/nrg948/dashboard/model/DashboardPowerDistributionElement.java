@@ -23,7 +23,17 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that provides a power distribution visualization. */
 public class DashboardPowerDistributionElement extends DashboardWidgetElement {
+  /**
+   * Creates a new DashboardPowerDistributionElement.
+   *
+   * @param title the title of the dashboard power distribution element
+   * @param column the column position of the dashboard power distribution element
+   * @param row the row position of the dashboard power distribution element
+   * @param width the width of the dashboard power distribution element
+   * @param height the height of the dashboard power distribution element
+   */
   public DashboardPowerDistributionElement(
       String title, int column, int row, int width, int height) {
     super(title, column, row, width, height);

@@ -23,6 +23,7 @@
 */
 package com.nrg948.dashboard.model;
 
+/** Represents a dashboard element that displays a number bar visualization. */
 public class DashboardNumberBarElement extends DashboardWidgetElement {
   private final double min;
   private final double max;
@@ -30,6 +31,20 @@ public class DashboardNumberBarElement extends DashboardWidgetElement {
   private final boolean inverted;
   private final Orientation orientation;
 
+  /**
+   * Creates a new DashboardNumberBarElement.
+   *
+   * @param title the title of the dashboard number bar element
+   * @param column the column position of the dashboard number bar element
+   * @param row the row position of the dashboard number bar element
+   * @param width the width of the dashboard number bar element
+   * @param height the height of the dashboard number bar element
+   * @param minValue the minimum value of the number bar
+   * @param maxValue the maximum value of the number bar
+   * @param divisions the number of divisions in the number bar
+   * @param inverted whether the number bar is inverted
+   * @param orientation the orientation of the number bar
+   */
   public DashboardNumberBarElement(
       String title,
       int column,
@@ -59,22 +74,27 @@ public class DashboardNumberBarElement extends DashboardWidgetElement {
     visitor.visit(this);
   }
 
+  /** {@return the minimum value of the number bar} */
   public double getMin() {
     return min;
   }
 
+  /** {@return the maximum value of the number bar} */
   public double getMax() {
     return max;
   }
 
+  /** {@return the number of divisions in the number bar} */
   public int getDivisions() {
     return divisions;
   }
 
+  /** {@return whether the number bar is inverted} */
   public boolean isInverted() {
     return inverted;
   }
 
+  /** {@return the orientation of the number bar} */
   public Orientation getOrientation() {
     return orientation;
   }
