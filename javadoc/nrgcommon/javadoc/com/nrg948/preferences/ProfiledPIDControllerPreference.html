@@ -154,31 +154,41 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <div class="block">Accepts a visitor that operates on this value.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atSetpoint()" class="member-name-link">atSetpoint</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atGoal()" class="member-name-link">atGoal</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether this controller is at its setpoint.</div>
+<div class="block">Returns whether this controller is within tolerance of its goal.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(double)" class="member-name-link">calculate</a><wbr>(double&nbsp;measurement)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atSetpoint()" class="member-name-link">atSetpoint</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Calculates the output of this controller for the given measurement.</div>
+<div class="block">Returns whether this controller is within tolerance of its setpoint.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(double,double)" class="member-name-link">calculate</a><wbr>(double&nbsp;measurement,
- double&nbsp;setpoint)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(double)" class="member-name-link">calculate</a><wbr>(double&nbsp;measurement)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calculates the output of this controller for the given measurement.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(double,double)" class="member-name-link">calculate</a><wbr>(double&nbsp;measurement,
+ double&nbsp;setpoint)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Calculates the output of this controller for the given measurement and setpoint.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disableContinuousInput()" class="member-name-link">disableContinuousInput</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disableContinuousInput()" class="member-name-link">disableContinuousInput</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Disables continuous input for this controller.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableContinuousInput(double,double)" class="member-name-link">enableContinuousInput</a><wbr>(double&nbsp;minimumInput,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableContinuousInput(double,double)" class="member-name-link">enableContinuousInput</a><wbr>(double&nbsp;minimumInput,
  double&nbsp;maximumInput)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enables continuous input for this controller.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAccumulatedError()" class="member-name-link">getAccumulatedError</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the accumulated error used in the integral calculation of this controller.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/trajectory/TrapezoidProfile.Constraints.html" title="class or interface in edu.wpi.first.math.trajectory" class="external-link">TrapezoidProfile.Constraints</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConstraints()" class="member-name-link">getConstraints</a>()</code></div>
@@ -320,13 +330,13 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;errorTolerance)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the tolerance for this controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double,double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;errorTolerance,
  double&nbsp;errorDerivativeTolerance)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the tolerance for this controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
 </div>
 </div>
 </div>
@@ -608,7 +618,7 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="setTolerance(double)">
 <h3>setTolerance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTolerance</span><wbr><span class="parameters">(double&nbsp;errorTolerance)</span></div>
-<div class="block">Sets the tolerance for this controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>errorTolerance</code> - The error which is considered acceptable.</dd>
@@ -620,7 +630,7 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <h3>setTolerance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTolerance</span><wbr><span class="parameters">(double&nbsp;errorTolerance,
  double&nbsp;errorDerivativeTolerance)</span></div>
-<div class="block">Sets the tolerance for this controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="#atSetpoint()"><code>atSetpoint()</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>errorTolerance</code> - The error which is considered acceptable.</dd>
@@ -665,10 +675,10 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <section class="detail" id="atSetpoint()">
 <h3>atSetpoint</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">atSetpoint</span>()</div>
-<div class="block">Returns whether this controller is at its setpoint.</div>
+<div class="block">Returns whether this controller is within tolerance of its setpoint.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>True if this controller is at its setpoint, false otherwise.</dd>
+<dd>True if this controller is within tolerance of its setpoint, false otherwise.</dd>
 </dl>
 </section>
 </li>
@@ -691,6 +701,17 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>goal</code> - The goal to set.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="atGoal()">
+<h3>atGoal</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">atGoal</span>()</div>
+<div class="block">Returns whether this controller is within tolerance of its goal.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Returns true if this controller is within tolerance of its goal, false otherwise.</dd>
 </dl>
 </section>
 </li>
@@ -765,6 +786,17 @@ implements <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wp
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the position error for this controller</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getAccumulatedError()">
+<h3>getAccumulatedError</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getAccumulatedError</span>()</div>
+<div class="block">Returns the accumulated error used in the integral calculation of this controller.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the accumulated error used in the integral calculation of this controller</dd>
 </dl>
 </section>
 </li>

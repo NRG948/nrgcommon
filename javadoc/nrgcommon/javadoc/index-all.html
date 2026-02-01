@@ -84,13 +84,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Applies this function to the given argument.</div>
 </dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#atGoal()" class="member-name-link">atGoal()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns whether this controller is within tolerance of its goal.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#atSetpoint()" class="member-name-link">atSetpoint()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
-<div class="block">Returns whether this controller is at its setpoint.</div>
+<div class="block">Returns whether this controller is within tolerance of its setpoint.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#atSetpoint()" class="member-name-link">atSetpoint()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
-<div class="block">Returns whether this controller is at its setpoint.</div>
+<div class="block">Returns whether this controller is within tolerance of its setpoint.</div>
 </dd>
 <dt><a href="com/nrg948/autonomous/Autonomous.html" class="type-name-link" title="class in com.nrg948.autonomous">Autonomous</a> - Class in <a href="com/nrg948/autonomous/package-summary.html">com.nrg948.autonomous</a></dt>
 <dd>
@@ -929,6 +933,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getAccumulatedError()" class="member-name-link">getAccumulatedError()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the current accumulated error used in the integral calculation of this controller.</div>
+</dd>
+<dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getAccumulatedError()" class="member-name-link">getAccumulatedError()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
+<dd>
+<div class="block">Returns the accumulated error used in the integral calculation of this controller.</div>
 </dd>
 <dt><a href="com/nrg948/autonomous/Autonomous.html#getChooser(java.lang.Object...)" class="member-name-link">getChooser(Object...)</a> - Static method in class com.nrg948.autonomous.<a href="com/nrg948/autonomous/Autonomous.html" title="class in com.nrg948.autonomous">Autonomous</a></dt>
 <dd>
@@ -2004,7 +2012,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setTolerance(double)" class="member-name-link">setTolerance(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
-<div class="block">Sets the tolerance for this controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#atSetpoint()"><code>ProfiledPIDControllerPreference.atSetpoint()</code></a>.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#setTolerance(double,double)" class="member-name-link">setTolerance(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
@@ -2012,7 +2020,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setTolerance(double,double)" class="member-name-link">setTolerance(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
-<div class="block">Sets the tolerance for this controller.</div>
+<div class="block">Sets the error which is considered tolerable for use with <a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#atSetpoint()"><code>ProfiledPIDControllerPreference.atSetpoint()</code></a>.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/DoublePreference.html#setValue(double)" class="member-name-link">setValue(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/DoublePreference.html" title="class in com.nrg948.preferences">DoublePreference</a></dt>
 <dd>
