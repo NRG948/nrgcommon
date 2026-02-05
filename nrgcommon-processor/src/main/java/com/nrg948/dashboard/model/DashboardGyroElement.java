@@ -37,7 +37,7 @@ public class DashboardGyroElement extends DashboardWidgetElement {
    * @param height the height of the dashboard gyro element
    * @param ccwPositive whether counter-clockwise rotation is considered positive
    */
-  DashboardGyroElement(
+  public DashboardGyroElement(
       String title, int column, int row, int width, int height, boolean ccwPositive) {
     super(title, column, row, width, height);
     this.ccwPositive = ccwPositive;
