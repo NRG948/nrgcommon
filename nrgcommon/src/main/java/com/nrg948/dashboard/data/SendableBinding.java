@@ -79,6 +79,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   private static final PubSubOption[] NO_OPTIONS = new PubSubOption[0];
 
   private final String topic;
+  private final ArrayList<Runnable> updaters = new ArrayList<>();
   private final ArrayList<AutoCloseable> closeables = new ArrayList<>();
 
   /**
@@ -97,7 +98,9 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
 
   @Override
   public void update() {
-    // Updates are handled by the individual bindings.
+    for (var updater : updaters) {
+      updater.run();
+    }
   }
 
   @Override
@@ -561,7 +564,9 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   }
 
   @Override
-  public void setUpdateTable(Runnable func) {}
+  public void setUpdateTable(Runnable func) {
+    updaters.add(func);
+  }
 
   @Override
   public Topic getTopic(String key) {
