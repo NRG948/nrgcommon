@@ -99,7 +99,11 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   @Override
   public void update() {
     for (var updater : updaters) {
-      updater.run();
+      try {
+        updater.run();
+      } catch (Exception e) {
+        // Ignore.
+      }
     }
   }
 
