@@ -31,10 +31,12 @@ import com.nrg948.preferences.PreferenceValue;
 import com.nrg948.preferences.PreferenceValueVisitor;
 import com.nrg948.preferences.ProfiledPIDControllerPreference;
 import com.nrg948.preferences.StringPreference;
+import java.util.ArrayList;
 
 /** A data binding that binds a preference value to the dashboard. */
 final class PreferenceValueBinding extends DashboardData implements PreferenceValueVisitor {
   private final String topic;
+  private final ArrayList<DashboardData> childBindings = new ArrayList<>();
 
   /**
    * Constructs an instance of this class.
@@ -50,32 +52,52 @@ final class PreferenceValueBinding extends DashboardData implements PreferenceVa
 
   @Override
   public void visit(StringPreference stringPreference) {
-    bindString(topic, stringPreference, StringPreference::getValue, StringPreference::setValue);
+    childBindings.add(
+        bindString(
+            topic, stringPreference, StringPreference::getValue, StringPreference::setValue));
   }
 
   @Override
   public void visit(BooleanPreference booleanPreference) {
-    bindBoolean(topic, booleanPreference, BooleanPreference::getValue, BooleanPreference::setValue);
+    childBindings.add(
+        bindBoolean(
+            topic, booleanPreference, BooleanPreference::getValue, BooleanPreference::setValue));
   }
 
   @Override
   public void visit(DoublePreference value) {
-    bindDouble(topic, value, DoublePreference::getValue, DoublePreference::setValue);
+    childBindings.add(
+        bindDouble(topic, value, DoublePreference::getValue, DoublePreference::setValue));
   }
 
   @Override
   public <E extends Enum<E>> void visit(EnumPreference<E> enumPreference) {
-    bindEnum(topic, enumPreference, EnumPreference::getValue, EnumPreference::setValue);
+    childBindings.add(
+        bindEnum(topic, enumPreference, EnumPreference::getValue, EnumPreference::setValue));
   }
 
   @Override
   public void visit(PIDControllerPreference pidControllerPreference) {
-    bindSendable(topic, pidControllerPreference);
+    childBindings.add(bindSendable(topic, pidControllerPreference));
   }
 
   @Override
   public void visit(ProfiledPIDControllerPreference pidControllerPreference) {
-    bindSendable(topic, pidControllerPreference);
+    childBindings.add(bindSendable(topic, pidControllerPreference));
+  }
+
+  @Override
+  public void enable() {
+    for (var childBinding : childBindings) {
+      childBinding.enable();
+    }
+  }
+
+  @Override
+  public void disable() {
+    for (var childBinding : childBindings) {
+      childBinding.disable();
+    }
   }
 
   @Override
