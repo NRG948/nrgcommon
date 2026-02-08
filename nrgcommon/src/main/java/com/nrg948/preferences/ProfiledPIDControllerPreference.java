@@ -397,10 +397,10 @@ public class ProfiledPIDControllerPreference extends PreferenceValue implements 
             MathSharedStore.reportError("IZone must be a non-negative number!", e.getStackTrace());
           }
         });
-    builder.addDoubleProperty("setpoint", () -> 0, null);
+    builder.addDoubleProperty("setpoint", () -> controller.getSetpoint().position, null);
     builder.addDoubleProperty("measurement", () -> 0, null);
-    builder.addDoubleProperty("error", () -> 0, null);
-    builder.addDoubleProperty("error derivative", () -> 0, null);
+    builder.addDoubleProperty("error", controller::getPositionError, null);
+    builder.addDoubleProperty("error derivative", controller::getVelocityError, null);
     builder.addDoubleProperty("previous error", () -> 0, null);
     builder.addDoubleProperty("total error", controller::getAccumulatedError, null);
   }
