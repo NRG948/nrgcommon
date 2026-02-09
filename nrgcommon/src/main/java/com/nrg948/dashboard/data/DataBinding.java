@@ -23,89 +23,102 @@
 */
 package com.nrg948.dashboard.data;
 
+import edu.wpi.first.networktables.PubSubOption;
 import edu.wpi.first.networktables.Publisher;
 import edu.wpi.first.networktables.Subscriber;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 /**
- * A data binding that binds a publisher and/or subscriber to dashboard data updates.
+ * An abstract base class for data bindings that bind a publisher and/or subscriber to dashboard
+ * data updates.
  *
  * @param <P> The type of the publisher.
  * @param <S> The type of the subscriber.
  */
-final class DataBinding<P extends Publisher, S extends Subscriber> extends DashboardData {
-  private final Optional<P> publisher;
-  private final Optional<Consumer<P>> publishUpdates;
-  private final Optional<S> subscriber;
-  private final Optional<Consumer<S>> updateSubscriber;
+abstract class DataBinding<P extends Publisher, S extends Subscriber> extends DashboardData {
+  private static final PubSubOption[] NO_OPTIONS = new PubSubOption[0];
+
+  private Optional<P> publisher = Optional.empty();
+  private Optional<S> subscriber = Optional.empty();
+  private int enabledCount = 0;
 
   /**
-   * Constructs a DataBinding with the given publisher, publishUpdates function, subscriber, and
-   * updateSubscriber function.
+   * Creates a new publisher for this binding.
    *
-   * @param publisher The publisher to bind.
-   * @param publishUpdates The function to update the publisher.
-   * @param subscriber The subscriber to bind.
-   * @param updateSubscriber The function to update the subscriber.
+   * @return An optional containing the new publisher, or empty if no publisher is needed for this
+   *     binding.
    */
-  public DataBinding(
-      Optional<P> publisher,
-      Optional<Consumer<P>> publishUpdates,
-      Optional<S> subscriber,
-      Optional<Consumer<S>> updateSubscriber) {
-    this.publisher = publisher;
-    this.publishUpdates = publishUpdates;
-    this.subscriber = subscriber;
-    this.updateSubscriber = updateSubscriber;
+  protected abstract Optional<P> newPublisher();
 
-    if (publisher.isPresent() != publishUpdates.isPresent()) {
-      throw new IllegalArgumentException(
-          "The publisher and publishUpdates arguments must both be present or both be absent.");
+  /**
+   * Creates a new subscriber for this binding with the given options.
+   *
+   * @param options The options to use when creating the subscriber.
+   * @return An optional containing the new subscriber, or empty if no subscriber is needed for this
+   *     binding.
+   */
+  protected abstract Optional<S> newSubscriber(PubSubOption... options);
+
+  /**
+   * Publishes updates to the dashboard using the given publisher.
+   *
+   * <p>This method will only be called if a publisher is present for this binding, and will be
+   * called on every update cycle while the binding is enabled.
+   *
+   * @param publisher The publisher to use for publishing updates.
+   */
+  protected abstract void publishUpdates(P publisher);
+
+  /**
+   * Updates the subscriber with the latest data from the dashboard.
+   *
+   * <p>This method will only be called if a subscriber is present for this binding, and will be
+   * called on every update cycle while the binding is enabled.
+   *
+   * @param subscriber The subscriber to update.
+   */
+  protected abstract void updateSubscriber(S subscriber);
+
+  @Override
+  public void enable() {
+    if (enabledCount++ > 0) {
+      return;
     }
 
-    if (subscriber.isPresent() != updateSubscriber.isPresent()) {
-      throw new IllegalArgumentException(
-          "The subscriber and readUpdates arguments must both be present or both be absent.");
+    publisher = newPublisher();
+
+    var options =
+        publisher
+            .map(p -> new PubSubOption[] {PubSubOption.excludePublisher(p)})
+            .orElse(NO_OPTIONS);
+
+    subscriber = newSubscriber(options);
+  }
+
+  @Override
+  public void disable() {
+    if (--enabledCount <= 0) {
+      if (enabledCount < 0) {
+        throw new IllegalStateException(
+            getClass().getSimpleName() + " disabled more times than it was enabled");
+      }
+      return;
     }
-  }
 
-  /**
-   * Constructs a DataBinding with only a publisher.
-   *
-   * @param publisher The publisher to bind.
-   * @param publishUpdates The function to update the publisher.
-   */
-  public DataBinding(P publisher, Consumer<P> publishUpdates) {
-    this(Optional.of(publisher), Optional.of(publishUpdates), Optional.empty(), Optional.empty());
-  }
-
-  /**
-   * Constructs a DataBinding with both a publisher and a subscriber.
-   *
-   * @param publisher The publisher to bind.
-   * @param publishUpdates The function to update the publisher.
-   * @param subscriber The subscriber to bind.
-   * @param updateSubscriber The function to update the subscriber.
-   */
-  public DataBinding(
-      P publisher, Consumer<P> publishUpdates, S subscriber, Consumer<S> updateSubscriber) {
-    this(
-        Optional.of(publisher),
-        Optional.of(publishUpdates),
-        Optional.of(subscriber),
-        Optional.of(updateSubscriber));
+    close();
   }
 
   @Override
   protected void update() {
-    subscriber.ifPresent(sub -> updateSubscriber.get().accept(sub));
-    publisher.ifPresent(pub -> publishUpdates.get().accept(pub));
+    subscriber.ifPresent(this::updateSubscriber);
+    publisher.ifPresent(this::publishUpdates);
   }
 
   @Override
   public void close() {
     publisher.ifPresent(Publisher::close);
     subscriber.ifPresent(Subscriber::close);
+    publisher = Optional.empty();
+    subscriber = Optional.empty();
   }
 }
