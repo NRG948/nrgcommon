@@ -97,12 +97,13 @@ abstract class DataBinding<P extends Publisher, S extends Subscriber> extends Da
 
   @Override
   public void disable() {
-    if (--enabledCount <= 0) {
-      if (enabledCount < 0) {
-        throw new IllegalStateException(
-            getClass().getSimpleName() + " disabled more times than it was enabled");
-      }
+    if (--enabledCount > 0) {
       return;
+    }
+
+    if (enabledCount < 0) {
+      throw new IllegalStateException(
+          getClass().getSimpleName() + " disabled more times than it was enabled");
     }
 
     close();
