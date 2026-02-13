@@ -51,9 +51,8 @@ import java.util.function.LongSupplier;
 import java.util.function.Supplier;
 
 /** A binding that binds a {@link Sendable} to dashboard data updates. */
-final class SendableBinding extends DashboardData implements NTSendableBuilder {
+final class SendableBinding extends ContainerBinding implements NTSendableBuilder {
   private final String topic;
-  private final ArrayList<DashboardData> childBindings = new ArrayList<>();
   private final ArrayList<Runnable> updaters = new ArrayList<>();
   private final ArrayList<AutoCloseable> closeables = new ArrayList<>();
 
@@ -72,21 +71,8 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   }
 
   @Override
-  public void enable() {
-    for (var childBinding : childBindings) {
-      childBinding.enable();
-    }
-  }
-
-  @Override
-  public void disable() {
-    for (var childBinding : childBindings) {
-      childBinding.disable();
-    }
-  }
-
-  @Override
   public void update() {
+    super.update();
     for (var updater : updaters) {
       try {
         updater.run();
@@ -98,6 +84,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
 
   @Override
   public void close() {
+    super.close();
     for (var closeable : closeables) {
       try {
         closeable.close();
@@ -126,7 +113,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   public void addBooleanProperty(String key, BooleanSupplier getter, BooleanConsumer setter) {
     BooleanTopic booleanTopic = TABLE.getBooleanTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new BooleanBinding(booleanTopic, getter, setter)));
+    addChild(new BooleanBinding(booleanTopic, getter, setter));
   }
 
   @Override
@@ -138,7 +125,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   public void addIntegerProperty(String key, LongSupplier getter, LongConsumer setter) {
     IntegerTopic integerTopic = TABLE.getIntegerTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new IntegerBinding(integerTopic, getter, setter)));
+    addChild(new IntegerBinding(integerTopic, getter, setter));
   }
 
   @Override
@@ -150,7 +137,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   public void addFloatProperty(String key, FloatSupplier getter, FloatConsumer setter) {
     FloatTopic floatTopic = TABLE.getFloatTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new FloatBinding(floatTopic, getter, setter)));
+    addChild(new FloatBinding(floatTopic, getter, setter));
   }
 
   @Override
@@ -162,7 +149,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   public void addDoubleProperty(String key, DoubleSupplier getter, DoubleConsumer setter) {
     DoubleTopic doubleTopic = TABLE.getDoubleTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new DoubleBinding(doubleTopic, getter, setter)));
+    addChild(new DoubleBinding(doubleTopic, getter, setter));
   }
 
   @Override
@@ -174,7 +161,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
   public void addStringProperty(String key, Supplier<String> getter, Consumer<String> setter) {
     StringTopic stringTopic = TABLE.getStringTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new StringBinding(stringTopic, getter, setter)));
+    addChild(new StringBinding(stringTopic, getter, setter));
   }
 
   @Override
@@ -187,7 +174,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
       String key, Supplier<boolean[]> getter, Consumer<boolean[]> setter) {
     BooleanArrayTopic booleanTopic = TABLE.getBooleanArrayTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new BooleanArrayBinding(booleanTopic, getter, setter)));
+    addChild(new BooleanArrayBinding(booleanTopic, getter, setter));
   }
 
   @Override
@@ -200,7 +187,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
       String key, Supplier<long[]> getter, Consumer<long[]> setter) {
     IntegerArrayTopic integerTopic = TABLE.getIntegerArrayTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new IntegerArrayBinding(integerTopic, getter, setter)));
+    addChild(new IntegerArrayBinding(integerTopic, getter, setter));
   }
 
   @Override
@@ -213,7 +200,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
       String key, Supplier<float[]> getter, Consumer<float[]> setter) {
     FloatArrayTopic floatTopic = TABLE.getFloatArrayTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new FloatArrayBinding(floatTopic, getter, setter)));
+    addChild(new FloatArrayBinding(floatTopic, getter, setter));
   }
 
   @Override
@@ -226,7 +213,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
       String key, Supplier<double[]> getter, Consumer<double[]> setter) {
     DoubleArrayTopic doubleTopic = TABLE.getDoubleArrayTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new DoubleArrayBinding(doubleTopic, getter, setter)));
+    addChild(new DoubleArrayBinding(doubleTopic, getter, setter));
   }
 
   @Override
@@ -239,7 +226,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
       String key, Supplier<String[]> getter, Consumer<String[]> setter) {
     StringArrayTopic stringTopic = TABLE.getStringArrayTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new StringArrayBinding(stringTopic, getter, setter)));
+    addChild(new StringArrayBinding(stringTopic, getter, setter));
   }
 
   @Override
@@ -252,7 +239,7 @@ final class SendableBinding extends DashboardData implements NTSendableBuilder {
       String key, String typeString, Supplier<byte[]> getter, Consumer<byte[]> setter) {
     RawTopic rawTopic = TABLE.getRawTopic(String.join("/", topic, key));
 
-    childBindings.add(bind(new RawBinding(rawTopic, typeString, getter, setter)));
+    addChild(new RawBinding(rawTopic, typeString, getter, setter));
   }
 
   @Override
