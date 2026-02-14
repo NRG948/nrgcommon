@@ -76,6 +76,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Performs this operation on the given arguments.</div>
 </dd>
+<dt><a href="com/nrg948/dashboard/data/LayoutBinding.html#addChild(com.nrg948.dashboard.data.DashboardData)" class="member-name-link">addChild(DashboardData)</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/LayoutBinding.html" title="class in com.nrg948.dashboard.data">LayoutBinding</a></dt>
+<dd>
+<div class="block">Adds a child binding to this container.</div>
+</dd>
 <dt><a href="com/nrg948/util/function/ToBooleanFunction.html#applyAsBoolean(T)" class="member-name-link">applyAsBoolean(T)</a> - Method in interface com.nrg948.util.function.<a href="com/nrg948/util/function/ToBooleanFunction.html" title="interface in com.nrg948.util.function">ToBooleanFunction</a></dt>
 <dd>
 <div class="block">Applies this function to the given argument.</div>
@@ -116,10 +120,6 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
-<dt><a href="com/nrg948/dashboard/data/DashboardData.html#bind(com.nrg948.dashboard.data.DashboardData)" class="member-name-link">bind(DashboardData)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
-<dd>
-<div class="block">Bind a DashboardData instance to be updated.</div>
-</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#bindBoolean(java.lang.String,T,com.nrg948.util.function.ToBooleanFunction)" class="member-name-link">bindBoolean(String, T, ToBooleanFunction&lt;T&gt;)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
 <div class="block">Bind a boolean value to be published to a dashboard topic.</div>
@@ -268,9 +268,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Bind a integer array to a dashboard topic that both publishes and subscribes to updates.</div>
 </dd>
-<dt><a href="com/nrg948/dashboard/data/DashboardData.html#bindLayout(java.lang.String,T,java.util.function.BiConsumer)" class="member-name-link">bindLayout(String, T, BiConsumer&lt;String, T&gt;)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
+<dt><a href="com/nrg948/dashboard/data/DashboardData.html#bindLayout(java.lang.String,T,java.util.function.BiFunction)" class="member-name-link">bindLayout(String, T, BiFunction&lt;String, T, DashboardData[]&gt;)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
 <div class="block">Bind the data in a layout container described by a layout definition.</div>
+</dd>
+<dt><a href="com/nrg948/dashboard/data/DashboardData.html#bindOptionalTab(java.lang.String,java.util.Optional,java.util.function.BiFunction)" class="member-name-link">bindOptionalTab(String, Optional&lt;T&gt;, BiFunction&lt;String, T, DashboardData[]&gt;)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
+<dd>
+<div class="block">Bind the data in an optional tab container described by a tab definition, only if the container
+ is present.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#bindPreferenceValue(java.lang.String,com.nrg948.preferences.PreferenceValue)" class="member-name-link">bindPreferenceValue(String, PreferenceValue)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
@@ -396,6 +401,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Bind a string array to a dashboard topic that both publishes and subscribes to updates.</div>
 </dd>
+<dt><a href="com/nrg948/dashboard/data/DashboardData.html#bindTab(java.lang.String,T,java.util.function.BiFunction)" class="member-name-link">bindTab(String, T, BiFunction&lt;String, T, DashboardData[]&gt;)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
+<dd>
+<div class="block">Bind the data in a tab container described by a tab definition.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#bindVideoSource(java.lang.String,edu.wpi.first.cscore.VideoSource)" class="member-name-link">bindVideoSource(String, VideoSource)</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
 <div class="block">Bind a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/cscore/VideoSource.html" title="class or interface in edu.wpi.first.cscore" class="external-link"><code>VideoSource</code></a> to a dashboard topic.</div>
@@ -451,6 +460,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">A checkmark icon is displayed for true values.</div>
 </dd>
+<dt><a href="com/nrg948/dashboard/data/LayoutBinding.html#close()" class="member-name-link">close()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/LayoutBinding.html" title="class in com.nrg948.dashboard.data">LayoutBinding</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#close()" class="member-name-link">close()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardGraph.html#color()" class="member-name-link">color()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardGraph.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardGraph</a></dt>
@@ -802,6 +813,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The Destination: Deep Space game field.</div>
 </dd>
+<dt><a href="com/nrg948/dashboard/data/LayoutBinding.html#disable()" class="member-name-link">disable()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/LayoutBinding.html" title="class in com.nrg948.dashboard.data">LayoutBinding</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#disable()" class="member-name-link">disable()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
 <div class="block">Disables the dashboard data binding.</div>
@@ -845,6 +858,8 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
+<dt><a href="com/nrg948/dashboard/data/LayoutBinding.html#enable()" class="member-name-link">enable()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/LayoutBinding.html" title="class in com.nrg948.dashboard.data">LayoutBinding</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#enable()" class="member-name-link">enable()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
 <div class="block">Enables the dashboard data binding.</div>
@@ -856,6 +871,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#enableContinuousInput(double,double)" class="member-name-link">enableContinuousInput(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Enables continuous input for this controller.</div>
+</dd>
+<dt><a href="com/nrg948/dashboard/data/DashboardData.html#enableTabs()" class="member-name-link">enableTabs()</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
+<dd>
+<div class="block">Enable all bound tabs.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html#endAngle()" class="member-name-link">endAngle()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardRadialGauge</a></dt>
 <dd>
@@ -1452,6 +1471,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/dashboard/model/LabelPosition.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">LabelPosition</a> - Enum Class in <a href="com/nrg948/dashboard/model/package-summary.html">com.nrg948.dashboard.model</a></dt>
 <dd>
 <div class="block">Enum representing label positions for dashboard widgets in a layout.</div>
+</dd>
+<dt><a href="com/nrg948/dashboard/data/LayoutBinding.html" class="type-name-link" title="class in com.nrg948.dashboard.data">LayoutBinding</a> - Class in <a href="com/nrg948/dashboard/data/package-summary.html">com.nrg948.dashboard.data</a></dt>
+<dd>
+<div class="block">A class containing the child bindings for a layout.</div>
+</dd>
+<dt><a href="com/nrg948/dashboard/data/LayoutBinding.html#%3Cinit%3E(com.nrg948.dashboard.data.DashboardData...)" class="member-name-link">LayoutBinding(DashboardData...)</a> - Constructor for class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/LayoutBinding.html" title="class in com.nrg948.dashboard.data">LayoutBinding</a></dt>
+<dd>
+<div class="block">Constructs a LayoutBinding with the given child bindings.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/model/LayoutType.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">LayoutType</a> - Enum Class in <a href="com/nrg948/dashboard/model/package-summary.html">com.nrg948.dashboard.model</a></dt>
 <dd>
@@ -2109,6 +2136,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
+<dt><a href="com/nrg948/dashboard/data/TabBinding.html" class="type-name-link" title="class in com.nrg948.dashboard.data">TabBinding</a> - Class in <a href="com/nrg948/dashboard/data/package-summary.html">com.nrg948.dashboard.data</a></dt>
+<dd>
+<div class="block">A class containing the child bindings for a tab.</div>
+</dd>
+<dt><a href="com/nrg948/dashboard/data/TabBinding.html#%3Cinit%3E(com.nrg948.dashboard.data.DashboardData...)" class="member-name-link">TabBinding(DashboardData...)</a> - Constructor for class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a></dt>
+<dd>
+<div class="block">Constructs a TabBinding with the given child bindings.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/model/TimeDisplayMode.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">TimeDisplayMode</a> - Enum Class in <a href="com/nrg948/dashboard/model/package-summary.html">com.nrg948.dashboard.model</a></dt>
 <dd>
 <div class="block">Enum representing time display modes for dashboard widgets.</div>
@@ -2330,14 +2365,16 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Unboxes the given boxed type to its corresponding primitive type.</div>
 </dd>
+<dt><a href="com/nrg948/dashboard/data/LayoutBinding.html#update()" class="member-name-link">update()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/LayoutBinding.html" title="class in com.nrg948.dashboard.data">LayoutBinding</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#update()" class="member-name-link">update()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
 <div class="block">Receives updates from the dashboard to update the bound data and/or publishes updates to the
  dashboard received from the bound data.</div>
 </dd>
-<dt><a href="com/nrg948/dashboard/data/DashboardData.html#updateAll()" class="member-name-link">updateAll()</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
+<dt><a href="com/nrg948/dashboard/data/DashboardData.html#updateTabs()" class="member-name-link">updateTabs()</a> - Static method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
-<div class="block">Update all bound dashboard data.</div>
+<div class="block">Update all bound tabs.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
