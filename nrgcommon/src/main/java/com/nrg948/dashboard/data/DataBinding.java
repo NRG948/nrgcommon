@@ -97,21 +97,14 @@ abstract class DataBinding<P extends Publisher, S extends Subscriber> extends Da
 
   @Override
   public void disable() {
-    int newCount = enabledCount - 1;
-
-    if (newCount > 0) {
-      enabledCount = newCount;
-      return;
-    }
-
-    if (newCount < 0) {
+    if (enabledCount <= 0) {
       throw new IllegalStateException(
           getClass().getSimpleName() + " disabled more times than it was enabled");
     }
 
-    // newCount == 0: no more active enables, close resources and update count.
-    enabledCount = 0;
-    close();
+    if (--enabledCount == 0) {
+      close(); // Close resources if there are no more active enables.
+    }
   }
 
   @Override
