@@ -69,7 +69,7 @@ import java.util.function.ToLongFunction;
 /** Abstract class representing dashboard data bindings. */
 public abstract class DashboardData implements AutoCloseable {
   /** An empty array of DashboardData, used when no data bindings are present. */
-  static final DashboardData[] NO_DATA = new DashboardData[] {};
+  public static final DashboardData[] NO_DATA = new DashboardData[] {};
 
   /** A no-op DashboardData instance, used when no binding is required. */
   static final DashboardData NO_BINDING =
