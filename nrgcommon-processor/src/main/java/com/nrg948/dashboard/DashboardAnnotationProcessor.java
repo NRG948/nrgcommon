@@ -255,20 +255,25 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         writer.write("    }\n\n");
 
         // Write bind method.
-        writer.write("    public static void bind(String parentKey, ");
+        writer.write(
+            "    public static com.nrg948.dashboard.data.DashboardData[] bind(String parentKey, ");
         writer.write(containerName);
         writer.write(" container) {\n");
+        writer.write("        return new com.nrg948.dashboard.data.DashboardData[] {\n");
         for (var element : annotatedElements) {
           writeDataBinding(
               writer, element.element, element.annotation, element.annotationTypeElement);
         }
+        writer.write("        };\n");
         writer.write("    }\n\n");
 
         // Write bindOptional method.
-        writer.write("    public static void bindOptional(String parentKey, java.util.Optional<");
+        writer.write(
+            "    public static com.nrg948.dashboard.data.DashboardData[] bindOptional(String parentKey, java.util.Optional<");
         writer.write(containerName);
         writer.write("> container) {\n");
-        writer.write("        container.ifPresent(c -> bind(parentKey, c));\n");
+        writer.write(
+            "        return container.map(c -> bind(parentKey, c)).orElse(com.nrg948.dashboard.data.DashboardData.NO_DATA);\n");
         writer.write("    }\n\n");
 
         // Write class closing brace.
@@ -428,14 +433,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           var tabType = getValueType(tabElement.element);
           var tabElementTypeName = getFullyQualifiedDataBindingFileName(tabType);
 
-          writer.write("        ");
-          writer.write(tabElementTypeName);
-          writer.write(".bind");
-
+          writer.write("        com.nrg948.dashboard.data.DashboardData.bind");
           if (isOptional(tabType)) {
             writer.write("Optional");
           }
-          writer.write("(\"");
+          writer.write("Tab(\"");
           writer.write(getElementTitle(tabElement.element));
           if (isStatic(tabElement.element)) {
             writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
@@ -443,7 +445,10 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
             writer.write("\", com.nrg948.util.ReflectionUtil.get(");
           }
           writer.write(tabElement.element.getSimpleName().toString());
-          writer.write("Handle, container));\n");
+          writer.write("Handle, container), ");
+          writer.write(tabElementTypeName);
+          writer.write("::bind");
+          writer.write(");\n");
         }
         writer.write("    }\n");
         writer.write("}\n");
@@ -811,7 +816,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     var isStatic = isStatic(element);
     var isFinal = isFinal(element);
 
-    writer.write("        com.nrg948.dashboard.data.DashboardData.bind");
+    writer.write("            com.nrg948.dashboard.data.DashboardData.bind");
 
     var valueType = getValueType(element);
 
@@ -862,7 +867,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 writer.write("Handle)");
               }
 
-              writer.write(");\n");
+              writer.write("),\n");
             } catch (IOException e) {
               throw new RuntimeException(e);
             }
@@ -902,7 +907,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                   writer.write("Handle)");
                 }
 
-                writer.write(");\n");
+                writer.write("),\n");
               } else if (isEnum(declaredType)) {
                 var typeQualifiedName = declaredType.toString();
 
@@ -937,7 +942,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                   writer.write(".class)");
                 }
 
-                writer.write(");\n");
+                writer.write("),\n");
               } else if (isVideoSource(declaredType)) {
                 writer.write("VideoSource(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
@@ -945,11 +950,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 if (isStatic) {
                   writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
                   writer.write(element.getSimpleName().toString());
-                  writer.write("Handle));\n");
+                  writer.write("Handle)),\n");
                 } else {
                   writer.write("\", com.nrg948.util.ReflectionUtil.get(");
                   writer.write(element.getSimpleName().toString());
-                  writer.write("Handle, container));\n");
+                  writer.write("Handle, container)),\n");
                 }
               } else if (isPreferenceValue(declaredType)) {
                 writer.write("PreferenceValue(parentKey + \"/");
@@ -958,11 +963,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 if (isStatic) {
                   writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
                   writer.write(element.getSimpleName().toString());
-                  writer.write("Handle));\n");
+                  writer.write("Handle)),\n");
                 } else {
                   writer.write("\", com.nrg948.util.ReflectionUtil.get(");
                   writer.write(element.getSimpleName().toString());
-                  writer.write("Handle, container));\n");
+                  writer.write("Handle, container)),\n");
                 }
               } else if (isSendable(declaredType)) {
                 writer.write("Sendable(parentKey + \"/");
@@ -971,11 +976,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 if (isStatic) {
                   writer.write("\", com.nrg948.util.ReflectionUtil.getStatic(");
                   writer.write(element.getSimpleName().toString());
-                  writer.write("Handle));\n");
+                  writer.write("Handle)),\n");
                 } else {
                   writer.write("\", com.nrg948.util.ReflectionUtil.get(");
                   writer.write(element.getSimpleName().toString());
-                  writer.write("Handle, container));\n");
+                  writer.write("Handle, container)),\n");
                 }
               } else if (hasLayoutDefinition(declaredType)) {
                 writer.write("Layout(parentKey + \"/");
@@ -992,7 +997,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 }
 
                 writer.write(getFullyQualifiedDataBindingFileName(declaredType));
-                writer.write("::bind);\n");
+                writer.write("::bind),\n");
               } else {
                 processingEnv
                     .getMessager()
