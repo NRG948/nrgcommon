@@ -29,7 +29,7 @@ import com.nrg948.util.function.ObjBooleanConsumer;
 import com.nrg948.util.function.ObjFloatConsumer;
 import com.nrg948.util.function.ToBooleanFunction;
 import com.nrg948.util.function.ToFloatFunction;
-import edu.wpi.first.cscore.VideoSource;
+import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.networktables.BooleanArrayTopic;
 import edu.wpi.first.networktables.BooleanTopic;
 import edu.wpi.first.networktables.DoubleArrayTopic;
@@ -48,7 +48,6 @@ import edu.wpi.first.util.function.FloatConsumer;
 import edu.wpi.first.util.function.FloatSupplier;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.shuffleboard.SendableCameraWrapper;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -1178,14 +1177,14 @@ public abstract class DashboardData implements AutoCloseable {
   }
 
   /**
-   * Bind a {@link VideoSource} to a dashboard topic.
+   * Bind a {@link HttpCamera} to a dashboard topic.
    *
    * @param topic The dashboard topic to bind to.
-   * @param videoSource The VideoSource to bind.
+   * @param camera The HttpCamera to bind.
    * @return The bound DashboardData instance.
    */
-  public static DashboardData bindVideoSource(String topic, VideoSource videoSource) {
-    return bindSendable(topic, SendableCameraWrapper.wrap(videoSource));
+  public static DashboardData bindHttpCamera(String topic, HttpCamera camera) {
+    return new HttpCameraBinding(topic, camera);
   }
 
   /**
