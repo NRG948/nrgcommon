@@ -38,6 +38,14 @@ final class HttpCameraBinding extends DashboardData {
    * @param camera the camera to bind
    */
   HttpCameraBinding(String topic, HttpCamera camera) {
+    if (topic == null || topic.isEmpty()) {
+      throw new IllegalArgumentException("Topic cannot be null or empty");
+    }
+
+    if (camera == null) {
+      throw new IllegalArgumentException("Camera cannot be null");
+    }
+
     this.topic = topic;
     this.camera = camera;
   }
