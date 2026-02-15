@@ -39,7 +39,7 @@ import com.nrg948.dashboard.model.DataBinding;
 import com.nrg948.preferences.PreferenceValue;
 import com.nrg948.processor.ProcessorUtil;
 import com.nrg948.util.ReflectionUtil;
-import edu.wpi.first.cscore.VideoSource;
+import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.util.sendable.Sendable;
 import java.io.IOException;
 import java.io.Writer;
@@ -94,7 +94,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
   private static final String OPTIONAL_QUALIFIED_NAME = "java.util.Optional";
   private static final String STRING_QUALIFIED_NAME = "java.lang.String";
-  private static final String VIDEO_SOURCE_QUALIFIED_NAME = "edu.wpi.first.cscore.VideoSource";
+  private static final String HTTP_CAMERA_QUALIFIED_NAME = "edu.wpi.first.cscore.HttpCamera";
   private static final String SENDABLE_QUALIFIED_NAME = "edu.wpi.first.util.sendable.Sendable";
   private static final String PREFERENCE_VALUE_QUALIFIED_NAME =
       "com.nrg948.preferences.PreferenceValue";
@@ -116,7 +116,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
   private TypeMirror optionalType;
   private TypeMirror stringType;
-  private TypeMirror videoSourceType;
+  private TypeMirror httpCameraType;
   private TypeMirror sendableType;
   private TypeMirror preferenceValueType;
 
@@ -136,7 +136,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
     optionalType = typeUtils.erasure(elementUtils.getTypeElement(OPTIONAL_QUALIFIED_NAME).asType());
     stringType = elementUtils.getTypeElement(STRING_QUALIFIED_NAME).asType();
-    videoSourceType = elementUtils.getTypeElement(VIDEO_SOURCE_QUALIFIED_NAME).asType();
+    httpCameraType = elementUtils.getTypeElement(HTTP_CAMERA_QUALIFIED_NAME).asType();
     sendableType = elementUtils.getTypeElement(SENDABLE_QUALIFIED_NAME).asType();
     preferenceValueType = elementUtils.getTypeElement(PREFERENCE_VALUE_QUALIFIED_NAME).asType();
 
@@ -943,8 +943,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 }
 
                 writer.write("),\n");
-              } else if (isVideoSource(declaredType)) {
-                writer.write("VideoSource(parentKey + \"/");
+              } else if (isHttpCamera(declaredType)) {
+                writer.write("HttpCamera(parentKey + \"/");
                 writer.write(getElementTitle(element, annotation));
 
                 if (isStatic) {
@@ -1349,13 +1349,13 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   }
 
   /**
-   * Determines if a declared type is a {@link VideoSource}.
+   * Determines if a declared type is a {@link HttpCamera}.
    *
    * @param type The declared type to check.
-   * @return True if the declared type is a type of VideoSource, false otherwise.
+   * @return True if the declared type is a type of HttpCamera, false otherwise.
    */
-  private boolean isVideoSource(DeclaredType type) {
-    return processingEnv.getTypeUtils().isAssignable(type, videoSourceType);
+  private boolean isHttpCamera(DeclaredType type) {
+    return processingEnv.getTypeUtils().isAssignable(type, httpCameraType);
   }
 
   /**
