@@ -96,12 +96,12 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void setSmartDashboardType(String type) {
-    publishConstString(String.join("/", topic, ".type"), type);
+    publishConstString(".type", type);
   }
 
   @Override
   public void setActuator(boolean value) {
-    publishConstBoolean(String.join("/", topic, ".actuator"), value);
+    publishConstBoolean(".actuator", value);
   }
 
   @Override
