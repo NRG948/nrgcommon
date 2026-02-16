@@ -266,6 +266,21 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Bind a constant integer array to a dashboard topic.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#bindConstantRaw(java.lang.String,java.lang.String,java.util.function.Supplier)" class="member-name-link">bindConstantRaw</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;topic,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;typeString,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;byte[]&gt;&nbsp;getter)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Bind a constant static raw value to a dashboard topic.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#bindConstantRaw(java.lang.String,java.lang.String,T,java.util.function.Function)" class="member-name-link">bindConstantRaw</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;topic,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;typeString,
+ T&nbsp;container,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr>byte[]&gt;&nbsp;getter)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Bind a constant raw value to a dashboard topic.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#bindConstantString(java.lang.String,java.util.function.Supplier)" class="member-name-link">bindConstantString</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;topic,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;getter)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -1834,6 +1849,44 @@ E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/
 <dd><code>topic</code> - The dashboard topic to bind to.</dd>
 <dd><code>typeString</code> - The type string for the raw value.</dd>
 <dd><code>getter</code> - The function to retrieve the raw value.</dd>
+<dt>Returns:</dt>
+<dd>The bound DashboardData instance.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="bindConstantRaw(java.lang.String,java.lang.String,T,java.util.function.Function)">
+<h3 id="bindConstantRaw(java.lang.String,java.lang.String,java.lang.Object,java.util.function.Function)">bindConstantRaw</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></span>&nbsp;<span class="element-name">bindConstantRaw</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;topic,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;typeString,
+ T&nbsp;container,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr>byte[]&gt;&nbsp;getter)</span></div>
+<div class="block">Bind a constant raw value to a dashboard topic.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - The type of the container object.</dd>
+<dt>Parameters:</dt>
+<dd><code>topic</code> - The dashboard topic to bind to.</dd>
+<dd><code>typeString</code> - The type string for the raw value.</dd>
+<dd><code>container</code> - The object containing the raw value.</dd>
+<dd><code>getter</code> - The function to retrieve the raw value from the container.</dd>
+<dt>Returns:</dt>
+<dd>The bound DashboardData instance.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="bindConstantRaw(java.lang.String,java.lang.String,java.util.function.Supplier)">
+<h3>bindConstantRaw</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></span>&nbsp;<span class="element-name">bindConstantRaw</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;topic,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;typeString,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;byte[]&gt;&nbsp;getter)</span></div>
+<div class="block">Bind a constant static raw value to a dashboard topic.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>topic</code> - The dashboard topic to bind to.</dd>
+<dd><code>typeString</code> - The type string for the raw value.</dd>
+<dd><code>getter</code> - The function to retrieve the constant raw value.</dd>
 <dt>Returns:</dt>
 <dd>The bound DashboardData instance.</dd>
 </dl>
