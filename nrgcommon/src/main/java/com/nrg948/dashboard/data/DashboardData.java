@@ -70,24 +70,6 @@ public abstract class DashboardData implements AutoCloseable {
   /** An empty array of DashboardData, used when no data bindings are present. */
   public static final DashboardData[] NO_DATA = new DashboardData[] {};
 
-  /** A no-op DashboardData instance, used when no binding is required. */
-  static final DashboardData NO_BINDING =
-      new DashboardData() {
-
-        @Override
-        public void enable() {}
-
-        @Override
-        public void disable() {}
-
-        @Override
-        protected void update() {}
-
-        @Override
-        public void close() {}
-        ;
-      };
-
   static final boolean[] EMPTY_BOOLEAN_ARRAY = new boolean[] {};
   static final long[] EMPTY_INTEGER_ARRAY = new long[] {};
   static final float[] EMPTY_FLOAT_ARRAY = new float[] {};
@@ -154,9 +136,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantBoolean(
       String topic, T container, ToBooleanFunction<T> getter) {
-    TABLE.getEntry(topic).setBoolean(getter.applyAsBoolean(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.applyAsBoolean(container));
   }
 
   /**
@@ -167,9 +147,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantBoolean(String topic, BooleanSupplier getter) {
-    TABLE.getEntry(topic).setBoolean(getter.getAsBoolean());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.getAsBoolean());
   }
 
   /**
@@ -247,9 +225,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantBooleanArray(
       String topic, T container, Function<T, boolean[]> getter) {
-    TABLE.getEntry(topic).setBooleanArray(getter.apply(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.apply(container));
   }
 
   /**
@@ -260,9 +236,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantBooleanArray(String topic, Supplier<boolean[]> getter) {
-    TABLE.getEntry(topic).setBooleanArray(getter.get());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.get());
   }
 
   /**
@@ -339,9 +313,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantFloat(
       String topic, T container, ToFloatFunction<T> getter) {
-    TABLE.getEntry(topic).setFloat(getter.applyAsFloat(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.applyAsFloat(container));
   }
 
   /**
@@ -352,9 +324,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantFloat(String topic, FloatSupplier getter) {
-    TABLE.getEntry(topic).setFloat(getter.getAsFloat());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.getAsFloat());
   }
 
   /**
@@ -432,9 +402,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantFloatArray(
       String topic, T container, Function<T, float[]> getter) {
-    TABLE.getEntry(topic).setFloatArray(getter.apply(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.apply(container));
   }
 
   /**
@@ -445,9 +413,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantFloatArray(String topic, Supplier<float[]> getter) {
-    TABLE.getEntry(topic).setFloatArray(getter.get());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.get());
   }
 
   /**
@@ -523,9 +489,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantDouble(
       String topic, T container, ToDoubleFunction<T> getter) {
-    TABLE.getEntry(topic).setDouble(getter.applyAsDouble(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.applyAsDouble(container));
   }
 
   /**
@@ -536,9 +500,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantDouble(String topic, DoubleSupplier getter) {
-    TABLE.getEntry(topic).setDouble(getter.getAsDouble());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.getAsDouble());
   }
 
   /**
@@ -616,9 +578,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantDoubleArray(
       String topic, T container, Function<T, double[]> getter) {
-    TABLE.getEntry(topic).setDoubleArray(getter.apply(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.apply(container));
   }
 
   /**
@@ -629,9 +589,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantDoubleArray(String topic, Supplier<double[]> getter) {
-    TABLE.getEntry(topic).setDoubleArray(getter.get());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.get());
   }
 
   /**
@@ -708,9 +666,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantInteger(
       String topic, T container, ToLongFunction<T> getter) {
-    TABLE.getEntry(topic).setInteger(getter.applyAsLong(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.applyAsLong(container));
   }
 
   /**
@@ -721,9 +677,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantInteger(String topic, LongSupplier getter) {
-    TABLE.getEntry(topic).setInteger(getter.getAsLong());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.getAsLong());
   }
 
   /**
@@ -801,9 +755,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantIntegerArray(
       String topic, T container, Function<T, long[]> getter) {
-    TABLE.getEntry(topic).setIntegerArray(getter.apply(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.apply(container));
   }
 
   /**
@@ -814,9 +766,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantIntegerArray(String topic, Supplier<long[]> getter) {
-    TABLE.getEntry(topic).setIntegerArray(getter.get());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.get());
   }
 
   /**
@@ -892,9 +842,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantString(
       String topic, T container, Function<T, String> getter) {
-    TABLE.getEntry(topic).setString(getter.apply(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.apply(container));
   }
 
   /**
@@ -905,9 +853,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantString(String topic, Supplier<String> getter) {
-    TABLE.getEntry(topic).setString(getter.get());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.get());
   }
 
   /**
@@ -983,9 +929,7 @@ public abstract class DashboardData implements AutoCloseable {
    */
   public static <T> DashboardData bindConstantStringArray(
       String topic, T container, Function<T, String[]> getter) {
-    TABLE.getEntry(topic).setStringArray(getter.apply(container));
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.apply(container));
   }
 
   /**
@@ -996,9 +940,7 @@ public abstract class DashboardData implements AutoCloseable {
    * @return The bound DashboardData instance.
    */
   public static DashboardData bindConstantStringArray(String topic, Supplier<String[]> getter) {
-    TABLE.getEntry(topic).setStringArray(getter.get());
-
-    return NO_BINDING;
+    return new ConstantBinding(topic, getter.get());
   }
 
   /**
@@ -1064,6 +1006,34 @@ public abstract class DashboardData implements AutoCloseable {
     RawTopic rawTopic = TABLE.getRawTopic(topic);
 
     return new RawBinding(rawTopic, typeString, getter);
+  }
+
+  /**
+   * Bind a constant raw value to a dashboard topic.
+   *
+   * @param <T> The type of the container object.
+   * @param topic The dashboard topic to bind to.
+   * @param typeString The type string for the raw value.
+   * @param container The object containing the raw value.
+   * @param getter The function to retrieve the raw value from the container.
+   * @return The bound DashboardData instance.
+   */
+  public static <T> DashboardData bindConstantRaw(
+      String topic, String typeString, T container, Function<T, byte[]> getter) {
+    return new ConstantBinding(topic, typeString, getter.apply(container));
+  }
+
+  /**
+   * Bind a constant static raw value to a dashboard topic.
+   *
+   * @param topic The dashboard topic to bind to.
+   * @param typeString The type string for the raw value.
+   * @param getter The function to retrieve the constant raw value.
+   * @return The bound DashboardData instance.
+   */
+  public static DashboardData bindConstantRaw(
+      String topic, String typeString, Supplier<byte[]> getter) {
+    return new ConstantBinding(topic, typeString, getter.get());
   }
 
   /**

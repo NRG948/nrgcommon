@@ -96,12 +96,12 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void setSmartDashboardType(String type) {
-    TABLE.getEntry(String.join("/", topic, ".type")).setString(type);
+    publishConstString(".type", type);
   }
 
   @Override
   public void setActuator(boolean value) {
-    TABLE.getEntry(String.join("/", topic, ".actuator")).setBoolean(value);
+    publishConstBoolean(".actuator", value);
   }
 
   @Override
@@ -118,7 +118,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstBoolean(String key, boolean value) {
-    TABLE.getEntry(String.join("/", topic, key)).setBoolean(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -130,7 +130,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstInteger(String key, long value) {
-    TABLE.getEntry(String.join("/", topic, key)).setInteger(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -142,7 +142,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstFloat(String key, float value) {
-    TABLE.getEntry(String.join("/", topic, key)).setFloat(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -154,7 +154,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstDouble(String key, double value) {
-    TABLE.getEntry(String.join("/", topic, key)).setDouble(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -166,7 +166,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstString(String key, String value) {
-    TABLE.getEntry(String.join("/", topic, key)).setString(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -179,7 +179,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstBooleanArray(String key, boolean[] value) {
-    TABLE.getEntry(String.join("/", topic, key)).setBooleanArray(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -192,7 +192,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstIntegerArray(String key, long[] value) {
-    TABLE.getEntry(String.join("/", topic, key)).setIntegerArray(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -205,7 +205,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstFloatArray(String key, float[] value) {
-    TABLE.getEntry(String.join("/", topic, key)).setFloatArray(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -218,7 +218,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstDoubleArray(String key, double[] value) {
-    TABLE.getEntry(String.join("/", topic, key)).setDoubleArray(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -231,7 +231,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstStringArray(String key, String[] value) {
-    TABLE.getEntry(String.join("/", topic, key)).setStringArray(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), value));
   }
 
   @Override
@@ -244,7 +244,7 @@ final class SendableBinding extends ContainerBinding implements NTSendableBuilde
 
   @Override
   public void publishConstRaw(String key, String typeString, byte[] value) {
-    TABLE.getEntry(String.join("/", topic, key)).setRaw(value);
+    addChild(new ConstantBinding(String.join("/", topic, key), typeString, value));
   }
 
   @Override
