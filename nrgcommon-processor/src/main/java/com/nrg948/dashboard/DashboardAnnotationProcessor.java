@@ -41,6 +41,7 @@ import com.nrg948.processor.ProcessorUtil;
 import com.nrg948.util.ReflectionUtil;
 import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.util.sendable.Sendable;
+import io.arxila.javatuples.Pair;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
@@ -108,7 +109,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
   private final Map<TypeMirror, List<AnnotatedElement>> definitions = new HashMap<>();
   private final Map<TypeElement, List<AnnotatedElement>> tabContainers = new HashMap<>();
-  private final List<DashboardTabElement> tabModels = new ArrayList<>();
+  private final Map<String, List<DashboardTabElement>> tabModes = new HashMap<>();
 
   private TypeMirror dashboardDefinitionType;
   private TypeMirror dashboardTabType;
@@ -327,7 +328,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                   return Optional.empty();
                 }
 
-                return Optional.of(createTabModelElement(e, definitionElements.stream()));
+                return Optional.of(
+                    createTabModelElement(e, tabElement.annotation, definitionElements.stream()));
               }
 
               @Override
@@ -345,22 +347,31 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                   return Optional.empty();
                 }
 
-                return Optional.of(createTabModelElement(e, definitionElements.stream()));
+                return Optional.of(
+                    createTabModelElement(e, tabElement.annotation, definitionElements.stream()));
               }
             },
             null);
 
-    tabModels.add(
-        tabModel.orElseThrow(
-            () ->
-                new IllegalArgumentException(
-                    "Unsupported element type for @DashboardTab: "
-                        + tabElement.element.asType().toString())));
+    tabModel.ifPresentOrElse(
+        model -> {
+          for (var mode : model.getModes()) {
+            tabModes.computeIfAbsent(mode, k -> new ArrayList<>()).add(model);
+          }
 
-    tabContainers
-        .computeIfAbsent(
-            asTypeElement(tabElement.element.getEnclosingElement()).get(), k -> new ArrayList<>())
-        .add(tabElement);
+          tabContainers
+              .computeIfAbsent(
+                  asTypeElement(tabElement.element.getEnclosingElement()).get(),
+                  k -> new ArrayList<>())
+              .add(tabElement);
+        },
+        () ->
+            processingEnv
+                .getMessager()
+                .printMessage(
+                    ERROR,
+                    "Failed to process @DashboardTab for element: "
+                        + tabElement.element.getSimpleName().toString()));
   }
 
   /** Writes Java files for all dashboard tabs. */
@@ -429,11 +440,18 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         writer.write(containerName);
         writer.write(" container) {\n");
 
+        ArrayList<Pair<String, String[]>> tabModesList = new ArrayList<>();
+
         for (var tabElement : tabElements) {
           var tabType = getValueType(tabElement.element);
           var tabElementTypeName = getFullyQualifiedDataBindingFileName(tabType);
+          var tabAnnotation = tabElement.element.getAnnotation(DashboardTab.class);
+          var tabElementName = tabElement.element.getSimpleName().toString();
+          var tabVarName = tabElementName + "Tab";
 
-          writer.write("        com.nrg948.dashboard.data.DashboardData.bind");
+          writer.write("        var ");
+          writer.write(tabVarName);
+          writer.write(" = com.nrg948.dashboard.data.DashboardData.bind");
           if (isOptional(tabType)) {
             writer.write("Optional");
           }
@@ -444,12 +462,31 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           } else {
             writer.write("\", com.nrg948.util.ReflectionUtil.get(");
           }
-          writer.write(tabElement.element.getSimpleName().toString());
+          writer.write(tabElementName);
           writer.write("Handle, container), ");
           writer.write(tabElementTypeName);
           writer.write("::bind");
           writer.write(");\n");
+
+          tabModesList.add(
+              new Pair<>(
+                  tabVarName,
+                  Arrays.stream(tabAnnotation.modes())
+                      .map(m -> "\"" + m + "\"")
+                      .toArray(String[]::new)));
         }
+
+        writer.write("\n");
+
+        for (var tabMode : tabModesList) {
+          writer.write("        com.nrg948.dashboard.DashboardServer.registerTab(");
+          writer.write(tabMode.value0());
+          writer.write(", ");
+          writer.write("new String[]{");
+          writer.write(String.join(", ", tabMode.value1()));
+          writer.write("});\n");
+        }
+
         writer.write("    }\n");
         writer.write("}\n");
       }
@@ -482,15 +519,32 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
     var dashboardElement = dashboardElementOpt.get();
 
-    buildDashboardConfigurationFile(dashboardElement);
+    buildDashboardConfigurationFiles(dashboardElement);
+  }
+
+  /**
+   * Builds the dashboard configuration files for all modes.
+   *
+   * @param dashboardElement The element annotated with {@link Dashboard}.
+   */
+  private void buildDashboardConfigurationFiles(TypeElement dashboardElement) {
+    for (var entry : tabModes.entrySet()) {
+      var mode = entry.getKey();
+      var tabModels = entry.getValue();
+
+      buildDashboardConfigurationFile(dashboardElement, mode, tabModels);
+    }
   }
 
   /**
    * Builds the dashboard configuration file for Elastic.
    *
    * @param dashboardElement The element annotated with {@link Dashboard}.
+   * @param mode The mode for which to build the dashboard configuration.
+   * @param tabModels The list of tab models for the dashboard.
    */
-  private void buildDashboardConfigurationFile(TypeElement dashboardElement) {
+  private void buildDashboardConfigurationFile(
+      TypeElement dashboardElement, String mode, List<DashboardTabElement> tabModels) {
     try {
       var rootElement =
           (DashboardElement)
@@ -503,7 +557,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               .createResource(
                   StandardLocation.SOURCE_OUTPUT,
                   "",
-                  "deploy/elastic-dashboard.json",
+                  String.format("deploy/elastic-%s.json", mode.toLowerCase().replace(" ", "-")),
                   dashboardElement);
       try (var writer = dashboardFile.openOutputStream()) {
         ElasticConfiguration.build(rootElement, writer);
@@ -524,12 +578,31 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return The created {@link DashboardTabElement}.
    */
   private DashboardTabElement createTabModelElement(
-      Element tabElement, Stream<AnnotatedElement> annotatedElement) {
+      Element tabElement,
+      AnnotationMirror tabAnnotation,
+      Stream<AnnotatedElement> annotatedElement) {
     var definitionElements =
         annotatedElement.map(this::createNestedModelElement).toArray(DashboardElementBase[]::new);
-    var tabTitle = getElementTitle(tabElement);
+    var tabValues =
+        processingEnv
+            .getElementUtils()
+            .getElementValuesWithDefaults(tabAnnotation)
+            .entrySet()
+            .stream()
+            .collect(
+                Collectors.toMap(e -> e.getKey().getSimpleName().toString(), e -> e.getValue()));
+    var tabTitle = tabValues.get("title").getValue().toString();
 
-    return new DashboardTabElement(tabTitle, definitionElements);
+    if (tabTitle.isEmpty()) {
+      tabTitle = tabElement.getSimpleName().toString();
+    }
+
+    var tabModes =
+        Arrays.stream((Object[]) getAnnotationValue(tabValues.get("modes")))
+            .map(Object::toString)
+            .toArray(String[]::new);
+
+    return new DashboardTabElement(tabTitle, tabModes, definitionElements);
   }
 
   /**
@@ -1101,6 +1174,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           @Override
           public Object defaultAction(Object o, Void p) {
             return o;
+          }
+
+          @Override
+          public Object visitArray(List<? extends AnnotationValue> values, Void p) {
+            return values.stream().map(v -> v.accept(this, null)).toArray(size -> new Object[size]);
           }
 
           @SuppressWarnings({"unchecked", "rawtypes"})

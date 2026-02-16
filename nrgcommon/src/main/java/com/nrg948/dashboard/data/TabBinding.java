@@ -24,7 +24,7 @@
 package com.nrg948.dashboard.data;
 
 /** A class containing the child bindings for a tab. */
-public class TabBinding extends ContainerBinding {
+public final class TabBinding extends ContainerBinding {
   /**
    * Constructs a TabBinding with the given child bindings.
    *

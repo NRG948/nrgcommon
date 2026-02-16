@@ -52,7 +52,8 @@
  * task copyElasticConfig(type: Copy) {
  *   dependsOn compileJava
  *
- *   from("${buildDir}/generated/sources/annotationProcessor/java/main/deploy/elastic-dashboard.json")
+ *   from("${buildDir}/generated/sources/annotationProcessor/java/main/deploy")
+ *   include("elastic-*.json")
  *   into("${projectDir}/src/main/deploy")
  * }
  *

@@ -47,8 +47,6 @@ import edu.wpi.first.util.function.BooleanConsumer;
 import edu.wpi.first.util.function.FloatConsumer;
 import edu.wpi.first.util.function.FloatSupplier;
 import edu.wpi.first.util.sendable.Sendable;
-import edu.wpi.first.wpilibj.TimedRobot;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -78,8 +76,6 @@ public abstract class DashboardData implements AutoCloseable {
   static final byte[] DEFAULT_RAW_VALUE = new byte[] {};
 
   static final NetworkTable TABLE = NetworkTableInstance.getDefault().getTable("SmartDashboard");
-
-  private static final ArrayList<DashboardData> tabBindings = new ArrayList<>();
 
   /** Enables the dashboard data binding. */
   public abstract void enable();
@@ -1180,13 +1176,9 @@ public abstract class DashboardData implements AutoCloseable {
    * @param binder The function to bind the tab container value to the tab.
    * @return The bound DashboardData instance.
    */
-  public static <T> DashboardData bindTab(
+  public static <T> TabBinding bindTab(
       String title, T container, BiFunction<String, T, DashboardData[]> binder) {
-    var tabBinding = new TabBinding(binder.apply(title, container));
-
-    tabBindings.add(tabBinding);
-
-    return tabBinding;
+    return new TabBinding(binder.apply(title, container));
   }
 
   /**
@@ -1200,32 +1192,8 @@ public abstract class DashboardData implements AutoCloseable {
    * @return An Optional containing the bound DashboardData instance if the container is present, or
    *     an empty Optional if not.
    */
-  public static <T> Optional<DashboardData> bindOptionalTab(
+  public static <T> Optional<TabBinding> bindOptionalTab(
       String title, Optional<T> container, BiFunction<String, T, DashboardData[]> binder) {
     return container.map(c -> bindTab(title, c, binder));
-  }
-
-  /** Enable all bound tabs. */
-  public static void enableTabs() {
-    for (var binding : tabBindings) {
-      binding.enable();
-    }
-  }
-
-  /** Update all bound tabs. */
-  public static void updateTabs() {
-    for (var binding : tabBindings) {
-      binding.update();
-    }
-  }
-
-  /**
-   * Start automatic updates of all bound dashboard data in the given robot's periodic loop.
-   *
-   * @param robot The robot whose periodic loop will be used for updates.
-   */
-  public static void startAutomaticUpdates(TimedRobot robot) {
-    enableTabs();
-    robot.addPeriodic(DashboardData::updateTabs, robot.getPeriod());
   }
 }

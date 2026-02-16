@@ -41,4 +41,7 @@ public @interface DashboardTab {
    * or method.
    */
   String title() default "";
+
+  /** {@return the modes in which this tab should be displayed} */
+  String[] modes() default {"Dashboard"};
 }
