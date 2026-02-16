@@ -27,10 +27,7 @@ import edu.wpi.first.cscore.HttpCamera;
 import java.util.Arrays;
 
 /** A binding that binds an {@link HttpCamera} to dashboard data updates. */
-final class HttpCameraBinding extends DashboardData {
-  private final String topic;
-  private final HttpCamera camera;
-
+final class HttpCameraBinding extends ContainerBinding {
   /**
    * Constructs an HttpCameraBinding with the given topic and camera.
    *
@@ -46,23 +43,9 @@ final class HttpCameraBinding extends DashboardData {
       throw new IllegalArgumentException("Camera cannot be null");
     }
 
-    this.topic = topic;
-    this.camera = camera;
-  }
-
-  @Override
-  public void enable() {
     var streamUrls =
         Arrays.stream(camera.getUrls()).map(url -> "mjpg:" + url).toArray(String[]::new);
-    TABLE.getEntry(String.join("/", topic, "streams")).setStringArray(streamUrls);
+
+    addChild(new ConstantBinding(String.join("/", topic, "streams"), streamUrls));
   }
-
-  @Override
-  public void disable() {}
-
-  @Override
-  protected void update() {}
-
-  @Override
-  public void close() {}
 }
