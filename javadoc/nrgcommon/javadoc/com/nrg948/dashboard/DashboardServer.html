@@ -92,8 +92,32 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#registerTab(com.nrg948.dashboard.data.TabBinding,java.lang.String...)" class="member-name-link">registerTab</a><wbr>(<a href="data/TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a>&nbsp;tab,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;modes)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Registers a tab for which its data is published for the specified modes.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#registerTab(java.util.Optional,java.lang.String...)" class="member-name-link">registerTab</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="data/TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a>&gt;&nbsp;tab,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;modes)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Registers a tab for which its data is published for the specified modes if the tab is present.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#setMode(java.lang.String)" class="member-name-link">setMode</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;mode)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Sets the current mode of the dashboard, which determines which tabs are active and have their
+ data published.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Closeable.html" title="class or interface in java.io" class="external-link">Closeable</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#start(edu.wpi.first.wpilibj.TimedRobot)" class="member-name-link">start</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link">TimedRobot</a>&nbsp;robot)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Starts the dashboard configuration web server and automatically updating the data bindings.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Closeable.html" title="class or interface in java.io" class="external-link">Closeable</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#start(edu.wpi.first.wpilibj.TimedRobot)" class="member-name-link">start</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link">TimedRobot</a>&nbsp;robot)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#start(edu.wpi.first.wpilibj.TimedRobot,java.lang.String)" class="member-name-link">start</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link">TimedRobot</a>&nbsp;robot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;mode)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Starts the dashboard configuration web server and automatically updating the data bindings.</div>
 </div>
@@ -118,12 +142,69 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="start(edu.wpi.first.wpilibj.TimedRobot)">
 <h3>start</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Closeable.html" title="class or interface in java.io" class="external-link">Closeable</a></span>&nbsp;<span class="element-name">start</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link">TimedRobot</a>&nbsp;robot)</span></div>
-<div class="block">Starts the dashboard configuration web server and automatically updating the data bindings.</div>
+<div class="block">Starts the dashboard configuration web server and automatically updating the data bindings.
+
+ <p>NOTE: This method defaults to the "Dashboard" mode, which may not be appropriate for all
+ robots. If you want to start the server in a different mode, use the <a href="#start(edu.wpi.first.wpilibj.TimedRobot,java.lang.String)"><code>start(TimedRobot, String)</code></a> method instead.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>robot</code> - The <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link"><code>TimedRobot</code></a> instance.</dd>
 <dt>Returns:</dt>
 <dd>A Closeable that stops the web server when closed.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="start(edu.wpi.first.wpilibj.TimedRobot,java.lang.String)">
+<h3>start</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Closeable.html" title="class or interface in java.io" class="external-link">Closeable</a></span>&nbsp;<span class="element-name">start</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link">TimedRobot</a>&nbsp;robot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;mode)</span></div>
+<div class="block">Starts the dashboard configuration web server and automatically updating the data bindings.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>robot</code> - The <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link"><code>TimedRobot</code></a> instance.</dd>
+<dd><code>mode</code> - The mode to set when starting the server, which determines the tabs that are active
+     and have their data published.</dd>
+<dt>Returns:</dt>
+<dd>A Closeable that stops the web server when closed.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="registerTab(com.nrg948.dashboard.data.TabBinding,java.lang.String...)">
+<h3>registerTab</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerTab</span><wbr><span class="parameters">(<a href="data/TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a>&nbsp;tab,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;modes)</span></div>
+<div class="block">Registers a tab for which its data is published for the specified modes.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tab</code> - The <a href="data/TabBinding.html" title="class in com.nrg948.dashboard.data"><code>TabBinding</code></a> instance to register.</dd>
+<dd><code>modes</code> - The modes in which the tab data is published.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="registerTab(java.util.Optional,java.lang.String...)">
+<h3>registerTab</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerTab</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="data/TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a>&gt;&nbsp;tab,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;modes)</span></div>
+<div class="block">Registers a tab for which its data is published for the specified modes if the tab is present.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tab</code> - The Optional <a href="data/TabBinding.html" title="class in com.nrg948.dashboard.data"><code>TabBinding</code></a> instance to register.</dd>
+<dd><code>modes</code> - The modes in which the tab data is published.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setMode(java.lang.String)">
+<h3>setMode</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMode</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;mode)</span></div>
+<div class="block">Sets the current mode of the dashboard, which determines which tabs are active and have their
+ data published.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>mode</code> - The mode to set.</dd>
 </dl>
 </section>
 </li>

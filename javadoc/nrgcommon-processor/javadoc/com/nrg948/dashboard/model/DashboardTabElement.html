@@ -93,7 +93,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,com.nrg948.dashboard.model.DashboardElementBase%5B%5D)" class="member-name-link">DashboardTabElement</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String%5B%5D,com.nrg948.dashboard.model.DashboardElementBase%5B%5D)" class="member-name-link">DashboardTabElement</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;modes,
  <a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]&nbsp;elements)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates a new DashboardTabElement.</div>
@@ -117,9 +118,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getModes()" class="member-name-link">getModes</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the modes in which this tab should be displayed.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the type of the dashboard element.</div>
 </div>
 </div>
@@ -146,14 +152,16 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,com.nrg948.dashboard.model.DashboardElementBase[])">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String[],com.nrg948.dashboard.model.DashboardElementBase[])">
 <h3>DashboardTabElement</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DashboardTabElement</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;modes,
  <a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a>[]&nbsp;elements)</span></div>
 <div class="block">Creates a new DashboardTabElement.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>title</code> - the title of the dashboard tab element</dd>
+<dd><code>modes</code> - the modes in which this tab should be displayed</dd>
 <dd><code>elements</code> - the child elements of the dashboard tab element</dd>
 </dl>
 </section>
@@ -191,6 +199,17 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="DashboardElementBase.html#getType()">getType</a></code>&nbsp;in class&nbsp;<code><a href="DashboardElementBase.html" title="class in com.nrg948.dashboard.model">DashboardElementBase</a></code></dd>
 <dt>Returns:</dt>
 <dd>the type of the dashboard element</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getModes()">
+<h3>getModes</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</span>&nbsp;<span class="element-name">getModes</span>()</div>
+<div class="block">Returns the modes in which this tab should be displayed.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the modes in which this tab should be displayed</dd>
 </dl>
 </section>
 </li>

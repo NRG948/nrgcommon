@@ -80,7 +80,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="LayoutBinding.html" title="class in com.nrg948.dashboard.data">LayoutBinding</a></code>, <code><a href="TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a></code></dd>
+<dd><code><a href="TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">DashboardData</span>
@@ -418,7 +418,7 @@ E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Bind the data in a layout container described by a layout definition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#bindOptionalTab(java.lang.String,java.util.Optional,java.util.function.BiFunction)" class="member-name-link">bindOptionalTab</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;T&gt;&nbsp;container,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html" title="class or interface in java.util.function" class="external-link">BiFunction</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>T,<wbr><a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a>[]&gt;&nbsp;binder)</code></div>
@@ -637,7 +637,7 @@ E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Bind a string array to a dashboard topic that both publishes and subscribes to updates.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;<a href="TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#bindTab(java.lang.String,T,java.util.function.BiFunction)" class="member-name-link">bindTab</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  T&nbsp;container,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html" title="class or interface in java.util.function" class="external-link">BiFunction</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>T,<wbr><a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a>[]&gt;&nbsp;binder)</code></div>
@@ -657,26 +657,11 @@ E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Enables the dashboard data binding.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#enableTabs()" class="member-name-link">enableTabs</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Enable all bound tabs.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#startAutomaticUpdates(edu.wpi.first.wpilibj.TimedRobot)" class="member-name-link">startAutomaticUpdates</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link">TimedRobot</a>&nbsp;robot)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Start automatic updates of all bound dashboard data in the given robot's periodic loop.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Receives updates from the dashboard to update the bound data and/or publishes updates to the
  dashboard received from the bound data.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#updateTabs()" class="member-name-link">updateTabs</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Update all bound tabs.</div>
 </div>
 </div>
 </div>
@@ -2043,7 +2028,7 @@ E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/
 <li>
 <section class="detail" id="bindTab(java.lang.String,T,java.util.function.BiFunction)">
 <h3 id="bindTab(java.lang.String,java.lang.Object,java.util.function.BiFunction)">bindTab</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></span>&nbsp;<span class="element-name">bindTab</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a></span>&nbsp;<span class="element-name">bindTab</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  T&nbsp;container,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html" title="class or interface in java.util.function" class="external-link">BiFunction</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>T,<wbr><a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a>[]&gt;&nbsp;binder)</span></div>
 <div class="block">Bind the data in a tab container described by a tab definition.</div>
@@ -2062,7 +2047,7 @@ E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/
 <li>
 <section class="detail" id="bindOptionalTab(java.lang.String,java.util.Optional,java.util.function.BiFunction)">
 <h3>bindOptionalTab</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a>&gt;</span>&nbsp;<span class="element-name">bindOptionalTab</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a>&gt;</span>&nbsp;<span class="element-name">bindOptionalTab</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;T&gt;&nbsp;container,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html" title="class or interface in java.util.function" class="external-link">BiFunction</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>T,<wbr><a href="DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a>[]&gt;&nbsp;binder)</span></div>
 <div class="block">Bind the data in an optional tab container described by a tab definition, only if the container
@@ -2077,31 +2062,6 @@ E extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/
 <dt>Returns:</dt>
 <dd>An Optional containing the bound DashboardData instance if the container is present, or
      an empty Optional if not.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="enableTabs()">
-<h3>enableTabs</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">enableTabs</span>()</div>
-<div class="block">Enable all bound tabs.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="updateTabs()">
-<h3>updateTabs</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateTabs</span>()</div>
-<div class="block">Update all bound tabs.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="startAutomaticUpdates(edu.wpi.first.wpilibj.TimedRobot)">
-<h3>startAutomaticUpdates</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startAutomaticUpdates</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/TimedRobot.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link">TimedRobot</a>&nbsp;robot)</span></div>
-<div class="block">Start automatic updates of all bound dashboard data in the given robot's periodic loop.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>robot</code> - The robot whose periodic loop will be used for updates.</dd>
 </dl>
 </section>
 </li>
