@@ -24,7 +24,7 @@
 package com.nrg948.dashboard.data;
 
 /** A class containing the child bindings for a layout. */
-public class LayoutBinding extends ContainerBinding {
+final class LayoutBinding extends ContainerBinding {
   /**
    * Constructs a LayoutBinding with the given child bindings.
    *

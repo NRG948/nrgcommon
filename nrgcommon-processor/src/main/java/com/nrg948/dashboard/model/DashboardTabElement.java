@@ -25,14 +25,18 @@ package com.nrg948.dashboard.model;
 
 /** Represents a dashboard tab element that can contain other dashboard elements. */
 public class DashboardTabElement extends DashboardElementContainer {
+  private final String[] modes;
+
   /**
    * Creates a new DashboardTabElement.
    *
    * @param title the title of the dashboard tab element
+   * @param modes the modes in which this tab should be displayed
    * @param elements the child elements of the dashboard tab element
    */
-  public DashboardTabElement(String title, DashboardElementBase[] elements) {
+  public DashboardTabElement(String title, String[] modes, DashboardElementBase[] elements) {
     super(title, -1, -1, -1, -1, elements);
+    this.modes = modes;
   }
 
   @Override
@@ -43,5 +47,10 @@ public class DashboardTabElement extends DashboardElementContainer {
   @Override
   public String getType() {
     return "Tab";
+  }
+
+  /** {@return the modes in which this tab should be displayed} */
+  public String[] getModes() {
+    return modes;
   }
 }
