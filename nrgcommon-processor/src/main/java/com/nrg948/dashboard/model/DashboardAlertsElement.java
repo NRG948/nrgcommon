@@ -44,6 +44,11 @@ public class DashboardAlertsElement extends DashboardWidgetElement {
   }
 
   @Override
+  public String getTopic() {
+    return "/SmartDashboard/Alerts";
+  }
+
+  @Override
   public void accept(DashboardElementVisitor visitor) {
     visitor.visit(this);
   }
