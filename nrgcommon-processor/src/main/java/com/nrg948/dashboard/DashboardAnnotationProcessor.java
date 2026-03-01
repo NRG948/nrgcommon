@@ -631,15 +631,15 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
       return createModelElement(annotatedElement);
     }
 
-    List<AnnotatedElement> layoutDefinition = definitions.get(annotatedElement.element.asType());
+    TypeMirror layoutContainerType = unwrap(getValueType(annotatedElement.element));
+    List<AnnotatedElement> layoutDefinition = definitions.get(layoutContainerType);
 
     if (layoutDefinition == null) {
       processingEnv
           .getMessager()
           .printMessage(
               ERROR,
-              "No @DashboardDefinition found for type: "
-                  + annotatedElement.element.asType().toString(),
+              "No @DashboardDefinition found for type: " + layoutContainerType.toString(),
               annotatedElement.element,
               annotatedElement.annotation);
       layoutDefinition = List.of();

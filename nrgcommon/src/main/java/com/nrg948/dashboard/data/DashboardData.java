@@ -1197,27 +1197,39 @@ public abstract class DashboardData implements AutoCloseable {
     return container.map(c -> bindTab(title, c, binder));
   }
 
+  private static final DashboardData INVALID_BINDING =
+      new DashboardData() {
+        @Override
+        public void close() {
+          // No-op
+        }
+
+        @Override
+        public void enable() {
+          // No-op
+        }
+
+        @Override
+        public void disable() {
+          // No-op
+        }
+
+        @Override
+        protected void update() {
+          // No-op
+        }
+      };
+
+  /**
+   * Returns a no-op binding used when a dashboard binding cannot be created.
+   *
+   * <p>This is typically called from generated binding code when a binding definition is invalid or
+   * otherwise cannot be bound. The returned {@link DashboardData} instance performs no actions when
+   * enabled, disabled, updated, or closed.
+   *
+   * @return a shared, no-op {@link DashboardData} instance
+   */
   public static DashboardData bindInvalid() {
-    return new DashboardData() {
-      @Override
-      public void close() {
-        // No-op
-      }
-
-      @Override
-      public void enable() {
-        // No-op
-      }
-
-      @Override
-      public void disable() {
-        // No-op
-      }
-
-      @Override
-      protected void update() {
-        // No-op
-      }
-    };
+    return INVALID_BINDING;
   }
 }
