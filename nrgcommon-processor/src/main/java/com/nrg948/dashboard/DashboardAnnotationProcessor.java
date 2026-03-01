@@ -1155,11 +1155,10 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                     .getMessager()
                     .printMessage(
                         ERROR,
-                        "Unsupported array type for data binding: " + arrayType.toString(),
+                        "Unsupported array element type for data binding: " + arrayType.toString(),
                         element,
                         annotation);
-                throw new IllegalArgumentException(
-                    "Unsupported array type for data binding: " + arrayType.toString());
+                writer.write("Invalid(),\n");
               }
             } catch (IOException e) {
               throw new RuntimeException(e);
