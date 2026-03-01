@@ -283,7 +283,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     } catch (IOException e) {
       processingEnv
           .getMessager()
-          .printMessage(ERROR, "Failed to create source file: " + e.getMessage());
+          .printMessage(
+              ERROR, "Failed to create source file: " + e.getMessage(), definitionElement);
       throw new RuntimeException(e);
     }
   }
@@ -324,7 +325,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                       .getMessager()
                       .printMessage(
                           ERROR,
-                          "No @DashboardDefinition found for type: " + e.asType().toString());
+                          "No @DashboardDefinition found for type: " + e.asType().toString(),
+                          e);
                   return Optional.empty();
                 }
 
@@ -335,15 +337,16 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               @Override
               public Optional<DashboardTabElement> visitExecutable(
                   ExecutableElement e, Optional<DashboardTabElement> p) {
-                var definitionElements = definitions.get(unwrap(e.getReturnType()));
+                TypeMirror returnType = e.getReturnType();
+                var definitionElements = definitions.get(unwrap(returnType));
 
                 if (definitionElements == null) {
                   processingEnv
                       .getMessager()
                       .printMessage(
                           ERROR,
-                          "No @DashboardDefinition found for type: "
-                              + e.getReturnType().toString());
+                          "No @DashboardDefinition found for type: " + returnType.toString(),
+                          e);
                   return Optional.empty();
                 }
 
@@ -371,7 +374,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 .printMessage(
                     ERROR,
                     "Failed to process @DashboardTab for element: "
-                        + tabElement.element.getSimpleName().toString()));
+                        + tabElement.element.getSimpleName().toString(),
+                    tabElement.element));
   }
 
   /** Writes Java files for all dashboard tabs. */
@@ -493,7 +497,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     } catch (IOException e) {
       processingEnv
           .getMessager()
-          .printMessage(ERROR, "Failed to create source file: " + e.getMessage());
+          .printMessage(ERROR, "Failed to create source file: " + e.getMessage(), containerType);
       throw new RuntimeException(e);
     }
   }
@@ -514,7 +518,7 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     if (dashboardElementOpt.isEmpty()) {
       processingEnv.getMessager().printMessage(ERROR, "No class annotated with @Dashboard found.");
 
-      throw new RuntimeException("No class annotated with @Dashboard found.");
+      return;
     }
 
     var dashboardElement = dashboardElementOpt.get();
@@ -565,7 +569,10 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     } catch (IOException e) {
       processingEnv
           .getMessager()
-          .printMessage(ERROR, "Failed to create dashboard configuration file: " + e.getMessage());
+          .printMessage(
+              ERROR,
+              "Failed to create dashboard configuration file: " + e.getMessage(),
+              dashboardElement);
       throw new RuntimeException(e);
     }
   }
@@ -624,12 +631,26 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
       return createModelElement(annotatedElement);
     }
 
-    var layoutElements =
-        definitions.get(annotatedElement.element.asType()).stream()
+    List<AnnotatedElement> layoutDefinition = definitions.get(annotatedElement.element.asType());
+
+    if (layoutDefinition == null) {
+      processingEnv
+          .getMessager()
+          .printMessage(
+              ERROR,
+              "No @DashboardDefinition found for type: "
+                  + annotatedElement.element.asType().toString(),
+              annotatedElement.element,
+              annotatedElement.annotation);
+      layoutDefinition = List.of();
+    }
+
+    var layoutModelElements =
+        layoutDefinition.stream()
             .map(this::createNestedModelElement)
             .toArray(DashboardElementBase[]::new);
 
-    return createModelElement(annotatedElement, (Object) layoutElements);
+    return createModelElement(annotatedElement, (Object) layoutModelElements);
   }
 
   /**
@@ -670,7 +691,9 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               "Failed to create data model for annotation"
                   + annotationClassName
                   + ": "
-                  + e.getMessage());
+                  + e.getMessage(),
+              annotatedElement.element,
+              annotatedElement.annotation);
       throw new RuntimeException(e);
     }
   }
@@ -925,19 +948,19 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 if (isFinal) {
                   String errorMsg =
                       "Cannot use READ_WRITE data binding on final element: " + element.toString();
-                  processingEnv.getMessager().printMessage(ERROR, errorMsg);
-                  throw new IllegalArgumentException(errorMsg);
-                }
-                writer.write(", com.nrg948.util.ReflectionUtil.setterOf");
+                  processingEnv.getMessager().printMessage(ERROR, errorMsg, element, annotation);
+                } else {
+                  writer.write(", com.nrg948.util.ReflectionUtil.setterOf");
 
-                if (isStatic) {
-                  writer.write("Static");
-                }
+                  if (isStatic) {
+                    writer.write("Static");
+                  }
 
-                writer.write(primitiveTypeName);
-                writer.write("(");
-                writer.write(element.getSimpleName().toString());
-                writer.write("Handle)");
+                  writer.write(primitiveTypeName);
+                  writer.write("(");
+                  writer.write(element.getSimpleName().toString());
+                  writer.write("Handle)");
+                }
               }
 
               writer.write("),\n");
@@ -970,14 +993,21 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 writer.write("Handle)");
 
                 if (getDataBinding(annotation, annotationTypeElement) == READ_WRITE) {
-                  if (isStatic) {
-                    writer.write(", com.nrg948.util.ReflectionUtil.setterOfStatic(");
+                  if (isFinal) {
+                    String errorMsg =
+                        "Cannot use READ_WRITE data binding on final element: "
+                            + element.toString();
+                    processingEnv.getMessager().printMessage(ERROR, errorMsg, element, annotation);
                   } else {
-                    writer.write(", com.nrg948.util.ReflectionUtil.setterOf(");
-                  }
+                    if (isStatic) {
+                      writer.write(", com.nrg948.util.ReflectionUtil.setterOfStatic(");
+                    } else {
+                      writer.write(", com.nrg948.util.ReflectionUtil.setterOf(");
+                    }
 
-                  writer.write(element.getSimpleName().toString());
-                  writer.write("Handle)");
+                    writer.write(element.getSimpleName().toString());
+                    writer.write("Handle)");
+                  }
                 }
 
                 writer.write("),\n");
@@ -1075,9 +1105,11 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 processingEnv
                     .getMessager()
                     .printMessage(
-                        ERROR, "Unsupported type for data binding: " + declaredType.toString());
-                throw new IllegalArgumentException(
-                    "Unsupported type for data binding: " + declaredType.toString());
+                        ERROR,
+                        "Unsupported type for data binding: " + declaredType.toString(),
+                        element,
+                        annotation);
+                writer.write("Invalid(),\n");
               }
             } catch (IOException e) {
               throw new RuntimeException(e);
@@ -1122,7 +1154,10 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                 processingEnv
                     .getMessager()
                     .printMessage(
-                        ERROR, "Unsupported array type for data binding: " + arrayType.toString());
+                        ERROR,
+                        "Unsupported array type for data binding: " + arrayType.toString(),
+                        element,
+                        annotation);
                 throw new IllegalArgumentException(
                     "Unsupported array type for data binding: " + arrayType.toString());
               }
@@ -1203,7 +1238,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
                           + "."
                           + enumElement.getSimpleName()
                           + ": "
-                          + e.getMessage());
+                          + e.getMessage(),
+                      enumElement);
               throw new RuntimeException(e);
             }
           }

@@ -1196,4 +1196,28 @@ public abstract class DashboardData implements AutoCloseable {
       String title, Optional<T> container, BiFunction<String, T, DashboardData[]> binder) {
     return container.map(c -> bindTab(title, c, binder));
   }
+
+  public static DashboardData bindInvalid() {
+    return new DashboardData() {
+      @Override
+      public void close() {
+        // No-op
+      }
+
+      @Override
+      public void enable() {
+        // No-op
+      }
+
+      @Override
+      public void disable() {
+        // No-op
+      }
+
+      @Override
+      protected void update() {
+        // No-op
+      }
+    };
+  }
 }
