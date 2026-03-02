@@ -25,6 +25,8 @@ package com.nrg948.dashboard.model;
 
 /** Represents a dashboard element that displays alerts. */
 public class DashboardAlertsElement extends DashboardWidgetElement {
+  private final String group;
+
   /**
    * Creates a new DashboardAlertsElement.
    *
@@ -33,9 +35,12 @@ public class DashboardAlertsElement extends DashboardWidgetElement {
    * @param row the row position of the element
    * @param width the width of the element
    * @param height the height of the element
+   * @param group the alert group identifier
    */
-  public DashboardAlertsElement(String title, int column, int row, int width, int height) {
+  public DashboardAlertsElement(
+      String title, int column, int row, int width, int height, String group) {
     super(title, column, row, width, height);
+    this.group = group;
   }
 
   @Override
@@ -45,7 +50,12 @@ public class DashboardAlertsElement extends DashboardWidgetElement {
 
   @Override
   public String getTopic() {
-    return "/SmartDashboard/Alerts";
+    return "/SmartDashboard/" + group;
+  }
+
+  /** {@return the alert group identifier} */
+  public String getGroup() {
+    return group;
   }
 
   @Override
