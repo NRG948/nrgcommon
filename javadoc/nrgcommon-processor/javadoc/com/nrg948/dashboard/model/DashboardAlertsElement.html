@@ -93,11 +93,12 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,int,int,int)" class="member-name-link">DashboardAlertsElement</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,int,int,int,java.lang.String)" class="member-name-link">DashboardAlertsElement</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  int&nbsp;column,
  int&nbsp;row,
  int&nbsp;width,
- int&nbsp;height)</code></div>
+ int&nbsp;height,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;group)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates a new DashboardAlertsElement.</div>
 </div>
@@ -121,13 +122,18 @@ loadScripts(document, 'script');</script>
 <div class="block">Accepts a visitor to perform operations on the dashboard element.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopic()" class="member-name-link">getTopic</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGroup()" class="member-name-link">getGroup</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the topic of the dashboard widget element.</div>
+<div class="block">Returns the alert group identifier.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTopic()" class="member-name-link">getTopic</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the topic of the dashboard widget element.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the type of the dashboard element.</div>
 </div>
 </div>
@@ -154,13 +160,14 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,int,int,int,int)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,int,int,int,int,java.lang.String)">
 <h3>DashboardAlertsElement</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DashboardAlertsElement</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
  int&nbsp;column,
  int&nbsp;row,
  int&nbsp;width,
- int&nbsp;height)</span></div>
+ int&nbsp;height,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;group)</span></div>
 <div class="block">Creates a new DashboardAlertsElement.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -169,6 +176,7 @@ loadScripts(document, 'script');</script>
 <dd><code>row</code> - the row position of the element</dd>
 <dd><code>width</code> - the width of the element</dd>
 <dd><code>height</code> - the height of the element</dd>
+<dd><code>group</code> - the alert group identifier</dd>
 </dl>
 </section>
 </li>
@@ -205,6 +213,17 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="DashboardWidgetElement.html#getTopic()">getTopic</a></code>&nbsp;in class&nbsp;<code><a href="DashboardWidgetElement.html" title="class in com.nrg948.dashboard.model">DashboardWidgetElement</a></code></dd>
 <dt>Returns:</dt>
 <dd>the topic of the dashboard widget element</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGroup()">
+<h3>getGroup</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getGroup</span>()</div>
+<div class="block">Returns the alert group identifier.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the alert group identifier</dd>
 </dl>
 </section>
 </li>
