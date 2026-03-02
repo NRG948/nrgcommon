@@ -48,4 +48,7 @@ public @interface DashboardAlerts {
 
   /** {@return the height of the widget in the dashboard grid} */
   int height() default 1;
+
+  /** {@return the alert group identifier} */
+  String group() default "Alerts";
 }

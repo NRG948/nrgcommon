@@ -41,6 +41,7 @@ import com.nrg948.processor.ProcessorUtil;
 import com.nrg948.util.ReflectionUtil;
 import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.wpilibj.Alert;
 import io.arxila.javatuples.Pair;
 import java.io.IOException;
 import java.io.Writer;
@@ -92,11 +93,14 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
       "com.nrg948.dashboard.annotations.DashboardTab";
   private static final String DASHBOARD_LAYOUT_QUALIFIED_NAME =
       "com.nrg948.dashboard.annotations.DashboardLayout";
+  private static final String DASHBOARD_ALERTS_QUALIFIED_NAME =
+      "com.nrg948.dashboard.annotations.DashboardAlerts";
 
   private static final String OPTIONAL_QUALIFIED_NAME = "java.util.Optional";
   private static final String STRING_QUALIFIED_NAME = "java.lang.String";
   private static final String HTTP_CAMERA_QUALIFIED_NAME = "edu.wpi.first.cscore.HttpCamera";
   private static final String SENDABLE_QUALIFIED_NAME = "edu.wpi.first.util.sendable.Sendable";
+  private static final String ALERT_QUALIFIED_NAME = "edu.wpi.first.wpilibj.Alert";
   private static final String PREFERENCE_VALUE_QUALIFIED_NAME =
       "com.nrg948.preferences.PreferenceValue";
 
@@ -114,11 +118,13 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   private TypeMirror dashboardDefinitionType;
   private TypeMirror dashboardTabType;
   private TypeMirror dashboardLayoutType;
+  private TypeMirror dashboardAlertsType;
 
   private TypeMirror optionalType;
   private TypeMirror stringType;
   private TypeMirror httpCameraType;
   private TypeMirror sendableType;
+  private TypeMirror alertType;
   private TypeMirror preferenceValueType;
 
   private Set<TypeMirror> readWriteDashboardAnnotations;
@@ -134,11 +140,13 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
         elementUtils.getTypeElement(DASHBOARD_DEFINITION_QUALIFIED_NAME).asType();
     dashboardTabType = elementUtils.getTypeElement(DASHBOARD_TAB_QUALIFIED_NAME).asType();
     dashboardLayoutType = elementUtils.getTypeElement(DASHBOARD_LAYOUT_QUALIFIED_NAME).asType();
+    dashboardAlertsType = elementUtils.getTypeElement(DASHBOARD_ALERTS_QUALIFIED_NAME).asType();
 
     optionalType = typeUtils.erasure(elementUtils.getTypeElement(OPTIONAL_QUALIFIED_NAME).asType());
     stringType = elementUtils.getTypeElement(STRING_QUALIFIED_NAME).asType();
     httpCameraType = elementUtils.getTypeElement(HTTP_CAMERA_QUALIFIED_NAME).asType();
     sendableType = elementUtils.getTypeElement(SENDABLE_QUALIFIED_NAME).asType();
+    alertType = elementUtils.getTypeElement(ALERT_QUALIFIED_NAME).asType();
     preferenceValueType = elementUtils.getTypeElement(PREFERENCE_VALUE_QUALIFIED_NAME).asType();
 
     readWriteDashboardAnnotations =
@@ -912,8 +920,6 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     var isStatic = isStatic(element);
     var isFinal = isFinal(element);
 
-    writer.write("            com.nrg948.dashboard.data.DashboardData.bind");
-
     var valueType = getValueType(element);
 
     valueType.accept(
@@ -923,6 +929,8 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
             try {
               var primitiveTypeName =
                   typeUtils.boxedClass(primitiveType).getSimpleName().toString();
+
+              writer.write("            com.nrg948.dashboard.data.DashboardData.bind");
 
               if (isFinal) {
                 writer.write("Constant");
@@ -973,6 +981,15 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           @Override
           public Void visitDeclared(DeclaredType declaredType, Void p) {
             try {
+              if (isDashboardAlertsAnnotation(annotationTypeElement.asType())
+                  && isAlert(declaredType)) {
+                // Alerts are handled separately in the dashboard configuration and do not require
+                // data binding.
+                return null;
+              }
+
+              writer.write("            com.nrg948.dashboard.data.DashboardData.bind");
+
               if (isString(declaredType)) {
                 if (isFinal) {
                   writer.write("Constant");
@@ -1121,6 +1138,15 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
           public Void visitArray(ArrayType arrayType, Void p) {
             try {
               var componentType = arrayType.getComponentType();
+
+              if (isDashboardAlertsAnnotation(annotationTypeElement.asType())
+                  && asDeclaredType(componentType).map(t -> isAlert(t)).orElse(false)) {
+                // Alerts are handled separately in the dashboard configuration and do not require
+                // data binding.
+                return null;
+              }
+
+              writer.write("            com.nrg948.dashboard.data.DashboardData.bind");
 
               if (componentType.getKind().isPrimitive()) {
                 var boxedComponentType =
@@ -1409,6 +1435,17 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
   }
 
   /**
+   * Determines if a type mirror represents a {@link DashboardAlerts} annotation.
+   *
+   * @param annotationType The type mirror to check.
+   * @return True if the type mirror represents a {@link DashboardAlerts} annotation, false
+   *     otherwise.
+   */
+  private boolean isDashboardAlertsAnnotation(TypeMirror annotationType) {
+    return processingEnv.getTypeUtils().isSameType(annotationType, dashboardAlertsType);
+  }
+
+  /**
    * Determines if a type mirror represents an {@link Optional} type.
    *
    * @param type The type mirror to check.
@@ -1479,6 +1516,16 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    */
   private boolean isSendable(DeclaredType type) {
     return processingEnv.getTypeUtils().isAssignable(type, sendableType);
+  }
+
+  /**
+   * Determines if a declared type is an {@link Alert}.
+   *
+   * @param type The declared type to check.
+   * @return True if the declared type is a type of Alert, false otherwise.
+   */
+  private boolean isAlert(DeclaredType type) {
+    return processingEnv.getTypeUtils().isAssignable(type, alertType);
   }
 
   /**
