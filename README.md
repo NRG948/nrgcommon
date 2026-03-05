@@ -11,6 +11,7 @@ The table below lists the published versions of the library and the WPILib relea
 | Version           | Git Tag/Branch | Required WPILib Version |
 |-------------------|----------------|-------------------------|
 | 2026.2.4-SNAPSHOT | main           | 2026.2.1                |
+| 2026.2.4          | v2026.2.4      | 2026.2.1                |
 | 2025.3.2          | v2025.3.2      | 2025.3.2                |
 | 2025.1.0          | v2025.1.0      | 2025.1.1                |
 | 2024.3.1          | v2024.3.1      | 2024.3.1                |
@@ -47,7 +48,7 @@ Finally, add the NRG Common Java Library and its annotation processor as depende
 
 ```gradle
 def nrgcommon = [
-    version: 2025.3.3
+    version: 2026.2.4
 ]
 
 dependencies {
