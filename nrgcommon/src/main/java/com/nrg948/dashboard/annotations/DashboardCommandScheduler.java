@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import java.lang.annotation.Target;
 
 /**
- * Annotation for scheduling commands on the dashboard
+ * Annotation for a command scheduler widget on the dashboard.
  *
  * <p>This annotation can be applied to fields or methods that return a {@link CommandScheduler}
  * object or any {@link Sendable} object that publishes data in the same format.
