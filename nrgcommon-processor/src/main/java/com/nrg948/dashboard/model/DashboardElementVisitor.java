@@ -314,6 +314,15 @@ public interface DashboardElementVisitor {
   }
 
   /**
+   * Visit a dashboard command scheduler element.
+   *
+   * @param commandSchedulerElement the dashboard command scheduler element
+   */
+  default void visit(DashboardCommandSchedulerElement commandSchedulerElement) {
+    defaultAction(commandSchedulerElement);
+  }
+
+  /**
    * Visit a dashboard layout element.
    *
    * @param layoutElement the dashboard layout element
