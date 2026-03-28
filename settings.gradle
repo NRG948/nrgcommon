@@ -11,3 +11,5 @@ rootProject.name = 'nrgcommon'
 
 include('nrgcommon')
 include('nrgcommon-processor')
+include('nrgcommon-ctre')
+include('nrgcommon-rev')
