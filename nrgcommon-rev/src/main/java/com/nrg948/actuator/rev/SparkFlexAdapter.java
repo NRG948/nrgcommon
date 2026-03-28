@@ -34,10 +34,16 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 
 /** A motor controller implementation based on the REV Robotics {@link SparkFlex} controllers. */
 public final class SparkFlexAdapter extends SparkAdapter {
+  /** The accessor for the SparkFlex motor controller. */
   protected static final class SparkFlexAccessor implements SparkAdapter.Accessor {
     private final SparkFlex spark;
     private final SparkFlexConfig config = new SparkFlexConfig();
 
+    /**
+     * Constructs a SparkFlexAccessor.
+     *
+     * @param spark The SparkFlex motor controller to access.
+     */
     protected SparkFlexAccessor(SparkFlex spark) {
       this.spark = spark;
     }

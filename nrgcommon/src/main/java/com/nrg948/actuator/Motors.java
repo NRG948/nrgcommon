@@ -29,7 +29,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.util.Optional;
 
-/** A enum representing the properties of a specific motor type. */
+/** An enum representing the properties of a specific motor type. */
 public enum Motors {
   /**
    * A null motor that can be used for testing or as a placeholder when no motor is needed.
@@ -252,7 +252,7 @@ public enum Motors {
                 })
             .orElseThrow(
                 () ->
-                    new RuntimeException(
-                        new ClassNotFoundException("Motor adapter class not found")));
+                    new IllegalStateException(
+                        "Motor adapter class not found for motor type: " + this.name()));
   }
 }

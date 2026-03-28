@@ -47,6 +47,7 @@ import edu.wpi.first.units.measure.Temperature;
 import edu.wpi.first.util.datalog.DataLog;
 import edu.wpi.first.util.datalog.DoubleLogEntry;
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 
 /** A motor controller implementation based on the CTR Electronics TalonFX controller. */
 public final class TalonFXAdapter implements MotorController {
@@ -203,7 +204,6 @@ public final class TalonFXAdapter implements MotorController {
         isInverted ? InvertedValue.Clockwise_Positive : InvertedValue.CounterClockwise_Positive;
 
     applyConfig(talonFX, motorOutputConfigs);
-    ;
   }
 
   @Override
@@ -283,13 +283,16 @@ public final class TalonFXAdapter implements MotorController {
   private static void applyConfig(TalonFX talonFX, MotorOutputConfigs motorOutputConfigs) {
     for (int i = 0; i < 5; i++) {
       StatusCode status = talonFX.getConfigurator().apply(motorOutputConfigs);
+
       if (status.isOK()) {
         return;
       }
-      System.out.println(
+
+      DriverStation.reportError(
           String.format(
               "ERROR: Failed to apply motor output configs of TalonFX ID %d: %s (%s)",
-              talonFX.getDeviceID(), status.getDescription(), status.getName()));
+              talonFX.getDeviceID(), status.getDescription(), status.getName()),
+          false);
     }
   }
 

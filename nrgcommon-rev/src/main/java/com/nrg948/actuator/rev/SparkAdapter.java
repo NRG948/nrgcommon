@@ -97,7 +97,7 @@ abstract class SparkAdapter implements MotorController {
    *
    * <p>This protected constructor is intended for use only by delegating public constructors or
    * factory methods. It assumes the SparkMax object is already configured or will be configured
-   * approriately by the public constructors or factory methods.
+   * appropriately by the public constructors or factory methods.
    *
    * @param logPrefix The prefix for the log entries.
    * @param spark The SparkMax object to adapt.
@@ -149,7 +149,8 @@ abstract class SparkAdapter implements MotorController {
     driveMotorConfig
         .encoder
         .positionConversionFactor(distancePerRotation)
-        .velocityConversionFactor(distancePerRotation);
+        // Convert from rotations per minute to rotations per second.
+        .velocityConversionFactor(distancePerRotation / 60.0);
 
     spark
         .get()

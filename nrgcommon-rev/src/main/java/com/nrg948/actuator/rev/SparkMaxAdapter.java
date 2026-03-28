@@ -34,10 +34,16 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 
 /** A motor controller implementation based on the REV Robotics {@link SparkMax} controllers. */
 public final class SparkMaxAdapter extends SparkAdapter {
+  /** The accessor for the SparkMax motor controller. */
   protected static final class SparkMaxAccessor implements SparkAdapter.Accessor {
     private final SparkMax spark;
     private final SparkMaxConfig config = new SparkMaxConfig();
 
+    /**
+     * Constructs a SparkMaxAccessor.
+     *
+     * @param spark The SparkMax motor controller to access.
+     */
     protected SparkMaxAccessor(SparkMax spark) {
       this.spark = spark;
     }
@@ -126,7 +132,7 @@ public final class SparkMaxAdapter extends SparkAdapter {
   }
 
   /**
-   * Constructs a SparkFlexAdapter.
+   * Constructs a SparkMaxAdapter.
    *
    * <p>This private constructor is intended for use only when creating a follower. It is assumed
    * that the controller will be configured appropriately after creation.

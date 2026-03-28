@@ -1,7 +1,7 @@
 /*
   MIT License
 
-  Copyright (C) 2026 Newport Robotics Group
+  Copyright (c) 2026 Newport Robotics Group
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -63,16 +63,11 @@ def wpilib = [
 ]
 
 dependencies {
-    implementation project(':nrgcommon')
+    api project(':nrgcommon')
 
-    implementation "com.revrobotics.frc:REVLib-java:2026.0.5"
-    implementation "edu.wpi.first.cscore:cscore-java:${wpilib.version}"
-    implementation "edu.wpi.first.ntcore:ntcore-java:${wpilib.version}"
-    implementation "edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:${wpilib.version}"
-    implementation "edu.wpi.first.wpimath:wpimath-java:${wpilib.version}"
-    implementation "edu.wpi.first.wpinet:wpinet-java:${wpilib.version}"
-    implementation "edu.wpi.first.wpiunits:wpiunits-java:${wpilib.version}"
-    implementation "edu.wpi.first.wpiutil:wpiutil-java:${wpilib.version}"
+    api "com.revrobotics.frc:REVLib-java:2026.0.5"
+    api "edu.wpi.first.wpiunits:wpiunits-java:${wpilib.version}"
+    api "edu.wpi.first.wpiutil:wpiutil-java:${wpilib.version}"
 }
 
 java {
