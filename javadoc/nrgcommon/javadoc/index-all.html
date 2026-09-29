@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="com/nrg948/preferences/BooleanPreference.html#accept(com.nrg948.preferences.PreferenceValueVisitor)" class="member-name-link">accept(PreferenceValueVisitor)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/BooleanPreference.html" title="class in com.nrg948.preferences">BooleanPreference</a></dt>
@@ -80,6 +80,18 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Adds a child binding to this container.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#apply(com.nrg948.actuator.MotorConfig)" class="member-name-link">apply(MotorConfig)</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Applies the basic motor configuration.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#apply(com.nrg948.actuator.MotorConfig)" class="member-name-link">apply(MotorConfig)</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#apply(com.nrg948.actuator.MotorCurrentConfig)" class="member-name-link">apply(MotorCurrentConfig)</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Applies the electrical current configuration.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#apply(com.nrg948.actuator.MotorCurrentConfig)" class="member-name-link">apply(MotorCurrentConfig)</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/util/function/ToBooleanFunction.html#applyAsBoolean(T)" class="member-name-link">applyAsBoolean(T)</a> - Method in interface com.nrg948.util.function.<a href="com/nrg948/util/function/ToBooleanFunction.html" title="interface in com.nrg948.util.function">ToBooleanFunction</a></dt>
 <dd>
 <div class="block">Applies this function to the given argument.</div>
@@ -441,6 +453,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The label is positioned at the bottom of the widget.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorIdleMode.html#BRAKE" class="member-name-link">BRAKE</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorIdleMode.html" title="enum class in com.nrg948.actuator">MotorIdleMode</a></dt>
+<dd>
+<div class="block">The motor controller effectively short circuits the motor causing electrical energy to
+ dissipate quickly and bring it to a quick stop.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
@@ -472,10 +489,19 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">A checkmark icon is displayed for true values.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorDirection.html#CLOCKWISE_POSITIVE" class="member-name-link">CLOCKWISE_POSITIVE</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorDirection.html" title="enum class in com.nrg948.actuator">MotorDirection</a></dt>
+<dd>
+<div class="block">The motor output shaft rotates clockwise when positive voltage is applied.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/data/TabBinding.html#close()" class="member-name-link">close()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#close()" class="member-name-link">close()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/nrg948/actuator/MotorIdleMode.html#COAST" class="member-name-link">COAST</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorIdleMode.html" title="enum class in com.nrg948.actuator">MotorIdleMode</a></dt>
+<dd>
+<div class="block">The motor controller effectively disconnects the motor circuit allowing it to spin down at its
+ natural rate.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardGraph.html#color()" class="member-name-link">color()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardGraph.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardGraph</a></dt>
 <dd>
 <div class="block">Returns the color of the graph.</div>
@@ -624,6 +650,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the column position of the widget in the dashboard grid.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a> - package com.nrg948.actuator</dt>
+<dd>
+<div class="block">This package contains classes and interfaces for controlling various types of actuators,
+ including motor controllers from different manufacturers.</div>
+</dd>
 <dt><a href="com/nrg948/autonomous/package-summary.html">com.nrg948.autonomous</a> - package com.nrg948.autonomous</dt>
 <dd>
 <div class="block">The <code>com.nrg948.autonomous</code> package implements an annotation-based approach for identifying
@@ -642,6 +673,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/package-summary.html">com.nrg948.preferences</a> - package com.nrg948.preferences</dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/nrg948/sensor/package-summary.html">com.nrg948.sensor</a> - package com.nrg948.sensor</dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/util/package-summary.html">com.nrg948.util</a> - package com.nrg948.util</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/nrg948/util/enums/package-summary.html">com.nrg948.util.enums</a> - package com.nrg948.util.enums</dt>
@@ -652,6 +685,16 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the compression level of the camera stream.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorDirection.html#COUNTER_CLOCKWISE_POSITIVE" class="member-name-link">COUNTER_CLOCKWISE_POSITIVE</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorDirection.html" title="enum class in com.nrg948.actuator">MotorDirection</a></dt>
+<dd>
+<div class="block">The motor output shaft rotates counter-clockwise when positive voltage is applied.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#createFollower(java.lang.String,int,boolean)" class="member-name-link">createFollower(String, int, boolean)</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Creates a new motor controller that is configured to follow this motor controller.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#createFollower(java.lang.String,int,boolean)" class="member-name-link">createFollower(String, int, boolean)</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/model/GameField.html#CRESCENDO" class="member-name-link">CRESCENDO</a> - Enum constant in enum class com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/GameField.html" title="enum class in com.nrg948.dashboard.model">GameField</a></dt>
 <dd>
 <div class="block">The Crescendo game field.</div>
@@ -825,6 +868,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Enum representing data binding modes for dashboard widgets.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#DEFAULT_STATOR_CURRENT_LIMIT" class="member-name-link">DEFAULT_STATOR_CURRENT_LIMIT</a> - Static variable in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">The default stator current limit in amps.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#DEFAULT_SUPPLY_CURRENT_LIMIT" class="member-name-link">DEFAULT_SUPPLY_CURRENT_LIMIT</a> - Static variable in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">The default supply current limit in amps.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/model/RotationUnit.html#DEGREES" class="member-name-link">DEGREES</a> - Enum constant in enum class com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/RotationUnit.html" title="enum class in com.nrg948.dashboard.model">RotationUnit</a></dt>
 <dd>
 <div class="block">The rotation unit is degrees.</div>
@@ -833,6 +884,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The Destination: Deep Space game field.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorConfig.html#direction()" class="member-name-link">direction()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./com/nrg948/actuator/MotorConfig.html#param-direction"><code>direction</code></a> record component.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#disable()" class="member-name-link">disable()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/data/TabBinding.html#disable()" class="member-name-link">disable()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/TabBinding.html" title="class in com.nrg948.dashboard.data">TabBinding</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#disable()" class="member-name-link">disable()</a> - Method in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
@@ -850,6 +907,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardMatchTime.html#displayMode()" class="member-name-link">displayMode()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardMatchTime.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardMatchTime</a></dt>
 <dd>
 <div class="block">Returns the display mode of the match time.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorConfig.html#distancePerRotation()" class="member-name-link">distancePerRotation()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./com/nrg948/actuator/MotorConfig.html#param-distancePerRotation"><code>distancePerRotation</code></a> record component.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardNumberBar.html#divisions()" class="member-name-link">divisions()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardNumberBar.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardNumberBar</a></dt>
 <dd>
@@ -892,6 +953,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Enables continuous input for this controller.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#enableCurrentLimit()" class="member-name-link">enableCurrentLimit()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./com/nrg948/actuator/MotorCurrentConfig.html#param-enableCurrentLimit"><code>enableCurrentLimit</code></a> record component.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html#endAngle()" class="member-name-link">endAngle()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardRadialGauge</a></dt>
 <dd>
 <div class="block">Returns the end angle of the radial gauge.</div>
@@ -908,6 +973,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs an instance of this class.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorConfig.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></dt>
+<dd>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/model/FalseIcon.html#EXCLAMATION_POINT" class="member-name-link">EXCLAMATION_POINT</a> - Enum constant in enum class com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/FalseIcon.html" title="enum class in com.nrg948.dashboard.model">FalseIcon</a></dt>
 <dd>
 <div class="block">An exclamation point icon is displayed for false values.</div>
@@ -919,6 +992,11 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:F">F</h2>
 <dl class="index">
+<dt><a href="com/nrg948/actuator/Motors.html#Falcon500" class="member-name-link">Falcon500</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A VEX PRO <a href="https://content.vexrobotics.com/vexpro/pdf/217-6515-Falcon500-UserGuide-021523.pdf">Falcon
+ 500</a> motor with integrated Talon FX motor controller and encoders.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardBooleanBox.html#falseColor()" class="member-name-link">falseColor()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardBooleanBox.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardBooleanBox</a></dt>
 <dd>
 <div class="block">Returns the color of the widget when the value is false.</div>
@@ -963,6 +1041,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Enum representing different game fields.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#get()" class="member-name-link">get()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/util/ReflectionUtil.html#get(java.lang.invoke.MethodHandle,I)" class="member-name-link">get(MethodHandle, I)</a> - Static method in class com.nrg948.util.<a href="com/nrg948/util/ReflectionUtil.html" title="class in com.nrg948.util">ReflectionUtil</a></dt>
 <dd>
 <div class="block">Gets the value returned by the method referenced by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/MethodHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>MethodHandle</code></a> from the
@@ -1001,6 +1081,11 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getD()" class="member-name-link">getD()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the current derivative gain.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#getDCMotor()" class="member-name-link">getDCMotor()</a> - Method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> containing the motor properties (e.g. free speed, stall torque,
+ etc.).</div>
 </dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getDefaultD()" class="member-name-link">getDefaultD()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
@@ -1074,6 +1159,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the display name of the true icon.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#getEncoder()" class="member-name-link">getEncoder()</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Returns the motor controller's relative encoder.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#getEncoder()" class="member-name-link">getEncoder()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getError()" class="member-name-link">getError()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the current error of this controller.</div>
@@ -1090,6 +1181,16 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the error tolerance of this controller.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#getForwardLimitSwitch()" class="member-name-link">getForwardLimitSwitch()</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Returns the forward limit switch.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#getForwardLimitSwitch()" class="member-name-link">getForwardLimitSwitch()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#getFreeSpeedRPM()" class="member-name-link">getFreeSpeedRPM()</a> - Method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns the free speed RPM.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PreferenceValue.html#getGroup()" class="member-name-link">getGroup()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValue.html" title="class in com.nrg948.preferences">PreferenceValue</a></dt>
 <dd>
 <div class="block">Returns the this value's group name.</div>
@@ -1102,6 +1203,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the current integral gain.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#getInverted()" class="member-name-link">getInverted()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getIZone()" class="member-name-link">getIZone()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the maximum magnitude of the error to allow integral control.</div>
@@ -1113,6 +1216,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/PreferenceValue.html#getKey()" class="member-name-link">getKey()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValue.html" title="class in com.nrg948.preferences">PreferenceValue</a></dt>
 <dd>
 <div class="block">Returns this value key used to access it in the preferences store.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#getKs()" class="member-name-link">getKs()</a> - Method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns the voltage required to overcome the internal resistance of the motor.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/PreferenceValue.html#getName()" class="member-name-link">getName()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValue.html" title="class in com.nrg948.preferences">PreferenceValue</a></dt>
 <dd>
@@ -1139,6 +1246,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the period of this controller.</div>
 </dd>
+<dt><a href="com/nrg948/sensor/RelativeEncoder.html#getPosition()" class="member-name-link">getPosition()</a> - Method in interface com.nrg948.sensor.<a href="com/nrg948/sensor/RelativeEncoder.html" title="interface in com.nrg948.sensor">RelativeEncoder</a></dt>
+<dd>
+<div class="block">Returns the current position.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getPositionError()" class="member-name-link">getPositionError()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the position error for this controller.</div>
@@ -1147,6 +1258,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the position tolerance for this controller.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#getReverseLimitSwitch()" class="member-name-link">getReverseLimitSwitch()</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Returns the reverse limit switch.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#getReverseLimitSwitch()" class="member-name-link">getReverseLimitSwitch()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#getSetpoint()" class="member-name-link">getSetpoint()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the current setpoint of this controller.</div>
@@ -1154,6 +1271,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getSetpoint()" class="member-name-link">getSetpoint()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the current setpoint of this controller.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#getStallTorque()" class="member-name-link">getStallTorque()</a> - Method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns the stall torque in Nm.</div>
 </dd>
 <dt><a href="com/nrg948/util/ReflectionUtil.html#getStatic(java.lang.invoke.MethodHandle)" class="member-name-link">getStatic(MethodHandle)</a> - Static method in class com.nrg948.util.<a href="com/nrg948/util/ReflectionUtil.html" title="class in com.nrg948.util">ReflectionUtil</a></dt>
 <dd>
@@ -1275,6 +1396,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the current value.</div>
 </dd>
+<dt><a href="com/nrg948/sensor/RelativeEncoder.html#getVelocity()" class="member-name-link">getVelocity()</a> - Method in interface com.nrg948.sensor.<a href="com/nrg948/sensor/RelativeEncoder.html" title="interface in com.nrg948.sensor">RelativeEncoder</a></dt>
+<dd>
+<div class="block">Returns the current velocity.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#getVelocityError()" class="member-name-link">getVelocityError()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Returns the velocity error for this controller.</div>
@@ -1310,6 +1435,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
+<dt><a href="com/nrg948/actuator/MotorConfig.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/annotations/Dashboard3AxisAccelerometer.html#height()" class="member-name-link">height()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/Dashboard3AxisAccelerometer.html" title="annotation interface in com.nrg948.dashboard.annotations">Dashboard3AxisAccelerometer</a></dt>
 <dd>
 <div class="block">Returns the height of the widget in the dashboard grid.</div>
@@ -1449,6 +1582,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
+<dt><a href="com/nrg948/actuator/MotorConfig.html#idleMode()" class="member-name-link">idleMode()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./com/nrg948/actuator/MotorConfig.html#param-idleMode"><code>idleMode</code></a> record component.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/model/GameField.html#INFINITE_RECHARGE" class="member-name-link">INFINITE_RECHARGE</a> - Enum constant in enum class com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/GameField.html" title="enum class in com.nrg948.dashboard.model">GameField</a></dt>
 <dd>
 <div class="block">The Infinite Recharge game field.</div>
@@ -1478,12 +1615,31 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Whether this command returned by the method is the default <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Command.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link"><code>Command</code></a> in the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/SendableChooser.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link"><code>SendableChooser</code></a> returned by <a href="com/nrg948/autonomous/Autonomous.html#getChooser(java.lang.Object...)"><code>Autonomous.getChooser(Object...)</code></a>.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorDirection.html#isInverted()" class="member-name-link">isInverted()</a> - Method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorDirection.html" title="enum class in com.nrg948.actuator">MotorDirection</a></dt>
+<dd>
+<div class="block">Returns whether the motor rotates in the clockwise direction when a positive voltage is
+ applied (i.e. the motor is "inverted").</div>
+</dd>
+<dt><a href="com/nrg948/sensor/LimitSwitch.html#isPressed()" class="member-name-link">isPressed()</a> - Method in interface com.nrg948.sensor.<a href="com/nrg948/sensor/LimitSwitch.html" title="interface in com.nrg948.sensor">LimitSwitch</a></dt>
+<dd>
+<div class="block">Returns whether the limit switch is pressed.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:K">K</h2>
 <dl class="index">
 <dt><a href="com/nrg948/preferences/PreferenceValue.html#key" class="member-name-link">key</a> - Variable in class com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValue.html" title="class in com.nrg948.preferences">PreferenceValue</a></dt>
 <dd>
 <div class="block">The preferences value key.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#KrakenX44" class="member-name-link">KrakenX44</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A WestCoast Products <a href="https://docs.wcproducts.com/welcome/electronics/kraken-x44">Kraken X44</a> motor with
+ integrated Talon FX motor controller and encoders.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#KrakenX60" class="member-name-link">KrakenX60</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A WestCoast Products <a href="https://docs.wcproducts.com/welcome/kraken-x60/kraken-x60-motor">Kraken X60</a> motor
+ with integrated Talon FX motor controller and encoders.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
@@ -1508,10 +1664,20 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The color light blue.</div>
 </dd>
+<dt><a href="com/nrg948/sensor/LimitSwitch.html" class="type-name-link" title="interface in com.nrg948.sensor">LimitSwitch</a> - Interface in <a href="com/nrg948/sensor/package-summary.html">com.nrg948.sensor</a></dt>
+<dd>
+<div class="block">An interface for a limit switch.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/model/LayoutType.html#LIST" class="member-name-link">LIST</a> - Enum constant in enum class com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/LayoutType.html" title="enum class in com.nrg948.dashboard.model">LayoutType</a></dt>
 <dd>
 <div class="block">The layout is a list layout.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#logTelemetry()" class="member-name-link">logTelemetry()</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Logs motor-specific telemetry to the data log.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#logTelemetry()" class="member-name-link">logTelemetry()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
@@ -1567,6 +1733,64 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the modes in which this tab should be displayed.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorConfig.html" class="type-name-link" title="class in com.nrg948.actuator">MotorConfig</a> - Record Class in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">A record that contains the motor configuration.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorConfig.html#%3Cinit%3E(com.nrg948.actuator.MotorDirection,com.nrg948.actuator.MotorIdleMode,double)" class="member-name-link">MotorConfig(MotorDirection, MotorIdleMode, double)</a> - Constructor for record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></dt>
+<dd>
+<div class="block">Constructs a MotorConfig with default values for any parameters that are null or zero.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorConfigException.html" class="type-name-link" title="class in com.nrg948.actuator">MotorConfigException</a> - Exception in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">An exception thrown whenever we fail to configure a motor.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorConfigException.html#%3Cinit%3E(java.lang.String)" class="member-name-link">MotorConfigException(String)</a> - Constructor for exception com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfigException.html" title="class in com.nrg948.actuator">MotorConfigException</a></dt>
+<dd>
+<div class="block">Creates a new MotorConfigException with the specified message.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorConfigException.html#%3Cinit%3E(java.lang.String,java.lang.Throwable)" class="member-name-link">MotorConfigException(String, Throwable)</a> - Constructor for exception com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfigException.html" title="class in com.nrg948.actuator">MotorConfigException</a></dt>
+<dd>
+<div class="block">Creates a new MotorConfigException with the specified message and cause.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorController.html" class="type-name-link" title="interface in com.nrg948.actuator">MotorController</a> - Interface in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">An interface for a motor controller.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html" class="type-name-link" title="class in com.nrg948.actuator">MotorCurrentConfig</a> - Record Class in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">A record that contains the motor current configuration.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#%3Cinit%3E()" class="member-name-link">MotorCurrentConfig()</a> - Constructor for record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Creates a new MotorCurrentConfig with the default current limits and current limiting enabled.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#%3Cinit%3E(boolean)" class="member-name-link">MotorCurrentConfig(boolean)</a> - Constructor for record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Creates a new MotorCurrentConfig with the default current limits and the specified current
+ limiting state.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#%3Cinit%3E(double,double)" class="member-name-link">MotorCurrentConfig(double, double)</a> - Constructor for record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Creates a new MotorCurrentConfig with the specified current limits and current limiting
+ enabled.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#%3Cinit%3E(double,double,boolean)" class="member-name-link">MotorCurrentConfig(double, double, boolean)</a> - Constructor for record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Creates a new MotorCurrentConfig with the specified parameters.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorDirection.html" class="type-name-link" title="enum class in com.nrg948.actuator">MotorDirection</a> - Enum Class in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">The direction the motor output shaft rotates when positive voltage is applied.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorIdleMode.html" class="type-name-link" title="enum class in com.nrg948.actuator">MotorIdleMode</a> - Enum Class in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">The motor controller behavior when idle.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html" class="type-name-link" title="enum class in com.nrg948.actuator">Motors</a> - Enum Class in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">An enum representing the properties of a specific motor type.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
@@ -1583,6 +1807,36 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The name to display for the annotated method returning a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Command.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link"><code>Command</code></a> in the <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/SendableChooser.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link"><code>SendableChooser</code></a> returned by <a href="com/nrg948/autonomous/Autonomous.html#getChooser(java.lang.Object...)"><code>Autonomous.getChooser(Object...)</code></a>.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/Motors.html#Neo550" class="member-name-link">Neo550</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A REV Robotics <a href="https://docs.revrobotics.com/brushless/neo/550">NEO 550 Brushless
+ Motor</a> with integrated encoder.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#NeoV1_1" class="member-name-link">NeoV1_1</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A REV Robotics <a href="https://docs.revrobotics.com/brushless/neo/v1.1">NEO Brushless Motor
+ V1.1</a> with integrated encoder.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#NeoVortexFlex" class="member-name-link">NeoVortexFlex</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A REV Robotics <a href="https://docs.revrobotics.com/brushless/neo/vortex">NEO Vortex Brushless
+ Motor</a> with <a href="https://docs.revrobotics.com/brushless/spark-flex/overview">SparkFlex</a> motor
+ controller.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#NeoVortexMax" class="member-name-link">NeoVortexMax</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A REV Robotics <a href="https://docs.revrobotics.com/brushless/neo/vortex">NEO Vortex Brushless
+ Motor</a> with <a href="https://docs.revrobotics.com/brushless/spark-max/overview">SparkMax</a>
+ motor controller.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#newController(java.lang.String,int)" class="member-name-link">newController(String, int)</a> - Method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns a new <a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator"><code>MotorController</code></a> implementation for this motor type.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#newController(java.lang.String,int,com.nrg948.actuator.MotorConfig,com.nrg948.actuator.MotorCurrentConfig)" class="member-name-link">newController(String, int, MotorConfig, MotorCurrentConfig)</a> - Method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns a new <a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator"><code>MotorController</code></a> implementation for this motor type.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/data/DashboardData.html#NO_DATA" class="member-name-link">NO_DATA</a> - Static variable in class com.nrg948.dashboard.data.<a href="com/nrg948/dashboard/data/DashboardData.html" title="class in com.nrg948.dashboard.data">DashboardData</a></dt>
 <dd>
 <div class="block">An empty array of DashboardData, used when no data bindings are present.</div>
@@ -1598,6 +1852,18 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/util/Colors.html#NRG_PINK" class="member-name-link">NRG_PINK</a> - Enum constant in enum class com.nrg948.util.<a href="com/nrg948/util/Colors.html" title="enum class in com.nrg948.util">Colors</a></dt>
 <dd>
 <div class="block">The color NRG pink.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#NullMotor" class="member-name-link">NullMotor</a> - Enum constant in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">A null motor that can be used for testing or as a placeholder when no motor is needed.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html" class="type-name-link" title="class in com.nrg948.actuator">NullMotorAdapter</a> - Class in <a href="com/nrg948/actuator/package-summary.html">com.nrg948.actuator</a></dt>
+<dd>
+<div class="block">A motor controller adapter that does nothing.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#%3Cinit%3E()" class="member-name-link">NullMotorAdapter()</a> - Constructor for class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>
+<div class="block">Creates a new NullMotorAdapter.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html#numberOfLabels()" class="member-name-link">numberOfLabels()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardRadialGauge.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardRadialGauge</a></dt>
 <dd>
@@ -1747,9 +2013,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Registers a tab for which its data is published for the specified modes if the tab is present.</div>
 </dd>
+<dt><a href="com/nrg948/sensor/RelativeEncoder.html" class="type-name-link" title="interface in com.nrg948.sensor">RelativeEncoder</a> - Interface in <a href="com/nrg948/sensor/package-summary.html">com.nrg948.sensor</a></dt>
+<dd>
+<div class="block">An interface for a relative encoder.</div>
+</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#reset()" class="member-name-link">reset()</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Resets this controller.</div>
+</dd>
+<dt><a href="com/nrg948/sensor/RelativeEncoder.html#reset()" class="member-name-link">reset()</a> - Method in interface com.nrg948.sensor.<a href="com/nrg948/sensor/RelativeEncoder.html" title="interface in com.nrg948.sensor">RelativeEncoder</a></dt>
+<dd>
+<div class="block">Resets the encoder.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#reset(double)" class="member-name-link">reset(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
@@ -1956,6 +2230,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Interface providing selection methods for enums.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#set(double)" class="member-name-link">set(double)</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/util/ReflectionUtil.html#set(java.lang.invoke.VarHandle,I,T)" class="member-name-link">set(VarHandle, I, T)</a> - Static method in class com.nrg948.util.<a href="com/nrg948/util/ReflectionUtil.html" title="class in com.nrg948.util">ReflectionUtil</a></dt>
 <dd>
 <div class="block">Sets the value of the field represented by the given <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/invoke/VarHandle.html" title="class or interface in java.lang.invoke" class="external-link"><code>VarHandle</code></a> on the specified
@@ -1989,6 +2265,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets the integral gain.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorController.html#setIdleMode(com.nrg948.actuator.MotorIdleMode)" class="member-name-link">setIdleMode(MotorIdleMode)</a> - Method in interface com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></dt>
+<dd>
+<div class="block">Sets the motor behavior when idle (i.e.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#setIdleMode(com.nrg948.actuator.MotorIdleMode)" class="member-name-link">setIdleMode(MotorIdleMode)</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#setIntegratorRange(double,double)" class="member-name-link">setIntegratorRange(double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Sets the minimum and maximum contributions of the integral term.</div>
@@ -1997,6 +2279,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets the minimum and maximum contributions of the integral term.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#setInverted(boolean)" class="member-name-link">setInverted(boolean)</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#setIZone(double)" class="member-name-link">setIZone(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
 <div class="block">Sets the maximum magnitude of the error to allow integral control.</div>
@@ -2025,6 +2309,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html#setPID(double,double,double)" class="member-name-link">setPID(double, double, double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></dt>
 <dd>
 <div class="block">Sets the PID gains.</div>
+</dd>
+<dt><a href="com/nrg948/sensor/RelativeEncoder.html#setPosition(double)" class="member-name-link">setPosition(double)</a> - Method in interface com.nrg948.sensor.<a href="com/nrg948/sensor/RelativeEncoder.html" title="interface in com.nrg948.sensor">RelativeEncoder</a></dt>
+<dd>
+<div class="block">Sets the current position.</div>
 </dd>
 <dt><a href="com/nrg948/preferences/PIDControllerPreference.html#setSetpoint(double)" class="member-name-link">setSetpoint(double)</a> - Method in class com.nrg948.preferences.<a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></dt>
 <dd>
@@ -2158,6 +2446,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the start angle of the radial gauge.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#statorCurrentLimit()" class="member-name-link">statorCurrentLimit()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./com/nrg948/actuator/MotorCurrentConfig.html#param-statorCurrentLimit"><code>statorCurrentLimit</code></a> record component.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/NullMotorAdapter.html#stopMotor()" class="member-name-link">stopMotor()</a> - Method in class com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/nrg948/preferences/StringPreference.html" class="type-name-link" title="class in com.nrg948.preferences">StringPreference</a> - Class in <a href="com/nrg948/preferences/package-summary.html">com.nrg948.preferences</a></dt>
 <dd>
 <div class="block">A class representing a string value in the preferences store.</div>
@@ -2173,6 +2467,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardGraph.html#strokeWidth()" class="member-name-link">strokeWidth()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardGraph.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardGraph</a></dt>
 <dd>
 <div class="block">Returns the stroke width of the graph.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#supplyCurrentLimit()" class="member-name-link">supplyCurrentLimit()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./com/nrg948/actuator/MotorCurrentConfig.html#param-supplyCurrentLimit"><code>supplyCurrentLimit</code></a> record component.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
@@ -2383,6 +2681,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The label is positioned at the top of the widget.</div>
 </dd>
+<dt><a href="com/nrg948/actuator/MotorConfig.html#toString()" class="member-name-link">toString()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorCurrentConfig.html#toString()" class="member-name-link">toString()</a> - Method in record class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/annotations/DashboardField.html#trajectoryColor()" class="member-name-link">trajectoryColor()</a> - Element in annotation interface com.nrg948.dashboard.annotations.<a href="com/nrg948/dashboard/annotations/DashboardField.html" title="annotation interface in com.nrg948.dashboard.annotations">DashboardField</a></dt>
 <dd>
 <div class="block">Returns the color of the trajectories on the field.</div>
@@ -2420,6 +2726,18 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
+<dt><a href="com/nrg948/actuator/MotorDirection.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorDirection.html" title="enum class in com.nrg948.actuator">MotorDirection</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorIdleMode.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorIdleMode.html" title="enum class in com.nrg948.actuator">MotorIdleMode</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
 <dt><a href="com/nrg948/dashboard/model/DataBinding.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/DataBinding.html" title="enum class in com.nrg948.dashboard.model">DataBinding</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
@@ -2459,6 +2777,21 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/nrg948/util/Colors.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.nrg948.util.<a href="com/nrg948/util/Colors.html" title="enum class in com.nrg948.util">Colors</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorDirection.html#values()" class="member-name-link">values()</a> - Static method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorDirection.html" title="enum class in com.nrg948.actuator">MotorDirection</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/MotorIdleMode.html#values()" class="member-name-link">values()</a> - Static method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/MotorIdleMode.html" title="enum class in com.nrg948.actuator">MotorIdleMode</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="com/nrg948/actuator/Motors.html#values()" class="member-name-link">values()</a> - Static method in enum class com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
 </dd>
 <dt><a href="com/nrg948/dashboard/model/DataBinding.html#values()" class="member-name-link">values()</a> - Static method in enum class com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/DataBinding.html" title="enum class in com.nrg948.dashboard.model">DataBinding</a></dt>
 <dd>
@@ -2704,7 +3037,7 @@ the order they are declared.</div>
 <div class="block">Returns the time remaining in seconds when the widget should turn yellow.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
 </div>
 </div>
 </body>

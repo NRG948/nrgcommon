@@ -50,12 +50,14 @@ loadScripts(document, 'script');</script>
 <h1 class="title">Hierarchy For All Packages</h1>
 <span class="package-hierarchy-label">Package Hierarchies:</span>
 <ul class="horizontal">
+<li><a href="com/nrg948/actuator/package-tree.html">com.nrg948.actuator</a>, </li>
 <li><a href="com/nrg948/autonomous/package-tree.html">com.nrg948.autonomous</a>, </li>
 <li><a href="com/nrg948/dashboard/package-tree.html">com.nrg948.dashboard</a>, </li>
 <li><a href="com/nrg948/dashboard/annotations/package-tree.html">com.nrg948.dashboard.annotations</a>, </li>
 <li><a href="com/nrg948/dashboard/data/package-tree.html">com.nrg948.dashboard.data</a>, </li>
 <li><a href="com/nrg948/dashboard/model/package-tree.html">com.nrg948.dashboard.model</a>, </li>
 <li><a href="com/nrg948/preferences/package-tree.html">com.nrg948.preferences</a>, </li>
+<li><a href="com/nrg948/sensor/package-tree.html">com.nrg948.sensor</a>, </li>
 <li><a href="com/nrg948/util/package-tree.html">com.nrg948.util</a>, </li>
 <li><a href="com/nrg948/util/enums/package-tree.html">com.nrg948.util.enums</a>, </li>
 <li><a href="com/nrg948/util/function/package-tree.html">com.nrg948.util.function</a></li>
@@ -75,6 +77,7 @@ loadScripts(document, 'script');</script>
 </li>
 <li class="circle">com.nrg948.dashboard.<a href="com/nrg948/dashboard/DashboardServer.html" class="type-name-link" title="class in com.nrg948.dashboard">DashboardServer</a></li>
 <li class="circle">com.nrg948.util.enums.<a href="com/nrg948/util/enums/EnumChooser.html" class="type-name-link" title="class in com.nrg948.util.enums">EnumChooser</a></li>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/NullMotorAdapter.html" class="type-name-link" title="class in com.nrg948.actuator">NullMotorAdapter</a> (implements com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a>)</li>
 <li class="circle">com.nrg948.preferences.<a href="com/nrg948/preferences/PreferencesUtil.html" class="type-name-link" title="class in com.nrg948.preferences">PreferencesUtil</a></li>
 <li class="circle">com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValue.html" class="type-name-link" title="class in com.nrg948.preferences">PreferenceValue</a>
 <ul>
@@ -86,7 +89,22 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.nrg948.preferences.<a href="com/nrg948/preferences/StringPreference.html" class="type-name-link" title="class in com.nrg948.preferences">StringPreference</a></li>
 </ul>
 </li>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" class="type-name-link external-link" title="class or interface in java.lang">Record</a>
+<ul>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfig.html" class="type-name-link" title="class in com.nrg948.actuator">MotorConfig</a></li>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/MotorCurrentConfig.html" class="type-name-link" title="class in com.nrg948.actuator">MotorCurrentConfig</a></li>
+</ul>
+</li>
 <li class="circle">com.nrg948.util.<a href="com/nrg948/util/ReflectionUtil.html" class="type-name-link" title="class in com.nrg948.util">ReflectionUtil</a></li>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" class="type-name-link external-link" title="class or interface in java.lang">Throwable</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
+<ul>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" class="type-name-link external-link" title="class or interface in java.lang">Exception</a>
+<ul>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/MotorConfigException.html" class="type-name-link" title="class in com.nrg948.actuator">MotorConfigException</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -94,9 +112,16 @@ loadScripts(document, 'script');</script>
 <section class="hierarchy">
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
+<li class="circle">com.nrg948.sensor.<a href="com/nrg948/sensor/LimitSwitch.html" class="type-name-link" title="interface in com.nrg948.sensor">LimitSwitch</a></li>
+<li class="circle">edu.wpi.first.wpilibj.motorcontrol.<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html" class="type-name-link external-link" title="class or interface in edu.wpi.first.wpilibj.motorcontrol">MotorController</a>
+<ul>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/MotorController.html" class="type-name-link" title="interface in com.nrg948.actuator">MotorController</a></li>
+</ul>
+</li>
 <li class="circle">com.nrg948.util.function.<a href="com/nrg948/util/function/ObjBooleanConsumer.html" class="type-name-link" title="interface in com.nrg948.util.function">ObjBooleanConsumer</a>&lt;T&gt;</li>
 <li class="circle">com.nrg948.util.function.<a href="com/nrg948/util/function/ObjFloatConsumer.html" class="type-name-link" title="interface in com.nrg948.util.function">ObjFloatConsumer</a>&lt;T&gt;</li>
 <li class="circle">com.nrg948.preferences.<a href="com/nrg948/preferences/PreferenceValueVisitor.html" class="type-name-link" title="interface in com.nrg948.preferences">PreferenceValueVisitor</a></li>
+<li class="circle">com.nrg948.sensor.<a href="com/nrg948/sensor/RelativeEncoder.html" class="type-name-link" title="interface in com.nrg948.sensor">RelativeEncoder</a></li>
 <li class="circle">com.nrg948.util.enums.<a href="com/nrg948/util/enums/SelectorEnum.html" class="type-name-link" title="interface in com.nrg948.util.enums">SelectorEnum</a>&lt;E&gt;</li>
 <li class="circle">com.nrg948.util.function.<a href="com/nrg948/util/function/ToBooleanFunction.html" class="type-name-link" title="interface in com.nrg948.util.function">ToBooleanFunction</a>&lt;T&gt;</li>
 <li class="circle">com.nrg948.util.function.<a href="com/nrg948/util/function/ToFloatFunction.html" class="type-name-link" title="interface in com.nrg948.util.function">ToFloatFunction</a>&lt;T&gt;</li>
@@ -158,6 +183,9 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/GameField.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">GameField</a></li>
 <li class="circle">com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/LabelPosition.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">LabelPosition</a></li>
 <li class="circle">com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/LayoutType.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">LayoutType</a></li>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/MotorDirection.html" class="type-name-link" title="enum class in com.nrg948.actuator">MotorDirection</a></li>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/MotorIdleMode.html" class="type-name-link" title="enum class in com.nrg948.actuator">MotorIdleMode</a></li>
+<li class="circle">com.nrg948.actuator.<a href="com/nrg948/actuator/Motors.html" class="type-name-link" title="enum class in com.nrg948.actuator">Motors</a></li>
 <li class="circle">com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/Orientation.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">Orientation</a></li>
 <li class="circle">com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/RotationUnit.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">RotationUnit</a></li>
 <li class="circle">com.nrg948.dashboard.model.<a href="com/nrg948/dashboard/model/TimeDisplayMode.html" class="type-name-link" title="enum class in com.nrg948.dashboard.model">TimeDisplayMode</a></li>

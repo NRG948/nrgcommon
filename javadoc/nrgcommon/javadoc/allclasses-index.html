@@ -54,7 +54,7 @@ loadScripts(document, 'script');</script>
 <h1 title="All Classes and Interfaces" class="title">All Classes and Interfaces</h1>
 </div>
 <div id="all-classes-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="all-classes-table-tab1" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab1', 2)" class="table-tab">Interfaces</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Classes</button><button id="all-classes-table-tab3" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab3', 2)" class="table-tab">Enum Classes</button><button id="all-classes-table-tab7" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab7', 2)" class="table-tab">Annotation Interfaces</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="all-classes-table-tab1" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab1', 2)" class="table-tab">Interfaces</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Classes</button><button id="all-classes-table-tab3" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab3', 2)" class="table-tab">Enum Classes</button><button id="all-classes-table-tab4" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab4', 2)" class="table-tab">Record Classes</button><button id="all-classes-table-tab5" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab5', 2)" class="table-tab">Exceptions</button><button id="all-classes-table-tab7" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab7', 2)" class="table-tab">Annotation Interfaces</button></div>
 <div id="all-classes-table.tabpanel" role="tabpanel" aria-labelledby="all-classes-table-tab0">
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Class</div>
@@ -268,41 +268,81 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
 <div class="block">Enum representing layout types for dashboard layout widgets.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/util/function/ObjBooleanConsumer.html" title="interface in com.nrg948.util.function">ObjBooleanConsumer</a>&lt;<a href="com/nrg948/util/function/ObjBooleanConsumer.html" title="type parameter in ObjBooleanConsumer">T</a>&gt;</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/sensor/LimitSwitch.html" title="interface in com.nrg948.sensor">LimitSwitch</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="block">An interface for a limit switch.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="com/nrg948/actuator/MotorConfig.html" title="class in com.nrg948.actuator">MotorConfig</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="block">A record that contains the motor configuration.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab5"><a href="com/nrg948/actuator/MotorConfigException.html" title="class in com.nrg948.actuator">MotorConfigException</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab5">
+<div class="block">An exception thrown whenever we fail to configure a motor.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/actuator/MotorController.html" title="interface in com.nrg948.actuator">MotorController</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="block">An interface for a motor controller.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="com/nrg948/actuator/MotorCurrentConfig.html" title="class in com.nrg948.actuator">MotorCurrentConfig</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="block">A record that contains the motor current configuration.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/nrg948/actuator/MotorDirection.html" title="enum class in com.nrg948.actuator">MotorDirection</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="block">The direction the motor output shaft rotates when positive voltage is applied.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="com/nrg948/actuator/MotorIdleMode.html" title="enum class in com.nrg948.actuator">MotorIdleMode</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
+<div class="block">The motor controller behavior when idle.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/nrg948/actuator/Motors.html" title="enum class in com.nrg948.actuator">Motors</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="block">An enum representing the properties of a specific motor type.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/actuator/NullMotorAdapter.html" title="class in com.nrg948.actuator">NullMotorAdapter</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">A motor controller adapter that does nothing.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/util/function/ObjBooleanConsumer.html" title="interface in com.nrg948.util.function">ObjBooleanConsumer</a>&lt;<a href="com/nrg948/util/function/ObjBooleanConsumer.html" title="type parameter in ObjBooleanConsumer">T</a>&gt;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Functional interface representing an operation that accepts an object and a boolean value.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/util/function/ObjFloatConsumer.html" title="interface in com.nrg948.util.function">ObjFloatConsumer</a>&lt;<a href="com/nrg948/util/function/ObjFloatConsumer.html" title="type parameter in ObjFloatConsumer">T</a>&gt;</div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/util/function/ObjFloatConsumer.html" title="interface in com.nrg948.util.function">ObjFloatConsumer</a>&lt;<a href="com/nrg948/util/function/ObjFloatConsumer.html" title="type parameter in ObjFloatConsumer">T</a>&gt;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Functional interface representing an operation that accepts an object and a float value.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="com/nrg948/dashboard/model/Orientation.html" title="enum class in com.nrg948.dashboard.model">Orientation</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/nrg948/dashboard/model/Orientation.html" title="enum class in com.nrg948.dashboard.model">Orientation</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
 <div class="block">Enum representing orientations for dashboard layout widgets.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/PIDControllerPreference.html" title="class in com.nrg948.preferences">PIDControllerPreference</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Manages a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/PIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>PIDController</code></a> whose gains are stored in WPILib <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/Preferences.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link"><code>Preferences</code></a>.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/PreferencesUtil.html" title="class in com.nrg948.preferences">PreferencesUtil</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/PreferencesUtil.html" title="class in com.nrg948.preferences">PreferencesUtil</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Utility class for managing WPILib Preferences.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/PreferenceValue.html" title="class in com.nrg948.preferences">PreferenceValue</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/PreferenceValue.html" title="class in com.nrg948.preferences">PreferenceValue</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">An abstract base class represented a keyed valued in the preferences store.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/preferences/PreferenceValueVisitor.html" title="interface in com.nrg948.preferences">PreferenceValueVisitor</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/preferences/PreferenceValueVisitor.html" title="interface in com.nrg948.preferences">PreferenceValueVisitor</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">An interface to support the Visitor pattern on preferences values.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/preferences/ProfiledPIDControllerPreference.html" title="class in com.nrg948.preferences">ProfiledPIDControllerPreference</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Manages a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/controller/ProfiledPIDController.html" title="class or interface in edu.wpi.first.math.controller" class="external-link"><code>ProfiledPIDController</code></a> whose gains are stored in WPILib <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/Preferences.html" title="class or interface in edu.wpi.first.wpilibj" class="external-link"><code>Preferences</code></a>.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/util/ReflectionUtil.html" title="class in com.nrg948.util">ReflectionUtil</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="com/nrg948/util/ReflectionUtil.html" title="class in com.nrg948.util">ReflectionUtil</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Utility methods for reflection operations.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="com/nrg948/sensor/RelativeEncoder.html" title="interface in com.nrg948.sensor">RelativeEncoder</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="block">An interface for a relative encoder.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="com/nrg948/dashboard/model/RotationUnit.html" title="enum class in com.nrg948.dashboard.model">RotationUnit</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
