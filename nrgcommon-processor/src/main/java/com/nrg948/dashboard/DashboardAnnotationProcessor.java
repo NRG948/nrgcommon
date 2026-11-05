@@ -30,6 +30,7 @@ import static javax.tools.Diagnostic.Kind.ERROR;
 
 import com.google.auto.service.AutoService;
 import com.nrg948.dashboard.annotations.Dashboard;
+import com.nrg948.dashboard.annotations.DashboardAlerts;
 import com.nrg948.dashboard.annotations.DashboardDefinition;
 import com.nrg948.dashboard.annotations.DashboardTab;
 import com.nrg948.dashboard.model.DashboardElement;
@@ -122,10 +123,13 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
   private TypeMirror optionalType;
   private TypeMirror stringType;
-  private TypeMirror httpCameraType;
   private TypeMirror sendableType;
   private TypeMirror alertType;
   private TypeMirror preferenceValueType;
+
+  // The HttpCamera type is not included by default in the WPILib JAR, so we need to handle it as an
+  // optional type.
+  private Optional<TypeMirror> httpCameraType;
 
   private Set<TypeMirror> readWriteDashboardAnnotations;
 
@@ -144,10 +148,13 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
 
     optionalType = typeUtils.erasure(elementUtils.getTypeElement(OPTIONAL_QUALIFIED_NAME).asType());
     stringType = elementUtils.getTypeElement(STRING_QUALIFIED_NAME).asType();
-    httpCameraType = elementUtils.getTypeElement(HTTP_CAMERA_QUALIFIED_NAME).asType();
     sendableType = elementUtils.getTypeElement(SENDABLE_QUALIFIED_NAME).asType();
     alertType = elementUtils.getTypeElement(ALERT_QUALIFIED_NAME).asType();
     preferenceValueType = elementUtils.getTypeElement(PREFERENCE_VALUE_QUALIFIED_NAME).asType();
+
+    httpCameraType =
+        Optional.ofNullable(elementUtils.getTypeElement(HTTP_CAMERA_QUALIFIED_NAME))
+            .map(TypeElement::asType);
 
     readWriteDashboardAnnotations =
         Arrays.stream(READ_WRITE_DASHBOARD_ANNOTATIONS)
@@ -195,11 +202,18 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param definitionElement The element annotated with {@link DashboardDefinition}.
    */
   private void processDefinition(TypeElement definitionElement) {
-    var annotatedElements = getDefinitionElements(definitionElement).stream().toList();
+    var annotatedElements = getDefinitionElements(definitionElement);
 
-    writeDefinitionJavaFile(definitionElement, annotatedElements);
-
-    definitions.put(definitionElement.asType(), annotatedElements);
+    annotatedElements.ifPresentOrElse(
+        elements -> writeDefinitionJavaFile(definitionElement, elements),
+        () ->
+            processingEnv
+                .getMessager()
+                .printMessage(
+                    ERROR,
+                    "No annotated elements found for @DashboardDefinition: "
+                        + definitionElement.getQualifiedName().toString(),
+                    definitionElement));
   }
 
   /**
@@ -326,40 +340,43 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
               @Override
               public Optional<DashboardTabElement> visitVariable(
                   VariableElement e, Optional<DashboardTabElement> p) {
-                var definitionElements = definitions.get(unwrap(e.asType()));
-
-                if (definitionElements == null) {
-                  processingEnv
-                      .getMessager()
-                      .printMessage(
-                          ERROR,
-                          "No @DashboardDefinition found for type: " + e.asType().toString(),
-                          e);
-                  return Optional.empty();
-                }
-
-                return Optional.of(
-                    createTabModelElement(e, tabElement.annotation, definitionElements.stream()));
+                return getDefinitionElements(e.asType())
+                    .map(
+                        elements ->
+                            createTabModelElement(e, tabElement.annotation, elements.stream()))
+                    .or(
+                        () -> {
+                          processingEnv
+                              .getMessager()
+                              .printMessage(
+                                  ERROR,
+                                  "No @DashboardDefinition found for tab of type: "
+                                      + e.asType().toString(),
+                                  e);
+                          return Optional.empty();
+                        });
               }
 
               @Override
               public Optional<DashboardTabElement> visitExecutable(
                   ExecutableElement e, Optional<DashboardTabElement> p) {
                 TypeMirror returnType = e.getReturnType();
-                var definitionElements = definitions.get(unwrap(returnType));
 
-                if (definitionElements == null) {
-                  processingEnv
-                      .getMessager()
-                      .printMessage(
-                          ERROR,
-                          "No @DashboardDefinition found for type: " + returnType.toString(),
-                          e);
-                  return Optional.empty();
-                }
-
-                return Optional.of(
-                    createTabModelElement(e, tabElement.annotation, definitionElements.stream()));
+                return getDefinitionElements(returnType)
+                    .map(
+                        elements ->
+                            createTabModelElement(e, tabElement.annotation, elements.stream()))
+                    .or(
+                        () -> {
+                          processingEnv
+                              .getMessager()
+                              .printMessage(
+                                  ERROR,
+                                  "No @DashboardDefinition found for tab of type: "
+                                      + e.asType().toString(),
+                                  e);
+                          return Optional.empty();
+                        });
               }
             },
             null);
@@ -516,22 +533,12 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @param dashboardElements Stream of elements annotated with {@link Dashboard}.
    */
   private void processDashboard(Stream<? extends Element> dashboardElements) {
-    var dashboardElementOpt =
-        dashboardElements
-            .map(ProcessorUtil::asTypeElement)
-            .filter(Optional::isPresent)
-            .map(Optional::get)
-            .findFirst();
-
-    if (dashboardElementOpt.isEmpty()) {
-      processingEnv.getMessager().printMessage(ERROR, "No class annotated with @Dashboard found.");
-
-      return;
-    }
-
-    var dashboardElement = dashboardElementOpt.get();
-
-    buildDashboardConfigurationFiles(dashboardElement);
+    dashboardElements
+        .map(ProcessorUtil::asTypeElement)
+        .filter(Optional::isPresent)
+        .map(Optional::get)
+        .findFirst()
+        .ifPresent(this::buildDashboardConfigurationFiles);
   }
 
   /**
@@ -630,35 +637,48 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
     var typeUtils = processingEnv.getTypeUtils();
     TypeMirror annotationType = annotatedElement.annotationTypeElement.asType();
 
+    // Dashboard tabs cannot be nested within other dashboard annotations, so we check for that and
+    // report an error if found.
     if (typeUtils.isSameType(annotationType, dashboardTabType)) {
-      throw new IllegalArgumentException(
-          "DashboardTab annotations cannot be nested within other dashboard annotations.");
-    }
-
-    if (!typeUtils.isSameType(annotationType, dashboardLayoutType)) {
-      return createModelElement(annotatedElement);
-    }
-
-    TypeMirror layoutContainerType = unwrap(getValueType(annotatedElement.element));
-    List<AnnotatedElement> layoutDefinition = definitions.get(layoutContainerType);
-
-    if (layoutDefinition == null) {
       processingEnv
           .getMessager()
           .printMessage(
               ERROR,
-              "No @DashboardDefinition found for type: " + layoutContainerType.toString(),
+              "DashboardTab annotations cannot be nested within other dashboard annotations.",
               annotatedElement.element,
               annotatedElement.annotation);
-      layoutDefinition = List.of();
+      return createModelElement(annotatedElement, (Object) new DashboardElementBase[0]);
     }
 
-    var layoutModelElements =
-        layoutDefinition.stream()
-            .map(this::createNestedModelElement)
-            .toArray(DashboardElementBase[]::new);
+    // If the annotation is not a layout annotation, we create a model element directly.
+    if (!typeUtils.isSameType(annotationType, dashboardLayoutType)) {
+      return createModelElement(annotatedElement);
+    }
 
-    return createModelElement(annotatedElement, (Object) layoutModelElements);
+    // Create the model elements for the layout annotation.
+    TypeMirror layoutContainerType = getValueType(annotatedElement.element);
+
+    return getDefinitionElements(layoutContainerType)
+        .map(
+            elements -> {
+              var layoutModelElements =
+                  elements.stream()
+                      .map(this::createNestedModelElement)
+                      .toArray(DashboardElementBase[]::new);
+              return createModelElement(annotatedElement, (Object) layoutModelElements);
+            })
+        .orElseGet(
+            () -> {
+              processingEnv
+                  .getMessager()
+                  .printMessage(
+                      ERROR,
+                      "No @DashboardDefinition found for layout of type: "
+                          + layoutContainerType.toString(),
+                      annotatedElement.element,
+                      annotatedElement.annotation);
+              return createModelElement(annotatedElement, (Object) new DashboardElementBase[0]);
+            });
   }
 
   /**
@@ -1277,22 +1297,48 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * DashboardDefinition}.
    *
    * @param containerElement The container element.
-   * @return The list of annotated elements.
+   * @return An {@link Optional} containing the list of annotated elements for the container if
+   *     found, otherwise empty.
    */
-  private List<AnnotatedElement> getDefinitionElements(TypeElement containerElement) {
-    var dashboardElements =
-        containerElement.getEnclosedElements().stream()
-            .map(DashboardAnnotationProcessor::asAnnotatedElement)
-            .filter(Optional::isPresent)
-            .map(Optional::get)
-            .filter(
-                e ->
-                    !processingEnv
-                        .getTypeUtils()
-                        .isSameType(e.annotationTypeElement.asType(), dashboardDefinitionType))
-            .toList();
+  private Optional<List<AnnotatedElement>> getDefinitionElements(TypeElement containerElement) {
+    var containerType = containerElement.asType();
 
-    return dashboardElements;
+    if (!hasLayoutDefinition(containerElement)) {
+      return Optional.empty();
+    }
+
+    return Optional.of(
+        definitions.computeIfAbsent(
+            containerType,
+            k -> {
+              return containerElement.getEnclosedElements().stream()
+                  .map(DashboardAnnotationProcessor::asAnnotatedElement)
+                  .filter(Optional::isPresent)
+                  .map(Optional::get)
+                  .filter(
+                      e ->
+                          !processingEnv
+                              .getTypeUtils()
+                              .isSameType(
+                                  e.annotationTypeElement.asType(), dashboardDefinitionType))
+                  .toList();
+            }));
+  }
+
+  /**
+   * Gets the list of annotated elements within a type mirror of a type annotated with {@link
+   * DashboardDefinition}.
+   *
+   * @param containerType The type mirror representing the container type.
+   * @return An {@link Optional} containing the list of annotated elements for the container if
+   *     found, otherwise empty.
+   */
+  private Optional<List<AnnotatedElement>> getDefinitionElements(TypeMirror containerType) {
+    var declaredType = asDeclaredType(unwrap(containerType));
+
+    return declaredType
+        .flatMap(type -> asTypeElement(type.asElement()))
+        .flatMap(typeElement -> getDefinitionElements(typeElement));
   }
 
   /**
@@ -1304,18 +1350,21 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    */
   private static Optional<AnnotatedElement> asAnnotatedElement(Element element) {
     for (var annotationMirror : element.getAnnotationMirrors()) {
-      var annotationTypeElementOpt =
-          asTypeElement(annotationMirror.getAnnotationType().asElement());
+      var annotationTypeElement = asTypeElement(annotationMirror.getAnnotationType().asElement());
 
-      if (annotationTypeElementOpt.isPresent()
-          && (annotationTypeElementOpt
-              .get()
-              .getQualifiedName()
-              .toString()
-              .startsWith("com.nrg948.dashboard.annotations.Dashboard"))) {
+      var annotatedElement =
+          annotationTypeElement
+              .filter(
+                  typeElement -> {
+                    return typeElement
+                        .getQualifiedName()
+                        .toString()
+                        .startsWith("com.nrg948.dashboard.annotations.Dashboard");
+                  })
+              .map(typeElement -> new AnnotatedElement(element, annotationMirror, typeElement));
 
-        return Optional.of(
-            new AnnotatedElement(element, annotationMirror, annotationTypeElementOpt.get()));
+      if (annotatedElement.isPresent()) {
+        return annotatedElement;
       }
     }
 
@@ -1505,7 +1554,9 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return True if the declared type is a type of HttpCamera, false otherwise.
    */
   private boolean isHttpCamera(DeclaredType type) {
-    return processingEnv.getTypeUtils().isAssignable(type, httpCameraType);
+    return httpCameraType
+        .map(httpCameraType -> processingEnv.getTypeUtils().isAssignable(type, httpCameraType))
+        .orElse(false);
   }
 
   /**
@@ -1545,8 +1596,19 @@ public final class DashboardAnnotationProcessor extends AbstractProcessor {
    * @return True if the declared type has a dashboard layout definition, false otherwise.
    */
   private boolean hasLayoutDefinition(DeclaredType type) {
+    return hasLayoutDefinition(type.asElement());
+  }
+
+  /**
+   * Determines if an element has a dashboard layout definition.
+   *
+   * @param element The element to check.
+   * @return True if the element has a dashboard layout definition, false otherwise.
+   */
+  private boolean hasLayoutDefinition(Element element) {
     var typeUtils = processingEnv.getTypeUtils();
-    return type.asElement().getAnnotationMirrors().stream()
+
+    return element.getAnnotationMirrors().stream()
         .anyMatch(a -> typeUtils.isSameType(a.getAnnotationType(), dashboardDefinitionType));
   }
 }
