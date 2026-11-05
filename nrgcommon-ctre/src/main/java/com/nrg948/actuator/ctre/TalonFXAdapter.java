@@ -231,8 +231,7 @@ public final class TalonFXAdapter implements MotorController {
   public LimitSwitch getForwardLimitSwitch() {
     if (forwardLimitSwitchAdapter == null) {
       forwardLimitSwitchAdapter =
-          new TalonFXLimitSwitchAdapter<ForwardLimitValue>(
-              talonFX.getForwardLimit(), ForwardLimitValue.ClosedToGround);
+          TalonFXLimitSwitchAdapter.of(talonFX.getForwardLimit(), ForwardLimitValue.ClosedToGround);
     }
 
     return forwardLimitSwitchAdapter;
@@ -242,8 +241,7 @@ public final class TalonFXAdapter implements MotorController {
   public LimitSwitch getReverseLimitSwitch() {
     if (reverseLimitSwitchAdapter == null) {
       reverseLimitSwitchAdapter =
-          new TalonFXLimitSwitchAdapter<ReverseLimitValue>(
-              talonFX.getReverseLimit(), ReverseLimitValue.ClosedToGround);
+          TalonFXLimitSwitchAdapter.of(talonFX.getReverseLimit(), ReverseLimitValue.ClosedToGround);
     }
     return reverseLimitSwitchAdapter;
   }

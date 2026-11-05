@@ -24,12 +24,43 @@
 package com.nrg948.sensor.ctre;
 
 import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.signals.ForwardLimitValue;
+import com.ctre.phoenix6.signals.ReverseLimitValue;
 import com.nrg948.sensor.LimitSwitch;
 
-/** A limit switch implementation based on the CTR Electronics TalonFX motor controller. */
+/**
+ * A limit switch implementation based on the CTR Electronics TalonFX motor controller.
+ *
+ * @param <T> The type of enum representing the limit switch signal, either {@link
+ *     ForwardLimitValue} or {@link ReverseLimitValue}.
+ */
 public final class TalonFXLimitSwitchAdapter<T extends Enum<T>> implements LimitSwitch {
   private final StatusSignal<T> limitSwitch;
   private final T pressedState;
+
+  /**
+   * Creates a TalonFXLimitSwitchAdapter for a forward limit switch signal and its pressed state.
+   *
+   * @param limitSwitch The forward limit switch signal.
+   * @param pressedState The state of the forward limit switch when it is pressed.
+   * @return A new instance of TalonFXLimitSwitchAdapter.
+   */
+  public static TalonFXLimitSwitchAdapter<ForwardLimitValue> of(
+      StatusSignal<ForwardLimitValue> limitSwitch, ForwardLimitValue pressedState) {
+    return new TalonFXLimitSwitchAdapter<>(limitSwitch, pressedState);
+  }
+
+  /**
+   * Creates a TalonFXLimitSwitchAdapter for a reverse limit switch signal and its pressed state.
+   *
+   * @param limitSwitch The reverse limit switch signal.
+   * @param pressedState The state of the reverse limit switch when it is pressed.
+   * @return A new instance of TalonFXLimitSwitchAdapter.
+   */
+  public static TalonFXLimitSwitchAdapter<ReverseLimitValue> of(
+      StatusSignal<ReverseLimitValue> limitSwitch, ReverseLimitValue pressedState) {
+    return new TalonFXLimitSwitchAdapter<>(limitSwitch, pressedState);
+  }
 
   /**
    * Constructs a TalonFXLimitSwitchAdapter.
@@ -37,7 +68,7 @@ public final class TalonFXLimitSwitchAdapter<T extends Enum<T>> implements Limit
    * @param limitSwitch The TalonFX limit switch signal.
    * @param pressedState The state of the limit switch when it is pressed.
    */
-  public TalonFXLimitSwitchAdapter(StatusSignal<T> limitSwitch, T pressedState) {
+  private TalonFXLimitSwitchAdapter(StatusSignal<T> limitSwitch, T pressedState) {
     this.limitSwitch = limitSwitch;
     this.pressedState = pressedState;
   }
