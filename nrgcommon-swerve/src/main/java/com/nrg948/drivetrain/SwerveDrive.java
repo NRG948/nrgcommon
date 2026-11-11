@@ -239,14 +239,4 @@ public class SwerveDrive extends RobotDriveBase {
       module.periodic();
     }
   }
-
-  /**
-   * This method is called periodically by the SwerveSubsystem. It is used to update module-specific
-   * simulation state.
-   */
-  public void simulationPeriodic() {
-    for (SwerveModule module : modules) {
-      module.simulationPeriodic();
-    }
-  }
 }
