@@ -28,6 +28,16 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.units.measure.Distance;
 
+/**
+ * SwerveModuleParameters is a record that encapsulates the parameters required to configure a
+ * swerve module.
+ *
+ * @param wheelDiameter The diameter of the wheel.
+ * @param driveFeedForward The {@link SimpleMotorFeedforward} object used for drive control
+ * @param drivePIDController The {@link PIDController} object used for drive control
+ * @param steeringFeedForward The {@link SimpleMotorFeedforward} object used for steering control
+ * @param steeringPIDController The {@link ProfiledPIDController} object used for steering control
+ */
 public record SwerveModuleParameters(
     Distance wheelDiameter,
     SimpleMotorFeedforward driveFeedForward,

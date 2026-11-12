@@ -67,8 +67,6 @@ public class SwerveDrive extends RobotDriveBase {
    *     swerve drive characteristics.
    * @param modules An array of four {@link SwerveModule} objects in the order: front left, front
    *     right, back left, back right.
-   * @param kinematics A {@link SwerveDriveKinematics} object used to convert chassis velocity into
-   *     individual module states.
    * @param orientationSupplier Supplies the robot orientation relative to the field.
    */
   public SwerveDrive(

@@ -30,7 +30,6 @@ import static edu.wpi.first.units.Units.MetersPerSecondPerSecond;
 
 import com.nrg948.actuator.MotorDirection;
 import com.nrg948.actuator.Motors;
-
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.LinearAcceleration;
@@ -93,9 +92,7 @@ public enum SwerveModuleType {
    *     is applied to rotate the wheel in the counter-clockwise direction.
    */
   SwerveModuleType(
-      double driveGearRatio,
-      double steeringGearRatio,
-      MotorDirection steeringDirection) {
+      double driveGearRatio, double steeringGearRatio, MotorDirection steeringDirection) {
     this.driveGearRatio = driveGearRatio;
     this.steeringGearRatio = steeringGearRatio;
     this.steeringDirection = steeringDirection;
@@ -138,7 +135,9 @@ public enum SwerveModuleType {
    * @return The theoretical maximum drive speed.
    */
   public LinearVelocity calculateMaxDriveSpeed(Motors motor, Distance wheelDiameter) {
-    return MetersPerSecond.of((motor.getFreeSpeedRPM() * wheelDiameter.in(Units.Meters) * Math.PI) / (60.0 * this.driveGearRatio));
+    return MetersPerSecond.of(
+        (motor.getFreeSpeedRPM() * wheelDiameter.in(Units.Meters) * Math.PI)
+            / (60.0 * this.driveGearRatio));
   }
 
   /**
@@ -149,9 +148,11 @@ public enum SwerveModuleType {
    * @param robotMass the total robot mass in Kg including bumpers and battery.
    * @return The theoretical maximum drive acceleration.
    */
-  public LinearAcceleration calculateMaxDriveAcceleration(Motors motor, Distance wheelDiameter, double robotMass) {
-    return MetersPerSecondPerSecond.of((2 * 4 * motor.getStallTorque() * this.driveGearRatio)
-        / (wheelDiameter.in(Units.Meters) * robotMass));
+  public LinearAcceleration calculateMaxDriveAcceleration(
+      Motors motor, Distance wheelDiameter, double robotMass) {
+    return MetersPerSecondPerSecond.of(
+        (2 * 4 * motor.getStallTorque() * this.driveGearRatio)
+            / (wheelDiameter.in(Units.Meters) * robotMass));
   }
 
   /**

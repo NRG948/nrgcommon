@@ -27,6 +27,15 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.LinearVelocity;
 
+/**
+ * SwerveDriveParameters is a record that encapsulates the parameters required to configure a swerve
+ * drive system.
+ *
+ * @param kinematics The {@link SwerveDriveKinematics} object that defines the geometry of the
+ *     swerve drive system.
+ * @param maxDriveSpeed The maximum linear velocity of the robot in meters per second.
+ * @param maxRotationalSpeed The maximum angular velocity of the robot in radians per second.
+ */
 public record SwerveDriveParameters(
     SwerveDriveKinematics kinematics,
     LinearVelocity maxDriveSpeed,

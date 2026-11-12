@@ -33,10 +33,10 @@ import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.units.Units;
 import edu.wpi.first.util.datalog.DataLog;
 import edu.wpi.first.util.datalog.DoubleLogEntry;
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
 
@@ -62,7 +62,6 @@ public final class SwerveModule {
   private final Supplier<Rotation2d> wheelAngleSupplier;
   private final DoubleSupplier wheelAngleVelocitySupplier;
   private final String name;
-  private final double wheelDiameter;
 
   // models motors mathematically, calculates voltage needed
   private final SimpleMotorFeedforward driveFeedForward;
@@ -118,7 +117,6 @@ public final class SwerveModule {
     this.positionSupplier = position;
     this.velocitySupplier = velocity;
     this.name = name;
-    this.wheelDiameter = parameters.wheelDiameter().in(Units.Meters);
 
     this.driveSpeedLog =
         new DoubleLogEntry(LOG, String.format("/SwerveModule/%s/driveSpeed", name));
@@ -180,7 +178,7 @@ public final class SwerveModule {
     steeringMotor.logTelemetry();
   }
 
-  /** Returns the name of the module. */
+  /** {@return the name of the module} */
   public String getName() {
     return name;
   }
@@ -264,14 +262,14 @@ public final class SwerveModule {
   }
 
   /**
-   * This method is called periodically by the {@link Swerve}. It is used to update module-specific
-   * state.
+   * This method is called periodically by the {@link Subsystem} implementing the Swerve drive of
+   * the robot. It is used to update module-specific state.
    */
   public void periodic() {
     updateSuppliedState();
   }
 
-  /** Returns the wheel angle in degrees. */
+  /** {@return the wheel angle in degrees} */
   @DashboardRadialGauge(
       title = "Wheel Angle (deg)",
       startAngle = -180,
@@ -284,7 +282,7 @@ public final class SwerveModule {
     return getState().angle.getDegrees();
   }
 
-  /** Returns the wheel velocity in meters per second. */
+  /** {@return the wheel velocity in meters per second} */
   @DashboardTextDisplay(title = "Wheel Velocity (m/s)")
   public double getVelocity() {
     return getState().speedMetersPerSecond;
